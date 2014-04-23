@@ -13,16 +13,19 @@
 
 {if $mainPage}
 	<p>{translate key="manager.plugins.description"}</p>
-
 	<ul id="plugins" class="plain">
-		{foreach from=$plugins item=plugin}
+		{foreach from=$plugins item=plugin}  
 			{if $plugin->getCategory() != $category}
 				{assign var=category value=$plugin->getCategory()}
-				<li>&#187; <a href="{url path=$category|escape}">{translate key="plugins.categories.$category"}</a></li>
+        {if $isSiteAdmin || $category=="blocks" || $category=="generic"}
+				  <li>&#187; <a href="{url path=$category|escape}">{translate key="plugins.categories.$category"}</a></li>
+        {/if}
 			{/if}
 		{/foreach}
 		<li>&nbsp;</li>
-		<li><b><a href="{url op="managePlugins" path=install}">{translate key="manager.plugins.install"}</a></b></li>
+    {if $isSiteAdmin}
+		  <li><b><a href="{url op="managePlugins" path=install}">{translate key="manager.plugins.install"}</a></b></li>
+    {/if}
 	</ul>
 {else}
 	{foreach from=$plugins item=plugin}
@@ -44,6 +47,8 @@
 				<p>{translate key="plugins.categories.$category.description"}</p>
 				</div>
 			{/if}
+      {assign var=name value=$plugin->getName()}
+      {if $isSiteAdmin || $name=="webfeedplugin" || $name=="announcementfeedplugin" || $name=="customblockmanagerplugin" || $name=="staticpagesplugin"}
 			<li><h4>{$plugin->getDisplayName()|escape}</h4>
 			<p>
 			{$plugin->getDescription()}<br/>
@@ -56,11 +61,12 @@
 				{/foreach}
 			{/if}
 			{assign var=pluginInstallName value=$plugin->getPluginPath()|basename}
-			{if $plugin->getCurrentVersion()}
+			{if $plugin->getCurrentVersion() && $isSiteAdmin}
 				<a class="action" href="{url op="managePlugins" path="upgrade"|to_array:$category:$pluginInstallName}">{translate key="manager.plugins.upgrade"}</a>&nbsp;
 				<a class="action" href="{url op="managePlugins" path="delete"|to_array:$category:$pluginInstallName}">{translate key="manager.plugins.delete"}</a>&nbsp;
 			{/if}
 			</p></li>
+      {/if}
 			{/if}
 		{/foreach}
 	</ul>

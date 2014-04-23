@@ -37,9 +37,10 @@
 	{if $publishingMode == $smarty.const.PUBLISHING_MODE_SUBSCRIPTION}
 		<li>&#187; <a href="{url op="subscriptionsSummary"}">{translate key="manager.subscriptions"}</a></li>
 	{/if}
-	<!--<li>&#187; <a href="{url op="plugins"}">{translate key="manager.plugins"}</a></li>-->
 	<li>&#187; <a href="{url op="importexport"}">{translate key="manager.importExport"}</a></li>
+  <li>&#187; <a href="{url op="plugins"}">{translate key="manager.plugins"}</a></li>
 	{call_hook name="Templates::Manager::Index::ManagementPages"}
+  
 </ul>
 </div>
 <div id="managerUsers">

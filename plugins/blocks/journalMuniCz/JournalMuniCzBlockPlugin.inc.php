@@ -72,7 +72,7 @@ class JournalMuniCzBlockPlugin extends BlockPlugin {
 	 * Get a description of the plugin.
 	 */
 	function getDescription() {
-		return __('plugins.block.journalMuniCzf.description');
+		return __('plugins.block.journalMuniCz.description');
 	}
 }
 

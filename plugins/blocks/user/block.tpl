@@ -34,11 +34,11 @@
 				<table>
 					<tr>
 						<td><label for="sidebar-username">{translate key="user.username"}</label></td>
-						<td><input type="text" id="sidebar-username" name="username" value="" size="12" maxlength="32" class="textField" /></td>
+						<td style="padding-left:10px;"><input type="text" id="sidebar-username" name="username" value="" size="12" maxlength="32" class="textField" /></td>
 					</tr>
 					<tr>
 						<td><label for="sidebar-password">{translate key="user.password"}</label></td>
-						<td><input type="password" id="sidebar-password" name="password" value="{$password|escape}" size="12" maxlength="32" class="textField" /></td>
+						<td style="padding-left:10px;"><input type="password" id="sidebar-password" name="password" value="{$password|escape}" size="12" maxlength="32" class="textField" /></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input type="checkbox" id="remember" name="remember" value="1" /> <label for="remember">{translate key="plugins.block.user.rememberMe"}</label></td>

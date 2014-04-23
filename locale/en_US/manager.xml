@@ -731,4 +731,18 @@
 	<!-- Categories -->
 	<message key="manager.setup.categories">Categories</message>
 	<message key="manager.setup.categories.description">Choose the most appropriate categories from the set listed above. Readers will be able to browse by category from the complete journal set.</message>
+  
+  <message key="manager.setup.aboutJournal">About journal</message>
+<message key="manager.setup.useTopDescription">Use top block. </message>
+<message key="manager.setup.useDownDescription">Use bottom block.</message>
+<message key="manager.setup.aboutJournalDescription">Journal description in section About</message>
+  <message key="manager.setup.useMuniStyle">Use journals.muni.cz design</message>
+  <message key="manager.setup.useMuniStyleDescription"> If you check the checkbox you will use the default design of the main webpage journals.muni.cz. The left panel is turned off and you are not allowed to add your own Cascading Style Sheets (CSS). </message>
+  <message key="manager.setup.useMuniStyleDescriptionOff"> If you turn off the default design of journals.muni.cz, you will be able to add your own Cascading Style Sheets (CSS) or to choose from default ones as well as to use the left panel. You have to save the form after unchecking the checkbox (the default OJS style is then used automatically).</message>
+  <message key="manager.setup.refferences">Refferences</message>
+<message key="manager.setup.refferencesDescription">Allows authors include references to the submission.</message>
+   <message key="manager.setup.socialNetworks">Social networks</message>
+<message key="manager.setup.facebook">Facebook.com</message>
+<message key="manager.setup.twitter">Twitter.com</message>
+<message key="manager.setup.gplus">Plus.google.com</message>
 </locale>

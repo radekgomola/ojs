@@ -373,7 +373,7 @@ function setRegAllowOpts(form) {
 	<textarea name="layoutInstructions[{$formLocale|escape}]" id="layoutInstructions" rows="12" cols="60" class="textArea">{$layoutInstructions[$formLocale]|escape}</textarea>
 </p>
 </div><!-- layoutInstructionsSection -->
-
+<!--
 <div id="layoutTemplates">
 <h4>{translate key="manager.setup.layoutTemplates"}</h4>
 
@@ -396,7 +396,7 @@ function setRegAllowOpts(form) {
 	</tr>
 </table>
 </div><!-- layoutTemplates -->
-
+<!--
 <div id="referenceLinking">
 <h4>{translate key="manager.setup.referenceLinking"}</h4>
 
@@ -409,7 +409,7 @@ function setRegAllowOpts(form) {
 	</tr>
 </table>
 </div><!-- referenceLinking -->
-
+<!--
 <div id="refLinkInstructionsSection">
 <h4>{translate key="manager.setup.refLinkInstructions.description"}</h4>
 <textarea name="refLinkInstructions[{$formLocale|escape}]" id="refLinkInstructions" rows="12" cols="60" class="textArea">{$refLinkInstructions[$formLocale]|escape}</textarea>

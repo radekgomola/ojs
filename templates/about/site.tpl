@@ -15,7 +15,7 @@
 
 {if !empty($about)}
 	<div id="about">
-	<p>{$about|nl2br}</p>
+	<div class="description"><p>{$about|nl2br}</p></div>
 	</div>
 {/if}
 

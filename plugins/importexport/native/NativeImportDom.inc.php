@@ -156,18 +156,54 @@ class NativeImportDom {
 				$issue->setShowYear(1);
 				$issue->setShowTitle(0);
 				break;
+      case 'num_year_title':
+				$issue->setShowVolume(0);
+				$issue->setShowNumber(1);
+				$issue->setShowYear(1);
+				$issue->setShowTitle(1);
+			break;
+      case 'num_vol':
+				$issue->setShowVolume(1);
+				$issue->setShowNumber(1);
+				$issue->setShowYear(0);
+				$issue->setShowTitle(0);
+			break;
+      case 'num_year':
+				$issue->setShowVolume(0);
+				$issue->setShowNumber(1);
+				$issue->setShowYear(1);
+				$issue->setShowTitle(0);
+			break;
+      case 'year_title':
+				$issue->setShowVolume(0);
+				$issue->setShowNumber(0);
+				$issue->setShowYear(1);
+				$issue->setShowTitle(1);
+			break;
 			case 'vol_year':
 				$issue->setShowVolume(1);
 				$issue->setShowNumber(0);
 				$issue->setShowYear(1);
 				$issue->setShowTitle(0);
 				break;
-			case 'num_year_title':
+			case 'vol_year':
+				$issue->setShowVolume(1);
+				$issue->setShowNumber(0);
+				$issue->setShowYear(0);
+				$issue->setShowTitle(1);
+			break;
+      case 'vol_year':
 				$issue->setShowVolume(0);
 				$issue->setShowNumber(1);
-				$issue->setShowYear(1);
+				$issue->setShowYear(0);
 				$issue->setShowTitle(1);
-				break;
+			break;
+      case 'num':
+				$issue->setShowVolume(0);
+				$issue->setShowNumber(1);
+				$issue->setShowYear(0);
+				$issue->setShowTitle(0);
+			break;
 			case 'vol':
 				$issue->setShowVolume(1);
 				$issue->setShowNumber(0);

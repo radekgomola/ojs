@@ -343,7 +343,7 @@ function prepBlockFields() {
 <img src="{$publicFilesDir}/{$journalFavicon[$formLocale].uploadName|escape:"url"}" width="16px" height="16px" style="border: 0;" alt="favicon" />
 {/if}
 </div>
-
+{if not $currentJournal->getSetting('useMuniStyle')}
 <div id="alternateHeader">
 <h4>{translate key="manager.setup.alternateHeader"}</h4>
 
@@ -352,6 +352,7 @@ function prepBlockFields() {
 <p><textarea name="journalPageHeader[{$formLocale|escape}]" id="journalPageHeader" rows="12" cols="60" class="textArea">{$journalPageHeader[$formLocale]|escape}</textarea></p>
 </div>
 </div>
+{/if}
 <div class="separator"></div>
 
 <div id="journalPageFooterInfo">
@@ -437,7 +438,18 @@ function prepBlockFields() {
 <h3>5.6 {translate key="manager.setup.journalLayout"}</h3>
 
 <p>{translate key="manager.setup.journalLayoutDescription"}</p>
+<div id="useMuniStyle">
+<h4>{translate key="manager.setup.useMuniStyle"}</h4>
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="5%" class="label"><input type="checkbox" name="useMuniStyle" id="useMuniStyle" value="1" {if !$useMuniStyle}{else} checked="checked"{/if} /></td>
+		<td width="95%" class="value"><label for="useMuniStyle">{if !$useMuniStyle}{translate key="manager.setup.useMuniStyleDescription"}{else}{translate key="manager.setup.useMuniStyleDescriptionOff"}{/if}</label></td>
+	</tr>
+</table>
+</div> 
+<br />  
 
+{if not $currentJournal->getSetting('useMuniStyle')}
 <table width="100%" class="data">
 <tr>
 	<td width="20%" class="label"><label for="journalTheme">{translate key="manager.setup.journalTheme"}</label></td>
@@ -458,14 +470,14 @@ function prepBlockFields() {
 
 {if $journalStyleSheet}
 {translate key="common.fileName"}: <a href="{$publicFilesDir}/{$journalStyleSheet.uploadName|escape:"url"}" class="file">{$journalStyleSheet.name|escape}</a> {$journalStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteJournalStyleSheet" value="{translate key="common.delete"}" class="button" />
-{/if}
+{/if} {/if}
 
 <table border="0" align="center">
 	<tr align="center">
-		<td rowspan="2">
+		<td rowspan="2" {if $currentJournal->getSetting('useMuniStyle')}style="display:none"{/if}>
 			{translate key="manager.setup.layout.leftSidebar"}<br/>
 			<input class="button defaultButton" style="width: 130px;" type="button" value="&uarr;" onclick="moveUp(this.form.elements['blockSelectLeftWidget']);" /><br/>
-			<select name="blockSelectLeftWidget" multiple="multiple" size="10" class="selectMenu" style="width: 130px; height:200px">
+			<select name="blockSelectLeftWidget" multiple="multiple" size="10" class="selectMenu" style="width: 200px; height:200px">
 				{foreach from=$leftBlockPlugins item=block}
 					<option value="{$block->getName()|escape}">{$block->getDisplayName()|escape}</option>
 				{foreachelse}
@@ -474,13 +486,13 @@ function prepBlockFields() {
 			</select><br/>
 			<input class="button defaultButton" style="width: 130px;" type="button" value="&darr;" onclick="moveDown(this.form.elements['blockSelectLeftWidget']);" />
 		</td>
-		<td>
+		<td {if $currentJournal->getSetting('useMuniStyle')}style="display:none"{/if}>
 			<input class="button defaultButton" style="width: 30px;" type="button" value="&larr;" onclick="jumpList(this.form.elements['blockUnselectedWidget'],this.form.elements['blockSelectLeftWidget']);" /><br/>
 			<input class="button defaultButton" style="width: 30px;" type="button" value="&rarr;" onclick="jumpList(this.form.elements['blockSelectLeftWidget'],this.form.elements['blockUnselectedWidget']);" />
 		</td>
 		<td valign="top">
-			{translate key="manager.setup.layout.unselected"}<br/>
-			<select name="blockUnselectedWidget" multiple="multiple" size="10" class="selectMenu" style="width: 120px; height:180px;" >
+			{translate key="manager.setup.layout.unselected"}<br /><br /><br />
+			<select name="blockUnselectedWidget" multiple="multiple" size="10" class="selectMenu" style="width: 200px; height:180px;" >
 				{foreach from=$disabledBlockPlugins item=block}
 					<option value="{$block->getName()|escape}">{$block->getDisplayName()|escape}</option>
 				{foreachelse}
@@ -495,17 +507,17 @@ function prepBlockFields() {
 		<td rowspan="2">
 			{translate key="manager.setup.layout.rightSidebar"}<br/>
 			<input class="button defaultButton" style="width: 130px;" type="button" value="&uarr;" onclick="moveUp(this.form.elements['blockSelectRightWidget']);" /><br/>
-			<select name="blockSelectRightWidget" multiple="multiple" size="10" class="selectMenu" style="width: 130px; height:200px" >
+			<select name="blockSelectRightWidget" multiple="multiple" size="10" class="selectMenu" style="width: 200px; height:200px" >
 				{foreach from=$rightBlockPlugins item=block}
 					<option value="{$block->getName()|escape}">{$block->getDisplayName()|escape}</option>
 				{foreachelse}
 					<option value=""></option>
 				{/foreach}
-			</select><br/>
+			</select><br />
 			<input class="button defaultButton" style="width: 130px;" type="button" value="&darr;" onclick="moveDown(this.form.elements['blockSelectRightWidget']);" />
 		</td>
 	</tr>
-	<tr align="center">
+	<tr align="center" {if $currentJournal->getSetting('useMuniStyle')}style="display:none"{/if}>
 		<td colspan="3" valign="top" height="60px">
 			<input class="button defaultButton" style="width: 190px;" type="button" value="&larr;" onclick="jumpList(this.form.elements['blockSelectRightWidget'],this.form.elements['blockSelectLeftWidget']);" /><br/>
 			<input class="button defaultButton" style="width: 190px;" type="button" value="&rarr;" onclick="jumpList(this.form.elements['blockSelectLeftWidget'],this.form.elements['blockSelectRightWidget']);" />
@@ -516,6 +528,7 @@ function prepBlockFields() {
 <input type="hidden" name="blockSelectRight" value="" />
 <input type="hidden" name="blockUnselected" value="" />
 </div>
+<br />
 <div class="separator"></div>
 <div id="setupInfo">
 <h3>5.7 {translate key="manager.setup.information"}</h3>
@@ -536,9 +549,25 @@ function prepBlockFields() {
 </div>
 
 <div class="separator"></div>
+<div id="setupAbout">
+<h3>5.8 {translate key="manager.setup.aboutJournal"}</h3>
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label"><input type="radio" name="aboutSetupTopDown[{$formLocale|escape}]" id="aboutSetupTopDown-0" value="0"{if not $aboutSetupTopDown[$formLocale]} checked="checked"{/if} /> {fieldLabel name="aboutSetupTopDown-0" key="manager.setup.useTopDescription"}</td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label"><input type="radio" name="aboutSetupTopDown[{$formLocale|escape}]" id="aboutSetupTopDown-1" value="1"{if $aboutSetupTopDown[$formLocale]} checked="checked"{/if} /> {fieldLabel name="aboutSetupTopDown-1" key="manager.setup.useDownDescription"}</td>
+	</tr>
+</table>
+<div id="infoForLibs"><h4>{translate key="manager.setup.aboutJournalDescription"}</h4>
 
+<p><textarea name="aboutJournal[{$formLocale|escape}]" id="aboutJournal" rows="12" cols="60" class="textArea">{$aboutJournal[$formLocale]|escape}</textarea></p></div>
+
+</div>
+
+<div class="separator"></div>
 <div id="lists">
-<h3>5.8 {translate key="manager.setup.lists"}</h3>
+<h3>5.9 {translate key="manager.setup.lists"}</h3>
 <p>{translate key="manager.setup.listsDescription"}</p>
 <table width="100%" class="data">
 	<tr valign="top">
@@ -553,7 +582,24 @@ function prepBlockFields() {
 </div>
 
 <div class="separator"></div>
-
+<div id="lists">
+<h3>5.10 {translate key="manager.setup.socialNetworks"}</h3>
+<br />
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{translate key="manager.setup.facebook"}</td>
+		<td width="80%" class="value"><input type="text" name="socialFacebook[{$formLocale|escape}]" value="{$socialFacebook[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
+    </td></tr><tr>
+    <td width="20%" class="label">{translate key="manager.setup.twitter"}</td>
+		<td width="80%" class="value"><input type="text" name="socialTwitter[{$formLocale|escape}]" value="{$socialTwitter[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
+    </td> </tr><tr>
+    <td width="20%" class="label">{translate key="manager.setup.gplus"}</td>
+		<td width="80%" class="value"><input type="text" name="socialGplus[{$formLocale|escape}]" value="{$socialGplus[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
+    </td>
+	</tr>
+</table>
+</div>
+<div class="separator"></div>
 <p><input type="submit" onclick="prepBlockFields()" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>

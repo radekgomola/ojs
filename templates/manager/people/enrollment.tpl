@@ -120,9 +120,10 @@ function confirmAndPrompt(userId) {
 	<tr>
 		<td colspan="5" class="headseparator">&nbsp;</td>
 	</tr>
+  {assign var="i" value=0}
 	{iterate from=users item=user}
 	{assign var=userExists value=1}
-	<tr valign="top">
+	<tr valign="top" {if $i==1}class="background_line"{/if}>
 		<td><input type="checkbox" name="bcc[]" value="{$user->getEmail()|escape}"/></td>
 		<td><a class="action" href="{url op="userProfile" path=$user->getId()}">{$user->getUsername()|escape|wordwrap:15:" ":true}</a></td>
 		<td>{$user->getFullName()|escape}</td>
@@ -151,6 +152,11 @@ function confirmAndPrompt(userId) {
 	<tr>
 		<td colspan="5" class="{if $users->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
+  {if $i==1}
+  {assign var=i value=0}
+  {else}
+  {assign var=i value=1}
+  {/if}
 {/iterate}
 {if $users->wasEmpty()}
 	<tr>

@@ -207,6 +207,7 @@
 
 <p><input type="submit" name="addCustomAboutItem" value="{translate key="manager.setup.addAboutItem"}" class="button" /></p>
 </div>
+<!--
 <div class="separator"></div>
 
 <div id="journalArchiving">
@@ -227,11 +228,11 @@
 	<span class="instruct">{translate key="manager.setup.lockssLicenses"}</span>
 </p>
 </div>
-
+-->
 <div class="separator"></div>
 
 <div id="reviewerDatabaseLink">
-<h3>2.7 {translate key="manager.setup.reviewerDatabaseLink"}</h3>
+<h3>2.6 {translate key="manager.setup.reviewerDatabaseLink"}</h3>
 
 <p>{translate key="manager.setup.reviewerDatabaseLink.desc"}</p>
 

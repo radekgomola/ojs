@@ -30,13 +30,14 @@ function toggleChecked() {
 <br/>
 
 <div id="issues">
+{assign var=i value="0"}
 <form action="{plugin_url path="exportIssues"}" method="post" id="issues">
 <table width="100%" class="listing">
 	<tr>
 		<td colspan="5" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr class="heading" valign="bottom">
-		<td width="5%">&nbsp;</td>
+		<td width="5%" style="display:none;">&nbsp;</td>
 		<td width="60%">{translate key="issue.issue"}</td>
 		<td width="15%">{translate key="editor.issues.published"}</td>
 		<td width="15%">{translate key="editor.issues.numArticles"}</td>
@@ -47,8 +48,8 @@ function toggleChecked() {
 	</tr>
 
 	{iterate from=issues item=issue}
-	<tr valign="top">
-		<td><input type="checkbox" name="issueId[]" value="{$issue->getId()}"/></td>
+	<tr valign="top" {if $i==1}class="background_line"{/if}>
+		<td style="display:none;"><input type="checkbox" name="issueId[]" value="{$issue->getId()}"/></td>
 		<td><a href="{url page="issue" op="view" path=$issue->getId()}" class="action">{$issue->getIssueIdentification()|strip_unsafe_html|nl2br}</a></td>
 		<td>{$issue->getDatePublished()|date_format:"$dateFormatShort"|default:"&mdash;"}</td>
 		<td>{$issue->getNumArticles()|escape}</td>
@@ -57,6 +58,11 @@ function toggleChecked() {
 	<tr>
 		<td colspan="5" class="{if $issues->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
+  {if $i==0}
+    {assign var=i value="1"}
+  {else}
+    {assign var=i value="0"}
+  {/if}
 {/iterate}
 {if $issues->wasEmpty()}
 	<tr>
@@ -72,7 +78,7 @@ function toggleChecked() {
 	</tr>
 {/if}
 </table>
-<p><input type="submit" value="{translate key="common.export"}" class="button defaultButton"/>&nbsp;<input type="button" value="{translate key="common.selectAll"}" class="button" onclick="toggleChecked()" /></p>
+<p style="display:none;"><input type="submit" value="{translate key="common.export"}" class="button defaultButton"/>&nbsp;<input type="button" value="{translate key="common.selectAll"}" class="button" onclick="toggleChecked()" /></p>
 </form>
 </div>
 {include file="common/footer.tpl"}

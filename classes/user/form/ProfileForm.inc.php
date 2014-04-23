@@ -185,7 +185,9 @@ class ProfileForm extends Form {
 			'isReader' => Validation::isReader(),
 			'isReviewer' => Validation::isReviewer(),
 			'interestsKeywords' => $interestManager->getInterestsForUser($user),
-			'interestsTextOnly' => $interestManager->getInterestsString($user),
+			'interestsTextOnly' => $interestManager->getInterestsString($user), 
+      'titleBefore' => $user->getTitleBefore(),
+      'titleAfter' => $user->getTitleAfter(), 
 		);
 	}
 
@@ -214,7 +216,9 @@ class ProfileForm extends Form {
 			'userLocales',
 			'readerRole',
 			'authorRole',
-			'reviewerRole'
+			'reviewerRole',
+      'titleBefore',
+      'titleAfter'   
 		));
 
 		if ($this->getData('userLocales') == null || !is_array($this->getData('userLocales'))) {
@@ -266,7 +270,8 @@ class ProfileForm extends Form {
 			}
 		}
 		$user->setLocales($locales);
-
+    $user->setTitleBefore($this->getData('titleBefore'));
+    $user->setTitleAfter($this->getData('titleAfter'));
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$userDao->updateObject($user);
 

@@ -12,6 +12,13 @@
 {assign var="pageTitle" value="about.aboutTheJournal"}
 {include file="common/header.tpl"}
 {/strip}
+{if $currentJournal->getLocalizedSetting('aboutJournal') && $currentJournal->getLocalizedSetting('aboutSetupTopDown') == 0}
+<div id="aboutJournal">
+  <p>
+    {$currentJournal->getLocalizedSetting('aboutJournal')|nl2br}
+  </p>
+</div>
+{/if}
 <div id="aboutPeople">
 <h3>{translate key="about.people"}</h3>
 <ul class="plain">
@@ -68,6 +75,12 @@
 	{call_hook name="Templates::About::Index::Other"}
 </ul>
 </div>
-
+{if $currentJournal->getLocalizedSetting('aboutJournal') && $currentJournal->getLocalizedSetting('aboutSetupTopDown') == 1}
+<div id="aboutJournal">
+  <p>
+    {$currentJournal->getLocalizedSetting('aboutJournal')|nl2br}
+  </p>
+</div>
+{/if}
 {include file="common/footer.tpl"}
 

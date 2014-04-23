@@ -13,12 +13,13 @@
 {/strip}
 <div id="journals">
 {iterate from=journals item=journal}
+{if not $journal->getPath()|strstr:"_ext"} 
 	{if !$notFirstJournal}
 		{translate key="user.register.selectJournal"}:
 		<ul>
 		{assign var=notFirstJournal value=1}
 	{/if}
-	<li><a href="{url journal=$journal->getPath() page="user" op="register"}">{$journal->getLocalizedTitle()|escape}</a></li>
+	<li><a href="{url journal=$journal->getPath() page="user" op="register"}">{$journal->getLocalizedTitle()|escape}</a></li>{/if}
 {/iterate}
 {if $journals->wasEmpty()}
 	{translate key="user.register.noJournals"}

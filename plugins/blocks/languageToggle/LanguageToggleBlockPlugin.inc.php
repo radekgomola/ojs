@@ -87,7 +87,10 @@ class LanguageToggleBlockPlugin extends BlockPlugin {
 
 			} else {
 				$site =& Request::getSite();
-				$locales =& $site->getSupportedLocaleNames();
+				//$locales =& $site->getSupportedLocaleNames();
+        //upraveno pro nakladatelství. Manuálně nastaveny lokalizace pro výběr (aby mohly časopisy mít i jiné lokalizace než máme my)
+        $locales['cs_CZ']= "Czech";
+        $locales['en_US']= "English";
 			}
 		} else {
 			$locales =& AppLocale::getAllLocales();

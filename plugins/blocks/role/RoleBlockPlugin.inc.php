@@ -81,7 +81,8 @@ class RoleBlockPlugin extends BlockPlugin {
 				$templateMgr->assign('submissionsCount', $submissionsCount);
 				return 'layoutEditor.tpl';
 			case 'editor':
-				if (Request::getRequestedOp() == 'index') return null;
+			  //jelikož se již nikde nepřesměrovává na titulku jmc, tak tohle není potřeba a vadí to při zobrazovaní role na titulce časopisu
+				//if (Request::getRequestedOp() == 'index') return null;
 				$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
 				$submissionsCount =& $editorSubmissionDao->getEditorSubmissionsCount($journal->getId());
 				$templateMgr->assign('submissionsCount', $submissionsCount);

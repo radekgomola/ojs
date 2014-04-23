@@ -2,7 +2,10 @@ config.inc.php
 build
 temp
 files
+images
+tutorials
 .htaccess
 .project
 .buildpath
 .settings
+diff.txt

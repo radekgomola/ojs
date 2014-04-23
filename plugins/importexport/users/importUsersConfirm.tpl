@@ -70,6 +70,9 @@
 				<input type="hidden" name="{$userKey|escape}_affiliation[{$locale|escape}]" value="{$value|escape}" />
 			{/foreach}
 			<input type="hidden" name="{$userKey|escape}_country" value="{$user->getCountry()|escape}" />
+      <input type="hidden" name="{$userKey|escape}_titleBefore" value="{$user->getTitleBefore()|escape}" />
+      <input type="hidden" name="{$userKey|escape}_titleAfter" value="{$user->getTitleAfter()|escape}" />
+      {$user->getTitleBefore()|escape} {$user->getTitleAfter()|escape}
 			<input type="hidden" name="{$userKey|escape}_mailingAddress" value="{$user->getMailingAddress()|escape}" />
 			<input type="hidden" name="{$userKey|escape}_fax" value="{$user->getFax()|escape}" />
 			<input type="hidden" name="{$userKey|escape}_phone" value="{$user->getPhone()|escape}" />

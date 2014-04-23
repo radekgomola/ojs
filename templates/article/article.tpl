@@ -102,9 +102,13 @@
 		<h4>{translate key="submission.citations"}</h4>
 		<br />
 		<div>
-			{iterate from=citationFactory item=citation}
-				<p>{$citation->getRawCitation()|strip_unsafe_html}</p>
-			{/iterate}
+			{capture assign="references"}
+
+				{iterate from=citationFactory item=citation}
+  				<p>{$citation->getRawCitation()|strip_unsafe_html}</p>
+  			{/iterate}
+			{/capture}
+			{include file="controllers/extrasOnDemand.tpl" id="references" moreDetailsText="references.more" lessDetailsText="references.less" extraContent=$references}
 		</div>
 		<br />
 		</div>

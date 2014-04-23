@@ -9,10 +9,12 @@
  *}
 
 {* The target="_parent" is for the sake of iphones, which present scroll problems otherwise. *}
-<div id="pdfDownloadLinkContainer">
+ <!--<div id="pdfDownloadLinkContainer">
 	<a class="action pdf" id="pdfDownloadLink" target="_parent" href="{url op="download" path=$articleId|to_array:$galley->getBestGalleyId($currentJournal)}">{translate key="article.pdf.download"}</a>
-</div>
+</div> -->
 
+ <br />
+ <br />
 {url|assign:"pdfUrl" op="viewFile" path=$articleId|to_array:$galley->getBestGalleyId($currentJournal) escape=false}
 {translate|assign:"noPluginText" key='article.pdf.pluginMissing'}
 <script type="text/javascript"><!--{literal}
@@ -44,6 +46,7 @@
 	</div>
 </div>
 <p>
+  <a class="action" id="pdfDownloadLink" target="_parent" href="{url op="download" path=$articleId|to_array:$galley->getBestGalleyId($currentJournal)}">{translate key="article.pdf.download"}</a>
 	<a class="action" href="#" id="fullscreenShow">{translate key="common.fullscreen"}</a>
 	<a class="action" href="#" id="fullscreenHide">{translate key="common.fullscreenOff"}</a>
 </p>

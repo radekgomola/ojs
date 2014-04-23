@@ -13,11 +13,12 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>{translate key="about.editorialTeam"}</title>
+	<title>{translate key="about.profile"}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset|escape}" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
+  {if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
 	<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/common.css" type="text/css" />
 	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
 	<link rel="stylesheet" href="{$baseUrl}/styles/compiled.css" type="text/css" />
@@ -48,17 +49,11 @@
 {assign var=pageTitleTranslated value=$user->getFullName()|escape}
 {if !$pageTitleTranslated}{translate|assign:"pageTitleTranslated" key=$pageTitle}{/if}
 
-<div id="container">
-
-<div id="header">
-<div id="headerTitle">
-<h1>{translate key="about.editorialTeam"}</h1>
-</div>
-</div>
-
+<div id="container" style="padding-top:10px">
 <div id="body">
 <div id="top"></div>
-
+<h1>{translate key="about.profile"}</h1>
+<div class="separator"></div>
 <div id="main">
 
 {literal}
@@ -79,19 +74,16 @@
 <div id="mainContent">
 <h2>{$pageTitleTranslated}</h2>
 
-<div id="content">
+<div id="content" style="top:0px; width:600px;">
 <p>
-	<em>{$user->getFullName()|escape}</em>
+	
 	{if $publishEmail}
 		{assign_mailto var=address address=$user->getEmail()|escape}
-		{icon name="mail" url=$address}
+		<p><strong>E-mail:</strong> {icon name="mail" url=$address}</p>
 	{/if}
-	<br />
 	{if $user->getUrl()}<a href="{$user->getUrl()|escape:"quotes"}" target="_new">{$user->getUrl()|escape}</a><br/>{/if}
 	{if $user->getLocalizedAffiliation()}{$user->getLocalizedAffiliation()|escape}{assign var=needsComma value=1}{/if}{if $country}{if $needsComma}, {/if}{$country|escape}{/if}
-</p>
-
-<p>{$user->getLocalizedBiography()|nl2br|strip_unsafe_html}</p>
+  {$user->getLocalizedBiography()|nl2br|strip_unsafe_html}</p>
 
 <input type="button" onclick="window.close()" value="{translate key="common.close"}" class="button defaultButton" />
 

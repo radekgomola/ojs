@@ -10,7 +10,7 @@
  *}
 {strip}
 {assign var="pageTitle" value="plugins.generic.webfeed.displayName"}
-{include file="common/header.tpl"}
+<!--{include file="common/header.tpl"}-->
 {/strip}
 <div id="webFeedSettings">
 <div id="description">{translate key="plugins.generic.webfeed.description"}</div>
@@ -51,11 +51,11 @@
 
 </table>
 
-<br/>
+<br />
 
 <input type="submit" name="save" class="button defaultButton" value="{translate key="common.save"}"/> <input type="button" class="button" value="{translate key="common.cancel"}" onclick="history.go(-1)"/>
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 </div>
-{include file="common/footer.tpl"}
+<!--{include file="common/footer.tpl"}-->

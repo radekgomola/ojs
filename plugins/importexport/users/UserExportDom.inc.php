@@ -48,6 +48,9 @@ class UserExportDom {
 			XMLCustomWriter::createChildWithText($doc, $userNode, 'fax', $user->getFax(), false);
 			XMLCustomWriter::createChildWithText($doc, $userNode, 'mailing_address', $user->getMailingAddress(), false);
 			XMLCustomWriter::createChildWithText($doc, $userNode, 'country', $user->getCountry(), false);
+      XMLCustomWriter::createChildWithText($doc, $userNode, 'titleBefore', $user->getTitleBefore(), false);
+      XMLCustomWriter::createChildWithText($doc, $userNode, 'titleAfter', $user->getTitleAfter(), false);
+      
 			if (is_array($user->getAffiliation(null))) {
 				foreach($user->getAffiliation(null) as $locale => $value) {
 					$affiliationNode =& XMLCustomWriter::createChildWithText($doc, $userNode, 'affiliation', $value, false);

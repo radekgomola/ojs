@@ -44,7 +44,13 @@ class JournalSetupStep5Form extends JournalSetupForm {
 				'homeHeaderLogoImageAltText' => 'string',
 				'homepageImageAltText' => 'string',
 				'pageHeaderTitleImageAltText' => 'string',
-				'pageHeaderLogoImageAltText' => 'string'
+				'pageHeaderLogoImageAltText' => 'string',
+        'useMuniStyle' => 'bool',
+        'aboutJournal' => 'string',
+        'socialFacebook' => 'string',
+        'socialTwitter' => 'string',
+        'socialGplus' => 'string',
+        'aboutSetupTopDown' => 'int'
 			)
 		);
 	}
@@ -54,7 +60,7 @@ class JournalSetupStep5Form extends JournalSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('homeHeaderTitleType', 'homeHeaderTitle', 'pageHeaderTitleType', 'pageHeaderTitle', 'readerInformation', 'authorInformation', 'librarianInformation', 'journalPageHeader', 'journalPageFooter', 'homepageImage', 'journalFavicon', 'additionalHomeContent', 'description', 'navItems', 'homeHeaderTitleImageAltText', 'homeHeaderLogoImageAltText', 'journalThumbnailAltText', 'homepageImageAltText', 'pageHeaderTitleImageAltText', 'pageHeaderLogoImageAltText');
+		return array('homeHeaderTitleType', 'homeHeaderTitle', 'pageHeaderTitleType', 'pageHeaderTitle', 'readerInformation', 'authorInformation', 'librarianInformation', 'journalPageHeader', 'journalPageFooter', 'homepageImage', 'journalFavicon', 'additionalHomeContent', 'description', 'navItems', 'homeHeaderTitleImageAltText', 'homeHeaderLogoImageAltText', 'journalThumbnailAltText', 'homepageImageAltText', 'pageHeaderTitleImageAltText', 'pageHeaderLogoImageAltText','aboutJournal', 'socialFacebook', 'socialTwitter', 'socialGplus', 'aboutSetupTopDown');
 
 	}
 
@@ -86,7 +92,11 @@ class JournalSetupStep5Form extends JournalSetupForm {
 			'authorInformation' => $journal->getSetting('authorInformation'),
 			'librarianInformation' => $journal->getSetting('librarianInformation'),
 			'journalThemes' => $journalThemes,
-			'journalFavicon' => $journal->getSetting('journalFavicon')
+			'journalFavicon' => $journal->getSetting('journalFavicon'),
+      'aboutJournal' => $journal->getSetting('aboutJournal'),
+      'socialFacebook' => $journal->getSetting('socialFacebook'),
+      'socialTwitter' => $journal->getSetting('socialTwitter'),
+      'socialGplus' => $journal->getSetting('socialGplus')
 		));
 
 		// Make lists of the sidebar blocks available.

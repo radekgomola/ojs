@@ -81,7 +81,12 @@ class RegistrationHandler extends UserHandler {
 			if (Config::getVar('email', 'require_validation')) {
 				// Send them home; they need to deal with the
 				// registration email.
-				$request->redirect(null, 'index');
+				//$request->redirect(null, 'index');
+        //opravené přesměrování na stránku se zprávou o zaslání validačního e-mailu-->
+        $templateMgr =& TemplateManager::getManager();
+        $templateMgr->assign('message', 'user.registration.validationEmail');
+			  return $templateMgr->display('common/message.tpl');
+				$request->redirect(null, 'login');
 			}
 
 			$reason = null;

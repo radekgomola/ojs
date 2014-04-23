@@ -179,6 +179,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'subscriptionManager/createUser':
 			case 'subscriptionManager/updateUser':
 			case 'manager/createUser':
+      case 'manager/editUser':
 			case 'manager/updateUser':
 				$fields[] = 'mailingAddress';
 				$fields[] = 'biography';
@@ -250,6 +251,7 @@ class TinyMCEPlugin extends GenericPlugin {
 						$fields[] = 'readerInformation';
 						$fields[] = 'librarianInformation';
 						$fields[] = 'authorInformation';
+            $fields[] = 'aboutJournal';
 						break;
 				}
 				break;
@@ -381,7 +383,7 @@ class TinyMCEPlugin extends GenericPlugin {
 					paste_auto_cleanup_on_paste : true,
 					apply_source_formatting : false,
 					theme : "advanced",
-					theme_advanced_buttons1 : "cut,copy,paste,|,bold,italic,underline,bullist,numlist,|,link,unlink,help,code,fullscreen,jbimages",
+					theme_advanced_buttons1 : "undo, redo,|,cut,copy,paste,|,bold,italic,underline,bullist,numlist,|,link,unlink,code,fullscreen,jbimages",
 					theme_advanced_buttons2 : "",
 					theme_advanced_buttons3 : ""
 				});

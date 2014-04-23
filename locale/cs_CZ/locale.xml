@@ -27,18 +27,42 @@
 	 *  MISC - Entries that don't belong elsewhere.
 	 *  DEFAULT - Default settings for configuration items.
 	-->
+  
+  <!-- review froms start -->
+
+	<!-- common -->
+	<message key="common.journal">Časopis</message>
+
+	<!-- Journal Management -->
+
+	<!-- Categories -->
+	<message key="navigation.categories">Kategorie</message>
+	<message key="navigation.categories.browse">Procházet</message>
+
+	<!--  peer review -->
+	<message key="submission.reviewForm">Formulář posudku</message>
+	<message key="submission.reviewFormResponse">Odpověď na formulář posudku</message>
+
+
+	<message key="reviewer.article.enterReviewForm">Klikněte na ikonu pro vyplnění formuláře posudku.</message>
+	<message key="reviewer.article.reviewFormResponse.form.responseRequired">Prosím vyplňte požadováná pole.</message>
+
+	<!-- review forms end -->
 
 	<!--
 	 *
 	 * COMMON - This section contains the most frequently-used words
 	 *
 	-->
-
+  <message key="site.upgradeAvailable.manager"><![CDATA[Je dostupná nová verze OJS! Momentálně používáte OJS verzi {$currentVersion}. Nejnovější verze OJS je {$latestVersion}. Prosím kontaktujte administrátora({$siteAdminName}, <a href="mailto:{$siteAdminEmail}">{$siteAdminEmail}</a>). Více informací o verzi OJS naleznete zde <a href="http://pkp.sfu.ca/ojs_download" target="_new">zde</a>.]]></message>
 	<!-- Common Messages -->
 	<message key="common.openJournalSystems">Open Journal Systems</message>
 	<message key="common.confirmComplete">Jste si jistý, že chcete označit tento úkol jako dokončený? Poté nebudete mít možnost provést změny.</message>
 	<message key="common.payment">Platba</message>
 	<message key="common.payments">Platby</message>
+  <message key="common.pageHeader.altText">Hlavička stránky/message>
+	<message key="common.homePageHeader.altText">Hlavička domovské stránky</message>
+	<message key="common.journalHomepageImage.altText">Obrázek domovské stránky časopisu</message>
 
 	<!-- Common Form Messages -->
 	
@@ -49,6 +73,7 @@
 	<!-- Common Error Messages -->
 		
 	<!-- Navigation -->
+  <message key="navigation.about.journal">O časopisu</message>
 	<message key="navigation.journalHelp">Nápověda časopisu</message>
 	<message key="navigation.archives">Archív</message>
 	<message key="navigation.current">Aktuální</message>
@@ -88,7 +113,9 @@
 	<message key="section.title">Název sekce</message>
 	<message key="section.abbreviation">Zkratka</message>
 	<message key="section.abbreviation.example">(Například články=ČL)</message>
+  
 	<!-- Common Article Terms -->
+  <message key="article.article">Článek</message>
 	<message key="article.articles">Články</message>
 	<message key="article.submissionId">ID příspěvku</message>
 	<message key="article.title">Název</message>
@@ -115,6 +142,16 @@
 	<message key="article.submissions">Příspěvky</message>
 	<message key="article.abstract">Abstrakt</message>
 	<message key="article.details">Detaily</message>
+  <message key="article.coverPage.altText">Obrázek obálky</message>
+	<message key="article.accessLogoOpen.altText">Volný přístup</message>
+	<message key="article.accessLogoRestricted.altText">Omezený přístup</message>
+	<message key="article.comments.sectionDefault">Výchozí</message>
+	<message key="article.comments.disable">Vypnout</message>
+	<message key="article.comments.enable">Zapnout</message>
+	<message key="article.fontSize">Velikost písma</message>
+	<message key="article.fontSize.small.altText">Malé</message>
+	<message key="article.fontSize.medium.altText">Střední</message>
+	<message key="article.fontSize.large.altText">Velké</message>
 
 	<!-- Submission Tracking - Common -->
 	<message key="submission.submissionEditing">Editování příspěvku</message>
@@ -137,7 +174,6 @@
 	<message key="submission.scheduling">Plánování</message>
 	<message key="submission.scheduledIn">Naplánována publikace v {$issueName}.</message>
 	<message key="submission.scheduledIn.tba">(Bude oznámeno)</message>
-	
 	<message key="submissions.sec">Sec</message>
 	<message key="submissions.step1">Krok 1</message>
 	<message key="submissions.step3">Krok 3</message>
@@ -166,11 +202,21 @@
 	<message key="journal.journals">Časopisy</message>
 	<message key="journal.path">Cesta</message>
 	<message key="journal.journal">Časopis</message>
+  <message key="journal.issn">ISSN</message>
 
 	<!-- User -->
+  <message key="user.registration.validationEmail">Váš účet je potřeba aktivovat. Na Vaši e-mailovou adresu byl zaslán aktivační e-mail.</message>
+  <message key="user.profile.profileImage">Obrázek profilu</message>
 	<message key="user.showAllJournals">Zobrazit moje časopisy</message>
 	<message key="user.registerForOtherJournals">Registrovat se do dalších časopisů</message>
 	<message key="user.myJournals">Moje časopisy</message>
+  <message key="user.manageMySubscriptions">Spravovat moje příspěvky</message>
+	<message key="user.noRoles.chooseJournal">Váš účet momentálně není připojen k žádnému časopisu. Prosím vyberte nějaký časopis:</message>
+	<message key="user.noRoles.noRolesForJournal">Váš účet momentálně nemá žádnou roli v časopisu. Prosím vyberte roli z nabídky níže:</message>
+	<message key="user.noRoles.submitArticle">Odeslat návrh</message>
+	<message key="user.noRoles.submitArticleRegClosed">Odeslat článek: Registrace autorů je momentálně vypnuta.</message>
+	<message key="user.noRoles.regReviewer">Registrovat jako recenzent</message>
+	<message key="user.noRoles.regReviewerClosed">Registrovat jako recenzent: Registrace recenzentů je momentálně vypnuta.</message>
 	
 	<!-- Roles -->
 	<message key="user.role.manager">Manažer časopisu</message>
@@ -202,6 +248,36 @@
 	<message key="issue.noIssues">Žádná čísla</message>
 	<message key="issue.toc">Obsah</message>
 	<message key="issue.abstract">Abstrakt</message>
+  <message key="issue.coverPage.altText">Obálka</message>
+	<message key="issue.fullIssue">Celé číslo</message>
+	<message key="issue.nonpdf.title">Stáhnout číslo</message>
+	<message key="issue.viewIssue">Prohlédnout číslo</message>
+	<message key="issue.viewIssueDescription">Prohlédnout nebo stáhnout celé číslo</message>
+
+  <!-- Common Subscription Type Terms -->
+	<message key="subscriptionTypes.currency">Měna</message>
+	<message key="subscriptionTypes.year">rok</message>
+	<message key="subscriptionTypes.years">roky</message>
+	<message key="subscriptionTypes.month">měsíc</message>
+	<message key="subscriptionTypes.months">měsíců</message>
+	<message key="subscriptionTypes.nonExpiring">Nekončící</message>
+	<message key="subscriptionTypes.format">Formát</message>
+	<message key="subscriptionTypes.format.online">Připojit online</message>
+	<message key="subscriptionTypes.format.print">Tisknout</message>
+	<message key="subscriptionTypes.format.printOnline">Tisknout a připojit online</message>
+
+	<!-- Common Subscription Terms -->
+	<message key="subscriptions.inactive">Neaktivní</message>
+	<message key="subscriptions.status">Status</message>
+	<message key="subscriptions.status.active">Aktivní</message>
+	<message key="subscriptions.status.needsInformation">Potřebuje informace</message>
+	<message key="subscriptions.status.needsApproval">Potřebuje schválení</message>
+	<message key="subscriptions.status.awaitingManualPayment">Čekající manuální platba</message>
+	<message key="subscriptions.status.awaitingOnlinePayment">Čekající online platba</message>
+	<message key="subscriptions.status.other">Další, prohlédnout poznámky</message>
+	<message key="subscriptions.individualDescription">Pro odběratele je vyžadováno přihlašovací jméno a heslo pro přístup k obsahu.</message>
+	<message key="subscriptions.institutionalDescription">Odběratelské instituce nevyžadují přihlašovací heslo. Uživatelská doména a IP adresa jsou použity pro přístup k obsahu.</message>
+	<message key="subscriptions.institutionalOnlinePaymentDescription"><![CDATA[<strong>Poznámka:</strong> Institutional subscriptions purchased online require approval of the domain and IP ranges before the subscription is activated.]]></message>
 
 	<!--
 	 *
@@ -301,7 +377,9 @@ Vězte, že rozhraní OAI může být pro tuto stránku vypnuto editací konfigu
 
 	<!-- Subscription Management -->
 	<message key="subscriptionManager.subscriptionManagement">Správa předplatného</message>
-	
+	<message key="subscriptionManager.individualSubscriptions">Odběratelé</message>
+	<message key="subscriptionManager.institutionalSubscriptions">Odběratelské instutace</message>
+	<message key="subscriptionManager.subscriptionTypes">Typy odběratelů</message>
 	<!-- Journal Management -->
 
 	<!-- Statistics & Reports -->
@@ -311,19 +389,16 @@ Vězte, že rozhraní OAI může být pro tuto stránku vypnuto editací konfigu
 	<!-- Payment Management -->
 
 
-		
-
-
 	<!-- General plugin information -->
 	<message key="plugins.categories.generic.description">Všeobecné plug-iny se používají k rozšíření OJS různými způsoby, které nejsou podporovány jinými kategoriemi plug-inů.</message>
 	<message key="plugins.categories.auth.description">Autorizační plug-iny umožňují OJS delegovat ověření uživatelů na jiné systémy jako například LDAP servery.</message>
-
-
-
 	<message key="plugins.categories.citationFormats.description">Plug-iny pro citační styly poskytují uživatelům různé formáty, ve kterých mohou být přístupné citace článků.</message>
-
-
-
+  <message key="plugins.categories.implicitAuth">Vnořené ověřovací plug-iny</message>
+	<message key="plugins.categories.implicitAuth.description">Vnořené ověřovací plug-iny implementují podporu pro ověřování uživatélů pomocí http hlaviček.</message>
+	<message key="plugins.categories.oaiMetadataFormats">Plug-iny pro OAI formát metadat.</message>
+	<message key="plugins.categories.oaiMetadataFormats.description">Tyto formátovací pluginy vyjadřují metadata v OAI komunikaci.</message>
+	<message key="plugins.categories.pubIds">Plug-iny pro veřejné identifikátory</message>
+	<message key="plugins.categories.pubIds.description">Tyto plug-iny implementují podporu pro veřejné identifikátory.</message>
 
 	<!-- Files Browser -->
 
@@ -333,7 +408,8 @@ Vězte, že rozhraní OAI může být pro tuto stránku vypnuto editací konfigu
 
 	<!-- Setup Step 2 -->
 
-
+  <message key="manager.setup.reviewProcessEmailDescription">Editors send
+	Reviewers the request to review with the submission attached to the email. Reviewers email editors their assent (or regrets), as well as the review and recommendation. Editors enter Reviewers' assent (or regrets), as well as the review and recommendation on the submission's Review page, to record the review process.</message>
 
 
 	<message key="manager.setup.lockssDescription"><![CDATA[OJS podporuje technologii <a href="http://lockss.org/" target="_blank">LOCKSS</a> (Lots of Copies Keep Stuff Safe) systém, aby zajistil bezpečnou a stálou archivaci časopisu. LOCKSS je open source software vyvinutý v Stanford University Library, který umožňuje knihovnám zabezpečovat vybrané webové časopisy tím, že se pravidelně dotazuje webových stránek časopisu na nově publikovaný obsah a archivuje ho. Každý archív je neustále kontrolován porovnáváním oproti archívům dalších knihoven, a pokud je zjištěno jeho poškození nebo ztráta jsou tyto archívy použity k jeho obnovení.
@@ -364,6 +440,8 @@ Název systému klasifikace]]></message>
 Vězte, že pokud již Váš administrátor stránek zaregistroval tyto stránky do PKP shromažďovače, Váš časopis bude indexován automaticky a Vy nemusíte časopis registrovat.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Klikněte zde</a> a vložte <span class="highlight">{$siteUrl}</span> pod <b>URL stránky</b> a <span class="highlight">{$oaiUrl}</span> pod <b>Základní URL pro OAI Archív</b>.]]></message>
+
+<message key="manager.setup.citations">Povolit citačního asistenta</message>
 
 	<!-- Setup Step 4 -->
 	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Kroky: Fronta příspěvků &gt; Recenze příspěvku &gt; Editování příspěvku &gt; Obsah.<br /><br />
@@ -418,6 +496,30 @@ Volitelně můžete uživateli poskytnout zdůvodnění, proč byl jeho účet z
 	<li>"Termín splnění" je vyplněn v okamžiku, kdy recenzent přijme žádost o recenzi; ukazuje počet týdnů do termínu splnění nebo (-) počet týdnů po termínu.</li>
 </ol>]]></message>
 
+<message key="editor.submissionReview.notes">
+	<![CDATA[<ol>
+	<li>Zvýrazněné položky indikují, že je vyžadována akce editora:
+		<ul>
+			<li class="highlightReviewerNotNotified">Recenzent byl přiřazen, ale nebyl ještě zpraven e-mailem</li>
+			<li class="highlightNoDecision">Všichni recenzenti nahráli své komentáře, ale nebylo nahráno žádné rozhodnutí</li>
+			<li class="highlightRevisedCopyUploaded">Autor nahrál revidovaný rukopis</li>
+			<li class="highlightReviewerConfirmationOverdue">Recenzent ještě nepotvrdil příjmutí zpracování posudku</li>
+			<li class="highlightReviewerCompletionOverdue">Recenzent ještě nedokončil posudek</li>
+		</ul>
+	</li>
+	<li>"Termín splnění" je vyplněn v okamžiku, kdy recenzent přijme žádost o recenzi; ukazuje počet týdnů do termínu splnění nebo (-) počet týdnů po termínu.</li>
+</ol>]]></message>
+	<message key="editor.submissionEditing.notes">
+	<![CDATA[<ol>
+	<li>Zvýrazněné položky indikují, že je vyžadována akce editora:
+		<ul>
+			<li class="highlightCopyediting">Je vyžadována akce v části redigování</li>
+			<li class="highlightLayoutEditing">Je vyžadována akce v některé vrstvě části editování</li>
+			<li class="higlightProofreading">Je vyžadována akce v části korektur</li>
+		</ul>
+	</li>
+</ol>]]></message>
+
 	<!-- Editor Index Page -->
 
 	<!-- Back Issues -->
@@ -434,6 +536,7 @@ Hodnocení je z 5 (Výborný).<br/>
 Týdny udávají průměrnou dobu potřebnou pro zhotovení recenze.<br/>
 Poslední udává datum poslední akceptované recenze.<br/>
 Aktivní udává kolik recenzí je právě zvažováno nebo zpracováváno.]]></message>
+
 
 
 
@@ -507,6 +610,7 @@ Aktivní udává kolik recenzí je právě zvažováno nebo zpracováváno.]]></
         <message key="reviewer.article.reviewSchedule">Plán recenze</message>
         <message key="reviewer.article.reviewSteps">Kroky recenze</message>
         <message key="reviewer.article.reviewerGuidelines">Instrukce pro recenzenta</message>
+        <message key="reviewer.article.reviewGuidelinesDescription"><![CDATA[The Review Guidelines will provide reviewers with criteria for judging a submission's suitability for publication in the journal, and can include any special instructions for preparing an effective and helpful review. In conducting the review, reviewers are presented with with two open text boxes, the first "for author and editor," and the second "for editor." Alternatively, the Journal Manager can create a peer review form under Review Forms. In all cases, editors will have the option of including the reviews in corresponding with the author.]]></message>
         <message key="reviewer.article.notifyEditorA">Informovat editora příspěvku</message>
         <message key="reviewer.article.notifyEditorB">zda zpracujete recenzi.</message>
         <message key="reviewer.article.consultGuidelines">Pokud budete zpracovávat recenzi, držte se níže uvedených Instrukcí pro recenzenta.</message>
@@ -572,6 +676,8 @@ Aktivní udává kolik recenzí je právě zvažováno nebo zpracováváno.]]></
 	
 	<!-- Submission Tracking - Layout Specific -->
 	<message key="submission.layout.noLayoutFile">Žádný (Nahrajte finální redigovanou verzi jako verzi typografa před tím, než odešlete žádost)</message>
+  <message key="submission.layout.publicGalleyId">Veřejný identifikátor sazby</message>
+  <message key="submission.layout.galleyPublicIdentificationExists">Veřejný identifikátor sazby již existuje.</message>
 	<message key="submission.layout.assignLayoutEditor">Přidělit typografa</message>
 	<message key="submission.layout.replaceLayoutEditor">Nahradit typografa</message>
 	<message key="submission.layout.layoutComments">Komentář typografa</message>
@@ -632,7 +738,47 @@ současného hesla.<br /><br />Pro resetování Vašeho hesla vložte níže Va�
 	<message key="user.register.authorDescription">Schopen přispívat do časopisu.</message>
 	<message key="user.register.reviewerDescriptionNoInterests">Ochotný zpracovávat recenze k příspěvkům do časopisu.</message>
 	<message key="user.register.reviewerDescription">Ochotný zpracovávat recenze k příspěvkům do časopisu. Určit oblast zájmu (významné oblasti a výzkumné metody).</message>
+  <message key="user.register.reviewerInterests">Určete recenzní zájmy (podstatné oblasti a výzkumné metody):</message>
 
+  <!-- Subscriptions -->
+	<message key="user.subscriptions.mySubscriptions">Mé předplatné</message>
+	<message key="user.subscriptions.subscriptionStatus">Status předplatných</message>
+	<message key="user.subscriptions.statusInformation">Aktivní a prošlá předplatné jsou zobrazeny níže pomocí jeji data expirace. Navíc, následující informace mohou být vloženy pro každé předplatné.</message>
+	<message key="user.subscriptions.status">Status</message>
+	<message key="user.subscriptions.statusDescription">Popis</message>
+	<message key="user.subscriptions.status.needsInformationDescription">Jsou vyžadovány další informace pro aktivaci předplatného</message>
+	<message key="user.subscriptions.status.needsApprovalDescription">Předplatné musí být zkontrolováno před tím než bude aktivní</message>
+	<message key="user.subscriptions.status.awaitingManualPaymentDescription">Platba již mohla započnout, ale ještě nemusela dorazit.</message>
+	<message key="user.subscriptions.status.awaitingOnlinePaymentDescription">Online platba byla započata, ale byla zrušena nebo nebyla dokončena</message>
+	<message key="user.subscriptions.individualSubscriptions">Předplatitel</message>
+	<message key="user.subscriptions.institutionalSubscriptions">Předplatitelská instituce</message>
+	<message key="user.subscriptions.renew">Obnovený</message>
+	<message key="user.subscriptions.purchase">Nákup</message>
+	<message key="user.subscriptions.purchaseNewSubscription">Koupit nové předplatné</message>
+	<message key="user.subscriptions.purchaseIndividualSubscription">Koupit individuální předplatné</message>
+	<message key="user.subscriptions.purchaseInstitutionalSubscription">Koupit předplatné za instituci</message>
+	<message key="user.subscriptions.expires">Expiruje</message>
+	<message key="user.subscriptions.expired">Expiroval</message>
+	<message key="user.subscriptions.viewSubscriptionTypes">Prohlédnout možné typy předplatných</message>
+	<message key="user.subscriptions.form.typeId">Typy předplatných</message>
+	<message key="user.subscriptions.form.membership">Členství</message>
+	<message key="user.subscriptions.form.membershipRequired">Vybraný typ předplatného vyžaduje informace o členství.</message>
+	<message key="user.subscriptions.form.typeIdValid">Prosím vyberte platný typ předplatného.</message>
+	<message key="user.subscriptions.form.subscriptionExists">Tento uživatelský účet již má individuální předplatné.</message>
+	<message key="user.subscriptions.form.membershipInstructions">Pro vybraný typ předplatného jsou vyžadovány informace o členství.</message>
+	<message key="user.subscriptions.form.institutionName">Název instituce</message>
+	<message key="user.subscriptions.form.institutionNameRequired">je vyžadován název instituce.</message>
+	<message key="user.subscriptions.form.institutionMailingAddress">Poštovní adresa</message>
+	<message key="user.subscriptions.form.domain">Doména</message>
+	<message key="user.subscriptions.form.domainInstructions"><![CDATA[If a domain is entered here, IP ranges are optional.<br />Valid values are domain names (e.g. lib.sfu.ca).]]></message>
+	<message key="user.subscriptions.form.domainIPRangeRequired">The selected subscription type requires a domain and/or an IP range for subscription authentication.</message>
+	<message key="user.subscriptions.form.domainValid">Prosím vložte platnou doménu.</message>
+	<message key="user.subscriptions.form.ipRange">Rozsahy IP adres</message>
+	<message key="user.subscriptions.form.ipRangeItem"><![CDATA[&#8226;]]></message>
+	<message key="user.subscriptions.form.ipRangeInstructions"><![CDATA[If IP ranges are entered here, the domain is optional.<br />Valid values include an IP address (e.g. 142.58.103.1), IP range (e.g. 142.58.103.1 - 142.58.103.4), IP range with wildcard '*' (e.g. 142.58.*.*), and an IP range with CIDR (e.g. 142.58.100.0/24).]]></message>
+	<message key="user.subscriptions.form.ipRangeValid">Prosím vložte platný rozsah IP adres.</message>
+	<message key="user.subscriptions.form.deleteIpRange">Smazat</message>
+	<message key="user.subscriptions.form.addIpRange">Přidat</message>
 
 
 	<!-- Search -->
@@ -656,8 +802,11 @@ současného hesla.<br /><br />Pro resetování Vašeho hesla vložte níže Va�
 
 	<!-- Interstitial page for PDFs -->
 	<message key="article.pdf.title">Portable Document Format (PDF)</message>
-	
-	<!-- Interstitial page for non-PDF non-HTML galleys -->
+	<message key="article.pdf.download">Stáhnout PDF soubor</message>
+	<message key="article.pdf.pluginMissing"><![CDATA[<p>Vybrané PDF je možné zobrazit přímo v prohlížeči, pokud má Váš prohlížeč nainstalován plugin pro čtení PDF (např. aktuální verzi <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>).</p> <p>Pokud byste chtěl více informací o tom jak tisknout, ukládat nebo procovat s PDF soubory, Highwire Press poskytuje nápomocný <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">FAQ o PDF</a>.</p> <p>Respektivě je možné PDF soubor stáhnout přímo do Vašeho počítače, kde si jej můžete otevřít za pomocí PDF reader-u. Pro stažení PDF, klikněte na odkaz výše.</p>]]></message>
+  
+  
+  <!-- Interstitial page for non-PDF non-HTML galleys -->
 	<message key="article.nonpdf.title">Stažení článku</message>
 	<message key="article.nonpdf.note"><![CDATA[Stahování vybraného souboru by mělo začít automaticky. Pokud nezačne, klikněte na odkaz níže. Vězte, že soubor může vyžadovat pro své zobrazení speciální prohlížeč nebo plug-in.<br /><br />Pokud nezačalo stahování automaticky, <a href="{$url}">klikněte zde</a>.]]></message>
 	
@@ -666,7 +815,7 @@ současného hesla.<br /><br />Pro resetování Vašeho hesla vložte níže Va�
 	<message key="site.journalView">Zobrazit časopis</message>
 	<message key="site.journalRegister">Registrovat</message>
 	<message key="site.journalCurrent">Aktuální číslo</message>
-	
+  <message key="site.noJournals">Zatím zde nejsou přístupné žádné časopisy.</message>
 
 	<!-- Current index -->
 	<message key="current.current">Aktuální</message>
@@ -682,7 +831,8 @@ současného hesla.<br /><br />Pro resetování Vašeho hesla vložte níže Va�
 	<message key="about.statistics">Statistiky</message>
 	<message key="about.journalContact">Kontakt na časopis</message>
 	<message key="about.aboutTheJournal">O časopisu</message>
-	<message key="about.editorialTeam">Editorský tým</message>
+  <message key="about.history">Historie časopisu</message>
+	<message key="about.editorialTeam">Redakce</message>
 	<message key="about.editorialTeam.biography">Biografie</message>
 	<message key="about.editorialPolicies">Ediční pravidla</message>
 	<message key="about.focusAndScope">Zaměření a záběr</message>
@@ -712,7 +862,13 @@ současného hesla.<br /><br />Pro resetování Vašeho hesla vložte níže Va�
 	<message key="about.authorSelfArchive">Vlastní archivování autora</message>
 	<message key="about.archiving">Archivování</message>
 	<message key="about.subscriptions">Předplatné</message>
+  <message key="about.subscriptions.individual">Individuální předplatné</message>
+	<message key="about.subscriptions.institutional">Instituční předplatné</message>
 	<message key="about.subscriptionsContact">Kontakt pro předplatné</message>
+  <message key="about.subscriptionTypes.name">Jméno</message>
+	<message key="about.subscriptionTypes.format">Formát</message>
+	<message key="about.subscriptionTypes.duration">platnost</message>
+	<message key="about.subscriptionTypes.cost">Cena</message>
 	<message key="about.availableSubscriptionTypes">Typy předplatného</message>
 	<message key="about.memberships">Členství</message>
 	<message key="about.journalSponsorship">Sponzorování časopisu</message>
@@ -724,15 +880,52 @@ současného hesla.<br /><br />Pro resetování Vašeho hesla vložte níže Va�
 
 	<!-- Help -->
 	<message key="help.ojsHelp">Pomoc pro Open Journal Systems</message>
-	<message key="help.ojsHelpAbbrev">OJS Pomoc</message>	
+	<message key="help.ojsHelpAbbrev">OJS Pomoc</message>
+  <message key="help.searchReturnResults">Zpět na výsledky vyhledávání</message>	
 
 	<!-- Donations -->
 	<message key="donations.thankYou">Děkujeme</message>
 	<message key="donations.thankYouMessage">Děkujeme za Váš příspěvek. Velice si vážíme Vaší pomoci.</message>
-	
+	 
+  <!-- Gifts -->
+	<message key="gifts.buyer">Od</message>
+	<message key="gifts.buyerDescription">Od koho je dar?</message>
+	<message key="gifts.recipient">Pro</message>
+	<message key="gifts.recipientDescription">Komu je dar určen?</message>
+	<message key="gifts.thankYou">Děkujeme</message>
+	<message key="gifts.thankYouMessage">Vaše darovací platba byla provedena. Obdržíte kopii darovacího e-mailu, který byl zaslán příjemci až bude platba dokončena.</message>
+	<message key="gifts.purchaseGiftIndividualSubscription">Darovat předplatné</message>
+	<message key="gifts.subscriptionFormIntroduction">Prosím vyplňte formulář níže. Poskytnuté kontaktní informace, společně s vaší darovací zprávou, budou zaslány příjemci společně s informací o darovaném předplatném. (Kopii e-mailu obdržíte také Vy).</message>
+	<message key="gifts.details">Detaily daru</message>
+	<message key="gifts.detailsDescription">prosím vyberte dar níže a vložte svou zprávu, která bude následně zaslána e-mailem příjemci. (Kopii e-mailu obdržíte také Vy).</message>
+	<message key="gifts.gift">Dar</message>
+	<message key="gifts.noteTitle">Nadpis</message>
+	<message key="gifts.note">Darovazí zpráva</message>
+	<message key="gifts.noteTitleRequired">Prosím vyplňte nadpis zprávy.</message>
+	<message key="gifts.noteRequired">prosím vyplňte darovací zprávu.</message>
+	<message key="gifts.localeRequired">Prosím zvolte jazyk zprávy.</message>
+	<message key="gifts.myGifts">Mé dary</message>
+	<message key="gifts.manageMyGifts">Spravovat mé dary</message>
+	<message key="gifts.redeemGift">Vykoupit dar</message>
+	<message key="gifts.status.notRedeemed">Dostupné</message>
+	<message key="gifts.status.redeemed">Vykoupené</message>
+	<message key="gifts.status.redeemGift">Vykoupený dar</message>
+	<message key="gifts.subscriptions">Předplatné</message>
+	<message key="gifts.subscriptionsDescription">Vykoupení darované předplatné nahradí existující předplatné (pokud nějaké máte).  Předplatné započne od data vykoupení a platné podle podle daného typu.</message>
+	<message key="gifts.purchaseGiftSubscription">Darovat předplatné</message>
+	<message key="gifts.giftSubscriptionsAvailable">Darovaná předplatné jsou také dostupná. Darované předplatné může být kdykolliv vykoupeno příjemcem a je to skvělý způsob jak podpořit časopis.</message>
+	<message key="gifts.noSubscriptions">Žádná darovaná předplatné</message>
+	<message key="gifts.giftRedeemed">Dar byl úspěšně vykoupen.</message>
+	<message key="gifts.noGiftToRedeem">Tento dar není dostupný pro vykoupení.</message>
+	<message key="gifts.giftAlreadyRedeemed">Tento dar již byl vykoupen.</message>
+	<message key="gifts.giftNotValid">Tento dar není platný a nemůže být proto vykoupen.</message>
+	<message key="gifts.subscriptionTypeNotValid">Typ předplatného pro tento dar není platný. Prosím kontaktujte správce předplatných.</message>
+	<message key="gifts.subscriptionNonExpiring">Dar nebyl před expirací vykoupen.</message>
+   
 	<!-- Payments -->
 	<message key="payment.loginRequired">Pro provedení platby musíte být přihlášený.</message>
 	<message key="payment.loginRequired.forArticle">Pro přístup k položce je vyžadováno předplatné nebo platba za shlédnutí. Přihlaste se do časopisu, aby mohlo být ověřeno předplatné nebo zaplacen polatek.</message>
+  <message key="payment.loginRequired.forIssue">pro přístup je vyžadováno předplatné nebo koupě čísla. Pro ověření předplatného, přístupu k předchozí platbě či k platbě za číslo je nutné se přihlásit do časopisu.</message>
 	<message key="payment.loginRequired.forDonation">Abyste mohl darovat dar, musíte být přihlášen.</message>
 	
 	<message key="payment.paid">Zaplaceno</message>
@@ -742,14 +935,19 @@ současného hesla.<br /><br />Pro resetování Vašeho hesla vložte níže Va�
 	<message key="payment.alreadyPaidMessage">Zatrhněte toto políčko, pokud jste již odeslal platbu do časopisu, aby se dokončil proces odesílání příspěvku. Dokud nedorazí platba, nebude příspěvek recenzován. Pro zobrazení instrukcí k platbě klikněte na ZAPLATIT NYNÍ.</message>
 	<message key="payment.paymentReceived">Platba přijata</message>
 	<message key="payment.paymentSent">Platba již byla odeslána</message>
+  <message key="payment.authorFees">Poplatky autora</message>
 	<message key="payment.type.submission">Poplatek za příspěvek</message>
 	<message key="payment.type.publication">Poplatek za publikování</message>
 	<message key="payment.type.fastTrack">Poplatek za rychlé zpracování recenze</message>
 	<message key="payment.type.membership">Poplatek za individuální členství</message>
+  <message key="payment.type.purchaseArticle">Zaplatit poplatek za článek</message>
+	<message key="payment.type.purchaseIssue">Zaplatit poplatek za číslo</message>
 	<message key="payment.type.subscription">Předplatné</message>
-	<message key="payment.type.donation">Dary</message>
+	<message key="payment.type.donation">Příspěvek</message>
+  <message key="payment.type.gift">Dar</message>
+	<message key="payment.type.gift.subscription">Předplatné</message>
 	
-	<message key="payment.donation.makeDonation">Darovat</message>
+	<message key="payment.donation.makeDonation">Přispět</message>
 	
 	<message key="payment.submission.paySubmission">Zaplatit poplatek za příspěvek</message>
 	<message key="payment.fastTrack.payFastTrack">Poplatek za rychlé zpracování</message>
@@ -761,6 +959,7 @@ současného hesla.<br /><br />Pro resetování Vašeho hesla vložte níže Va�
 	<message key="payment.membership.renewMembership">Obnovit individuální členství</message>	
 	<message key="payment.membership.ends">Končí</message>
 
+  <message key="payment.subscription.purchase">Koupit předplatné</message>
 	<message key="payment.subscription.renew">Obnovit předplatné</message>
 	<message key="payment.subscription.expires">Vyprší</message>	
 
@@ -818,10 +1017,15 @@ současného hesla.<br /><br />Pro resetování Vašeho hesla vložte níže Va�
 	<message key="installer.localeSettingsInstructions"><![CDATA[Pro kompletní podporu Unicode (UTF-8) zvolte UTF-8 pro nastavení všech znakových sad. Vězte, že tato podpora aktuálně vyžaduje MySQL >= 4.1.1 nebo PostgreSQL >= 7.1 databázový server. Vězte prosím také, že plná Unicode podpora vyžaduje PHP >= 4.3.0 kompilované s podporou pro <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> knihovnu (ve výchozím nastavení povoleno ve většině nejnovějších instalací PHP). Pokud Váš server nesplňuje tyto požadavky, můžete se při používání rozšířených znakových sad střetnout s problémy. 
 <br /><br />
 Váš server aktuálně podporuje mbstring: <strong>{$supportsMBString}</strong>]]></message>
+
+<message key="installer.allowFileUploads"><![CDATA[Váš server nyní dovoluje nahrávat soubory: <strong>{$allowFileUploads}</strong>]]></message>
+	<message key="installer.maxFileUploadSize"><![CDATA[Váš server nyní dovoluje nahrávat soubory s maximální velikostí: <strong>{$maxFileUploadSize}</strong>]]></message>
 	<message key="installer.localeInstructions">Výchozí jazyk pro použití tohoto systému. Pokud Vás zajímá odpora jazyků zde neuvedených, prostudujte si dokumentaci k OJS.</message>
 	<message key="installer.additionalLocalesInstructions">Zvolte jakékoliv doplňkové jazyky, které mají být podorovány v tomto systému. Tyto jazyky budou dostupné pro použití v časopisech hostovaných na této stránce. Doplňkové jazyky mohou být také kdykoliv nainstalovány přes webové administrační rozhraní.</message>
 	<message key="installer.filesDirInstructions"><![CDATA[Zadejte celou cestu k existujícímu adresáři, ve kterém se mají uchovávat nahrané soubory. Tento adresář by neměl být přímo dostupný z webu. <strong>Prosím, před zahájením instalace se ujistěte, že tento adresář existuje a je zapsatelný.</strong> Ve Windows by měla cesta obsahovat dopředná lomítka, např.: "C:/myjournal/files".]]></message>
 	<message key="installer.databaseSettingsInstructions">OJS vyžaduje přístup k SQL databázy, aby mohl uchovávat svoje data. Vit systémové požadavky výše pro seznam podporovaných databází. Do políček níže uveďte nastavení, které má být použito pro připojení do databáze.</message>
+  <message key="installer.installApplication">Instalovat Open Journal Systems</message>
+	<message key="installer.upgradeApplication">Aktualizovat Open Journal Systems</message>
 	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<b>Varování:</b> Pokud instalace selhala v průběhu instalace databáze, budete možná muset odstranit Vaši OJS databázy nebo databázové tabulky před tím, než se pokusíte databázy přeinstalovat.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>DŮLEŽITÉ!</h4>
 <p>Instalace nemohla automaticky přepsat konfigurační soubor. Než se pokusíte používat systém, otevřete prosím <tt>config.inc.php</tt> ve vhodném textovém editoru a nahraďte jeho obsah obsahem níže uvedeného textového pole.</p>]]></message>
@@ -832,6 +1036,10 @@ Váš server aktuálně podporuje mbstring: <strong>{$supportsMBString}</strong>
 <p>Nezapomeňte upravit "installed" nastavení ve Vašem config.inc.php konfiguračním souboru zpět na <i>On</i>.</p>
 <p>Pokud jste se ještě nezaregistroval a přejete si dostávat informace o novinkách a aktualizacích, <strong>zaregistrujte se prosím na <a href="http://pkp.sfu.ca/ojs/register" target="_new">http://pkp.sfu.ca/ojs/register</a>.</strong> Pokud máte otázky nebo komentáře, navštivte prosím <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
 
+
+<!-- Installation upgrade warnings -->
+	<message key="site.upgradeAvailable.admin"><![CDATA[Je dostupná nová verze OJS! Současně používaná verze OJS je {$currentVersion}. Poslední verze OJS {$latestVersion}. Navštivte <a href="http://pkp.sfu.ca/ojs_download" target="_new">tuto stránku</a> pro stažení poslední verze a informace k aktualizaci.]]></message>
+	<message key="site.upgradeAvailable.manager"><![CDATA[Je dostupná nová verze OJS! Současně používaná verze OJS je {$currentVersion}. Poslední verze OJS {$latestVersion}. Prosím kontaktujte administrátora ({$siteAdminName}, <a href="mailto:{$siteAdminEmail}">{$siteAdminEmail}</a>) a oznamte mu dostupnost nové verze. Více informací je možné najít <a href="http://pkp.sfu.ca/ojs_download" target="_new">zde</a>.]]></message>
 
 	<!-- Article Logs -->
 	<message key="log.author.submitted">{$authorName} vložil nový příspěvek, ID {$submissionId}.</message>
@@ -924,14 +1132,12 @@ Ověřování může selhat při vyhledávání URL, které vyžadují "posted f
 
 
 
-
 	<message key="rt.beNotifiedWhen">Být informován pokud...</message>
 
 	<message key="rt.thisJournal">Prohledat časopis</message>
 	
 
 	<message key="rt.context.authorTermsDescription">Pro vyhledání prací s podobným spoluautorstvím nechejte u položek s více než jedním autorem zaškrtnutá všechna jména. Zaškrtnutím jednoho jména můžete prohledávat autory postupně. Více o vyhledaných zdrojích se dozvíte klinutím na O ZDROJÍCH. Tyto zdroje byly vybrány pro svou relevantnost a otevřený (volný) přístup k části nebo k celému svému obsahu.</message>
-
 
 	<!--
 	 *
@@ -943,6 +1149,13 @@ Ověřování může selhat při vyhledávání URL, které vyžadují "posted f
 	<message key="debug.notes.currencyListLoad">Nahraný seznam měn "{$filename}" z XML</message>
 	<message key="debug.notes.helpMappingLoad">Znovunahraný soubor XML mapující nápovědu {$filename} při hledání {$id}.</message>
 
+
+  <!-- Authorization -->
+	<message key="user.authorization.copyeditorAssignmentMissing">Přístup zamítnut. Musíte být označen jako redaktor článku.</message>
+	<message key="user.authorization.noJournal">nebyl vybrán žádný časopis!</message>
+	<message key="user.authorization.sectionAssignment">Snažíte se přistupovat k článku, který není součástí této sekce.</message>
+	<message key="user.authorization.invalidCopyditorSubmission">Neplatný redaktorský příspevek!</message>
+	<message key="user.authorization.invalidSectionEditorSubmission">Neplatný příspěvek redaktora sekce!</message>
 	<!--
 	 *
 	 * DEFAULT - Default settings for setup items.
@@ -1060,16 +1273,32 @@ Ověřování může selhat při vyhledávání URL, které vyžadují "posted f
 	<message key="user.subscriptions.form.ipRangeInstructions"><![CDATA[Pokud je zde vložen rozsah IP, je doména volitelná.<br />Platné hodnoty zahrnují IP adresu (např.: 142.58.103.1), IP rozsah (např.: 142.58.103.1 - 142.58.103.4), IP rozsah se zástupným symbolem '*' (např.: 142.58.*.*), a IP rozsah s CIDR (např.: 142.58.100.0/24).]]></message>
 	<message key="notification.mailListDescription">Pro příjem okamžitých oznámení o přidání důležitého nového obsahu do časopisu vložte vaši emailovou adresu.</message>
 	<message key="notification.notificationsPublicDescription"><![CDATA[Tato stránka zobrazuje důležité aktuality související s tímto časopisem - například vydání nového čísla nebo oznámení. Můžete se přihlásit k odběru těchto oznámení prostřednictvím RSS čtečky (kliknutím na obrázek napravo) nebo <a href="{$emailUrl}">prostřednictvím emailu.</a>]]></message>
-	<message key="notification.type.articleSubmitted">Byl odeslán nový článek "{$param}".</message>
-	<message key="notification.type.copyeditComment">Redaktor zanechal komentář u "{$param}".</message>
-	<message key="notification.type.editorDecisionComment">Byl zanechán komentář k rozhodnutí editora pro "{$param}".</message>
-	<message key="notification.type.galleyModified">Byla změněna sazebnice pro "{$param}".</message>
-	<message key="notification.type.layoutComment">Byl zanechán komentář ke grafickému formátu pro "{$param}".</message>
-	<message key="notification.type.metadataModified">Byla modifikována metadata pro "{$param}".</message>
-	<message key="notification.type.proofreadComment">Korektor zanechal komentář pro "{$param}".</message>
-	<message key="notification.type.reviewerComment">Recenzent zanechal komentář pro "{$param}".</message>
-	<message key="notification.type.reviewerFormComment">Byl odeslán recenzní posudek pro "{$param}".</message>
-	<message key="notification.type.submissionComment">Editora zanechal komentář pro "{$param}".</message>
-	<message key="notification.type.suppFileModified">Byl změněn doplňkový soubor(y) u "{$param}".</message>
-	<message key="notification.type.userComment">Čtenář zanechal komentář k "{$param}".</message>
+	<message key="notification.type.articleSubmitted">Byl odeslán nový článek "{$title}".</message>
+	<message key="notification.type.copyeditComment">Redaktor zanechal komentář u "{$title}".</message>
+	<message key="notification.type.editorDecisionComment">Byl zanechán komentář k rozhodnutí editora pro "{$title}".</message>
+	<message key="notification.type.galleyModified">Byla změněna sazebnice pro "{$title}".</message>
+	<message key="notification.type.layoutComment">Byl zanechán komentář ke grafickému formátu pro "{$title}".</message>
+	<message key="notification.type.metadataModified">Byla modifikována metadata pro "{$title}".</message>
+	<message key="notification.type.proofreadComment">Korektor zanechal komentář pro "{$title}".</message>
+	<message key="notification.type.reviewerComment">Recenzent zanechal komentář pro "{$title}".</message>
+	<message key="notification.type.reviewerFormComment">Byl odeslán recenzní posudek pro "{$title}".</message>
+	<message key="notification.type.submissionComment">Editora zanechal komentář pro "{$title}".</message>
+	<message key="notification.type.suppFileModified">Byl změněn doplňkový soubor(y) u "{$title}".</message>
+	<message key="notification.type.userComment">Čtenář zanechal komentář k "{$title}".</message>
+  
+  
+  <message key="footer.publisher">Nakladatelství MU</message>
+  <message key="footer.contacts">Kontakty:</message>
+  <message key="footer.novotna">(zástupkyně ředitelky, odborná redaktorka)</message>
+  <message key="footer.brodecka">(odborná redaktorka)</message>
+  <message key="footer.gomola">(redaktor, administrace)</message>
+  <message key="footer.uvt">Provoz serveru technicky zajišťuje
+Ústav výpočetní techniky
+Masarykovy univerzity</message>
+  <message key="footer.uvt.link">http://www.muni.cz/ics/</message>
+  
+  <message key="navigation.czHelp">CZ návody</message>
+  <message key="about.profile">Profil</message>
+  <message key="user.title.before">Tituly před jménem</message>
+  <message key="user.title.after">Tituly za jménem</message>
 </locale>

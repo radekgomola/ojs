@@ -98,6 +98,12 @@ class UserXMLParser {
 							case 'last_name':
 								$newUser->setLastName($attrib->getValue());
 								break;
+              case 'titleBefore':
+								$newUser->setTitleBefore($attrib->getValue());
+								break;
+              case 'titleAfter':
+								$newUser->setTitleAfter($attrib->getValue());
+								break;
 							case 'initials':
 								$newUser->setInitials($attrib->getValue());
 								break;

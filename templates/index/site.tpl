@@ -17,7 +17,7 @@
 
 <br />
 
-{if $intro}{$intro|nl2br}{/if}
+{if $intro}<div class="description">{$intro|nl2br}</div><br /><br />{/if}
 
 <a name="journals"></a>
 
@@ -26,6 +26,11 @@
 {/if}
 
 {iterate from=journals item=journal}
+<table>
+  <tr><td>
+  {if $site->getSetting('showTitle')}
+		<h3>{$journal->getLocalizedTitle()|escape}</h3>
+	{/if}
 	{if $site->getSetting('showThumbnail')}
 		{assign var="displayJournalThumbnail" value=$journal->getLocalizedSetting('journalThumbnail')}
 		<div style="clear:left;">
@@ -35,22 +40,25 @@
 		{/if}
 		</div>
 	{/if}
-	{if $site->getSetting('showTitle')}
-		<h3>{$journal->getLocalizedTitle()|escape}</h3>
-	{/if}
+	
 	{if $site->getSetting('showDescription')}
 		{if $journal->getLocalizedDescription()}
-			<p>{$journal->getLocalizedDescription()|nl2br}</p>
-		{/if}
+      {if $journal->getLocalizedDescription()|strlen >= 550}
+  			<p class="description" style="text-align:justify;" >{$journal->getLocalizedDescription()|truncate:550|nl2br} <a href="{url journal=$journal->getPath()}" >{translate key="common.readMore"}</a></p>
+      {else}
+        <p class="description" style="text-align:justify;" >{$journal->getLocalizedDescription()|nl2br}</p>
+      {/if}
+		{/if}    
 	{/if}
-	<p><a href="{url journal=$journal->getPath()}" class="action">{translate key="site.journalView"}</a> | <a href="{url journal=$journal->getPath() page="issue" op="current"}" class="action">{translate key="site.journalCurrent"}</a> | <a href="{url journal=$journal->getPath() page="user" op="register"}" class="action">{translate key="site.journalRegister"}</a></p>
+	<p style="padding-top:-31px; min-width:700px;"><a href="{url journal=$journal->getPath()}" class="action">{translate key="site.journalView"}</a><span class="space"></span>  <a href="{url journal=$journal->getPath() page="issue" op="current"}" class="action">{translate key="site.journalCurrent"}</a><span class="space"></span>  {if $journal->getPath()|strstr:"_ext"}<a href="{url journal=$journal->getPath() page="user" op="register"}" class="action">{translate key="site.journalRegister"}</a>{/if}</p>
+  </td></tr>
+  </table>  
 {/iterate}
 {if $journals->wasEmpty()}
 	{translate key="site.noJournals"}
 {/if}
 
 <div id="journalListPageInfo">{page_info iterator=$journals}</div>
-<div id="journalListPageLinks">{page_links anchor="journals" name="journals" iterator=$journals}
-
+<div id="journalListPageLinks">{page_links anchor="journals" name="journals" iterator=$journals}</div>
 {include file="common/footer.tpl"}
 

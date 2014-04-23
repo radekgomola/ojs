@@ -46,19 +46,20 @@ $(document).ready(function() { setupTableDND("#dragTable", "moveGroup"); });
 	<tr>
 		<td colspan="3" class="headseparator">&nbsp;</td>
 	</tr>
+  {assign var="i" value=0}
 {assign var="isFirstEditorialTeamEntry" value=1}
 {iterate from=groups item=group}
 		{if $group->getContext() == GROUP_CONTEXT_EDITORIAL_TEAM}
 			{if $isFirstEditorialTeamEntry}
 				{assign var="isFirstEditorialTeamEntry" value=0}
-    		  <tr valign="top">
+    		  <tr valign="top" {if $i==1}class="background_line"{/if}>
  						<td colspan="3">{translate key="manager.groups.context.editorialTeam.short"}</td>
 					</tr>
 					<tr>
 						<td colspan="3" class="separator">&nbsp;</td>
 					</tr>
 			{/if}
-	    <tr valign="top" id=editorialteam-{$group->getId()} class="data">
+	    <tr valign="top" id=editorialteam-{$group->getId()} class="data {if $i==1}background_line{/if}">
 			<td class="drag" width="5%">&nbsp;</td>
 			<td class="drag">
 				{url|assign:"url" page="manager" op="email" toGroup=$group->getId()}
@@ -78,6 +79,11 @@ $(document).ready(function() { setupTableDND("#dragTable", "moveGroup"); });
 	<tr>
 		<td colspan="3" class="{if $groups->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
+  {if $i==1}
+  {assign var=i value=0}
+  {else}
+  {assign var=i value=1}
+  {/if}
 {/iterate}
 {if $groups->wasEmpty()}
 	<tr>

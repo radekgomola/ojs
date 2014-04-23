@@ -46,10 +46,11 @@ function toggleChecked() {
 		<td colspan="5" class="headseparator">&nbsp;</td>
 	</tr>
 
+  {assign var=i value="0"}
 	{iterate from=articles item=articleData}
 	{assign var=article value=$articleData.article}
 	{assign var=issue value=$articleData.issue}
-	<tr valign="top">
+	<tr valign="top" {if $i==1}class="background_line"{/if}>
 		<td><input type="checkbox" name="articleId[]" value="{$article->getId()}"/></td>
 		<td><a href="{url page="issue" op="view" path=$issue->getId()}" class="action">{$issue->getIssueIdentification()|strip_unsafe_html|nl2br}</a></td>
 		<td>{$article->getLocalizedTitle()|strip_unsafe_html}</td>
@@ -59,6 +60,11 @@ function toggleChecked() {
 	<tr>
 		<td colspan="5" class="{if $articles->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
+  {if $i==0}
+    {assign var=i value="1"}
+  {else}
+    {assign var=i value="0"}
+  {/if}
 {/iterate}
 {if $articles->wasEmpty()}
 	<tr>

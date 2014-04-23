@@ -37,12 +37,32 @@
 	{call_hook|assign:"leftSidebarCode" name="Templates::Common::LeftSidebar"}
 	{call_hook|assign:"rightSidebarCode" name="Templates::Common::RightSidebar"}
 	{if $leftSidebarCode || $rightSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/sidebar.css" type="text/css" />{/if}
-	{if $leftSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/leftSidebar.css" type="text/css" />{/if}
+	<!--{if $leftSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/leftSidebar.css" type="text/css" />{/if}-->
 	{if $rightSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/rightSidebar.css" type="text/css" />{/if}
-	{if $leftSidebarCode && $rightSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/bothSidebars.css" type="text/css" />{/if}
+	  {if $currentJournal}
+  	{if !$currentJournal->getSetting('useMuniStyle') && $leftSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/leftSidebar.css" type="text/css" />{/if}
+  	{if !$currentJournal->getSetting('useMuniStyle') && $leftSidebarCode && $rightSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/bothSidebars.css" type="text/css" />{/if}
+  {/if}
+	<!--použitelné pouze pro muni press-->
+  {foreach from=$stylesheets item=cssUrl}
+    
+    {if $currentJournal} 
+       {if $currentJournal->getSetting('useMuniStyle')}
+          {if $cssUrl|strstr:"sitestyle.css"}
+            <link rel="stylesheet" href="{$cssUrl}" type="text/css" />
+          {/if}
+       {else}
+        {if $cssUrl|strstr:"sitestyle.css"}
+        {else}
+		      <link rel="stylesheet" href="{$cssUrl}" type="text/css" />
+        {/if}
+      {/if}
+    {else}
+      {if $cssUrl|strstr:"sitestyle.css"}
+        <link rel="stylesheet" href="{$cssUrl}" type="text/css" />
+      {/if}
+    {/if}
 
-	{foreach from=$stylesheets item=cssUrl}
-		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
 
 	<!-- Base Jquery -->
@@ -104,29 +124,45 @@
 
 <div id="body">
 
-{if $leftSidebarCode || $rightSidebarCode}
-	<div id="sidebar">
-		{if $leftSidebarCode}
-			<div id="leftSidebar">
-				{$leftSidebarCode}
-			</div>
-		{/if}
-		{if $rightSidebarCode}
+{if $currentJournal}
+  	<div id="sidebar"> 
+      {if $rightSidebarCode}   
+  			<div id="rightSidebar">
+  				{$rightSidebarCode}
+  			</div>
+      {/if}
+      {if !$currentJournal->getSetting('useMuniStyle') && $leftSidebarCode}
+        <div id="leftSidebar">
+    			{$leftSidebarCode}
+    		</div>
+      {/if}
+  	</div>
+{else}
+  {if $rightSidebarCode}
+    <div id="sidebar">    
 			<div id="rightSidebar">
 				{$rightSidebarCode}
 			</div>
-		{/if}
-	</div>
+  	</div>
+  {/if}
 {/if}
+
+
 
 <div id="main">
 
-{include file="common/navbar.tpl"}
+{include file="common/navbar2.tpl"}
 
 <div id="breadcrumb">
 	<a href="{url page="index"}" target="_parent">{translate key="navigation.home"}</a> &gt;
 	{if $issue}<a href="{url page="issue" op="view" path=$issue->getBestIssueId($currentJournal)}" target="_parent">{$issue->getIssueIdentification(false,true)|escape}</a> &gt;{/if}
-	<a href="{url page="article" op="view" path=$articleId|to_array:$galleyId}" class="current" target="_parent">{$article->getFirstAuthor(true)|escape}</a>
+	<a href="{url page="article" op="view" path=$articleId|to_array:$galleyId}" class="current" target="_parent">
+  {if $article->getLocalizedTitle()|strlen >= 70}
+    {$article->getLocalizedTitle()|truncate:70|strip_tags|escape}
+  {else}
+    {$article->getLocalizedTitle()|strip_tags|escape}
+  {/if}
+  </a>
 </div>
 
 <div id="content">

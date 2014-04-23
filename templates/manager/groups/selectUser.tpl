@@ -35,15 +35,21 @@
 	<td width="20%">{translate key="common.action"}</td>
 </tr>
 <tr><td colspan="2" class="headseparator">&nbsp;</td></tr>
+{assign var="i" value=0}
 {iterate from=users item=user}
 {assign var="userid" value=$user->getId()}
-<tr valign="top">
+<tr valign="top"  {if $i==1}class="background_line"{/if}>
 	<td><a class="action" href="{url op="userProfile" path=$userid}">{$user->getFullName(true)|escape}</a></td>
 	<td>
 		<a href="{url op="addMembership" path=$group->getId()|to_array:$user->getId()}" class="action">{translate key="manager.groups.membership.addMember"}</a>
 	</td>
 </tr>
 <tr><td colspan="2" class="{if $users->eof()}end{/if}separator">&nbsp;</td></tr>
+{if $i==1}
+  {assign var=i value=0}
+  {else}
+  {assign var=i value=1}
+  {/if}
 {/iterate}
 {if $users->wasEmpty()}
 	<tr>

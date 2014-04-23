@@ -132,6 +132,8 @@ class UserImportExportPlugin extends ImportExportPlugin {
 					$newUser->setTemporaryInterests(Request::getUserVar($i.'_interests'));
 					$newUser->setGossip(Request::getUserVar($i.'_gossip'), null);
 					$newUser->setCountry(Request::getUserVar($i.'_country'));
+          $newUser->setTitleBefore(Request::getUserVar($i.'_titleBefore'));
+          $newUser->setTitleAfter(Request::getUserVar($i.'_titleAfter'));
 					$newUser->setMailingAddress(Request::getUserVar($i.'_mailingAddress'));
 					$newUser->setFax(Request::getUserVar($i.'_fax'));
 					$newUser->setPhone(Request::getUserVar($i.'_phone'));

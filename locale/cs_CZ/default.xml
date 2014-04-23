@@ -160,6 +160,8 @@ Odstavec, který začíná "Toto poslední téma..." nebyl zamýšlený.</pre>]]
 	<message key="default.journalSettings.waiverPolicy">Pokud nemáte prostředky na uhrazení těchto poplatků, budete mít možnost požádat o prominutí každého poplatku. Nechceme, aby poplatky zabránily odpublikování hodnotných prací.</message>
 	<message key="default.journalSettings.purchaseArticleFee">Koupit článek</message>
 	<message key="default.journalSettings.purchaseArticleFeeDescription">Zaplacení tohoto poplatku Vám zpřístupní článek pro prohlížení, stažení a vytisknutí.</message>
+  <message key="default.journalSettings.purchaseIssueFee">Koupit číslo</message>
+	<message key="default.journalSettings.purchaseIssueFeeDescription">Zaplacení tohoto poplatku Vám zpřístupní číslo pro prohlížení, stažení a vytisknutí.</message>
 	<message key="default.journalSettings.membershipFee">Členství v asociaci</message>
 	<message key="default.journalSettings.membershipFeeDescription">Zaplacení tohoto poplatku Vás přihlásí jako člena této asociace na jeden rok a poskytne Vám volný přístup k tomuto časopisu.</message>
 	<message key="default.journalSettings.donationFee">Dary časopisu</message>

@@ -142,6 +142,7 @@
 </table>
 
 <br />
+<!--
 <div id="oaiRegistration">
 	<h4>{translate key="admin.settings.oaiRegistration"}</h4>
 	
@@ -168,9 +169,9 @@
 			</tr>
 		</table>
 	</div>
-{/if}
+{/if}  -->
 
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="admin" escape=false}'" /></p>
+<p><input type="submit" value="{translate key="common.save"}" class="defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="admin" escape=false}'" /></p>
 
 </form>
 

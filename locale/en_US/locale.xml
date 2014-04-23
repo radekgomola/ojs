@@ -70,6 +70,7 @@
 	<!-- Common Error Messages -->
 
 	<!-- Navigation -->
+  <message key="navigation.about.journal">About</message>
 	<message key="navigation.journalHelp">Journal Help</message>
 	<message key="navigation.archives">Archives</message>
 	<message key="navigation.current">Current</message>
@@ -201,6 +202,7 @@
 	<message key="journal.issn">ISSN</message>
 
 	<!-- User -->
+  <message key="user.registration.validationEmail">You need to activate your e-mail. Activation e-mail has to been sent to your address.</message>
 	<message key="user.profile.profileImage">Profile Image</message>
 	<message key="user.showAllJournals">Show My Journals</message>
 	<message key="user.registerForOtherJournals">Register for Other Journals</message>
@@ -1162,4 +1164,20 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<!-- Debug messages -->
 	<message key="debug.notes.currencyListLoad">Loaded currency list "{$filename}" from XML</message>
 	<message key="debug.notes.helpMappingLoad">Reloaded XML help mapping file {$filename} in search of {$id}.</message>
+  
+  
+  <message key="footer.publisher">MU Publisher</message>
+  <message key="footer.contacts">Contacts:</message>
+  <message key="footer.novotna">(assistant manager, editor)</message>
+  <message key="footer.brodecka">(editor)</message>
+  <message key="footer.gomola">(editor, adminitration)</message>
+  <message key="footer.uvt">Hosted by 
+Institute of Computer Science,
+Masaryk University</message>
+  <message key="footer.uvt.link">http://www.muni.cz/ics/?lang=en</message>
+  
+  <message key="navigation.czHelp">CZ Help</message>
+  <message key="about.profile">Profile</message>
+  <message key="user.title.before">Titles before name</message>
+  <message key="user.title.after">Titles after name</message>
 </locale>

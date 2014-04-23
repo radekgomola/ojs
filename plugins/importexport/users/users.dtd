@@ -22,6 +22,8 @@
 <!ELEMENT first_name (#PCDATA)>
 <!ELEMENT middle_name (#PCDATA)>
 <!ELEMENT last_name (#PCDATA)>
+<!ELEMENT titleBefore (#PCDATA)>
+<!ELEMENT titleAfter (#PCDATA)>
 <!ELEMENT initials (#PCDATA)>
 <!ELEMENT gender (#PCDATA)>
 <!ELEMENT affiliation (#PCDATA)>

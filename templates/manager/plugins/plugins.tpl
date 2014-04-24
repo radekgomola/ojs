@@ -48,7 +48,7 @@
 				</div>
 			{/if}
       {assign var=name value=$plugin->getName()}
-      {if $isSiteAdmin || $name=="webfeedplugin" || $name=="announcementfeedplugin" || $name=="customblockmanagerplugin" || $name=="staticpagesplugin"}
+      {if $isSiteAdmin || $category=="blocks" || $name=="webfeedplugin" || $name=="announcementfeedplugin" || $name=="customblockmanagerplugin" || $name=="staticpagesplugin"}
 			<li><h4>{$plugin->getDisplayName()|escape}</h4>
 			<p>
 			{$plugin->getDescription()}<br/>

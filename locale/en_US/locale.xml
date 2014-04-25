@@ -1175,9 +1175,13 @@ Validation may fail on search URLs that require posted form data.]]></message>
 Institute of Computer Science,
 Masaryk University</message>
   <message key="footer.uvt.link">http://www.muni.cz/ics/?lang=en</message>
+  <message key="footer.muni">Masaryk University</message>
+  <message key="footer.muni.link">http://www.muni.cz/?lang=en</message>
   
   <message key="navigation.czHelp">CZ Help</message>
   <message key="about.profile">Profile</message>
   <message key="user.title.before">Titles before name</message>
   <message key="user.title.after">Titles after name</message>
+  <message key="block.banner_jmc">banner_en_small.png</message>
+  <message key="block.banner_jmc.alt">Hosted by journals.muni.cz</message>
 </locale>

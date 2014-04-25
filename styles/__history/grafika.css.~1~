@@ -1,0 +1,615 @@
+/**
+ * phil.css
+ *
+ * Copyright (c) 2003-2011 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * Night theme.
+ *
+ * $Id$
+ */
+
+body {
+	background-color: #d2d4d3;
+	background-image: url(https://journals.muni.cz/images/graphic_left.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	color: #113782;
+	text-align: center;
+	margin: 0 auto;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+
+}
+
+#container {
+		width: 1200px !important;
+}
+a:link {
+	color: #003366;
+	outline:none;
+}
+
+a:active {
+	color: #888888;
+	outline:none;
+}
+
+a:visited {
+	color: #003366;
+	outline:none;
+}
+
+a:hover {
+	color: #888888;
+	background: none;
+	outline:none;
+}
+
+a.header_link{
+	color: #113782;
+}
+
+a img{
+	border: none;
+}
+
+input.textField, select.selectMenu, textarea.textArea, input.uploadField {
+
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	 padding: 4px 5px 5px 0; 
+    margin: 0px 0 5px ; 
+    background: #fff; 
+    font-size: 1.1em; 
+    color: #616265; 
+    border: 0px;
+    min-width: 100px;
+	
+	/*zaoblené stínované inputy*/
+	-webkit-box-shadow: 0px 0px 4px #aaa;
+	-moz-box-shadow: 0px 0px 4px #aaa; 
+	box-shadow: 0px 0px 4px #aaa;
+
+	-moz-border-radius: 3px; 
+	border-radius: 3px;	
+	outline: none;
+}
+
+input.defaultButton {
+	 padding: 4px; 
+    margin: 4px 0 10px 0; 
+    min-width: 100px;
+    background: #143882; 
+    font-size: 1.1em; 
+    color: #e6e6e6; 
+    border: 0px;
+
+	-webkit-box-shadow: 0px 0px 4px #aaa;
+	-moz-box-shadow: 0px 0px 4px #aaa; 
+	box-shadow: 0px 0px 4px #aaa;
+	-webkit-transition: background 0.3s linear;
+	-webkit-border-radius: 4px;
+	
+	-moz-border-radius: 3px; 
+	border-radius: 3px;	
+}
+
+input.defaultButton:hover{
+  	background: #e6e6e6;
+  	color: #003366;
+    cursor:  pointer; 
+}
+
+input.defaultButton:active{
+	background: #e6e6e6;
+  	color: #003366;
+   cursor:  pointer; 
+}
+
+input.button {
+	min-width: 130px;
+	padding: 2px; 
+    margin: 4px 0 10px 0; 
+    min-width: 100px;
+    background: #fff; 
+    font-size: 1.1em; 
+    color: #616265; 
+    border: 0px;
+
+	-webkit-box-shadow: 0px 0px 4px #aaa;
+	-moz-box-shadow: 0px 0px 4px #aaa; 
+	box-shadow: 0px 0px 4px #aaa;
+	-webkit-transition: background 0.3s linear;
+	-webkit-border-radius: 4px;
+	
+	-moz-border-radius: 3px; 
+	border-radius: 3px;	
+}
+
+input.button:hover{
+  	background: #e6e6e6;
+  	color: #003366;
+    cursor:  pointer; 
+}
+
+input.button:active{
+	background: #e6e6e6;
+  	color: #003366;
+   cursor:  pointer; 
+}
+
+#header {
+	background-color: transparent;
+	height: 115px;
+	background-image: url(https://journals.muni.cz/images/graphic_right.png);
+	background-repeat: no-repeat;
+	background-position: 96% 0%;
+	padding-top: 15px;
+}
+
+#header h1 {
+	margin: 0px 0px -20px 0;
+	padding: 0;
+	position: relative; 
+	font-size: 2.5em;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;	
+}
+
+#main {
+	width: 860px;
+	margin: 0 0 0 0;
+	font-size: 1.2em;
+	padding-bottom: 130px;
+}
+
+
+#main h2 { 
+	position: relative;
+	padding-left:20px;
+	padding-bottom: 10px;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+} 
+
+#main h3 {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+#navbar {
+	width: 845px;
+	border-bottom: 3px #e2e1dd solid;
+	text-align: left;
+	padding-left: 15px;
+	position: relative;
+	height: 90px;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;	
+}
+#breadcrumb {
+	width: 845px;
+	padding-left:25px;
+	padding-bottom: 10px;
+	position: relative;
+	border-bottom: 3px #e2e1dd solid;
+
+	z-index: 101;
+	/* visibility: hidden; */
+}
+.headTitle{
+	position:relative;
+}
+
+ul.menu li {
+	margin: 0;
+	padding: 0;
+	padding-right: 0.6em;
+	display: inline;
+}
+
+a.button-home {
+	display: inline-block;
+	height: 20px;
+	padding: 0 10 0 10;
+	min-width: 60px;
+	color: #003366;
+	text-align: center;
+	padding-top: 60px;
+	background-image: url(https://journals.muni.cz/images/menu/home_off.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-home:hover {
+	background-image: url(https://journals.muni.cz/images/menu/home_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-home:active {
+	color: #888888;
+	text-align: center;
+	background-image: url(https://journals.muni.cz/images/menu/home_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.home-selected{
+	color: #888888;
+	text-align: center;
+	background-image: url(https://journals.muni.cz/images/menu/home_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-about {
+	display: inline-block;
+	height: 20px;
+	color: #003366;
+	padding: 0 10 0 10;	
+	min-width: 70px;
+	text-align: center;
+	padding-top: 60px;
+	background-image: url(https://journals.muni.cz/images/menu/about_off.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-about:hover {
+	background-image: url(https://journals.muni.cz/images/menu/about_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-about:active {
+	color: #888888;
+	text-align: center;
+	background-image: url(https://journals.muni.cz/images/menu/about_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.about-selected{
+	color: #888888;
+	text-align: center;
+	background-image: url(https://journals.muni.cz/images/menu/about_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-user {
+	display: inline-block;
+	height: 20px;
+	padding: 0 10 0 10;
+	min-width: 60px;
+	color: #003366;
+	text-align: center;
+	padding-top: 60px;
+	background-image: url(https://journals.muni.cz/images/menu/user_off.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-user:hover {
+	background-image: url(https://journals.muni.cz/images/menu/user_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-user:active {
+	color: #888888;
+	text-align: center;
+	background-image: url(https://journals.muni.cz/images/menu/user_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.user-selected{
+	color: #888888;
+	text-align: center;
+	background-image: url(https://journals.muni.cz/images/menu/user_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-login {
+	display: inline-block;
+	height: 20px;
+	padding: 0 10 0 10;
+	min-width: 60px;
+	color: #003366;
+	text-align: center;
+	padding-top: 60px;
+	background-image: url(https://journals.muni.cz/images/menu/login_off.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-login:hover {
+	background-image: url(https://journals.muni.cz/images/menu/login_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-login:active {
+	color: #888888;
+	text-align: center;
+	background-image: url(https://journals.muni.cz/images/menu/login_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.login-selected{
+	color: #888888;
+	text-align: center;
+	background-image: url(https://journals.muni.cz/images/menu/login_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-register {
+	display: inline-block;
+	height: 20px;
+	padding: 0 10 0 10;
+	min-width: 60px;
+	color: #003366;
+	text-align: center;
+	padding-top: 60px;
+	background-image: url(https://journals.muni.cz/images/menu/register_off.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-register:hover {
+	background-image: url(https://journals.muni.cz/images/menu/register_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-register:active {
+	color: #888888;
+	background-image: url(https://journals.muni.cz/images/menu/register_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.register-selected{
+	color: #888888;
+	background-image: url(https://journals.muni.cz/images/menu/register_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-search {
+	display: inline-block;
+	height: 20px;
+	padding: 0 10 0 10;
+	min-width: 70px;
+	color: #003366;
+	text-align: center;
+	padding-top: 60px;
+	background-image: url(https://journals.muni.cz/images/menu/search_off.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-search:hover {
+	background-image: url(https://journals.muni.cz/images/menu/search_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-search:active {
+	color: #888888;
+	background-image: url(https://journals.muni.cz/images/menu/search_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.search-selected{
+	color: #888888;
+	background-image: url(https://journals.muni.cz/images/menu/search_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-current {
+	display: inline-block;
+	height: 20px;
+	padding: 0 10 0 10;
+	min-width: 70px;
+	color: #003366;
+	text-align: center;
+	padding-top: 60px;
+	background-image: url(https://journals.muni.cz/images/menu/current_off.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-current:hover {
+	background-image: url(https://journals.muni.cz/images/menu/current_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-current:active {
+	color: #888888;
+	background-image: url(https://journals.muni.cz/images/menu/current_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.current-selected{
+	color: #888888;
+	background-image: url(https://journals.muni.cz/images/menu/current_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-archive {
+	display: inline-block;
+	height: 20px;
+	padding: 0 10 0 10;
+	min-width: 70px;
+	color: #003366;
+	text-align: center;
+	padding-top: 60px;
+	background-image: url(https://journals.muni.cz/images/menu/archive_off.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-archive:hover {
+	background-image: url(https://journals.muni.cz/images/menu/archive_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-archive:active {
+	color: #888888;
+	background-image: url(https://journals.muni.cz/images/menu/archive_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.archive-selected{
+	color: #888888;
+	background-image: url(https://journals.muni.cz/images/menu/archive_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-announce {
+	display: inline-block;
+	height: 20px;
+	padding: 0 10 0 10;
+	min-width: 70px;
+	color: #003366;
+	text-align: center;
+	padding-top: 60px;
+	background-image: url(https://journals.muni.cz/images/menu/announce_off.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-announce:hover {
+	background-image: url(https://journals.muni.cz/images/menu/announce_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-announce:active {
+	color: #888888;
+	background-image: url(https://journals.muni.cz/images/menu/announce_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.announce-selected{
+	color: #888888;
+	background-image: url(https://journals.muni.cz/images/menu/announce_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-categories {
+	display: inline-block;
+	height: 20px;
+	padding: 0 10 0 10;
+	min-width: 70px;
+	color: #003366;
+	text-align: center;
+	padding-top: 60px;
+	background-image: url(https://journals.muni.cz/images/menu/categories_off.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-categories:hover {
+	background-image: url(https://journals.muni.cz/images/menu/categories_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.button-categories:active {
+	color: #888888;
+	background-image: url(https://journals.muni.cz/images/menu/categories_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+a.categories-selected{
+	color: #888888;
+	background-image: url(https://journals.muni.cz/images/menu/categories_on.png);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+#breadcrumb a{
+	color: #003366;
+}
+
+#content {
+	padding-left: 25px;
+	padding-right: 25px;
+	position: relative;
+	border: none;
+	padding-bottom: 70px;
+}
+
+.description{
+	color: #616265;
+	padding-left: 5px;
+	padding-bottom: 3px;
+}
+
+.about{
+	color: #616265;
+	padding-left: 5px;
+	padding-bottom: 10px;
+}
+
+.space{
+	padding-right: 40px;
+}
+
+#content h3 {
+	font-family: Arial, Verdana, Georgia, "Times New Roman";
+	font-size: 1.5em;
+	line-height: 1.0;
+	font-weight: bold;
+}
+
+
+#content h4 {
+	font-family: Arial, Verdana, Georgia, "Times New Roman";
+	line-height: 1.0;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.footer {
+	border-top: 3px #e2e1dd solid;
+	width: 1100px;
+	font-size: 0.7em;
+	float: left;
+	padding-bottom: 50px;
+	line-height: 1.2em;	
+}
+
+.footer_text{
+	padding-top: 5px;
+	padding-left: 25px;
+}
+
+.block {
+	min-width: 275px;
+}
+
+.journalBlock{
+	padding-bottom: 15px;
+}
+
+/*** SIDE BAR ***/
+
+#sidebar{
+	background-color: transparent;
+}
+#rightSidebar {
+	background-color: transparent;
+	font-size: 0.9em;
+	margin-top: 15px; 
+	padding: 0px;
+	width: 150px;
+	text-align: left:
+}
+
+.header_logo {
+	float:left;
+	height: 135px;
+}
+
+div.separator {
+	width: 100%;
+	margin-top: 1em;
+	margin-bottom: 0.25em;
+	padding: 0;
+	border-bottom: 3px solid #e2e1dd;
+	font-size: 0.5em;
+	line-height: 25%;
+}
+
+table.announcements td.separator {
+	border-top: 3px solid #e2e1dd;
+	font-size: 0.1em;
+	line-height: 1%;
+}
+
+tr.background_line{
+	background-color: #e2e1dd;
+}
+
+ol.editorialTeam div.member{
+	padding-left:15px;
+}
+
+#sidebar div.custom {
+	padding: 0px;
+}

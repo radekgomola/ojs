@@ -1296,9 +1296,13 @@ Ověřování může selhat při vyhledávání URL, které vyžadují "posted f
 Ústav výpočetní techniky
 Masarykovy univerzity</message>
   <message key="footer.uvt.link">http://www.muni.cz/ics/</message>
+  <message key="footer.muni">Masarykova univerzita</message>
+  <message key="footer.muni.link">http://www.muni.cz/</message>
   
   <message key="navigation.czHelp">CZ návody</message>
   <message key="about.profile">Profil</message>
   <message key="user.title.before">Tituly před jménem</message>
   <message key="user.title.after">Tituly za jménem</message>
+  <message key="block.banner_jmc">banner_cz_small.png</message>
+  <message key="block.banner_jmc.alt">Hostuje journals.muni.cz</message>      
 </locale>

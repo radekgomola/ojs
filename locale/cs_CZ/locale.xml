@@ -75,7 +75,7 @@
 	<!-- Navigation -->
   <message key="navigation.about.journal">O časopisu</message>
 	<message key="navigation.journalHelp">Nápověda časopisu</message>
-	<message key="navigation.archives">Archív</message>
+	<message key="navigation.archives">Archiv</message>
 	<message key="navigation.current">Aktuální</message>
 	<message key="navigation.otherJournals">Další časopisy</message>
 	<message key="navigation.browseByIssue">Podle čísla</message>
@@ -93,12 +93,12 @@
 	<message key="common.queue.short.submissionsInEditing">Editované</message>
 	<message key="common.queue.long.submissionsInReview">Příspěvky v recenzním řízení</message>
 	<message key="common.queue.short.submissionsInReview">V recenzním řízení</message>
-	<message key="common.queue.long.submissionsArchives">Archív</message>
-	<message key="common.queue.short.submissionsArchives">Archív</message>
+	<message key="common.queue.long.submissionsArchives">Archiv</message>
+	<message key="common.queue.short.submissionsArchives">Archiv</message>
 	<message key="common.queue.long.active">Aktivní příspěvky</message>
 	<message key="common.queue.short.active">Aktivní</message>
-	<message key="common.queue.long.completed">Archív</message>
-	<message key="common.queue.short.completed">Archív</message>
+	<message key="common.queue.long.completed">Archiv</message>
+	<message key="common.queue.short.completed">Archiv</message>
 	
 	<!--
 	 *
@@ -304,8 +304,8 @@
 	<message key="submission.event.editor.editorUnassigned">Editor odebrán od příspěvku</message>
 	<message key="submission.event.editor.editorDecision">Editorovo rozhodnutí odesláno</message>
 	<message key="submission.event.editor.editorFile">Editorův soubor aktualizován</message>
-	<message key="submission.event.editor.submissionArchived">Příspěvek odeslán do archívu</message>
-	<message key="submission.event.editor.submissionRestored">Příspěvek obnoven z archívu</message>
+	<message key="submission.event.editor.submissionArchived">Příspěvek odeslán do archivu</message>
+	<message key="submission.event.editor.submissionRestored">Příspěvek obnoven z archivu</message>
 	
 	
 	<message key="submission.event.copyedit.copyeditorAssigned">Redaktor přidělen k příspěvku</message>
@@ -349,7 +349,7 @@
 
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[Aby byl obsah všech časopisů hostovaných na této stránce indexován v celosvětově distribuovaném systému výzkumných databází, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">zaregistrujte</a> URL Vaší stránky do <a href="http://pkp.sfu.ca/harvester/" target="_blank">shromažďovače</a> metadat Public Knowledge Projektu. Tento nástroj sbírá metadata z každé indexované položky tohoto časopisu a umožňuje přesné a hromadné vyhledávání v rámci výzkumných stránek, které dodržují <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">protokol Iniciativy otevřených archivů pro shromažďování metadat </a> (Open Archives Initiative (OAI) Protocol for Metadata Harvesting).
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Klikněte zde</a> a vložte <span class="highlight">{$siteUrl}</span> pod <b> URL stránky</b> a <span class="highlight">{$oaiUrl}</span> pod <b> Základní URL pro OAI Archív</b>.
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Klikněte zde</a> a vložte <span class="highlight">{$siteUrl}</span> pod <b> URL stránky</b> a <span class="highlight">{$oaiUrl}</span> pod <b> Základní URL pro OAI Archiv</b>.
 <br /><br />
 Vězte, že rozhraní OAI může být pro tuto stránku vypnuto editací konfigurace OJS systému. Příští verze OJS umožní, aby rozhraní OAI bylo povoleno nebo zakázáno pro jednotlivé časopisy na této stránce.]]></message>
 
@@ -412,7 +412,7 @@ Vězte, že rozhraní OAI může být pro tuto stránku vypnuto editací konfigu
 	Reviewers the request to review with the submission attached to the email. Reviewers email editors their assent (or regrets), as well as the review and recommendation. Editors enter Reviewers' assent (or regrets), as well as the review and recommendation on the submission's Review page, to record the review process.</message>
 
 
-	<message key="manager.setup.lockssDescription"><![CDATA[OJS podporuje technologii <a href="http://lockss.org/" target="_blank">LOCKSS</a> (Lots of Copies Keep Stuff Safe) systém, aby zajistil bezpečnou a stálou archivaci časopisu. LOCKSS je open source software vyvinutý v Stanford University Library, který umožňuje knihovnám zabezpečovat vybrané webové časopisy tím, že se pravidelně dotazuje webových stránek časopisu na nově publikovaný obsah a archivuje ho. Každý archív je neustále kontrolován porovnáváním oproti archívům dalších knihoven, a pokud je zjištěno jeho poškození nebo ztráta jsou tyto archívy použity k jeho obnovení.
+	<message key="manager.setup.lockssDescription"><![CDATA[OJS podporuje technologii <a href="http://lockss.org/" target="_blank">LOCKSS</a> (Lots of Copies Keep Stuff Safe) systém, aby zajistil bezpečnou a stálou archivaci časopisu. LOCKSS je open source software vyvinutý v Stanford University Library, který umožňuje knihovnám zabezpečovat vybrané webové časopisy tím, že se pravidelně dotazuje webových stránek časopisu na nově publikovaný obsah a archivuje ho. Každý archiv je neustále kontrolován porovnáváním oproti archivům dalších knihoven, a pokud je zjištěno jeho poškození nebo ztráta jsou tyto archivy použity k jeho obnovení.
 <br /><br />
 Nastavení podpory technologie LOCKSS pro OJS nemusí být provedeno, dokud není publikování časopisu zaběhané. Potom následujte tyto dva kroky:]]></message>
 	
@@ -439,7 +439,7 @@ Název systému klasifikace]]></message>
 <br /><br />
 Vězte, že pokud již Váš administrátor stránek zaregistroval tyto stránky do PKP shromažďovače, Váš časopis bude indexován automaticky a Vy nemusíte časopis registrovat.
 <br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Klikněte zde</a> a vložte <span class="highlight">{$siteUrl}</span> pod <b>URL stránky</b> a <span class="highlight">{$oaiUrl}</span> pod <b>Základní URL pro OAI Archív</b>.]]></message>
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Klikněte zde</a> a vložte <span class="highlight">{$siteUrl}</span> pod <b>URL stránky</b> a <span class="highlight">{$oaiUrl}</span> pod <b>Základní URL pro OAI Archiv</b>.]]></message>
 
 <message key="manager.setup.citations">Povolit citačního asistenta</message>
 

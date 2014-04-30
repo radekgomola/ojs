@@ -48,10 +48,11 @@
 				</div>
 			{/if}
       {assign var=name value=$plugin->getName()}
-      {if $isSiteAdmin || $category=="blocks" || $name=="webfeedplugin" || $name=="announcementfeedplugin" || $name=="customblockmanagerplugin" || $name=="staticpagesplugin"}
+      
+      {if $isSiteAdmin || $category=="blocks" || $name=="webfeedplugin" || $name=="announcementfeedplugin" || $name=="customblockmanagerplugin" || $name=="staticpagesplugin" || $name=="PublicFolderBrowserPlugin"}
 			<li><h4>{$plugin->getDisplayName()|escape}</h4>
 			<p>
-			{$plugin->getDescription()}<br/>
+			{$plugin->getDescription()}<br />
 			{assign var=managementVerbs value=$plugin->getManagementVerbs()}
 			{if $managementVerbs && $plugin->isSitePlugin() && !$isSiteAdmin}
 				<em>{translate key="manager.plugins.sitePlugin"}</em>

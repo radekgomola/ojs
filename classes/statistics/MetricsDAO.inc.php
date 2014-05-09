@@ -6,7 +6,8 @@
 /**
  * @file classes/statistics/MetricsDAO.inc.php
  *
- * Copyright (c) 2003-2012 John Willinsky
+ * Copyright (c) 2013-2014 Simon Fraser University Library
+ * Copyright (c) 2003-2014 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MetricsDAO
@@ -280,7 +281,7 @@ class MetricsDAO extends DAO {
 						return false;
 					}
 				}
-				$articleId = $articleFile->getSubmissionId();
+				$articleId = $articleFile->getArticleId();
 				$isArticleFile = true;
 				// Don't break but go on to retrieve the article.
 
@@ -312,7 +313,7 @@ class MetricsDAO extends DAO {
 				}
 				$issueId = $issueGalley->getIssueId();
 				$issueDao =& DAORegistry::getDAO('IssueDAO'); /* @var $issueDao IssueDAO */
-				$issue =& $issueDao->getById($issueId, null, true);
+				$issue =& $issueDao->getIssueById($issueId, null, true);
 				if (!is_a($issue, 'Issue')) {
 					$errorMsg = 'Cannot load record: issue galley without issue.';
 					return false;

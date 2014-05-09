@@ -3,8 +3,8 @@
 /**
  * @file plugins/pubIds/doi/DOIPubIdPlugin.inc.php
  *
- * Copyright (c) 2013 Simon Fraser University Library
- * Copyright (c) 2003-2013 John Willinsky
+ * Copyright (c) 2013-2014 Simon Fraser University Library
+ * Copyright (c) 2003-2014 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class DOIPubIdPlugin
@@ -192,7 +192,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 				}
 
 				if ($article) {
- 					$doiSuffix .= '.' . $article->getId();
+					$doiSuffix .= '.' . $article->getId();
 				}
 
 				if ($galley) {

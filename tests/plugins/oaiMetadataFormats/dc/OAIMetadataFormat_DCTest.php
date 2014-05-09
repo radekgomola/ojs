@@ -7,8 +7,8 @@
 /**
  * @file tests/plugins/oaiMetadataFormats/dc/OAIMetadataFormat_DCTest.inc.php
  *
- * Copyright (c) 2013 Simon Fraser University Library
- * Copyright (c) 2000-2013 John Willinsky
+ * Copyright (c) 2013-2014 Simon Fraser University Library
+ * Copyright (c) 2000-2014 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OAIMetadataFormat_DCTest
@@ -252,7 +252,7 @@ class OAIMetadataFormat_DCTest extends PKPTestCase {
 	 * Callback for router url construction simulation.
 	 */
 	function routerUrl($request, $newContext = null, $handler = null, $op = null, $path = null) {
-       	return $handler.'-'.$op.'-'.implode('-', $path);
+		return $handler.'-'.$op.'-'.implode('-', $path);
 	}
 }
 ?>

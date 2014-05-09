@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/usageEvent/UsageEventPlugin.inc.php
  *
- * Copyright (c) 2013 Simon Fraser University Library
- * Copyright (c) 2003-2013 John Willinsky
+ * Copyright (c) 2013-2014 Simon Fraser University Library
+ * Copyright (c) 2003-2014 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UsageEventPlugin
@@ -172,6 +172,10 @@ class UsageEventPlugin extends GenericPlugin {
 				$issue =& $templateMgr->get_template_vars('issue');
 				$galley =& $templateMgr->get_template_vars('galley'); /* @var $galley ArticleGalley */
 				$article =& $templateMgr->get_template_vars('article');
+
+				// If there is no published object, there is no usage event.
+				if (!$issue && !$galley && !$article) return false;
+
 				if ($galley) {
 					if ($galley->isHTMLGalley() || $galley->getRemoteURL()) {
 						$pubObject =& $galley;

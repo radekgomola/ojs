@@ -18,4 +18,5 @@
 	<message key="plugins.block.navigation.displayName">Navigační blok</message>
 	<message key="plugins.block.navigation.description">Tento plugin poskytne v postranním panelu navigační odkazy.</message>
 	<message key="plugins.block.navigation.journalContent">Obsah časopisu</message>
+  <message key="plugins.block.navigation.searchScope">Prohledat oblast</message>
 </locale>

@@ -43,6 +43,27 @@
 	<message key="submission.reviewForm">Formulář posudku</message>
 	<message key="submission.reviewFormResponse">Odpověď na formulář posudku</message>
 
+  <!-- Permissions -->
+	<message key="submission.permissions">Oprávnění</message>
+	<message key="submission.license">Licence</message>
+	<message key="submission.copyright">Copyright</message>
+	<message key="submission.copyrightHolder">Držitel copyrightu </message>
+	<message key="submission.copyrightYear">Rok copyrightu</message>
+	<message key="submission.copyrightStatement">Copyright (c) {$copyrightYear} {$copyrightHolder}</message>
+	<message key="submission.licenseURLValid">Prosím poskytněte platnou URL adresu (včetně http://).</message>
+	<message key="submission.licenseURL">URL adresa licence</message>
+	<message key="submission.license.cc.by-nc-nd4">CC Attribution-NonCommercial-NoDerivatives 4.0</message>
+	<message key="submission.license.cc.by-nc4">CC Attribution-NonCommercial 4.0</message>
+	<message key="submission.license.cc.by-nc-sa4">CC Attribution-NonCommercial-ShareAlike 4.0</message>
+	<message key="submission.license.cc.by-nd4">CC Attribution-NoDerivatives 4.0</message>
+	<message key="submission.license.cc.by4">CC Attribution 4.0</message>
+	<message key="submission.license.cc.by-sa4">CC Attribution-ShareAlike 4.0</message>
+	<message key="submission.license.cc.by-nc-nd4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Tato práce je pod licencí <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.]]></message>
+	<message key="submission.license.cc.by-nc4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Tato práce je pod licencí <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.]]></message>
+	<message key="submission.license.cc.by-nc-sa4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />Tato práce je pod licencí <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.]]></message>
+	<message key="submission.license.cc.by-nd4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nd/4.0/88x31.png" /></a><br />Tato práce je pod licencí <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">Creative Commons Attribution-NoDerivatives 4.0 International License</a>.]]></message>
+	<message key="submission.license.cc.by4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Tato práce je pod licencí <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.]]></message>
+	<message key="submission.license.cc.by-sa4.footer"><![CDATA[<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Tato práce je pod licencí <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.]]></message>
 
 	<message key="reviewer.article.enterReviewForm">Klikněte na ikonu pro vyplnění formuláře posudku.</message>
 	<message key="reviewer.article.reviewFormResponse.form.responseRequired">Prosím vyplňte požadováná pole.</message>
@@ -217,6 +238,9 @@
 	<message key="user.noRoles.submitArticleRegClosed">Odeslat článek: Registrace autorů je momentálně vypnuta.</message>
 	<message key="user.noRoles.regReviewer">Registrovat jako recenzent</message>
 	<message key="user.noRoles.regReviewerClosed">Registrovat jako recenzent: Registrace recenzentů je momentálně vypnuta.</message>
+  <message key="user.orcid">ORCID iD</message>
+	<message key="user.orcid.description"><![CDATA[ORCID iD je možné získat při <a href="http://orcid.org/" target="_blank">ORCID registraci</a>. Musíte vyhovovat jejich standardům pro získání ORCID iD a vložit úplnou URI (např. <em>http://orcid.org/0000-0002-1825-0097</em>).]]></message>
+	<message key="user.profile.form.orcidInvalid">Vámi specifikované ORCID iD není platné.</message>
 	
 	<!-- Roles -->
 	<message key="user.role.manager">Manažer časopisu</message>

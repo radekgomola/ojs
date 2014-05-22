@@ -235,6 +235,14 @@
 	<message key="manager.setup.copyediting">Redaktoři</message>
 	<message key="manager.setup.copyeditInstructions">Instrukce pro redigovnání</message>
 	<message key="manager.setup.copyeditInstructionsDescription">Instrukce pro redigování budou spřístupněny redaktorům, autorům a editorům sekcí ve fázi redigování příspěvku. Níže je uveden výchozí set instrukcí v HTML, který může být kdykoliv upraven nebo nahrazen manžerem časopisu (v HTML nebo prostý text).</message>
+  <message key="manager.setup.permissions.priorAgreement">Apriorní ujednání</message>
+	<message key="manager.setup.permissions.display">Zobrazit</message>
+	<message key="manager.setup.licenseURLDescription">Poskytnout URL adresu stránky s licencí, pokud je dostupná.</message>
+	<message key="manager.setup.includeCopyrightStatement">Zobrazit prohlášení o copyrightu s obsahem (vhodné pro uplatnění autorem drženého cypyrightu).</message>
+	<message key="manager.setup.includeLicense">Zobrazit licenci s publikovanou prací.</message>
+	<message key="manager.setup.resetPermissions">Resetovat oprávnění k článku</message>
+	<message key="manager.setup.resetPermissions.description">Prohlášení o copyrightu a licenční informace jsou permanentně přiřazeny k publikovanému obsahu, proto se data nezmění ani v případě,že časopis změní svou politiku pro nové příspěvky. Pro reset uložených opravnění, která byla již přiřazena k publikovanému obsahu, použíjte tlačítko níže.</message>
+	<message key="manager.setup.confirmResetLicense">Jste si jistý, že chcete resetovat informace o licenci a copyrighu, které jsou přiřazeny k publikovanému obashu na licenci nastavenou v základním nastavení časopiu?</message>
 	<message key="manager.setup.copyrightNotice">Oznámení o copyrightu</message>
 	<message key="manager.setup.coverage">Pokrytí</message>
 	<message key="manager.setup.coverageChronExamples">(např. evropská renezance; jurské období; druhý semestr; atd.)</message>

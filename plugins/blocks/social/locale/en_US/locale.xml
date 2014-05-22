@@ -12,7 +12,7 @@
   -->
  
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.block.social.displayName">Spocial networks Block</message>
+	<message key="plugins.block.social.displayName">Social networks Block</message>
 	<message key="plugins.block.social.description">This plugin provides sidebar with social networks(facebook, twitter etc.).</message>
 	<message key="plugins.block.social.facebook">Facebook.com</message>
   <message key="plugins.block.socialNetworks">Social networks</message>

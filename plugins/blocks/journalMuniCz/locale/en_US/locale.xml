@@ -12,6 +12,6 @@
   -->
  
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.block.journalsMuniCz.displayName">"Jounals Muni Cz" Block</message>
-	<message key="plugins.block.journlasMuniCz.description">This plugin provides sidebar "Journals Muni Cz" link.</message>
+	<message key="plugins.block.journalMuniCz.displayName">"Jounals Muni Cz" Block</message>
+	<message key="plugins.block.journalMuniCz.description">This plugin provides sidebar "Journals Muni Cz" link.</message>
 </locale>

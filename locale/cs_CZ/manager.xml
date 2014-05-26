@@ -216,9 +216,9 @@
 	<message key="manager.setup.announcementsIntroduction">Doplňující informace</message>
 	<message key="manager.setup.announcementsIntroductionDescription">Vložte jakékoliv doplňující informace, které by měly být zobrazeny čtenářům na stránce Oznámení.</message>
 	<message key="manager.setup.appearInAboutJournal">(K zobrazení v části O časopisu) </message>
-	<message key="manager.setup.authorCopyrightNotice">Oznámení o copyrightu</message>
-	<message key="manager.setup.authorCopyrightNoticeAgree">Vyžadovat od autorů souhlas s Oznámením o copyrightu jako součást procesu odesílání příspěvku.</message>
-	<message key="manager.setup.authorCopyrightNoticeDescription"><![CDATA[Oznámení o copyrightu vložené níže se zobrazí v části O časopisu a v metadatech každé publikované položky. I když je stanovení dohody o copyrightu s autory věcí časopisu, Public Knowledge Project doporučuje použití licence <a href="http://creativecommons.org" target="_new" class="action">Creative Commons</a>. Za tímto účelem poskytuje <a href="{$sampleCopyrightWordingUrl}" target="_new" class="action">příklad formulace Oznámení o copyrightu</a>, které může být zkopírováno a vloženo do prostoru níže. Je dostupné pro časopisy, které (a) nabízejí otevřený přístup, (b) nabízejí zpožděný otevřený přístup nebo (c) nenabízí otevřený přístup.]]></message>
+	<message key="manager.setup.authorCopyrightNotice">Informace o autorských právech</message>
+	<message key="manager.setup.authorCopyrightNoticeAgree">Vyžadovat od autorů souhlas s informacemi o autorských právech jako součást procesu odesílání příspěvku.</message>
+	<message key="manager.setup.authorCopyrightNoticeDescription"><![CDATA[Informace o autorských právech vložené níže se zobrazí v části O časopisu a v metadatech každé publikované položky. I když je stanovení dohody autorských právech s autory věcí časopisu, Public Knowledge Project doporučuje použití licence <a href="http://creativecommons.org" target="_new" class="action">Creative Commons</a>. Za tímto účelem poskytuje <a href="{$sampleCopyrightWordingUrl}" target="_new" class="action">příklad formulace Oznámení o copyrightu</a>, které může být zkopírováno a vloženo do prostoru níže. Je dostupné pro časopisy, které (a) nabízejí otevřený přístup, (b) nabízejí zpožděný otevřený přístup nebo (c) nenabízí otevřený přístup.]]></message>
 	<message key="manager.setup.authorGuidelines">Instrukce autorům</message>
 	<message key="manager.setup.authorGuidelinesDescription"><![CDATA[Stanovte pro autory bibliografický standard a standard pro formátování textu, které mají použít ve svých příspěvcích do časopisu (například <i>Publication Manual of the American Psychological Association</i>, 5th edition, 2001). Většinou je užitečné, pokud poskytnete příklady běžných způsobů citování časopisů a knih, které budou v příspěvcích použity. Také vymezte patřičné typy doplňkových souborů (například souborů s daty, výzkumné nástroje atd.), k jejichž nahrání společně s příspěvkem by měli být autoři motivováni, aby ve větší míře zpřístupnili čtenářům svou práci.]]></message>
 	<message key="manager.setup.competingInterests">Střet zájmů</message>
@@ -238,12 +238,12 @@
   <message key="manager.setup.permissions.priorAgreement">Apriorní ujednání</message>
 	<message key="manager.setup.permissions.display">Zobrazit</message>
 	<message key="manager.setup.licenseURLDescription">Poskytnout URL adresu stránky s licencí, pokud je dostupná.</message>
-	<message key="manager.setup.includeCopyrightStatement">Zobrazit prohlášení o copyrightu s obsahem (vhodné pro uplatnění autorem drženého cypyrightu).</message>
+	<message key="manager.setup.includeCopyrightStatement">Zobrazit informace o autorských právech s obsahem (vhodné pro uplatnění autorem držených práv).</message>
 	<message key="manager.setup.includeLicense">Zobrazit licenci s publikovanou prací.</message>
 	<message key="manager.setup.resetPermissions">Resetovat oprávnění k článku</message>
-	<message key="manager.setup.resetPermissions.description">Prohlášení o copyrightu a licenční informace jsou permanentně přiřazeny k publikovanému obsahu, proto se data nezmění ani v případě,že časopis změní svou politiku pro nové příspěvky. Pro reset uložených opravnění, která byla již přiřazena k publikovanému obsahu, použíjte tlačítko níže.</message>
+	<message key="manager.setup.resetPermissions.description">Informace o autorských právech a licenční informace jsou permanentně přiřazeny k publikovanému obsahu, proto se data nezmění ani v případě,že časopis změní svou politiku pro nové příspěvky. Pro reset uložených opravnění, která byla již přiřazena k publikovanému obsahu, použíjte tlačítko níže.</message>
 	<message key="manager.setup.confirmResetLicense">Jste si jistý, že chcete resetovat informace o licenci a copyrighu, které jsou přiřazeny k publikovanému obashu na licenci nastavenou v základním nastavení časopiu?</message>
-	<message key="manager.setup.copyrightNotice">Oznámení o copyrightu</message>
+	<message key="manager.setup.copyrightNotice">Informace o autorských právech</message>
 	<message key="manager.setup.coverage">Pokrytí</message>
 	<message key="manager.setup.coverageChronExamples">(např. evropská renezance; jurské období; druhý semestr; atd.)</message>
 	<message key="manager.setup.coverageChronProvideExamples">Poskytněte příklady relevantních chronologických nebo historických termínů pro tento obor</message>

@@ -368,7 +368,6 @@
 		</tr>
 	</table>
 </div>  
-</div>
 
 <div class="separator"></div>
 

@@ -96,7 +96,7 @@
 	<xsl:template match="article/abstract">
 		<abstract><xsl:value-of select="."/></abstract>
 	</xsl:template>
-
+        
 	<xsl:template match="article/number"><!-- Ignored --></xsl:template>
 
 	<xsl:template match="article/date_published">

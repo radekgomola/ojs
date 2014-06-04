@@ -171,7 +171,7 @@ class NativeExportDom {
 			if ($abstractNode) XMLCustomWriter::setAttribute($abstractNode, 'locale', $locale);
 			unset($abstractNode);
 		}
-
+                
 		/* --- Indexing --- */
 
 		$indexingNode =& XMLCustomWriter::createElement($doc, 'indexing');
@@ -298,8 +298,7 @@ class NativeExportDom {
 		}
 
 		/* --- */
-
-
+                
 		/* --- Galleys --- */
 		foreach ($article->getGalleys() as $galley) {
 			$galleyNode =& NativeExportDom::generateGalleyDom($doc, $journal, $issue, $article, $galley);

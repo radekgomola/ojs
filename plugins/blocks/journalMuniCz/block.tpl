@@ -9,5 +9,5 @@
  *
  *}
 <div class="block" id="sidebarJournalsMuniCz">
-  <a class="blockTitle" href="http://ojs.ics.muni.cz:8080/" id="hostedBy">JOURNALS MUNI CZ</a>
+  <a class="blockTitle" href="https://journals.muni.cz" id="hostedBy">JOURNALS MUNI CZ</a>
 </div>

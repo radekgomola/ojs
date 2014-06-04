@@ -89,6 +89,7 @@ class TinyMCEPlugin extends GenericPlugin {
 							$fields[] = "authors-$i-competingInterests";
 						}
 						$fields[] = 'abstract';
+                                                $fields[] = 'citations';
 						break;
 				}
 				break;
@@ -162,6 +163,7 @@ class TinyMCEPlugin extends GenericPlugin {
 					$fields[] = "authors-$i-competingInterests";
 				}
 				$fields[] = 'abstract';
+                                $fields[] = 'citations';
 				break;
 			case 'manager/payments':
 				$fields[] = 'submissionFeeDescription';
@@ -298,6 +300,7 @@ class TinyMCEPlugin extends GenericPlugin {
 					$fields[] = "authors-$i-competingInterests";
 				}
 				$fields[] = 'abstract';
+                                $fields[] = 'citations';
 				break;
 			case 'sectionEditor/editSuppFile':
 			case 'editor/editSuppFile':
@@ -368,7 +371,7 @@ class TinyMCEPlugin extends GenericPlugin {
 					plugins : "paste,jbimages,fullscreen",
 					themes : "advanced",
 					languages : "' . join(',', $localeList) . '",
-					disk_cache : true
+					disk_cache : false
 				});
 			</script>
 			<script language="javascript" type="text/javascript">

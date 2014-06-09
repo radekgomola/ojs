@@ -96,11 +96,10 @@
 		{/if}
 		</div>
 	{/if}
-
+        <br />
 	{if $citationFactory->getCount()}
 		<div id="articleCitations">
 		<h4>{translate key="submission.citations"}</h4>
-		<br />
 		<div>
 			{capture assign="references"}
 

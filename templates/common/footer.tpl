@@ -18,8 +18,9 @@
 	{/if}
 	{if $e_issn || $p_issn}
 		{translate|assign:"issnText" key="journal.issn"}
+                {translate|assign:"issnTextOnline" key="journal.issn.online"}
                 {translate|assign:"issnTextPrinted" key="journal.issn.print"}
-		{assign var=pageFooter value="$issnText: $e_issn <br /> $issnTextPrinted: $p_issn"}
+		{assign var=pageFooter value="$issnText: $e_issn ($issnTextOnline)<br /> $issnText: $p_issn ($issnTextPrinted)"}
 	{/if}
 {/if}
 {include file="core:common/footer.tpl"}

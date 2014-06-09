@@ -223,8 +223,9 @@
 	<message key="journal.journals">Časopisy</message>
 	<message key="journal.path">Cesta</message>
 	<message key="journal.journal">Časopis</message>
-  <message key="journal.issn">ISSN (on-line)</message>
-  <message key="journal.issn.print">ISSN (print)</message>
+        <message key="journal.issn">ISSN</message>
+        <message key="journal.issn.print">tištěné</message>
+        <message key="journal.issn.online">on-line</message>
 
 	<!-- User -->
   <message key="user.registration.validationEmail">Váš účet je potřeba aktivovat. Na Vaši e-mailovou adresu byl zaslán aktivační e-mail.</message>
@@ -1328,4 +1329,5 @@ Masarykovy univerzity</message>
   <message key="user.title.after">Tituly za jménem</message>
   <message key="block.banner_jmc">banner_cz_small.png</message>
   <message key="block.banner_jmc.alt">Hostuje journals.muni.cz</message>      
+  <message key="languages.help">cestina</message> 
 </locale>

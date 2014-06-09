@@ -66,7 +66,8 @@
 {if !$pageTitleTranslated}{translate|assign:"pageTitleTranslated" key=$pageTitle}{/if}
 
 <div id="container">
-
+{translate|assign:"help" key="languages.help"}
+    <span id="{if $help == "cestina"}help_cz{else}help_en{/if}"></span>
 <div id="header">
 <div id="headerTitle">
 <h1>{if $currentJournal && $currentJournal->getLocalizedInitials()}{$currentJournal->getLocalizedInitials()}&nbsp;{/if}{translate key="rt.readingTools"}</h1>

@@ -94,7 +94,8 @@
 <body>
 
 <div id="container">
-
+{translate|assign:"help" key="languages.help"}
+    <span id="{if $help == "cestina"}help_cz{else}help_en{/if}"></span>
 <div id="header">
 <div id="headerTitle">
 <h1>

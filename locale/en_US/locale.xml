@@ -220,7 +220,8 @@
 	<message key="journal.journals">Journals</message>
 	<message key="journal.path">Path</message>
 	<message key="journal.journal">Journal</message>
-	<message key="journal.issn">ISSN</message>
+	<message key="journal.issn">ISSN (on-line)</message>
+        <message key="journal.issn.print">ISSN (print)</message>
 
 	<!-- User -->
   <message key="user.registration.validationEmail">You need to activate your e-mail. Activation e-mail has to been sent to your address.</message>

@@ -11,13 +11,15 @@
 {strip}
 {if $pageFooter==''}
 	{if $currentJournal && $currentJournal->getSetting('onlineIssn')}
-		{assign var=issn value=$currentJournal->getSetting('onlineIssn')}
-	{elseif $currentJournal && $currentJournal->getSetting('printIssn')}
-		{assign var=issn value=$currentJournal->getSetting('printIssn')}
+		{assign var=e_issn value=$currentJournal->getSetting('onlineIssn')}
+        {/if}
+	{if $currentJournal && $currentJournal->getSetting('printIssn')}
+		{assign var=p_issn value=$currentJournal->getSetting('printIssn')}
 	{/if}
-	{if $issn}
+	{if $e_issn || $p_issn}
 		{translate|assign:"issnText" key="journal.issn"}
-		{assign var=pageFooter value="$issnText: $issn"}
+                {translate|assign:"issnTextPrinted" key="journal.issn.print"}
+		{assign var=pageFooter value="$issnText: $e_issn <br /> $issnTextPrinted: $p_issn"}
 	{/if}
 {/if}
 {include file="core:common/footer.tpl"}

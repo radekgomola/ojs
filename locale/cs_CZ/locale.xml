@@ -223,7 +223,8 @@
 	<message key="journal.journals">Časopisy</message>
 	<message key="journal.path">Cesta</message>
 	<message key="journal.journal">Časopis</message>
-  <message key="journal.issn">ISSN</message>
+  <message key="journal.issn">ISSN (on-line)</message>
+  <message key="journal.issn.print">ISSN (print)</message>
 
 	<!-- User -->
   <message key="user.registration.validationEmail">Váš účet je potřeba aktivovat. Na Vaši e-mailovou adresu byl zaslán aktivační e-mail.</message>

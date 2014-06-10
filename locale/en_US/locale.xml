@@ -223,6 +223,7 @@
 	<message key="journal.issn">ISSN</message>
         <message key="journal.issn.print">print</message>
         <message key="journal.issn.online">on-line</message>
+        <message key="journal.newsletter">Newsletter</message>
 
 	<!-- User -->
   <message key="user.registration.validationEmail">You need to activate your e-mail. Activation e-mail has to been sent to your address.</message>

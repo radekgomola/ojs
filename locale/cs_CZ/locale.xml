@@ -226,6 +226,7 @@
         <message key="journal.issn">ISSN</message>
         <message key="journal.issn.print">tištěné</message>
         <message key="journal.issn.online">on-line</message>
+        <message key="journal.newsletter">Odběr novinek</message>
 
 	<!-- User -->
   <message key="user.registration.validationEmail">Váš účet je potřeba aktivovat. Na Vaši e-mailovou adresu byl zaslán aktivační e-mail.</message>

@@ -50,7 +50,7 @@ class QuickSubmitForm extends Form {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('tempFileId', 'title', 'abstract', 'discipline', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
+		return array('tempFileId', 'title', 'abstract', 'citace', 'discipline', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
 	}
 
 	/**
@@ -161,6 +161,7 @@ class QuickSubmitForm extends Form {
 				'primaryContact',
 				'title',
 				'abstract',
+                                'citace',
 				'discipline',
 				'subjectClass',
 				'subject',
@@ -229,6 +230,7 @@ class QuickSubmitForm extends Form {
 		$article->setLanguage($this->getData('language'));
 		$article->setTitle($this->getData('title'), null); // Localized
 		$article->setAbstract($this->getData('abstract'), null); // Localized
+                $article->setCitace($this->getData('citace'), null); // Localized
 		$article->setDiscipline($this->getData('discipline'), null); // Localized
 		$article->setSubjectClass($this->getData('subjectClass'), null); // Localized
 		$article->setSubject($this->getData('subject'), null); // Localized

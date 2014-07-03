@@ -124,6 +124,7 @@ class MetadataForm extends Form {
 				'authors' => array(),
 				'title' => $article->getTitle(null), // Localized
 				'abstract' => $article->getAbstract(null), // Localized
+                                'citace' => $article->getCitace(null), // Localized
 				'coverPageAltText' => $article->getCoverPageAltText(null), // Localized
 				'showCoverPage' => $article->getShowCoverPage(null), // Localized
 				'hideCoverPageToc' => $article->getHideCoverPageToc(null), // Localized
@@ -187,7 +188,7 @@ class MetadataForm extends Form {
 	 */
 	function getLocaleFieldNames() {
 		return array(
-			'title', 'abstract', 'coverPageAltText', 'showCoverPage', 'hideCoverPageToc', 'hideCoverPageAbstract', 'originalFileName', 'fileName', 'width', 'height',
+			'title', 'abstract', 'citace', 'coverPageAltText', 'showCoverPage', 'hideCoverPageToc', 'hideCoverPageAbstract', 'originalFileName', 'fileName', 'width', 'height',
 			'discipline', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor', 'citations',
 			'copyrightHolder'
 		);
@@ -249,6 +250,7 @@ class MetadataForm extends Form {
 				'primaryContact',
 				'title',
 				'abstract',
+                                'citace',
 				'coverPageAltText',
 				'showCoverPage',
 				'hideCoverPageToc',
@@ -334,6 +336,7 @@ class MetadataForm extends Form {
 
 		$section =& $sectionDao->getSection($article->getSectionId());
 		$article->setAbstract($this->getData('abstract'), null); // Localized
+                $article->setCitace($this->getData('citace'), null); // Localized
 
 		import('classes.file.PublicFileManager');
 		$publicFileManager = new PublicFileManager();

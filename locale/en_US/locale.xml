@@ -1211,4 +1211,5 @@ Masaryk University</message>
   <message key="user.title.after">Titles after name</message>
   <message key="block.banner_jmc">banner_en_small.png</message>
   <message key="block.banner_jmc.alt">Hosted by journals.muni.cz</message>
+  <message key="article.citace">Bibliographic citation</message>
 </locale>

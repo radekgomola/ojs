@@ -54,6 +54,14 @@
 		<br />
 		</div>
 	{/if}
+        {if $article->getLocalizedCitace()}
+		<div id="articleCitace">
+		<h4>{translate key="article.citace"}</h4>
+		<br />
+		<div>{$article->getLocalizedCitace()|strip_unsafe_html|nl2br}</div>
+		<br />
+		</div>
+	{/if}
 
 	{if $article->getLocalizedSubject()}
 		<div id="articleSubject">

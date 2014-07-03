@@ -368,6 +368,10 @@ function updateAbstractRequired() {
 			<td width="30%" class="label">{fieldLabel name="abstract" key="article.abstract" required=$abstractRequired}<span id="abstractRequiredAsterisk" style="visibility: hidden;">*</div></td>
 			<td width="70%" class="value"><textarea name="abstract[{$formLocale|escape}]" id="abstract" class="textArea" rows="15" cols="60">{$abstract[$formLocale]|escape}</textarea></td>
 		</tr>
+                <tr valign="top">
+			<td width="30%" class="label">{fieldLabel name="citace" key="article.citace" }</td>
+			<td width="70%" class="value"><input name="citace[{$formLocale|escape}]" id="citace" class="textField" type="text" size="60" maxlength="255" value="{$citace[$formLocale]|escape}">{$citace[$formLocale]|escape}</textarea></td>
+		</tr>
 		</table>
 	</div> <!-- /titleAndAbstract -->
 

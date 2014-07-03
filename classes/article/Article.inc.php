@@ -86,6 +86,16 @@ class Article extends Submission {
 		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->getLocalizedAbstract();
 	}
+        
+        /**
+	 * Get "localized" article citace (if applicable). DEPRECATED
+	 * in favour of getLocalizedCitace.
+	 * @return string
+	 */
+	function getArticleCitace() {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getLocalizedCitace();
+	}
 
 	//
 	// Get/set methods

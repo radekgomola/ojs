@@ -57,6 +57,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 				'authors' => array(),
 				'title' => $article->getTitle(null), // Localized
 				'abstract' => $article->getAbstract(null), // Localized
+                                'citace' => $article->getCitace(null), // Localized
 				'discipline' => $article->getDiscipline(null), // Localized
 				'subjectClass' => $article->getSubjectClass(null), // Localized
 				'subject' => $article->getSubject(null), // Localized
@@ -107,6 +108,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 				'primaryContact',
 				'title',
 				'abstract',
+                                'citace',
 				'discipline',
 				'subjectClass',
 				'subject',
@@ -136,7 +138,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'abstract', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
+		return array('title', 'abstract', 'citace', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
 	}
 
 	/**
@@ -172,6 +174,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		// Update article
 		$article->setTitle($this->getData('title'), null); // Localized
 		$article->setAbstract($this->getData('abstract'), null); // Localized
+                $article->setCitace($this->getData('citace'), null); // Localized
 		$article->setDiscipline($this->getData('discipline'), null); // Localized
 		$article->setSubjectClass($this->getData('subjectClass'), null); // Localized
 		$article->setSubject($this->getData('subject'), null); // Localized

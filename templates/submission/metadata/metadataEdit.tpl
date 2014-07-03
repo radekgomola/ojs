@@ -229,6 +229,13 @@ function moveAuthor(dir, authorIndex) {
 		<td class="label">{if $section->getAbstractsNotRequired()==0}{fieldLabel name="abstract" required="true" key="article.abstract"}{else}{fieldLabel name="abstract" key="article.abstract"}{/if}</td>
 		<td class="value"><textarea name="abstract[{$formLocale|escape}]" id="abstract" rows="15" cols="60" class="textArea">{$abstract[$formLocale]|escape}</textarea></td>
 	</tr>
+        <tr>
+		<td colspan="2" class="separator">&nbsp;</td>
+	</tr>
+        <tr>
+		<td width="20%" class="label">{fieldLabel name="citace" required="true" key="article.citace"}</td>
+		<td width="80%" class="value"><input type="text" name="citace[{$formLocale|escape}]" id="citace" value="{$citace[$formLocale]|escape}" size="60" maxlength="255" class="textField" /></td>
+	</tr>
 </table>
 </div>
 

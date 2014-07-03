@@ -50,7 +50,7 @@
       {/if}
 		{/if}    
 	{/if}
-	<p style="padding-top:-31px; min-width:700px;"><a href="{url journal=$journal->getPath()}" class="action">{translate key="site.journalView"}</a><span class="space"></span>  <a href="{url journal=$journal->getPath() page="issue" op="current"}" class="action">{translate key="site.journalCurrent"}</a><span class="space"></span>  {if $journal->getPath()|strstr:"_ext"}<a href="{url journal=$journal->getPath() page="user" op="register"}" class="action">{translate key="site.journalRegister"}</a>{/if}</p>
+	<p style="padding-top:-31px; min-width:700px;"><a href="{url journal=$journal->getPath()}" class="action">{translate key="site.journalView"}</a><span class="space"></span>  <a href="{url journal=$journal->getPath() page="issue" op="current"}" class="action">{translate key="site.journalCurrent"}</a><span class="space"></span>  {if ! $journal->getPath()|strstr:"_ext"}<a href="{url journal=$journal->getPath() page="user" op="register"}" class="action">{translate key="site.journalRegister"}</a>{/if}</p>
   </td></tr>
   </table>  
 {/iterate}

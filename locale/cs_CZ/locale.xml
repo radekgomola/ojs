@@ -1331,4 +1331,5 @@ Masarykovy univerzity</message>
   <message key="block.banner_jmc">banner_cz_small.png</message>
   <message key="block.banner_jmc.alt">Hostuje journals.muni.cz</message>      
   <message key="languages.help">cestina</message> 
+  <message key="article.citace">Bibliografická citace</message>
 </locale>

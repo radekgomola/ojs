@@ -232,9 +232,9 @@ function moveAuthor(dir, authorIndex) {
         <tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
-        <tr>
-		<td width="20%" class="label">{fieldLabel name="citace" required="true" key="article.citace"}</td>
-		<td width="80%" class="value"><input type="text" name="citace[{$formLocale|escape}]" id="citace" value="{$citace[$formLocale]|escape}" size="60" maxlength="255" class="textField" /></td>
+        <tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="citace" key="article.citace"}</td>
+		<td width="80%" class="value"><textarea type="text" name="citace[{$formLocale|escape}]" id="citace" value="{$citace[$formLocale]|escape}" rows="5" cols="60" class="textArea" />{$citace[$formLocale]|escape}</textarea></td>
 	</tr>
 </table>
 </div>

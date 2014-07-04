@@ -30,6 +30,12 @@
 	{else}
 		{assign var=hasAbstract value=1}
 	{/if}
+        
+        {if $article->getLocalizedCitace() == ""}
+		{assign var=hasCitace value=0}
+	{else}
+		{assign var=hasCitace value=1}
+	{/if}
 
 	{assign var=articleId value=$article->getId()}
 	{if (!$subscriptionRequired || $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || $subscribedUser || $subscribedDomain || ($subscriptionExpiryPartial && $articleExpiryPartial.$articleId))}
@@ -38,7 +44,7 @@
 		{assign var=hasAccess value=0}
 	{/if}
 
-	<td class="tocTitle">{if !$hasAccess || $hasAbstract}<a href="{url page="article" op="view" path=$articlePath}">{$article->getLocalizedTitle()|strip_unsafe_html}</a>{else}{$article->getLocalizedTitle()|strip_unsafe_html}{/if}</td>
+	<td class="tocTitle">{if !$hasAccess || $hasAbstract || $hasCitace}<a href="{url page="article" op="view" path=$articlePath}">{$article->getLocalizedTitle()|strip_unsafe_html}</a>{else}{$article->getLocalizedTitle()|strip_unsafe_html}{/if}</td>
 	<td class="tocGalleys">
 		{if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
 			{foreach from=$article->getGalleys() item=galley name=galleyList}

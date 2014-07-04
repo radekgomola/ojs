@@ -219,8 +219,8 @@ function moveAuthor(dir, authorIndex) {
 	<td width="80%" class="value"><textarea name="abstract[{$formLocale|escape}]" id="abstract" class="textArea" rows="15" cols="60">{$abstract[$formLocale]|escape}</textarea></td>
 </tr>
 <tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="citace" required="true" key="article.citace"}</td>
-	<td width="80%" class="value"><input type="text" class="textField" name="citace[{$formLocale|escape}]" id="citace" value="{$citace[$formLocale]|escape}" size="60" maxlength="255" /></td>
+	<td width="20%" class="label">{fieldLabel name="citace" key="article.citace"}</td>
+	<td width="80%" class="value"><textarea type="text" class="textField" name="citace[{$formLocale|escape}]" id="citace" value="{$citace[$formLocale]|escape}" rows="1" cols="60" />{$citace[$formLocale]|escape}</textarea></td>
 </tr>
 </table>
 </div>

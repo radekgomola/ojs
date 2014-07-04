@@ -90,6 +90,7 @@ class TinyMCEPlugin extends GenericPlugin {
 						}
 						$fields[] = 'abstract';
                                                 $fields[] = 'citations';
+                                                $fields[] = 'citace';
 						break;
 				}
 				break;
@@ -164,6 +165,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				}
 				$fields[] = 'abstract';
                                 $fields[] = 'citations';
+                                $fields[] = 'citace';
 				break;
 			case 'manager/payments':
 				$fields[] = 'submissionFeeDescription';
@@ -301,6 +303,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				}
 				$fields[] = 'abstract';
                                 $fields[] = 'citations';
+                                $fields[] = 'citace';
 				break;
 			case 'sectionEditor/editSuppFile':
 			case 'editor/editSuppFile':

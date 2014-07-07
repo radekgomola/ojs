@@ -49,7 +49,7 @@ class RTAdminHandler extends Handler {
 			$templateMgr->assign('helpTopicId', 'journal.managementPages.readingTools');
 			$templateMgr->assign('versionTitle', isset($version)?$version->getTitle():null);
 			$templateMgr->assign('enabled', $rt->getEnabled());
-
+                        $templateMgr->assign('isSiteAdmin', Validation::isSiteAdmin());
 			$templateMgr->display('rtadmin/index.tpl');
 		} elseif ($user) {
 			// Display a list of journals.

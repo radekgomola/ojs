@@ -79,6 +79,7 @@
 	</tr>
 </table>
 </div>
+{if $isSiteAdmin}
 <div class="separator">&nbsp;</div>
 <div id="rtAdminRelatedItems">
 <h3>{translate key="rt.admin.relatedItems"}</h3>
@@ -90,6 +91,7 @@
 {url|assign:"relatedItemsLink" op="versions"}
 {translate key="rt.admin.settings.relatedItemsLink" relatedItemsLink=$relatedItemsLink}<br/>
 </div>
+{/if}
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="rtadmin" escape=false}'" /></p>
 
 </form>

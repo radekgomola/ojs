@@ -27,7 +27,7 @@
 	{foreach from=$stylesheets item=cssUrl}
 		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
-
+        
 	<!-- Base Jquery -->
 	{if $allowCDN}<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	<script type="text/javascript">{literal}
@@ -65,17 +65,15 @@
 
 {if !$pageTitleTranslated}{translate|assign:"pageTitleTranslated" key=$pageTitle}{/if}
 
-<div id="container">
+<div id="container" style="padding-top:10px">
 {translate|assign:"help" key="languages.help"}
     <span id="{if $help == "cestina"}help_cz{else}help_en{/if}"></span>
-<div id="header">
-<div id="headerTitle">
-<h1>{if $currentJournal && $currentJournal->getLocalizedInitials()}{$currentJournal->getLocalizedInitials()}&nbsp;{/if}{translate key="rt.readingTools"}</h1>
-</div>
-</div>
 
 <div id="body">
-<div id="top"></div>
+    <div id="top">
+        <h1>{if $currentJournal && $currentJournal->getLocalizedInitials()}[{$currentJournal->getLocalizedInitials()}]&nbsp;{/if}{translate key="rt.readingTools"}</h1>
+        <div class="separator"></div>
+    </div>
 
 <div id="main">
 

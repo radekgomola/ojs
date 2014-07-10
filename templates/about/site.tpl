@@ -14,8 +14,8 @@
 {/strip}
 
 {if !empty($about)}
-	<div id="about">
-	<div class="description"><p>{$about|nl2br}</p></div>
+	<div id="aboutSite">
+	<div class="description">{$about|nl2br}</div>
 	</div>
 {/if}
 

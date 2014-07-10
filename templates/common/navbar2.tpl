@@ -12,7 +12,7 @@
 	<ul class="menu">
                 
 		{translate|assign:"help" key="navigation.home"}
-		<li id="home"><span id="{if $help == "Domů"}help_cz{else}help_en{/if}"><a class="button-home {if $requestedPage=="index"}home-selected{/if} " href="{url page="index"}">{translate key="navigation.home"}</a></li>
+		<li id="home"><a class="button-home {if $requestedPage=="index"}home-selected{/if} " href="{url page="index"}">{translate key="navigation.home"}</a></li>
     {if $currentJournal && $currentJournal->getSetting('publishingMode') != $smarty.const.PUBLISHING_MODE_NONE}
 		  <li id="about"><a class="button-about {if $requestedPage=="about"}about-selected{/if}" href="{url page="about"}">{translate key="navigation.about.journal"}</a></li>
     {else}

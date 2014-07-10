@@ -30,4 +30,6 @@
 	<message key="plugins.generic.googleAnalytics.manager.settings.urchin">Starší sledovací kód (urchin.js)</message>
 	<message key="plugins.generic.googleAnalytics.manager.settings.ga">Nový sledovací kód (ga.js)</message>
 	<message key="plugins.generic.googleAnalytics.authorAccount">číslo účtu Google Analytics</message>
+  <message key="plugins.generic.googleAnalytics.authorAccount.description">Ke sledování publikovaného článku pomocí služby Google Analytics, vložte sledovací číslo. (ve tvaru UA-xxxxxx-x).</message>
+	<message key="plugins.generic.googleAnalytics.authorAccountInvalid">Jedno nebo více sledovacích čísel služby Google Analytics vložené do příspěvku nejsou platné. </message>
 </locale>

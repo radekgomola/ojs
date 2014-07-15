@@ -367,7 +367,7 @@ function prepBlockFields() {
 
 <div id="navigationBar">
 <h3>5.5 {translate key="manager.setup.navigationBar"}</h3>
-
+{if not $currentJournal->getSetting('useMuniStyle')}
 <p>{translate key="manager.setup.itemsDescription"}</p>
 
 <table width="100%" class="data">
@@ -431,7 +431,9 @@ function prepBlockFields() {
 
 <p><input type="submit" name="addNavItem" value="{translate key="manager.setup.addNavItem"}" class="button" /></p>
 </div>
-
+{else}
+  <p>{translate key="manager.setup.navigationBarOff"}</p>  
+{/if}
 <div class="separator"></div>
 
 <div id="journalLayout">

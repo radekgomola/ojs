@@ -37,6 +37,19 @@ a:hover {
 	background: #006699;
 }
 
+a.header_link:link {
+	color: #eee;
+}
+a.header_link:active {
+	color: #eee;
+}
+a.header_link:visited {
+	color: #eee;
+}
+a.header_link:hover {
+	color: #eee;
+}
+
 label.error {
 	color: #900;
 }

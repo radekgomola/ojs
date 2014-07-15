@@ -167,11 +167,20 @@ class NativeExportDom {
 		}
 
 		if (is_array($article->getAbstract(null))) foreach ($article->getAbstract(null) as $locale => $abstract) {
+                    $test = $citation->getRawCitation();
+                    $abstract .= "\n".$test;
 			$abstractNode =& XMLCustomWriter::createChildWithText($doc, $root, 'abstract', $abstract, false);
 			if ($abstractNode) XMLCustomWriter::setAttribute($abstractNode, 'locale', $locale);
 			unset($abstractNode);
 		}
                 
+                /* --- literatura --- */
+//                if (is_array($article->getAbstract(null))) foreach ($article->getAbstract(null) as $locale => $abstract) {
+//			$abstractNode =& XMLCustomWriter::createChildWithText($doc, $root, 'abstract', $abstract, false);
+//			if ($abstractNode) XMLCustomWriter::setAttribute($abstractNode, 'locale', $locale);
+//			unset($abstractNode);
+//		}
+//                
 		/* --- Indexing --- */
 
 		$indexingNode =& XMLCustomWriter::createElement($doc, 'indexing');

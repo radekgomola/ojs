@@ -1212,4 +1212,5 @@ Masaryk University</message>
   <message key="block.banner_jmc">banner_en_small.png</message>
   <message key="block.banner_jmc.alt">Hosted by journals.muni.cz</message>
   <message key="article.citace">Bibliographic citation</message>
+  <message key="manager.setup.navigationBarOff">You can't add any link to Navigation Bar, if you are using default design of journals.muni.cz.</message>
 </locale>

@@ -31,7 +31,7 @@
 		{/if}
 
 		{if $enableAnnouncements}
-			<li id="announcements"><a class="button-announce {if $requestedPage=="announcement"}announce-selected{/if}" href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
+			<li id="announcements_li"><a class="button-announce {if $requestedPage=="announcement"}announce-selected{/if}" href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
 		{/if}{* enableAnnouncements *}
     
 		{if $isUserLoggedIn}

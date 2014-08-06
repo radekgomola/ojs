@@ -7,18 +7,8 @@
  *
  * Article View.
  *}
-{* {literal}
-<script type="text/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-50159706-1', 'auto');
-  ga('send', 'pageview');
-
-</script> 
-{/literal}*}
+ 
 {if $galley}
 	{assign var=pubObject value=$galley}
 {else}
@@ -27,11 +17,32 @@
 
 
 {include file="article/header.tpl"}
-
+{if (!$subscriptionRequired || $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || $subscribedUser || $subscribedDomain)}
+        {assign var=hasAccess value=1}
+{else}
+        {assign var=hasAccess value=0}
+{/if}
 {if $galley}
 	{if $galley->isHTMLGalley()}
 		{$galley->getHTMLContents()}
 	{elseif $galley->isPdfGalley()}
+                
+                {if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
+                    {foreach from=$article->getGalleys() item=galley name=galleyList}
+                            <script type="text/javascript">
+                                vypisKdyzIE('<strong>{translate key=IE10.problem.redirect}</strong>','<strong>{translate key=IE11.problem.redirect}</strong>','<br />{translate key=IE.problem.redirect} <a target="_blank" href="{url page="article" op="viewFile" path=$article->getBestArticleId($currentJournal)|to_array:$galley->getBestGalleyId($currentJournal)}" class="file" >{translate key=click.here}</a>')
+                            </script>
+                            {if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}
+                                    {if $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || !$galley->isPdfGalley()}
+                                            <img class="accessLogo" src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_open_medium.gif" alt="{translate key="article.accessLogoOpen.altText"}" />
+                                    {else}
+                                            <img class="accessLogo" src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_restricted_medium.gif" alt="{translate key="article.accessLogoRestricted.altText"}" />
+                                    {/if}
+                            {/if}
+                    {/foreach}
+                                                  
+                {/if}
+                 
 		{include file="article/pdfViewer.tpl"}
 	{/if}
 {else}
@@ -84,11 +95,11 @@
 		</div>
 	{/if}
 
-	{if (!$subscriptionRequired || $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || $subscribedUser || $subscribedDomain)}
+	{*{if (!$subscriptionRequired || $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || $subscribedUser || $subscribedDomain)}
 		{assign var=hasAccess value=1}
 	{else}
 		{assign var=hasAccess value=0}
-	{/if}
+	{/if}*}
 
 	{if $galleys}
 		<div id="articleFullText">

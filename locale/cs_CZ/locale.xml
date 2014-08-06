@@ -1333,4 +1333,9 @@ Masarykovy univerzity</message>
   <message key="languages.help">cestina</message> 
   <message key="article.citace">Bibliografická citace</message>
   <message key="manager.setup.navigationBarOff">Pokud je používán design journals.muni.cz, tak není možné přidávat odkazy do navigačního panelu.</message>
+  
+  <message key="IE10.problem.redirect">Používáte prohlížeč Internet Explorer 10:</message>
+  <message key="IE11.problem.redirect">Používáte prohlížeč Internet Explorer 11:</message>
+  <message key="IE.problem.redirect">Prohlížeč může mít problémy se zobrazením vnořené čtečky souborů PDF. Pokud máte řádně nainstalován Adobe Acrobat Reader a přesto se Vám čtečka PDF nezobrazuje, </message>
+  <message key="click.here">klikněte ZDE!</message>
 </locale>

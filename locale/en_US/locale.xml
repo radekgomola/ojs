@@ -1213,4 +1213,10 @@ Masaryk University</message>
   <message key="block.banner_jmc.alt">Hosted by journals.muni.cz</message>
   <message key="article.citace">Bibliographic citation</message>
   <message key="manager.setup.navigationBarOff">You can't add any link to Navigation Bar, if you are using default design of journals.muni.cz.</message>
+  
+   <message key="IE10.problem">You're browser is Internet Explorer 10:</message>
+  <message key="IE11.problem">You're browser is Internet Explorer 11:</message>
+  <message key="IE.problem.redirect">The browser may not display the embedded PDF file reader correctly. If you have properly installed the Adobe Acrobat Reader and you still cannot view the PDF reader, </message>
+  <message key="click.here">click HERE!</message>
+  <message key="IE.problem.solution"><![CDATA[You can find a description of issue with possible solution <a href="https://forums.adobe.com/message/6040955" target="_blank">HERE</a> and <a href="http://support.microsoft.com/kb/2716529" target="_blank">HERE</a>! <br /><strong>Proper functioning of solution is not guaranteed</strong> <br />(Solution shortly: You need to reset your Internet Explorer.<br />Tools -> Internet options -> Advanced -> press Restore advanced settings and than Reset)]]></message>
 </locale>

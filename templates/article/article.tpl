@@ -30,7 +30,7 @@
                 {if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
                     {foreach from=$article->getGalleys() item=galley name=galleyList}
                             <script type="text/javascript">
-                                vypisKdyzIE('<strong>{translate key=IE10.problem.redirect}</strong>','<strong>{translate key=IE11.problem.redirect}</strong>','<br />{translate key=IE.problem.redirect} <a target="_blank" href="{url page="article" op="viewFile" path=$article->getBestArticleId($currentJournal)|to_array:$galley->getBestGalleyId($currentJournal)}" class="file" >{translate key=click.here}</a>')
+                                vypisKdyzIE('<h4>{translate key=IE10.problem}</h4>','<h4>{translate key=IE11.problem}</h4>','<p>{translate key=IE.problem.redirect} <a target="_blank" href="{url page="article" op="viewFile" path=$article->getBestArticleId($currentJournal)|to_array:$galley->getBestGalleyId($currentJournal)}" class="file" >{translate key=click.here}</a></p><p>{translate key=IE.problem.solution}</p>')
                             </script>
                             {if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}
                                     {if $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || !$galley->isPdfGalley()}

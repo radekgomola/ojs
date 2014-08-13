@@ -8,6 +8,8 @@
  * Issue galley view for PDF files.
  *}
 {include file="issue/header.tpl"}
+
+
 {url|assign:"pdfUrl" op="viewFile" path=$issueId|to_array:$galley->getBestGalleyId($currentJournal)}
 {translate|assign:"noPluginText" key='article.pdf.pluginMissing'}
 <script type="text/javascript"><!--{literal}
@@ -33,7 +35,29 @@
 {/literal}
 // -->
 </script>
+{if (!$subscriptionRequired || $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || $subscribedUser || $subscribedDomain)}
+        {assign var=hasAccess value=1}
+{else}
+        {assign var=hasAccess value=0}
+{/if}
+<p>
+{if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
+
+            <script type="text/javascript">
+                
+                vypisKdyzIE('<h4>{translate key=IE10.problem}</h4>','<h4>{translate key=IE11.problem}</h4>','<p>{translate key=IE.problem.redirect} <a target="_blank" href="{$pdfUrl}" class="file" >{translate key=click.here}</a></p><p>{translate key=IE.problem.solution}</p>')
+            </script>
+            {if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}
+                    {if $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || !$galley->isPdfGalley()}
+                            <img class="accessLogo" src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_open_medium.gif" alt="{translate key="article.accessLogoOpen.altText"}" />
+                    {else}
+                            <img class="accessLogo" src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_restricted_medium.gif" alt="{translate key="article.accessLogoRestricted.altText"}" />
+                    {/if}
+            {/if}                                                 
+{/if}
+</p>
 <div id="inlinePdfResizer">
+    
 	<div id="inlinePdf" class="ui-widget-content">
 		{translate key="article.pdf.pluginMissing"}
 	</div>

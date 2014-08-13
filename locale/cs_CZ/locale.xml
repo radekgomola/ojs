@@ -829,7 +829,7 @@ současného hesla.<br /><br />Pro resetování Vašeho hesla vložte níže Va�
 	<!-- Interstitial page for PDFs -->
 	<message key="article.pdf.title">Portable Document Format (PDF)</message>
 	<message key="article.pdf.download">Stáhnout PDF soubor</message>
-	<message key="article.pdf.pluginMissing"><![CDATA[<p>Vybrané PDF je možné zobrazit přímo v prohlížeči, pokud má Váš prohlížeč nainstalován plugin pro čtení PDF (např. aktuální verzi <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>).</p> <p>Pokud byste chtěl více informací o tom jak tisknout, ukládat nebo procovat s PDF soubory, Highwire Press poskytuje nápomocný <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">FAQ o PDF</a>.</p> <p>Respektivě je možné PDF soubor stáhnout přímo do Vašeho počítače, kde si jej můžete otevřít za pomocí PDF reader-u. Pro stažení PDF, klikněte na odkaz výše.</p>]]></message>
+	<message key="article.pdf.pluginMissing"><![CDATA[<p>Vybrané PDF je možné zobrazit přímo v prohlížeči, pokud má Váš prohlížeč nainstalován plugin pro čtení PDF (např. aktuální verzi <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>).</p> <p>Pokud byste chtěl více informací o tom jak tisknout, ukládat nebo pracovat s PDF soubory, Highwire Press poskytuje nápomocný <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">FAQ o PDF</a>.</p> <p>Respektivě je možné PDF soubor stáhnout přímo do Vašeho počítače, kde si jej můžete otevřít za pomocí PDF reader-u. Pro stažení PDF, klikněte na odkaz výše.</p>]]></message>
   
   
   <!-- Interstitial page for non-PDF non-HTML galleys -->
@@ -1334,8 +1334,9 @@ Masarykovy univerzity</message>
   <message key="article.citace">Bibliografická citace</message>
   <message key="manager.setup.navigationBarOff">Pokud je používán design journals.muni.cz, tak není možné přidávat odkazy do navigačního panelu.</message>
   
-  <message key="IE10.problem.redirect">Používáte prohlížeč Internet Explorer 10:</message>
-  <message key="IE11.problem.redirect">Používáte prohlížeč Internet Explorer 11:</message>
+  <message key="IE10.problem">Používáte prohlížeč Internet Explorer 10:</message>
+  <message key="IE11.problem">Používáte prohlížeč Internet Explorer 11:</message>
   <message key="IE.problem.redirect">Prohlížeč může mít problémy se zobrazením vnořené čtečky souborů PDF. Pokud máte řádně nainstalován Adobe Acrobat Reader a přesto se Vám čtečka PDF nezobrazuje, </message>
   <message key="click.here">klikněte ZDE!</message>
+  <message key="IE.problem.solution"><![CDATA[Popis problému i s možným řešením naleznete <a href="https://forums.adobe.com/message/6040955" target="_blank">ZDE</a> a <a href="http://support.microsoft.com/kb/2716529" target="_blank">ZDE</a>! <br /><strong>Funčnost řešení není zaručena!</strong> <br />(Řešení ve zkratce: Je potřeba "resetovat" nastavení Internet Exploreru. <br />Nástroje -> Možnosti internetu -> Upřesnit -> klikněte na "Obnovit upřesňující nastavení" a potom na "Obnovit")]]></message>
 </locale>

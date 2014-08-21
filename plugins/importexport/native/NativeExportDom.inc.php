@@ -167,9 +167,8 @@ class NativeExportDom {
 		}
 
 		if (is_array($article->getAbstract(null))) foreach ($article->getAbstract(null) as $locale => $abstract) {
-                    $test = $citation->getRawCitation();
-                    $abstract .= "\n".$test;
-			$abstractNode =& XMLCustomWriter::createChildWithText($doc, $root, 'abstract', $abstract, false);
+
+                    $abstractNode =& XMLCustomWriter::createChildWithText($doc, $root, 'abstract', $abstract, false);
 			if ($abstractNode) XMLCustomWriter::setAttribute($abstractNode, 'locale', $locale);
 			unset($abstractNode);
 		}
@@ -292,6 +291,9 @@ class NativeExportDom {
 		}
 
 		XMLCustomWriter::createChildWithText($doc, $root, 'pages', $article->getPages(), false);
+                XMLCustomWriter::createChildWithText($doc, $root, 'citations', $article->getRawCitations(), false);
++ $fullTextUrl =& XMLCustomWriter::createChildWithText($doc, $root, 'fullTextUrl', Request::url(null, 'article', 'view', $article->getId()));
++ XMLCustomWriter::setAttribute($fullTextUrl, 'format', 'html');
 
 		// NOTE that this is a required field for import, but it's
 		// possible here to generate nonconforming XML via export b/c

@@ -291,7 +291,7 @@ class NativeExportDom {
 		}
 
 		XMLCustomWriter::createChildWithText($doc, $root, 'pages', $article->getPages(), false);
-                XMLCustomWriter::createChildWithText($doc, $root, 'citations', $article->getRawCitations(), false);
+                XMLCustomWriter::createChildWithText($doc, $root, 'citations', $article->getCitations(), false);
 + $fullTextUrl =& XMLCustomWriter::createChildWithText($doc, $root, 'fullTextUrl', Request::url(null, 'article', 'view', $article->getId()));
 + XMLCustomWriter::setAttribute($fullTextUrl, 'format', 'html');
 

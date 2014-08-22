@@ -2,7 +2,7 @@
 <!DOCTYPE plugin_settings SYSTEM "../../../lib/pkp/dtd/pluginSettings.dtd">
 
 <!--
-  * plugins/blocks/help/settings.xml
+  * plugins/blocks/cz_en_blok/settings.xml
   *
   * Copyright (c) 2013-2014 Simon Fraser University Library
   * Copyright (c) 2003-2014 John Willinsky
@@ -19,7 +19,7 @@
 	</setting>
 	<setting type="int">
 		<name>seq</name>
-		<value>4</value>
+		<value>0</value>
 	</setting>
 	<setting type="int">
 		<name>context</name>

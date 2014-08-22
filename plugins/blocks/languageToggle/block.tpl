@@ -16,7 +16,7 @@
 		function changeLanguage() {ldelim}
 			var e = document.getElementById('languageSelect');
 			var new_locale = e.options[e.selectedIndex].value;
-
+                        
 			var base_url = "{$currentUrl|escape}";
 			var current_url = document.URL;
 

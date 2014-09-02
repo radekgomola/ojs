@@ -47,9 +47,19 @@
 			<td class="tocTitle">{translate key="issue.viewIssueDescription"}</td>
 			<td class="tocGalleys">
 			{if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
+                            
 				{foreach from=$issueGalleys item=issueGalley}
+                                    {url|assign:"pdfUrl" op="viewFile" path=$issueId|to_array:$issueGalley->getBestGalleyId($currentJournal)}
 					{if $issueGalley->isPdfGalley()}
-						<a href="{url page="issue" op="viewIssue" path=$issue->getBestIssueId()|to_array:$issueGalley->getBestGalleyId($currentJournal)}" class="file">{$issueGalley->getGalleyLabel()|escape}</a>
+                                            <script type="text/javascript">
+                                                if(detectIE()===10 || detectIE()===11){ldelim}
+                                                    document.write('<a target="_blank" href="{$pdfUrl}" class="file" >{$issueGalley->getGalleyLabel()|escape}</a>');                                    
+                                                {rdelim}
+                                                else{ldelim}
+                                                    document.write('<a href="{url page="issue" op="viewIssue" path=$issue->getBestIssueId()|to_array:$issueGalley->getBestGalleyId($currentJournal)}" class="file">{$issueGalley->getGalleyLabel()|escape}</a>');
+                                                {rdelim}                                    
+                                            </script>
+						
 					{else}
 						<a href="{url page="issue" op="viewDownloadInterstitial" path=$issue->getBestIssueId()|to_array:$issueGalley->getBestGalleyId($currentJournal)}" class="file">{$issueGalley->getGalleyLabel()|escape}</a>
 					{/if}

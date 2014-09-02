@@ -48,7 +48,18 @@
 	<td class="tocGalleys">
 		{if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
 			{foreach from=$article->getGalleys() item=galley name=galleyList}
+                            {if $galley->isPdfGalley()}
+                                    <script type="text/javascript">
+                                        if(detectIE()===10 || detectIE()===11){ldelim}
+                                            document.write('<a href="{url page="article" op="viewFile" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" target="_blank" class="file">{$galley->getGalleyLabel()|escape}</a>');                                    
+                                        {rdelim}
+                                        else{ldelim}
+                                            document.write('<a href="{url page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>');
+                                        {rdelim}                                    
+                                    </script>
+                            {else}
 				<a href="{url page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>
+                            {/if}
 				{if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}
 					{if $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || !$galley->isPdfGalley()}
 						<img class="accessLogo" src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_open_medium.gif" alt="{translate key="article.accessLogoOpen.altText"}" />

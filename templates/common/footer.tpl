@@ -32,7 +32,13 @@
 		{translate|assign:"issnText" key="journal.issn"}
                 {translate|assign:"issnTextOnline" key="journal.issn.online"}
                 {translate|assign:"issnTextPrinted" key="journal.issn.print"}
-		{assign var=pageFooter value="$issnText: $e_issn ($issnTextOnline)<br /> $issnText: $p_issn ($issnTextPrinted)"}
+                {if !$e_issn}
+                    {assign var=pageFooter value="$issnText: $p_issn ($issnTextPrinted)"}
+                {elseif !$p_issn}
+                    {assign var=pageFooter value="$issnText: $e_issn ($issnTextOnline)"}
+                {else}
+                    {assign var=pageFooter value="$issnText: $e_issn ($issnTextOnline)<br /> $issnText: $p_issn ($issnTextPrinted)"}
+                {/if}
 	{/if}
 {/if}
 {include file="core:common/footer.tpl"}

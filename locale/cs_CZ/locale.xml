@@ -224,7 +224,7 @@
 	<message key="journal.path">Cesta</message>
 	<message key="journal.journal">Časopis</message>
         <message key="journal.issn">ISSN</message>
-        <message key="journal.issn.print">tištěné</message>
+        <message key="journal.issn.print">print</message>
         <message key="journal.issn.online">on-line</message>
         <message key="journal.newsletter">Odběr novinek</message>
 

@@ -413,7 +413,7 @@
 	<message key="manager.setup.policies.description">Zaměření, recenzní řízení, sekce, soukromí, zabezpečení a další položky.</message>
 	<message key="manager.setup.principalContact">Hlavní kontakt</message>
 	<message key="manager.setup.principalContactDescription">Tato pozice, kterou může zastávat hlavní editor, manager časopisu nebo administrativní zaměstnanec, bude uvedena na domáci stránce časopisu pod Kontakty spolu s kotaktem na technickou podporu.</message>
-	<message key="manager.setup.printIssn">Tištěné ISSN</message>
+	<message key="manager.setup.printIssn">Print ISSN</message>
 	<message key="manager.setup.privacyStatement">Prohlášení o soukromí</message>
 	<message key="manager.setup.privacyStatement2">Prohlášení o soukromí</message>
 	<message key="manager.setup.privacyStatementDescription">Toto prohlášení bude zobrazeno v části O Časopisu a také na přihlašovacích stránkách pro příspěvky autora a pro oznámení. Níže je uvedeno doporučené prohlášení o soukromí, které lze kdikoliv zrevidovat.</message>

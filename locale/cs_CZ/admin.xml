@@ -41,9 +41,10 @@
 	<message key="admin.languages.downloadFailed">Stahování lokalizace selhalo. Níže uvedené chybové hlášení popisuje selhání.</message>
 	<message key="admin.languages.localeInstalled">Tato "{$locale}" lokalizace byla nainstalována. </message>
 	<message key="admin.languages.download">Stáhnout lokalizaci</message>
-	<message key="admin.languages.download.cannotOpen">Nelze otevřít deskriptor jazyka z webové stránky PKP.</message>
-	<message key="admin.languages.download.cannotModifyRegistry">Nelze přidat novou lokalizaci do souboru registrů lokalizací - typicky "registry/locales.xml".</message>
-	<message key="admin.auth.ojs">Databáze uživatelů OJS.</message>
+	<message key="admin.languages.reloadDefaultEmailTemplates">Obnovit výchozí e-mailové šablony</message>
+	<message key="admin.languages.download.cannotOpen">Nelze otevřít popisovač jazyka z webové stránky PKP.</message>
+	<message key="admin.languages.download.cannotModifyRegistry">Nelze přidat novou lokalizaci do registračního souboru lokalizací - typicky "registry/locales.xml".</message>
+	<message key="admin.auth.ojs">Databáze OJS uživatelů</message>
 	<message key="admin.auth.enableSyncProfiles">Umožnit synchronizaci uživatelských profilů (pokud je podporována tímto ověřovacím plug-inem). Informace v profilu uživatele budou automaticky aktualizovány ze vzdáleného zdroje, jakmile se uživatel přihlásí a změní se jeho profil (včetně změn hesla) v rámci OJS. Pokud není tato možnost povolena, informace v OJS profilu budou uchovávány odděleně od informací vzdáleného zdroje.</message>
 	<message key="admin.auth.enableSyncPasswords">Umožnit změnu hesla uživatele (pokud je podporována tímto ověřovacím plug-inem). Povolení této možnosti umožní uživatelům změnit své heslo v rámci OJS a využít funkci "ztracené heslo" pro obnovení zapomenutého hesla. Tyto funkce nebudou dostupné uživatelům s tímto zdrojem ověření pokud není povolena tato možnost.</message>
 	<message key="admin.auth.enableCreateUsers">Umožnit vytvoření uživatele (pokud je podporováno tímto ověřovacím plug-inem). Uživatelé vytvoření v rámci OJS tímto zdrojem ověření budou, pokud již neexistují, automaticky přidáni do vzdáleného zdroje ověření. Navíc, pokud je tento zdroj výchozím zdrojem ověření, OJS účty vytvořené v průběhu registrace uživatele budou přidány do vzdáleného zdroje ověření.</message>

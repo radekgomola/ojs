@@ -18,4 +18,5 @@
   <message key="plugins.block.languageToggle.selectLabel">Vyber jazyk</message>
 	<message key="plugins.block.languageToggle.displayName">Blok pro přepínání jazyků</message>
 	<message key="plugins.block.languageToggle.description">Tento plugin přidá do postranního panelu přepínač jazyků.</message>
+	<message key="plugins.block.languageToggle.selectLabel">Zvolte jazyk</message>
 </locale>

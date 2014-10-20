@@ -35,10 +35,14 @@ tests								\
 tools/buildpkg.sh						\
 tools/genLocaleReport.sh					\
 tools/genTestLocale.php						\
+tools/startSubmodulesTRAVIS.sh					\
 tools/test							\
 lib/pkp/tests							\
 .git								\
+.travis.yml							\
 lib/pkp/.git							\
+lib/pkp/tools/travis						\
+lib/pkp/tools/mergePullRequest.sh				\
 lib/pkp/lib/swordappv2/.git					\
 lib/pkp/lib/swordappv2/test"
 
@@ -89,10 +93,5 @@ if [ ! -z "$PATCHDIR" ]; then
 fi
 
 cd ..
-
-echo -n "Building doxygen documentation... "
-doxygen docs/dev/ojs2.doxygen && cd docs/dev/doxygen && tar czf ../../../${BUILD}-doxygen.tar.gz html && cd ../../..
-
-echo "Done"
 
 rm -r $TMPDIR

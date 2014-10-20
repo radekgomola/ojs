@@ -8,20 +8,22 @@
  * Article View.
  *}
 
- 
+{strip}
 {if $galley}
 	{assign var=pubObject value=$galley}
 {else}
 	{assign var=pubObject value=$article}
 {/if}
-
-
 {include file="article/header.tpl"}
+
 {if (!$subscriptionRequired || $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || $subscribedUser || $subscribedDomain)}
         {assign var=hasAccess value=1}
 {else}
         {assign var=hasAccess value=0}
 {/if}
+
+{/strip}
+
 {if $galley}
 	{if $galley->isHTMLGalley()}
 		{$galley->getHTMLContents()}
@@ -174,4 +176,3 @@
 {include file="article/comments.tpl"}
 
 {include file="article/footer.tpl"}
-

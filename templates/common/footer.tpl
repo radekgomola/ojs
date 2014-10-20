@@ -44,4 +44,3 @@
 {/if}
 {include file="core:common/footer.tpl"}
 {/strip}
-

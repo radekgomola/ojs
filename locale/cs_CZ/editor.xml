@@ -67,7 +67,6 @@
 	<message key="editor.issues.accessDate">Datum otevřeného přístupu</message>
 	<message key="editor.issues.invalidAccessDate">Datum přístupu není platné.</message>
   <message key="editor.issues.enableOpenAccessDate">Povolit odložený volný přístup</message>
-	<message key="editor.issues.issuePublicIdentificationExists">Identifikace veřejného čísla již existuje.</message>
 	<message key="editor.issues.coverPage">Titulní obrázek</message>
 	<message key="editor.issues.coverPageInstructions">(Povolené formáty: .gif, .jpg nebo .png )</message>
 	<message key="editor.issues.uploaded">Nahrané</message>

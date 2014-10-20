@@ -124,4 +124,11 @@ Jsou akceptovány následující formáty:
 	<message key="plugins.importexport.native.import.success">Úspěšný import</message>
 	<message key="plugins.importexport.native.import.success.description">Import proběhl úspěšně. Úspěšně naimportované položky jsou uvedeny níže.</message>
 
+	<message key="plugins.importexport.native.import.error.duplicatePublicGalleyId">Veřejné ID poskytnuté pro import sazebnice "{$publicId}" je již používáno jinou sazebnicí pro stejný článek "{$articleTitle}"</message>
+	<message key="plugins.importexport.native.import.error.duplicatePublicSuppFileId">Veřejné ID poskytnuté pro import doplňkového souboru "{$suppFileTitle}" je již používáno jiným doplňkovým souborem pro stejný článek "{$otherSuppFileTitle}"</message>
+	<message key="plugins.importexport.native.import.error.duplicatePublicArticleId">Veřejné ID poskytnuté pro import článku "{$articleTitle}" je již používáno jiným článkem "{$otherArticleTitle}"</message>
+	<message key="plugins.importexport.native.import.error.articleAuthorAffiliationLocaleUnsupported">Autorovo pracoviště poskytnuté pro autora "{authorFullName}" k článku "{$articleTitle}" v čísle "{$issueTitle}" v lokalizaci ("{$locale}") není tímto časopisem podporováno.</message>
+	<message key="plugins.importexport.native.import.error.invalidPubId">Váš importovaný soubor obsahuje neplatné nastavení dat {$pubIdType}: '{$pubId}'</message>
+	<message key="plugins.importexport.native.import.error.duplicatePubId">Váš importovaný soubor obsahuje nastavení dat {$pubIdType}: '{$pubId}', které již existuje pro jiný objekt v databázi. Prosím ujistěte se, že nikdy neimportujete objekty se stejnými ID, které již v databázi existují.</message>
+	<message key="plugins.importexport.native.import.error.unknownPubId">Váš importovaný soubor obsahuje nastavení dat s ID-typem '{$pubIdType}', který nedokáže ID- doplněk zpracovat. Prosím nainstalujte a nebo aktivujte odpovídající ID doplněk dříve než nahrajete toto nastavení dat.</message>
 </locale>

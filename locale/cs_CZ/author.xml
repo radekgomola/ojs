@@ -129,9 +129,4 @@
 	<message key="author.submit.authorSubmitLoginMessage">Pro přispívání do tohoto časopisu je vyžadován uživatelský účet. To umožní našim editorům sledovat Vaše příspěvky a kontaktovat Vás v případě, že se změní stav Vašeho příspěvku nebo pokud od Vás budou vyžadovány další informace.</message>
 
 	<!--Doplňuji chybějící postupně  -->
-  <message key="plugins.generic.referral.status.accept.confirm"> Jste si jistý, že chcete publikovat vybrané citace? </message>
-<message key="plugins.generic.referral.status.decline.confirm"> Jste si jistá, že chcete ignorovat vybrané citace? </message>
-<message key="plugins.generic.referral.status.accepted"> Publikováno   </message>
-<message key="plugins.generic.referral.status.declined"> Ignorováno  </message>
-	
 </locale>

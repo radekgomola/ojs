@@ -32,4 +32,12 @@
 	<message key="plugins.generic.referral.confirmDelete">Jste si jistý, že chcete smazat tuto citaci?</message>
 	<message key="plugins.generic.referral.nameRequired">Je vyžadován název citace.</message>
 	<message key="plugins.generic.referral.urlRequired">Je vyžadována URL adresa citace.</message>
+	<message key="plugins.generic.referral.status.accepted">Publikováno</message>
+	<message key="plugins.generic.referral.status.accept.confirm">Jste si jistý, že chcete publikovat zvolené citace?</message>
+	<message key="plugins.generic.referral.status.declined">Ignorováno</message>
+	<message key="plugins.generic.referral.status.decline.confirm">Jste si jistý, že chcete ignorovat zvolené citace?</message>
+	<message key="plugins.generic.referral.settings">Nastavení pluginu zpětných referencí</message>
+	<message key="plugins.generic.referral.settings.description">Plugin zpětných referencí zachytává URL adresy, které odkazují na zveřejněný článek a mohou být spravovány autorem a případně publikovány. Tento formulář umožňuje správci časopisu kontrolovat, jak budou odkazy zachytávány.</message>
+	<message key="plugins.generic.referral.excusions">Vyloučeno</message>
+	<message key="plugins.generic.referral.exclusions.description"><![CDATA[Vložte seznam vzorců regulárních výrazu, jeden na řádek, které budou zpracovány jako vyloučené z zaznamenávání zpětných referencí. Tímto je možné zabránit zaznamenávat do seznamu požadavky z vyhledávacích nástrojů. Pro více informací ohledně regulárních výrazů, mužete navštívit <a href="http://ca.php.net/manual/en/ref.pcre.php" target="_blank">http://ca.php.net/manual/en/ref.pcre.php</a>]]></message>
 </locale>

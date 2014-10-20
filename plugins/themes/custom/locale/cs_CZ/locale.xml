@@ -22,4 +22,6 @@
 	<message key="plugins.theme.custom.link">Odkaz</message>
 	<message key="plugins.theme.custom.background">Pozadí</message>
 	<message key="plugins.theme.custom.foreground">Popředí</message>
+	<message key="plugins.theme.custom.notWritablePlugin">Pozn.: Časopisové styly jsou automaticky povoleny, protože doplňkový stylový soubor "{$stylesheetFileLocation}" není momentálně zapisovatelný.</message>
+	<message key="plugins.theme.custom.perJournal">Časopisové styly</message>
 </locale>

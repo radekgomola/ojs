@@ -43,6 +43,7 @@ class ImportExportHandler extends ManagerHandler {
 			if ($plugin) return $plugin->display($args, $request);
 		}
 		$templateMgr->assign_by_ref('plugins', PluginRegistry::getPlugins(IMPORTEXPORT_PLUGIN_CATEGORY));
+                $templateMgr->assign('isSiteAdmin', Validation::isSiteAdmin());
 		$templateMgr->assign('helpTopicId', 'journal.managementPages.importExport');
 		$templateMgr->display('manager/importexport/plugins.tpl');
 	}

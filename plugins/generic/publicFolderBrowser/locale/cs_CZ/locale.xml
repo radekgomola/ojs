@@ -15,9 +15,8 @@
 <locale name="cs_CZ" full_name="Czech">
 	<message key="plugins.generic.publicfolderbrowser.displayName">Prohlížeč veřejné složky časopisu</message>
 	<message key="plugins.generic.publicfolderbrowser.description">Tento plugin přidá odkaz do sekce správa pro manažera časopisu. Kliknutím na tento odkaz může manažer spravovat obsah veřejné složky časopisu. Tímto způsobem může manažer časopisu nahrávat a mazat soubory ve veřejné složce a přidávat další složky. Adresa souboru pak bude http://[adresa_stránky]/public/journals/[id_časopisu]/[podsložka]/[název_souboru]. O ID svého časopisu požádejte administrátora stránky.</message>
-  <message key="plugins.generic.publicfolderbrowser.descriptionOnSite">Prohlížeč umožňuje manžerovi časopisu spravovat veřejnou složku časopisu. Tímto způsobem může manažer časopisu nahrávat a mazat soubory v adresáři a přidávat další složky. Adresa souboru pak bude http://[adresa_stránky]/public/journals/[id_časopisu]/[podsložka]/[název_souboru]. O ID svého časopisu požádejte administrátora stránky.</message>
-
 	<message key="plugins.generic.publicfolderbrowser.settings">Nastavení</message>
 	<message key="plugins.generic.publicfolderbrowser.linklabel">Prohlížeč veřejné složky časopisu</message>
 
+	<message key="plugins.generic.publicfolderbrowser.descriptionOdSite">Umožňuje spravovat veřejnou složku časopisu. Touto cestou je manažer schopen spravovat soubory a složky ve veřejné složce. Adresa je https://journals.muni.cz/public/journals/[id_časopisu]/[podsložka]/[název_souboru]</message>
 </locale>

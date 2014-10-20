@@ -15,7 +15,9 @@
 
 <ul>
 	{foreach from=$plugins item=plugin}
+            {if $isSiteAdmin || ($plugin->getName() != 'DataciteExportPlugin' && $plugin->getName() != 'DuraCloudImportExportPlugin' && $plugin->getName() != 'MedraExportPlugin' && $plugin->getName() != 'CrossRefExportPlugin')}
 	<li><a href="{url op="importexport" path="plugin"|to_array:$plugin->getName()}">{$plugin->getDisplayName()|escape}</a>:&nbsp;{$plugin->getDescription()|escape}</li>
+            {/if}
 	{/foreach}
 </ul>
 

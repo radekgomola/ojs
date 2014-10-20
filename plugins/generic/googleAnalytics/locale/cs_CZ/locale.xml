@@ -32,4 +32,5 @@
 	<message key="plugins.generic.googleAnalytics.authorAccount">číslo účtu Google Analytics</message>
   <message key="plugins.generic.googleAnalytics.authorAccount.description">Ke sledování publikovaného článku pomocí služby Google Analytics, vložte sledovací číslo. (ve tvaru UA-xxxxxx-x).</message>
 	<message key="plugins.generic.googleAnalytics.authorAccountInvalid">Jedno nebo více sledovacích čísel služby Google Analytics vložené do příspěvku nejsou platné. </message>
+	<message key="plugins.generic.googleAnalytics.manager.settings.analytics">Nový sledovací kód pro Universal Analytics (analytics.js)</message>
 </locale>

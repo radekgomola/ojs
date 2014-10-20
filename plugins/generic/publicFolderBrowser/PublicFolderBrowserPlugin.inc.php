@@ -21,11 +21,11 @@ class PublicFolderBrowserPlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return Locale::translate('plugins.generic.publicfolderbrowser.displayName');
+		return __('plugins.generic.publicfolderbrowser.displayName');
 	}
 
 	function getDescription() {
-		return Locale::translate('plugins.generic.publicfolderbrowser.description');
+		return __('plugins.generic.publicfolderbrowser.description');
 	}   
 
 	/**
@@ -103,12 +103,12 @@ class PublicFolderBrowserPlugin extends GenericPlugin {
 		if ($this->getEnabled()) {
 			$verbs[] = array(
 				'disable',
-				Locale::translate('manager.plugins.disable')
+				__('manager.plugins.disable')
 			);
 		} else {
 			$verbs[] = array(
 				'enable',
-				Locale::translate('manager.plugins.enable')
+				__('manager.plugins.enable')
 			);
 		}
 		return $verbs;

@@ -311,12 +311,6 @@
 	 * LOG - This section contains entries related to log entries.
 	 *
 	-->
-	<message key="submission.event.logLevel">Úroveň</message>
-	<message key="submission.event.logLevel.info">Info</message>
-	<message key="submission.event.logLevel.notice">Oznámení</message>
-	<message key="submission.event.logLevel.warning">Varování</message>
-	<message key="submission.event.logLevel.error">Chyba</message>
-	
 	<message key="submission.event.general.defaultEvent">Událost příspěvku</message>
 	<message key="submission.event.general.articleSubmitted">Článek odeslán</message>
 	<message key="submission.event.general.issueScheduled">Příspěvek odeslán do fronty pro naplánování publikace</message>
@@ -1153,11 +1147,6 @@ Ověřování může selhat při vyhledávání URL, které vyžadují "posted f
 
 	<message key="rt.metadata.pkp.primaryAuthor">Autorovo jméno, pracoviště, stát</message>
 	<message key="rt.metadata.pkp.peerReviewed">Recenzovaný článek</message>
-	<message key="rt.metadata.pkp.doi">Digital Object Identifier</message>
-
-
-
-
 	<message key="rt.beNotifiedWhen">Být informován pokud...</message>
 
 	<message key="rt.thisJournal">Prohledat časopis</message>
@@ -1330,7 +1319,6 @@ Masarykovy univerzity</message>
   <message key="user.title.after">Tituly za jménem</message>
   <message key="block.banner_jmc">banner_cz_small.png</message>
   <message key="block.banner_jmc.alt">Hostuje journals.muni.cz</message>      
-  <message key="languages.help">cestina</message> 
   <message key="article.citace">Bibliografická citace</message>
   <message key="manager.setup.navigationBarOff">Pokud je používán design journals.muni.cz, tak není možné přidávat odkazy do navigačního panelu.</message>
   
@@ -1342,4 +1330,5 @@ Masarykovy univerzity</message>
   
   <message key="journals.munipress.description">Stránka journals.muni.cz vznikla s cílem zjednodušit orientaci v nabídce časopisů vydávaných Masarykovou univerzitou a díky celouniverzitnímu redakčnímu systému (OJS) usnadnit práci redakcím, autorům i recenzentům.</message>
   <message key="journals.munipress.keywords">journals.muni.cz, munipress, časopisy, masarykova univerzita, MU, ojs</message>
+	<message key="manager.setup.preservationDescription"><![CDATA[Open Journal Systems podporuje <a href="http://www.lockss.org/" target="_blank">LOCKSS</a> (Lots of Copies Keep Stuff Safe) systém k zajištění ochrany a permanentního uchování Vašeho časopisu. Máte několik možností jak vložit svůj časopis do sítě LOCKSS:]]></message>
 </locale>

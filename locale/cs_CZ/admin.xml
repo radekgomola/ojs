@@ -24,14 +24,6 @@
     <message key="admin.settings.journalsList.showThumbnail">Miniatura časopisu</message>
     <message key="admin.settings.journalsList.showTitle">Nadpis časopisu</message>
     <message key="admin.settings.journalsList.showDescription">Popis časopisu</message>
-    <message key="admin.settings.siteTheme">Vzhled stránky</message><B></B>
-    
-    <message key="admin.settings.defaultMetricDescription">
-		Vaše instalace OJS je nastavena pro nahrávání více než jedné použitelné metriky. 
-    Statistiky přístupů budou zobrazovány v různých kontextech. 
-    Mohou nastat případy, kdy musí být použita pouze jedna statistika přístupů, např. k zobrazení setřízeného seznamu nejčtenějších článků nebo k hodnocení výsledků vyhledávání. Prosím, vyberte jednu z nastavených metrik jako výchozí.
-	</message>
-  
 	<message key="admin.languages.primaryLocaleInstructions">Toto bude výchozí jazyk pro hlavní stránku a všechny hostované časopisy.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Vyberte všechny lokalizace, které mají být podporovány na této stránce. Vybrané lokalizace budou dostupné pro použití ve všech časopisech hostovaných na této stránce a objeví se také v menu pro výběr jazyka na všech stránkách (toto nastavení může být přepsáno na specifických stránkách daného časopisu). Pokud není vybráno více lokalizací, menu pro výběr jazyka se na stránkách neobjeví a rozšířené jazykové nastavení nebude pro časopisy dostupné.</message>
   <message key="admin.locale.maybeIncomplete">Označené lokalizace mohou být nekompletní.</message>
@@ -103,4 +95,6 @@
 	<message key="admin.copyAccessLogFileTool.error.deletingFile">Chyba: nelze smazat soubor {$tmpFilePath}!</message>
 	<message key="admin.copyAccessLogFileTool.warning.fileAlreadyExists">Varování: soubor {$filePath} již ve složce statistik přístupů existuje!</message>
 	<message key="admin.copyAccessLogFileTool.success">Hotovo: soubor {$filePath} zkopírován do {$destinationPath}!</message>
+	<message key="admin.settings.security">Zabezpečení</message>
+	<message key="admin.settings.security.plugins">Zabrání manažerům časopisů v intalaci, updatování a mazání doplňků.</message>
 </locale>

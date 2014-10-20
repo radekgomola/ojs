@@ -264,14 +264,6 @@
 	<message key="manager.setup.disciplineExamples">(Např. Historie; Pedagogika; Sociologie; Psychologie; Právo)</message>
 	<message key="manager.setup.disciplineProvideExamples">Poskytněte příklady relevantních akademických oborů pro tento časopis</message>
 	<message key="manager.setup.displayCurrentIssue">Přidat obsah aktuálního čísla (pokud je dostupné).</message>
-	<message key="manager.setup.doiPrefix">DOI Prefix</message>
-	<message key="manager.setup.doiPrefixDescription"><![CDATA[DOI (Digital Object Identifier) prefix je přidělován <a href="http://www.crossref.org" target="_new">CrossRef</a> a má formát 10.xxxx (například 10.1234).]]></message>
-  <message key="manager.setup.doiSuffix">DOI přípona</message>
-  <message key="manager.setup.doiSuffixDefault">Použít výchozí vzorec (%j.v%vi%i.%a).</message>
-	<message key="manager.setup.doiSuffixPattern">Použijte níže vložený vzorec pro generování DOI přípon. Použijte %j pro inciály časopisu, %v pro číslo ročníku, %i pro číslo čísla, %a pro ID OJS článku a %p pro číslo stránky.</message>
-	<message key="manager.setup.doiSuffixPattern.example">Například vol%viss%ipp%p by mohlo vytvořit DOI jako 10.1234/vol3iss2pp230</message>
-	<message key="manager.setup.doiSuffixDescription">DOI přípona může mít jakýkoliv formát, ale musí být jedinečná pro každou publikovanou položku.</message>
-	<message key="manager.setup.doiSuffixPublisherId">Použít "Uživatelský identifikátor" pro publikované položky jako DOI příponu (musí být povoleno v Kroku 4).</message>
 	<message key="manager.setup.editorDecision">Rozhodnutí editora</message>
 	<message key="manager.setup.editorialMembers">Přejděte k části Členové rady a přidejte členy redakční rady a/nebo recenzní rady. Můžete to provést v kterémkoliv bodě fungování časopisu.</message>
 	<message key="manager.setup.editorialProcess1">Jeden nebo více editorů obsluhuje základní kroky aniž by měli podroběnji stanoveny své role.</message>
@@ -306,7 +298,6 @@
 	<message key="manager.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[OJS dodržuje Protokol pro sběr metadat <a href="http://www.openarchives.org/" target="_blank">iniciativy Open Archives</a>, což je nově vznikající standard pro poskytování kvalitně indexovaného přístupu k elektronickým výzkumným zdrojům v celosvětovém měřítku. Autoři budou používat podobnou šablonu pro dodání metadat ke svým příspěvkům. Manažer časopisu by měl zvolit kategorie pro indexaci a poskytnout tak autorům relevantní příklady, které jim pomohou při indexaci jejich prací. Jednotlivé termíny je nutné oddělovat středníkem (např.: termín1; termín2). Položky by měly být uvozeny příklady s použitím „např.“ nebo „například“.]]></message>
 	<message key="manager.setup.form.contactEmailRequired">Je vyžadován e-mail hlavního kontaktu.</message>
 	<message key="manager.setup.form.contactNameRequired">Je vyžadováno jméno hlavního kontaktu.</message>
-  <message key="manager.setup.form.doiPrefixPattern">DOI vzorec musí být ve formátu 10.xxxx.</message>
 	<message key="manager.setup.form.journalInitialsRequired">Jsou vyžadovány iniciály časopisu.</message>
 	<message key="manager.setup.form.journalTitleRequired">Je vyžadován název časopisu.</message>
 	<message key="manager.setup.form.numReviewersPerSubmission">Je vyžadován počet recenzentů na příspěvek.</message>
@@ -488,8 +479,6 @@
 	<message key="manager.setup.subjectExamples">(např. fotosyntéza; černé díry; bayesova teorie; atd.)</message>
 	<message key="manager.setup.subjectKeywordTopic">Klíčová slova</message>
 	<message key="manager.setup.subjectProvideExamples">Poskytněte příklady klíčových slov jako vodítko pro autory</message>
-	<message key="manager.setup.submissionEmailLogging">Zachovávat záznam všech emailů poslaných ve vztahu k příspěvku na jeho stránce Historie.</message>
-	<message key="manager.setup.submissionEventLogging">Zachovávat záznam všech akcí provedených s příspěvkem na jeho stránce Historie.</message>
 	<message key="manager.setup.submissionGuidelines">Instrukce pro příspěvky</message>
 	<message key="manager.setup.submissionPreparationChecklist">Zaškrtávací seznam pro přípravu příspěvku</message>
 	<message key="manager.setup.submissionPreparationChecklistDescription">V průběhu odesílání příspěvku do časopisu jsou autoři nejdříve požádáni, aby zaškrtli všechny položky v Zaškrtávacím seznamu pro přípravu příspěvku a potvrdili tak jejich splnění; poté mohou postupovat dále. Zaškrtávací seznam je také zobrazen v Instrukcích autorům v části O časopisu. Seznam můžete upravit níže, pamatujte ale, že aby autoři mohli pokračovat dále v odesílání svého příspěvku, budou muset zaškrtnutím potvrdit všechny položky tohoto seznamu.</message>
@@ -518,11 +507,6 @@
   <message key="manager.setup.useThumbnail">Použít miniaturu</message>
 	<message key="manager.setup.volumePerYear">Ročníků (svazků) ročně</message>
   
-  <message key="admin.settings.defaultMetricDescription">
-		Váš časopis je nastaven pro nahrávání více než jedné použitelné metriky. 
-    Statistiky přístupů budou zobrazovány v různých kontextech. 
-    Mohou nastat případy, kdy musí být použita pouze jedna statistika přístupů, např. k zobrazení setřízeného seznamu nejčtenějších článků nebo k hodnocení výsledků vyhledávání. Prosím, vyberte jednu z nastavených metrik jako výchozí.
-	</message>
 	<message key="manager.statistics.reports">Generátor reportů</message>
   <message key="manager.statistics.reports.aggregationColumns">Souhrné statistiky podle:</message>
 	<message key="manager.statistics.reports.defaultReportTemplates">Výchozí šablona reportů</message>
@@ -758,62 +742,6 @@
 	<message key="manager.setup.categories.description">Zvolte nejvíce vhodnou kategorii z výběru výše. 4tenářům bude umožněno procházet pomocí katerogií z kompletního souboru časopisů.</message>
   
   <!-- přidávané: FIX rozdělit-->
-  <message key="plugins.reports.subscriptions.displayName">Report předplatných</message>
-  <message key="plugins.reports.timedView.displayName">Report shlédnutí podle času</message>
-  <message key="plugins.reports.views.displayName">Report shlédnutí </message>
-  <message key="plugins.reports.usageStats.report.displayName">OJS statistiky využití </message>
-  
-<message key="plugins.reports.timedView.form.useTimedViewRecords">Zatrhněte, pokud chcete statistiky vytvořit za pomoci starší verze pluginu pro Report shlédnutí. Pokud chcete generovat report s novými statistickými daty, nechte políčko prázdné.</message>
-<message key="plugins.reports.timedView.form.generate">Generovat report</message>
-<message key="plugins.reports.timedView.form.clearLogs">Smazat záznamy</message>       
-<message key="plugins.reports.timedView.form.clearLogs.description">Vyberte datum pro výběr záznomů pro smazání z výpisu. Záznamy spojené s tímto datem budou vymazány. Pozn. ovlivní pouze plugin generující shlédnutí podle času a ne ostatní čítače shlédnutí.</message>
-<message key="plugins.reports.timedView.form.clearLogs">Smazat záznamy</message>
-<message key="plugins.reports.timedView.report.articleId">ID článku</message>
-<message key="plugins.reports.timedView.report.articleTitle">Titul Článku</message>
-<message key="plugins.reports.timedView.report.issue">Číslo</message>
-<message key="plugins.reports.timedView.report.datePublished">Datum publikování</message>
-<message key="plugins.reports.timedView.report.abstractViews">Shlédnutí abstraktu</message>
-<message key="plugins.reports.timedView.report.galleyViews">Celkem shlédnutí</message>
-<message key="plugins.reports.subscriptions.institutionMailingAddress">Doručovací adresa </message>
-<message key="plugins.reports.subscriptions.ipRanges">Rozsah IP </message>
-<message key="plugins.reports.views.articleId"> ID článku</message>
-<message key="plugins.reports.views.articleTitle">Titul článku</message>
-<message key="plugins.reports.views.datePublished">Datum publikování</message>
-<message key="plugins.reports.views.abstractViews">Shlédnutí abstraktu</message>
-<message key="plugins.reports.views.galleyViews">Celkem shlédnutí</message>
-<message key="plugins.reports.usageStats.report.description">Výchozí statistika využití OJS </message>
-<message key="plugins.metadata.dc11.displayName">Dublin Core 1.1 meta-data</message>
-<message key="plugins.metadata.dc11.description">Přidává Dublin Core 1.1 schémata a adaptery pro aplikace.</message>
-<message key="plugins.metadata.mods34.displayName">MODS 3.4 meta-data </message>
-<message key="plugins.metadata.mods34.description">Přidává MODS 3.4 schémata a adaptery pro aplikace. </message>
-<message key="plugins.metadata.nlm30.displayName">NLM 3.0 meta-data </message>
-<message key="plugins.metadata.nlm30.description">Přidává NLM 3.0 schémata a adaptery pro aplikace.</message>
-<message key="plugins.metadata.openurl10.displayName">OpenURL 1.0 meta-data</message>
-<message key="plugins.metadata.openurl10.description">Přidává OpenURL 1.0 schémata a adaptery pro aplikace.</message>
-<message key="plugins.block.authorBios.displayName">Blok autorových biografií </message>
-<message key="plugins.block.authorBios.description">Plugin zobrazuje blok autorových biografii v části pro čtenářské nástroje.</message>
-<message key="plugins.block.readingTools.displayName">Blok čtenářských nástrojů</message>
-<message key="plugins.block.readingTools.description">Plugin zobrazuje blok obsahujicí čtenářské nástroje  v části čtenářských nástrojů.</message>
-<message key="plugins.block.relatedItems.displayName">Blok souvisejících položek</message>
-<message key="plugins.block.relatedItems.description">Plugin zobrazuje blok obsahující související položky v části čtenářských nástrojů.</message>
-<message key="plugins.citationLookup.crossref.displayName">Spojení s CrossRef databází </message>
-<message key="plugins.citationLookup.crossref.description">Připojuje k bibliografické databázi CrossRef </message>
-<message key="plugins.citationLookup.isbndb.displayName">Spojení s databází ISBNdb  </message>
-<message key="plugins.citationLookup.isbndb.description">Připojuje k bibliografické databázi ISBNdb  </message>
-<message key="plugins.citationLookup.pubmed.displayName">Spojení s databází PubMed </message>
-<message key="plugins.citationLookup.pubmed.description">Připojuje k bibliografické databázi PubMed  </message>
-<message key="plugins.citationLookup.worldcat.displayName">Spojení s databází WorldCat </message>
-<message key="plugins.citationLookup.worldcat.description">Připojuje k bibliografické databázi WorldCat </message>
-<message key="plugins.importexport.pubIds.displayName"> Plugin pro import a export veřejných identifikátorů v XML </message>
-<message key="plugins.importexport.pubIds.description"> Importuje nebo exportuje veřejné identifikátory   </message>
-<message key="plugins.importexport.datacite.displayName"> Plugin pro export/registraci dat pro DataCite  </message>
-<message key="plugins.importexport.datacite.description"> Exportuje nebo registruje metadata čísla, článku, sazebnice nebo doplňkových souborů do formátu pro DataCite</message>
-<message key="plugins.importexport.duracloud.displayName"> Plugin pro import/export dat do DuraCloud</message>                                                                            
-<message key="plugins.importexport.duracloud.description"> Archivuje nebo obnovuje čísla s použitím služby externího uložiště DuraCloud</message>
-<message key="plugins.importexport.medra.displayName"> Plugin pro export/registraci do služby mEDRA</message>
-<message key="plugins.importexport.medra.description"> Exportuje metadata čísel, článků a sazebnic do formátu ONIX pro DOI (O4DOI) a registruje DOI za pomoci registrační služby mEDRA</message>
-
-
 <message key="manager.setup.useMuniStyle">Použít design journals.muni.cz</message>
 <message key="manager.setup.useMuniStyleDescription"> Pokud zatrhnete zaškrtávací políčko budete moct používat design hlavní stránky journals.muni.cz. Levý panel je vypnut a nelze přidávat vlastní kaskádové styly.</message>
 <message key="manager.setup.useMuniStyleDescriptionOff"> Pokud vypnete používání designu journals.muni.cz, budete moci nahrát vlastní kaskádové styly nebo použít některé z přednastavených, je povolen i levý panel. Po odškrtnutí políčka je potřeba uložit formulář (automaticky je pak použit základní styl OJS).</message>
@@ -824,10 +752,16 @@
 <message key="manager.setup.aboutJournalDescription">Popis časopisu v podrobnostech</message>
 <message key="manager.setup.refferences">Reference</message>
 <message key="manager.setup.refferencesDescription">Umožní autorům vkládat k příspěvkům reference.</message>
-<message key="references.more">Zobrazit literaturu</message>
-<message key="references.less">Skrýt literaturu</message>
 <message key="manager.setup.socialNetworks">Sociální sítě</message>
 <message key="manager.setup.facebook">Facebook.com</message>
 <message key="manager.setup.twitter">Twitter.com</message>
 <message key="manager.setup.gplus">Plus.google.com</message>
+	<message key="manager.setup.confirmResetLicenseChanged">Změnil jste licenční a autorsko právní informace v nastavení časopisu. Prosím uložte nastavení dříve než vyresetujete oprávnění.</message>
+	<message key="manager.setup.copyrightYearBasis">Založí rok autorských práv článku na:</message>
+	<message key="manager.setup.copyrightYearBasis.Article">Výchozí rok bude vybrán z data vydání článku, jako v "zveřejňuj jak jdou za sebou"</message>
+	<message key="manager.setup.copyrightYearBasis.Issue">Výchozí rok bude vybrán z data publikování čísla.</message>
+	<message key="manager.setup.subjectClassificationURLValid">Prosím poskytněte platnou adresu URL (včetně http://)</message>
+	<message key="manager.statistics.reports.objectNotFound">Objekt nebyl v databázi nalezen</message>
+	<message key="manager.subscriptions.form.dateRemindedBefore">Zasláno před-expirační připomenutí.</message>
+	<message key="manager.subscriptions.form.dateRemindedAfter">Zasláno po-expirační připomenutí.</message>
 </locale>

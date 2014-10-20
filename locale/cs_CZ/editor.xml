@@ -32,7 +32,7 @@
 	<message key="editor.submissionArchive.confirmDelete">Jste si jistý, že chcete trvale smazat tento příspěvek?</message>
 	<message key="editor.submissionReview.confirmDecision">Jste si jistý, že chcete zaznamenat toto rozhodnutí?</message>
 	<message key="editor.submissionReview.emailWillArchive">Tento příspěvek bude archivován poté, co bude odeslán email Informovat autora nebo bude kliknuto na tlačítko přeskočit email.</message>
-  <message key="editor.submissionReview.cannotSendToCopyediting">Před odesláním příspěvku k redigování, použíjte odkaz pro upozornění autoraa vyberte verzi k odeslání.</message>
+  <message key="editor.submissionReview.cannotSendToCopyediting">Před odesláním příspěvku k redigování, použíjte odkaz pro upozornění autora vyberte verzi k odeslání.</message>
 	<message key="editor.submissionReview.sendToCopyediting">Odeslat k redigování</message>
 	<message key="editor.notifyUsers">Informovat uživatele</message>
 	<message key="editor.notifyUsers.inProgress">Probíhá informování uživatelů...</message>

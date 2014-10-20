@@ -203,7 +203,7 @@
 	<message key="manager.setup.addChecklistItem">Přidat položku zaškrtávacího seznamu</message>
 	<message key="manager.setup.addContributor">Přidat přispěvatele</message>
 	<message key="manager.setup.addItem">Přidat položku</message>
-	<message key="manager.setup.addItemtoAboutJournal">Přidat položku, která se má obejvit v části O Časopisu</message>
+	<message key="manager.setup.addItemtoAboutJournal">Přidat položku, která se má objevit v části O Časopisu</message>
 	<message key="manager.setup.additionalContent">Doplňkový obsah</message>
 	<message key="manager.setup.additionalContentDescription">Přidat obsah (text/HTML), který se objeví pod obrázkem domácí stránky, pokud byl nahrán.</message>
 	<message key="manager.setup.addNavItem">Přidat položku</message>

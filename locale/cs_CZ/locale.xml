@@ -1339,4 +1339,7 @@ Masarykovy univerzity</message>
   <message key="IE.problem.redirect">Prohlížeč může mít problémy se zobrazením vnořené čtečky souborů PDF. Pokud máte řádně nainstalován Adobe Acrobat Reader a přesto se Vám čtečka PDF nezobrazuje, </message>
   <message key="click.here">klikněte ZDE!</message>
   <message key="IE.problem.solution"><![CDATA[Popis problému i s možným řešením naleznete <a href="https://forums.adobe.com/message/6040955" target="_blank">ZDE</a> a <a href="http://support.microsoft.com/kb/2716529" target="_blank">ZDE</a>! <br /><strong>Funčnost řešení není zaručena!</strong> <br />(Řešení ve zkratce: Je potřeba "resetovat" nastavení Internet Exploreru. <br />Nástroje -> Možnosti internetu -> Upřesnit -> klikněte na "Obnovit upřesňující nastavení" a potom na "Obnovit")]]></message>
+  
+  <message key="journals.munipress.description">Stránka journals.muni.cz vznikla s cílem zjednodušit orientaci v nabídce časopisů vydávaných Masarykovou univerzitou a díky celouniverzitnímu redakčnímu systému (OJS) usnadnit práci redakcím, autorům i recenzentům.</message>
+  <message key="journals.munipress.keywords">journals.muni.cz, munipress, časopisy, masarykova univerzita, MU, ojs</message>
 </locale>

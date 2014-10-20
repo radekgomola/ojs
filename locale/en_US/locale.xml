@@ -457,7 +457,7 @@ Title of classification system]]></message>
 	<message key="manager.setup.registerJournalForIndexingDescription"><![CDATA[To have the contents of this journal indexed within a globally distributed system of research databases, please read <a href="http://www.oclc.org/oaister/contribute.en.html" target="_blank">the steps to becoming a data contributor</a> and register your journal with the official <a href="http://www.openarchives.org/data/registerasprovider.html" target="_blank">Open Archives registry</a>.  To register, you will need the base URL for your repository: <span class="highlight">{$oaiUrl}</span>.  Afterwards, you can register your journal at the <a href="http://gita.grainger.uiuc.edu/registry/" target="_blank">UIUC OAI registry</a> and <a href="http://www.oclc.org/oaister" target="_blank">OAIster</a>.
 <br /><br />
 Note that if your site administrator has already registered this site with these services, your journal will be indexed automatically and you do not need to register your journal.]]></message>
-	<message key="manager.setup.citations">Enable the Citation Markup Assistant</message>
+	<message key="manager.setup.citations">Enable the References</message>
 
 	<!-- Setup Step 4 -->
 	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Table of Contents.<br /><br />
@@ -1214,9 +1214,12 @@ Masaryk University</message>
   <message key="article.citace">Bibliographic citation</message>
   <message key="manager.setup.navigationBarOff">You can't add any link to Navigation Bar, if you are using default design of journals.muni.cz.</message>
   
-   <message key="IE10.problem">You're browser is Internet Explorer 10:</message>
-  <message key="IE11.problem">You're browser is Internet Explorer 11:</message>
+   <message key="IE10.problem">Your browser is Internet Explorer 10:</message>
+  <message key="IE11.problem">Your browser is Internet Explorer 11:</message>
   <message key="IE.problem.redirect">The browser may not display the embedded PDF file reader correctly. If you have properly installed the Adobe Acrobat Reader and you still cannot view the PDF reader, </message>
   <message key="click.here">click HERE!</message>
   <message key="IE.problem.solution"><![CDATA[You can find a description of issue with possible solution <a href="https://forums.adobe.com/message/6040955" target="_blank">HERE</a> and <a href="http://support.microsoft.com/kb/2716529" target="_blank">HERE</a>! <br /><strong>Proper functioning of solution is not guaranteed</strong> <br />(Solution shortly: You need to reset your Internet Explorer.<br />Tools -> Internet options -> Advanced -> press Restore advanced settings and than Reset)]]></message>
+  
+  <message key="journals.munipress.description">The portal Journals.muni.cz was created to simplify the orientation of the readers in journals published by Masaryk University. It uses the university-wide publishing and management system (OJS) to facilitate the work of editors, authors, and reviewers.</message>
+  <message key="journals.munipress.keywords">journals.muni.cz, munipress, journals, masaryk univesity, MU, ojs</message>
 </locale>

@@ -12,7 +12,7 @@
   -->
  
 <locale name="cs_CZ" full_name="Čeština">
-	<message key="plugins.importexport.crossref.description"Exportovat nebo registrovat metadata článku v CrossRef formátu.</message>
+	<message key="plugins.importexport.crossref.description">Exportovat nebo registrovat metadata článku v CrossRef formátu.</message>
 	<message key="plugins.importexport.crossref.displayName">CrossRef Export/Registrační doplněk</message>
 	<message key="plugins.importexport.crossref.requirements">Požadavky</message>
 	<message key="plugins.importexport.crossref.requirements.satisfied">Všechny požadavky domplňku jsou splněny.</message>
@@ -26,7 +26,6 @@
 	<message key="plugins.importexport.crossref.settings.form.depositorEmailRequired">Prosím vložte email vkladatele.</message>
 	<message key="plugins.importexport.crossref.settings.form.automaticRegistration">Registrovat DOI automaticky</message>
 	<message key="plugins.importexport.crossref.settings.form.automaticRegistration.description"><![CDATA[OJS bude automaticky ukládata identifikátory DOI do CrossRefu ve chvíli, kdy budou články publikovány. Prosím, vezměte na vědomí, že tato operace může zabrat trochu času po dokončení procesu publikování.Můžete zkontrolovat seznam všech neregistrovaných DOI v <a href="">seznamu neregistrovaných článků</a>.]]></message>
-
 	<message key="plugins.importexport.crossref.registrationIntro"><![CDATA[Tento doplněk může být nastaven, aby automaticky registroval digitální identifikátory DOI do CrossRefu. Je vyžádováno uživatelské jméno a heslo (dostupné na <a href="http://www.crossref.org" target="_blank">CrossRef</a>) pro využívání. Pokud nemáte vlastní uživatelské jméno a heslo, stále můžete exportovat XML soubory, ale již nebudete moci registrovat DOI do CrossRef přímo z OJS.]]></message>
 
 	<message key="plugins.importexport.crossref.settings.description"><![CDATA[CrossRef Export/registrační doplněk můžete nastavit <a href="{$settingsUrl}">zde</a>.]]></message>

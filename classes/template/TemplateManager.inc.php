@@ -86,6 +86,7 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('numPageLinks', $journal->getSetting('numPageLinks'));
 				$this->assign('itemsPerPage', $journal->getSetting('itemsPerPage'));
 				$this->assign('enableAnnouncements', $journal->getSetting('enableAnnouncements'));
+                                
 				$this->assign(
 					'hideRegisterLink',
 					!$journal->getSetting('allowRegReviewer') &&
@@ -93,6 +94,9 @@ class TemplateManager extends PKPTemplateManager {
 					!$journal->getSetting('allowRegAuthor')
 				);
 
+                                $session =& Request::getSession();
+                                $this->assign('loggedInUsername', $session->getSessionVar('username'));
+                                
 				// Load and apply theme plugin, if chosen
 				$themePluginPath = $journal->getSetting('journalTheme');
 				if (!empty($themePluginPath)) {

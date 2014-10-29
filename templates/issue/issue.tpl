@@ -39,26 +39,6 @@
 		{assign var=hasAccess value=0}
 	{/if}
 
-<<<<<<< HEAD
-	<td class="tocTitle">{if !$hasAccess || $hasAbstract || $hasCitace}<a href="{url page="article" op="view" path=$articlePath}">{$article->getLocalizedTitle()|strip_unsafe_html}</a>{else}{$article->getLocalizedTitle()|strip_unsafe_html}{/if}</td>
-	<td class="tocGalleys">
-		{if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
-			{foreach from=$article->getGalleys() item=galley name=galleyList}
-                            {if $galley->isPdfGalley()}
-                                    <script type="text/javascript">
-                                        if(detectIE()===10 || detectIE()===11){ldelim}
-                                            document.write('<a href="{url page="article" op="viewFile" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" target="_blank" class="file">{$galley->getGalleyLabel()|escape}</a>');                                    
-                                        {rdelim}
-                                        else{ldelim}
-                                            document.write('<a href="{url page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>');
-                                        {rdelim}                                    
-                                    </script>
-                            {else}
-				<a href="{url page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>
-                            {/if}
-				{if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}
-					{if $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || !$galley->isPdfGalley()}
-=======
 <table class="tocArticle">
 <tr valign="top">
 	<td class="tocArticleCoverImage{if $showCoverPage} showCoverImage{/if}">

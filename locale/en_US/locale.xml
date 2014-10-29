@@ -1223,4 +1223,6 @@ Masaryk University</message>
   
   <message key="journals.munipress.description">The portal Journals.muni.cz was created to simplify the orientation of the readers in journals published by Masaryk University. It uses the university-wide publishing and management system (OJS) to facilitate the work of editors, authors, and reviewers.</message>
   <message key="journals.munipress.keywords">journals.muni.cz, munipress, journals, masaryk univesity, MU, ojs</message>
+  
+  <message key="languages.help">english</message>
 </locale>

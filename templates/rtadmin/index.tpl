@@ -39,13 +39,13 @@
             <li>&#187; <a href="{url op="validateUrls"}">{translate key="rt.admin.validateUrls"}</a></li>
     </ul>
     </div>
-
+{/if}
     <div id="rtAdminSharing">
     <h3>{translate key="rt.admin.sharing"}</h3>
     <ul class="plain">
             <li>&#187; <a href="{url op="sharingSettings"}">{translate key="rt.admin.configureSharing"}</a></li>
     </ul>
     </div>
-{/if}
+
 {include file="common/footer.tpl"}
 

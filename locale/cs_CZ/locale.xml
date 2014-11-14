@@ -1333,4 +1333,6 @@ Masarykovy univerzity</message>
 	<message key="manager.setup.preservationDescription"><![CDATA[Open Journal Systems podporuje <a href="http://www.lockss.org/" target="_blank">LOCKSS</a> (Lots of Copies Keep Stuff Safe) systém k zajištění ochrany a permanentního uchování Vašeho časopisu. Máte několik možností jak vložit svůj časopis do sítě LOCKSS:]]></message>
         
         <message key="languages.help">cestina</message>
+        
+        <message key="plugins.generic.publicfolderbrowser.descriptionOnSite">Umožňuje spravovat veřejnou složku časopisu. Touto cestou je manažer schopen spravovat soubory a složky ve veřejné složce. Adresa je https://journals.muni.cz/public/journals/[id_časopisu]/[podsložka]/[název_souboru]</message>
 </locale>

@@ -382,36 +382,10 @@
             </tr>
         </table>
     </div>  
-    <div id="citationAssistant">
-        <h3>3.7 {translate key="manager.setup.citationAssistant"}</h3>
-        <a name="metaCitationEditing"></a>
-        {if $citationEditorError}
+                {if $citationEditorError}
             <p>{translate key=$citationEditorError}</p>
-        {else}
-            <p>{translate key="manager.setup.metaCitationsDescription"}</p>
-            <table width="100%" class="data">
-                <tr valign="top">
-                    <td width="5%" class="label">
-                        <input type="checkbox" name="metaCitations" id="metaCitations" value="1"{if $metaCitations} checked="checked"{/if} />
-                    </td>
-                    <td width="95%" class="value"><label for="metaCitations">{translate key="manager.setup.citations"}</label>
-                    </td>
-                </tr>
-            </table>
-            <div id="citationFilterSetupToggle" {if !$metaCitations}style="visible: none"{/if}>
-                <h4>{translate key="manager.setup.citationFilterParser"}</h4>
-                <p>{translate key="manager.setup.citationFilterParserDescription"}</p>
-                {load_url_in_div id="parserFilterGridContainer" loadMessageId="manager.setup.filter.parser.grid.loadMessage" url="$parserFilterGridUrl"}
-                <h4>{translate key="manager.setup.citationFilterLookup"}</h4>
-                <p>{translate key="manager.setup.citationFilterLookupDescription"}</p>
-                {load_url_in_div id="lookupFilterGridContainer" loadMessageId="manager.setup.filter.lookup.grid.loadMessage" url="$lookupFilterGridUrl"}
-                <h4>{translate key="manager.setup.citationOutput"}</h4>
-                <p>{translate key="manager.setup.citationOutputStyleDescription"}</p>
-                {fbvElement type="select" id="metaCitationOutputFilterSelect" name="metaCitationOutputFilterId"
-from=$metaCitationOutputFilters translate=false selected=$metaCitationOutputFilterId|escape
-defaultValue="-1" defaultLabel="manager.setup.filter.pleaseSelect"|translate}
-            </div>
-            {literal}<script type='text/javascript'>
+        {else}            
+                             {literal}<script type='text/javascript'>
                 $(function () {
                     // jQuerify DOM elements
                     $metaCitationsCheckbox = $('#metaCitations');
@@ -486,5 +460,4 @@ defaultValue="-1" defaultLabel="manager.setup.filter.pleaseSelect"|translate}
                 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 
             </form>
-
-            {include file="common/footer.tpl"}
+{include file="common/footer.tpl"}

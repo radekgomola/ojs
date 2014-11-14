@@ -13,7 +13,7 @@
   -->
 
 <locale name="cs_CZ" full_name="Czech">
-	<message key="plugins.importexport.doaj.displayName">Plugin exoportu pro DOAJ</message>
+	<message key="plugins.importexport.doaj.displayName">Plugin exportu pro DOAJ</message>
 	<message key="plugins.importexport.doaj.description">Export časopisu pro DOAJ a odeslání emailu s informacemi o časopisu zástupci DOAJ</message>
 
 	

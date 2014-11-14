@@ -130,11 +130,11 @@ class AuthorDAO extends PKPAuthorDAO {
 			WHERE ' . (isset($journalId)?'a.journal_id = ? AND ':'') . '
 				(aa.last_name IS NOT NULL AND aa.last_name <> \'\')' .
 				$initialSql . '
-			ORDER BY aa.last_name, aa.first_name',
+			ORDER BY aa.last_name, aa.first_name COLLATE utf8_czech_ci',
 			$params,
 			$rangeInfo
 		);
-
+                
 		$returner = new DAOResultFactory($result, $this, '_returnSimpleAuthorFromRow');
 		return $returner;
 	}

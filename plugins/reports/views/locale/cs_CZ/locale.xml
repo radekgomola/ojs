@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/reports/views/locale/cs_CZ/locale.xml
+  *
+  * Copyright (c) 2013-2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings
+  -->
+
+<locale name="cs_CZ" full_name="Čeština">
+	<message key="plugins.reports.views.displayName">Reporty shlédnutí</message>
+	<message key="plugins.reports.views.description">Tento plugin implementuje generátor CSV s informacemi o shlédnutí článků.</message>
+
+  <message key="plugins.reports.views.articleId">ID článku</message>
+  <message key="plugins.reports.views.articleTitle">Název článku</message>
+  <message key="plugins.reports.views.datePublished">Datum publikování</message>
+  <message key="plugins.reports.views.abstractViews">Shlédnutí abstraktu</message>
+  <message key="plugins.reports.views.galleyViews">Celkový počet shlédnutí sazebnice</message>
+</locale>

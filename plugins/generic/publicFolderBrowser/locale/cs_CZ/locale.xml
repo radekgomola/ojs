@@ -18,5 +18,5 @@
 	<message key="plugins.generic.publicfolderbrowser.settings">Nastavení</message>
 	<message key="plugins.generic.publicfolderbrowser.linklabel">Prohlížeč veřejné složky časopisu</message>
 
-	<message key="plugins.generic.publicfolderbrowser.descriptionOdSite">Umožňuje spravovat veřejnou složku časopisu. Touto cestou je manažer schopen spravovat soubory a složky ve veřejné složce. Adresa je https://journals.muni.cz/public/journals/[id_časopisu]/[podsložka]/[název_souboru]</message>
+	<message key="plugins.generic.publicfolderbrowser.descriptionOnSite">Umožňuje spravovat veřejnou složku časopisu. Touto cestou je manažer schopen spravovat soubory a složky ve veřejné složce. Adresa je https://journals.muni.cz/public/journals/[id_časopisu]/[podsložka]/[název_souboru]</message>
 </locale>

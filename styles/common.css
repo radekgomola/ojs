@@ -470,6 +470,44 @@ ul.tagit input[type="text"] {
     outline: none;
 }
 
+input.lang_cz_en {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width:50px;
+  height:50px;
+  cursor: pointer;
+  text-indent: 110%;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-transform:scale(1.0); /*Webkit: Scale down image to 0.8x original size*/
+  -moz-transform:scale(1.0); /*Mozilla scale version*/
+  -o-transform:scale(1.0); /*Opera scale version*/
+  -webkit-transition-duration: 0.5s; /*Webkit: Animation duration*/
+  -moz-transition-duration: 0.5s; /*Mozilla duration version*/
+  -o-transition-duration: 0.5s; /*Opera duration version*/
+}
+
+input.lang_cz_en:hover{
+    -webkit-transform:scale(1.1); /*Webkit: Scale up image to 1.2x original size*/
+    -moz-transform:scale(1.1); /*Mozilla scale version*/
+    -o-transform:scale(1.1); /*Opera scale version*/
+}
+
+input.lang_cz_en:active{
+    border:none;
+}
+
+input.en{
+    background: url(https://journals.muni.cz/images/vlajky/en_small.png) no-repeat left top;
+    margin-left: 15px;
+}
+
+input.cz{
+    background: url(https://journals.muni.cz/images/vlajky/cz_small.png) no-repeat left top;
+    float:left;
+    margin-right: 15px;
+}
 
 /* @end */
 

@@ -1745,6 +1745,16 @@ class SubmissionEditHandler extends SectionEditorHandler {
 		}
 	}
 
+        function completeWithoutLayoutEditor($args, $request){
+                $articleId = (int) $request->getUserVar('articleId');
+                $signoffDao =& DAORegistry::getDAO('SignoffDAO');
+                $layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_ARTICLE, $articleId);
+                $layoutSignoff->setDateCompleted(Core::getCurrentDate());
+		$signoffDao->updateObject($layoutSignoff);
+                
+                $this->validate($articleId, SECTION_EDITOR_ACCESS_EDIT);
+		$request->redirect(null, null, 'submissionEditing', $articleId);
+	}
 	/**
 	 * Notify the layout editor.
 	 * @param $args array

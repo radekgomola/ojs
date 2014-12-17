@@ -38,7 +38,7 @@
   <message key="author.submit.mustEnterWaiverReason">Pokud žádáte o prominutí poplatku, musíte uvést důvod do poskytnutého pole pro komentář.</message>
 	<message key="author.submissions.queuedReviewSubsequent">V recenzním kole {$round}</message>
   	<message key="author.submissions.queuedReviewRevisions">V recenzním řízení: Vyžaduje přepracování</message>
-	<message key="author.submissions.queuedEditingCopyedit">Redakční úravy: Vyžádáno redigování</message>
+	<message key="author.submissions.queuedEditingCopyedit">Redakční úpravy: Vyžádáno redigování</message>
 	<message key="author.submissions.queuedEditingProofread">Redakční úpravy: Vyžádána korektura</message>
 
 	<message key="author.submissions.uploadCopyeditedVersion">Nahrát redigovanou verzi</message>

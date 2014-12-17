@@ -147,7 +147,7 @@ class SubmissionCopyeditHandler extends CopyeditorHandler {
 		$articleId = (int) $request->getUserVar('articleId');
 		$this->validate($request, $articleId);
 		$this->setupTemplate(true, $articleId);
-
+                
 		$send = $request->getUserVar('send') ? true : false;
 
 		import('classes.submission.proofreader.ProofreaderAction');

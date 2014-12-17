@@ -493,6 +493,8 @@ class SectionEditorSubmission extends Article {
 		$journal =& Request::getJournal();
 		// Sanity check
 		if (!$journal || $journal->getId() != $this->getJournalId()) return null;
+                
+                $useCopyeditor = $journal->getSetting('useCopyeditor');
 
 		// Check whether it's in review or editing.
 		$inEditing = false;
@@ -528,17 +530,20 @@ class SectionEditorSubmission extends Article {
 				strtotime($initialSignoff->getDateAcknowledged()) : 0;
 			$dateLastCopyeditor = max($dateCopyeditorNotified, $dateCopyeditorUnderway);
 
+                        
 			// If the Copyeditor has not been notified, highlight.
-			if (!$dateCopyeditorNotified) return 'highlightCopyediting';
+                        if (!$dateCopyeditorNotified) {echo "00"; return 'highlightCopyediting';}
 
 			// Check if the copyeditor is overdue on round 1
 			if (	$dateLastCopyeditor &&
 				!$dateCopyeditorCompleted &&
 				$dateLastCopyeditor + $overdueSeconds < time()
-			) return 'highlightCopyediting';
+                        ) {echo "0"; return 'highlightCopyediting';}
+                        
+                        if (!$dateCopyeditorCompleted) return 'highlightCopyediting';
 
 			// Check if acknowledgement is overdue for CE round 1
-			if ($dateCopyeditorCompleted && !$dateCopyeditorAcknowledged) return 'highlightCopyediting';
+                        if ($dateCopyeditorCompleted && $useCopyeditor && !$dateCopyeditorAcknowledged) {echo "1"; return 'highlightCopyediting';}
 
 			// Second round of copyediting
 			$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_ARTICLE, $this->getId());
@@ -553,16 +558,16 @@ class SectionEditorSubmission extends Article {
 			$dateLastCopyeditorAuthor = max($dateCopyeditorAuthorNotified, $dateCopyeditorAuthorUnderway);
 
 			// Check if round 2 is awaiting notification.
-			if ($dateCopyeditorAcknowledged && !$dateCopyeditorAuthorNotified) return 'highlightCopyediting';
+                        if ($dateCopyeditorAcknowledged && !$dateCopyeditorAuthorNotified){echo "2";  return 'highlightCopyediting';}
 
-			// Check if acknowledgement is overdue for CE round 2
-			if ($dateCopyeditorAuthorCompleted && !$dateCopyeditorAuthorAcknowledged) return 'highlightCopyediting';
+        		// Check if acknowledgement is overdue for CE round 2
+                        if ($dateCopyeditorAuthorCompleted && !$dateCopyeditorAuthorAcknowledged){echo "3";  return 'highlightCopyediting';}
 
 			// Check if author is overdue on CE round 2
 			if (	$dateLastCopyeditorAuthor &&
 				!$dateCopyeditorAuthorCompleted &&
 				$dateLastCopyeditorAuthor + $overdueSeconds < time()
-			) return 'highlightCopyediting';
+                        ) {echo "4";  return 'highlightCopyediting';}
 
 			// Third round of copyediting
 			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_ARTICLE, $this->getId());
@@ -577,16 +582,16 @@ class SectionEditorSubmission extends Article {
 			$dateLastCopyeditorFinal = max($dateCopyeditorFinalNotified, $dateCopyeditorUnderway);
 
 			// Check if round 3 is awaiting notification.
-			if ($dateCopyeditorAuthorAcknowledged && !$dateCopyeditorFinalNotified) return 'highlightCopyediting';
+                        if ($dateCopyeditorAuthorAcknowledged && !$dateCopyeditorFinalNotified) {echo "5";  return 'highlightCopyediting';}
 
 			// Check if copyeditor is overdue on round 3
 			if (	$dateLastCopyeditorFinal &&
 				!$dateCopyeditorFinalCompleted &&
 				$dateLastCopyeditorFinal + $overdueSeconds < time()
-			) return 'highlightCopyediting';
+                        ) {echo "6";  return 'highlightCopyediting';}
 
 			// Check if acknowledgement is overdue for CE round 3
-			if ($dateCopyeditorFinalCompleted && !$dateCopyeditorFinalAcknowledged) return 'highlightCopyediting';
+                        if ($dateCopyeditorFinalCompleted && !$dateCopyeditorFinalAcknowledged) {echo "7";  return 'highlightCopyediting';}
 
 			// LAYOUT EDITING
 			$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_ARTICLE, $this->getId());

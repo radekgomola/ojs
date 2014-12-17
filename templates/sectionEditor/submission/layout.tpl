@@ -11,6 +11,7 @@
 {assign var=layoutSignoff value=$submission->getSignoff('SIGNOFF_LAYOUT')}
 {assign var=layoutFile value=$submission->getFileBySignoffType('SIGNOFF_LAYOUT')}
 {assign var=layoutEditor value=$submission->getUserBySignoffType('SIGNOFF_LAYOUT')}
+{assign var="finalCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_FINAL')}
 
 <div id="layout">
 <h3>{translate key="submission.layout"}</h3>
@@ -68,7 +69,14 @@
 			{if $useLayoutEditors}
 				{$layoutSignoff->getDateCompleted()|date_format:$dateFormatShort|default:"&mdash;"}
 			{else}
-				{translate key="common.notApplicableShort"}
+				{if !$finalCopyeditSignoff->getDateCompleted() || $layoutSignoff->getDateCompleted() || !$layoutFile}
+                                        {icon name="mail" disabled="disabled"}
+                                {else}
+                                        {url|assign:"url" op="completeWithoutLayoutEditor" articleId=$submission->getId()}
+                                        {translate|assign:"confirmMessage" key="common.confirmComplete"}
+                                        {icon name="mail" onclick="return confirm('$confirmMessage')" url=$url}
+                                {/if}
+				{$layoutSignoff->getDateCompleted()|date_format:$dateFormatShort|default:""}
 			{/if}
 		</td>
 		<td colspan="2">

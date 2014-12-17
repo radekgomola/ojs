@@ -140,6 +140,8 @@ switch ($op) {
 	case 'waiveFastTrackFee':
 	case 'waivePublicationFee':
 	case 'downloadLayoutTemplate':
+        
+        case 'completeWithoutLayoutEditor':
 		define('HANDLER_CLASS', 'SubmissionEditHandler');
 		import('pages.sectionEditor.SubmissionEditHandler');
 		break;

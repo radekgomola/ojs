@@ -70,13 +70,11 @@
 				{$layoutSignoff->getDateCompleted()|date_format:$dateFormatShort|default:"&mdash;"}
 			{else}
 				{if !$finalCopyeditSignoff->getDateCompleted() || $layoutSignoff->getDateCompleted() || !$layoutFile}
-                                        {icon name="mail" disabled="disabled"}
+                                        {$layoutSignoff->getDateCompleted()|date_format:$dateFormatShort|default:""}
                                 {else}
-                                        {url|assign:"url" op="completeWithoutLayoutEditor" articleId=$submission->getId()}
                                         {translate|assign:"confirmMessage" key="common.confirmComplete"}
-                                        {icon name="mail" onclick="return confirm('$confirmMessage')" url=$url}
+                                        <a href="{url op="completeWithoutLayoutEditor" articleId=$submission->getId()}" class="action" onclick="return confirm('$confirmMessage')">{translate key="common.complete"}</a>
                                 {/if}
-				{$layoutSignoff->getDateCompleted()|date_format:$dateFormatShort|default:""}
 			{/if}
 		</td>
 		<td colspan="2">

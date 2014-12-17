@@ -534,7 +534,7 @@ Volitelně můžete uživateli poskytnout zdůvodnění, proč byl jeho účet z
 	<li>Zvýrazněné položky indikují, že je vyžadována akce editora:
 		<ul>
 			<li class="highlightCopyediting">Je vyžadována akce v části redigování</li>
-			<li class="highlightLayoutEditing">Je vyžadována akce v některé vrstvě části editování</li>
+			<li class="highlightLayoutEditing">Je vyžadována akce v části typografických úprav</li>
 			<li class="higlightProofreading">Je vyžadována akce v části korektur</li>
 		</ul>
 	</li>

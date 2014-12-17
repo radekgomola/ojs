@@ -494,7 +494,9 @@ class SectionEditorSubmission extends Article {
 		// Sanity check
 		if (!$journal || $journal->getId() != $this->getJournalId()) return null;
                 
-                $useCopyeditor = $journal->getSetting('useCopyeditor');
+                $useCopyeditor = $journal->getSetting('useCopyeditors');
+                $useLayoutEditor = $journal->getSetting('useLayoutEditors');
+                $useProofreader = $journal->getSetting('useProofreaders');
 
 		// Check whether it's in review or editing.
 		$inEditing = false;
@@ -540,7 +542,7 @@ class SectionEditorSubmission extends Article {
 				$dateLastCopyeditor + $overdueSeconds < time()
                         ) {echo "0"; return 'highlightCopyediting';}
                         
-                        if (!$dateCopyeditorCompleted) return 'highlightCopyediting';
+                        if (!$useCopyeditor && !$dateCopyeditorCompleted) return 'highlightCopyediting';
 
 			// Check if acknowledgement is overdue for CE round 1
                         if ($dateCopyeditorCompleted && $useCopyeditor && !$dateCopyeditorAcknowledged) {echo "1"; return 'highlightCopyediting';}
@@ -591,7 +593,7 @@ class SectionEditorSubmission extends Article {
                         ) {echo "6";  return 'highlightCopyediting';}
 
 			// Check if acknowledgement is overdue for CE round 3
-                        if ($dateCopyeditorFinalCompleted && !$dateCopyeditorFinalAcknowledged) {echo "7";  return 'highlightCopyediting';}
+                        if ($dateCopyeditorFinalCompleted && $useCopyeditor && !$dateCopyeditorFinalAcknowledged) {echo "7";  return 'highlightCopyediting';}
 
 			// LAYOUT EDITING
 			$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_ARTICLE, $this->getId());
@@ -606,7 +608,7 @@ class SectionEditorSubmission extends Article {
 			$dateLastLayout = max($dateLayoutNotified, $dateLayoutUnderway);
 
 			// Check if Layout Editor needs to be notified.
-			if ($dateLastCopyeditorFinal && !$dateLayoutNotified) return 'highlightLayoutEditing';
+			if ($dateLastCopyeditorFinal && $useLayoutEditor && !$dateLayoutNotified) return 'highlightLayoutEditing';
 
 			// Check if layout editor is overdue
 			if (	$dateLastLayout &&
@@ -614,8 +616,10 @@ class SectionEditorSubmission extends Article {
 				$dateLastLayout + $overdueSeconds < time()
 			) return 'highlightLayoutEditing';
 
+                        if (!$useLayoutEditor && !$dateLayoutCompleted) return 'highlightLayoutEditing';
+                        
 			// Check if acknowledgement is overdue for layout
-			if ($dateLayoutCompleted && !$dateLayoutAcknowledged) return 'highlightLayoutEditing';
+			if ($dateLayoutCompleted && $useLayoutEditor && !$dateLayoutAcknowledged) return 'highlightLayoutEditing';
 
 			// PROOFREADING
 			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
@@ -633,7 +637,7 @@ class SectionEditorSubmission extends Article {
 			$dateLastAuthor = max($dateNotified, $dateAuthorUnderway);
 
 			// Check if the author is awaiting proofreading notification.
-			if ($dateLayoutAcknowledged && !$dateAuthorNotified) return 'higlightProofreading';
+			if ((($dateLayoutAcknowledged && $useLayoutEditor) || $dateLayoutCompleted) && !$dateAuthorNotified) return 'higlightProofreading';
 
 			// Check if the author is overdue on round 1 of proofreading
 			if (	$dateLastAuthor &&
@@ -658,9 +662,11 @@ class SectionEditorSubmission extends Article {
 
 			// Check if the proofreader is awaiting notification.
 			if ($dateAuthorAcknowledged && !$dateProofreaderNotified) return 'higlightProofreading';
+                        
+                        if (!$useProofreader && !$dateProofreaderCompleted) return 'higlightProofreading';
 
 			// Check if acknowledgement is overdue for proofreading round 2
-			if ($dateProofreaderCompleted && !$dateProofreaderAcknowledged) return 'higlightProofreading';
+			if ($dateProofreaderCompleted && $useProofreader && !$dateProofreaderAcknowledged) return 'higlightProofreading';
 
 			// Check if proofreader is overdue on proofreading round 2
 			if (	$dateLastProofreader &&
@@ -678,8 +684,10 @@ class SectionEditorSubmission extends Article {
 				strtotime($layoutEditorSignoff->getDateCompleted()) : 0;
 			$dateLastLayoutEditor = max($dateLayoutEditorNotified, $dateCopyeditorUnderway);
 
+                        if (!$useProofreader && !$dateProofreaderCompleted) return 'higlightProofreading';
+                        
 			// Check if the layout editor is awaiting notification.
-			if ($dateProofreaderAcknowledged && !$dateLayoutEditorNotified) return 'higlightProofreading';
+			if ((($useProofreader && $dateProofreaderAcknowledged) || $dateProofreaderCompleted) && !$dateLayoutEditorNotified) return 'higlightProofreading';
 
 			// Check if proofreader is overdue on round 3 of proofreading
 			if (	$dateLastLayoutEditor &&
@@ -687,8 +695,9 @@ class SectionEditorSubmission extends Article {
 				$dateLastLayoutEditor + $overdueSeconds < time()
 			) return 'higlightProofreading';
 
+                        if (!$useLayoutEditor && !$dateLayoutEditorCompleted) return 'higlightProofreading';
 			// Check if acknowledgement is overdue for proofreading round 3
-			if ($dateLayoutEditorCompleted && !$dateLayoutEditorAcknowledged) return 'higlightProofreading';
+			if ($dateLayoutEditorCompleted && $useLayoutEditor && !$dateLayoutEditorAcknowledged) return 'higlightProofreading';
 		} else {
 			// ---
 			// --- Highlighting conditions for submissions in review

@@ -72,8 +72,8 @@
 				{if !$finalCopyeditSignoff->getDateCompleted() || $layoutSignoff->getDateCompleted() || !$layoutFile}
                                         {$layoutSignoff->getDateCompleted()|date_format:$dateFormatShort|default:""}
                                 {else}
-                                        {translate|assign:"confirmMessage" key="common.confirmComplete"}
-                                        <a href="{url op="completeWithoutLayoutEditor" articleId=$submission->getId()}" class="action" onclick="return confirm('$confirmMessage')">{translate key="common.complete"}</a>
+                                        {translate|escape:"javascript"|assign:"confirmMessage" key="common.confirmComplete"}
+                                        <a href="{url op="completeWithoutLayoutEditor" articleId=$submission->getId()}" class="action">{translate key="common.complete"}</a>
                                 {/if}
 			{/if}
 		</td>

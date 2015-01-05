@@ -54,16 +54,18 @@ class UserHandler extends Handler {
 
 			// Show roles for all journals
 			$journalDao =& DAORegistry::getDAO('JournalDAO');
-			$journals =& $journalDao->getJournals();
-
+			$journals = $journalDao->getJournals();
+                        $allAllowedJournals =& $journalDao->getJournals(true);
+                        $templateMgr->assign('allAllowedJournals', $allAllowedJournals);
+                        
 			// Fetch the user's roles for each journal
 			while ($journal =& $journals->next()) {
+                            
 				$journalId = $journal->getId();
-
 				// Determine if journal setup is incomplete, to provide a message for JM
 				$setupIncomplete[$journalId] = $this->_checkIncompleteSetup($journal);
 
-				$roles =& $roleDao->getRolesByUserId($userId, $journalId);
+				$roles =& $roleDao->getRolesByUserId($userId, $journalId);                                
 				if (!empty($roles)) {
 					$userJournals[] =& $journal;
 					$this->_getRoleDataForJournal($userId, $journalId, $submissionsCount, $isValid);
@@ -74,8 +76,10 @@ class UserHandler extends Handler {
 
 			$templateMgr->assign_by_ref('userJournals', $userJournals);
 			$templateMgr->assign('showAllJournals', 1);
+                        
 
 		} else { // Currently within a journal's context.
+                        
 			$journalId = $journal->getId();
 
 			// Determine if journal setup is incomplete, to provide a message for JM
@@ -101,7 +105,6 @@ class UserHandler extends Handler {
 			if ( $membershipEnabled ) {
 				$templateMgr->assign('dateEndMembership', $user->getSetting('dateEndMembership', 0));
 			}
-
 			$templateMgr->assign('allowRegAuthor', $journal->getSetting('allowRegAuthor'));
 			$templateMgr->assign('allowRegReviewer', $journal->getSetting('allowRegReviewer'));
 

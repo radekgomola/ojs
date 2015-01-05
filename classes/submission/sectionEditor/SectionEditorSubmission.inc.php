@@ -534,18 +534,18 @@ class SectionEditorSubmission extends Article {
 
                         
 			// If the Copyeditor has not been notified, highlight.
-                        if (!$dateCopyeditorNotified) {echo "00"; return 'highlightCopyediting';}
+                        if (!$dateCopyeditorNotified) return 'highlightCopyediting';
 
 			// Check if the copyeditor is overdue on round 1
 			if (	$dateLastCopyeditor &&
 				!$dateCopyeditorCompleted &&
 				$dateLastCopyeditor + $overdueSeconds < time()
-                        ) {echo "0"; return 'highlightCopyediting';}
+                        ) return 'highlightCopyediting';
                         
                         if (!$useCopyeditor && !$dateCopyeditorCompleted) return 'highlightCopyediting';
 
 			// Check if acknowledgement is overdue for CE round 1
-                        if ($dateCopyeditorCompleted && $useCopyeditor && !$dateCopyeditorAcknowledged) {echo "1"; return 'highlightCopyediting';}
+                        if ($dateCopyeditorCompleted && $useCopyeditor && !$dateCopyeditorAcknowledged) return 'highlightCopyediting';
 
 			// Second round of copyediting
 			$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_ARTICLE, $this->getId());
@@ -560,16 +560,16 @@ class SectionEditorSubmission extends Article {
 			$dateLastCopyeditorAuthor = max($dateCopyeditorAuthorNotified, $dateCopyeditorAuthorUnderway);
 
 			// Check if round 2 is awaiting notification.
-                        if ($dateCopyeditorAcknowledged && !$dateCopyeditorAuthorNotified){echo "2";  return 'highlightCopyediting';}
+                        if ($dateCopyeditorAcknowledged && !$dateCopyeditorAuthorNotified)return 'highlightCopyediting';
 
         		// Check if acknowledgement is overdue for CE round 2
-                        if ($dateCopyeditorAuthorCompleted && !$dateCopyeditorAuthorAcknowledged){echo "3";  return 'highlightCopyediting';}
+                        if ($dateCopyeditorAuthorCompleted && !$dateCopyeditorAuthorAcknowledged)return 'highlightCopyediting';
 
 			// Check if author is overdue on CE round 2
 			if (	$dateLastCopyeditorAuthor &&
 				!$dateCopyeditorAuthorCompleted &&
 				$dateLastCopyeditorAuthor + $overdueSeconds < time()
-                        ) {echo "4";  return 'highlightCopyediting';}
+                        ) return 'highlightCopyediting';
 
 			// Third round of copyediting
 			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_ARTICLE, $this->getId());
@@ -584,7 +584,7 @@ class SectionEditorSubmission extends Article {
 			$dateLastCopyeditorFinal = max($dateCopyeditorFinalNotified, $dateCopyeditorUnderway);
 
 			// Check if round 3 is awaiting notification.
-                        if ($dateCopyeditorAuthorAcknowledged && !$dateCopyeditorFinalNotified) {echo "5";  return 'highlightCopyediting';}
+                        if ($dateCopyeditorAuthorAcknowledged && !$dateCopyeditorFinalNotified)return 'highlightCopyediting';
 
 			// Check if copyeditor is overdue on round 3
 			if (	$dateLastCopyeditorFinal &&
@@ -593,7 +593,7 @@ class SectionEditorSubmission extends Article {
                         ) {echo "6";  return 'highlightCopyediting';}
 
 			// Check if acknowledgement is overdue for CE round 3
-                        if ($dateCopyeditorFinalCompleted && $useCopyeditor && !$dateCopyeditorFinalAcknowledged) {echo "7";  return 'highlightCopyediting';}
+                        if ($dateCopyeditorFinalCompleted && $useCopyeditor && !$dateCopyeditorFinalAcknowledged) return 'highlightCopyediting';
 
 			// LAYOUT EDITING
 			$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_ARTICLE, $this->getId());

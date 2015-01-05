@@ -12,7 +12,7 @@
 {assign var="pageTitle" value="user.userHome"}
 {include file="common/header.tpl"}
 {/strip}
-
+{assign var="hasRole" value=0}
 {if $isSiteAdmin}
 	{assign var="hasRole" value=1}
 	&#187; <a href="{url journal="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a>
@@ -24,13 +24,13 @@
 
 {foreach from=$userJournals item=journal}
 	<div id="journal-{$journal->getPath()|escape}">
-	{assign var="hasRole" value=1}
 	{if !$currentJournal}<h4><a href="{url journal=$journal->getPath() page="user"}">{$journal->getLocalizedTitle()|escape}</a></h4>
 	{else}<h3>{$journal->getLocalizedTitle()|escape}</h3>{/if}
 	{assign var="journalId" value=$journal->getId()}
 	{assign var="journalPath" value=$journal->getPath()}
 	<table width="100%" class="info">
 		{if $isValid.JournalManager.$journalId}
+                    {assign var="hasRole" value=1}
 			<tr>
 				<td>&#187; <a href="{url journal=$journalPath page="manager"}">{translate key="user.role.manager"}</a></td>
 				<td></td>
@@ -40,14 +40,17 @@
 			</tr>
 		{/if}
 		{if $isValid.SubscriptionManager.$journalId}
+                    {assign var="hasRole" value=1}
 			<tr>
 				<td width="20%" colspan="5">&#187; <a href="{url journal=$journalPath page="subscriptionManager"}">{translate key="user.role.subscriptionManager"}</a></td>
 			</tr>
 		{/if}
 		{if $isValid.Editor.$journalId || $isValid.SectionEditor.$journalId || $isValid.LayoutEditor.$journalId || $isValid.Copyeditor.$journalId || $isValid.Proofreader.$journalId}
+                    {assign var="hasRole" value=1}
 			<tr><td class="separator" width="100%" colspan="5">&nbsp;</td></tr>
 		{/if}
 		{if $isValid.Editor.$journalId}
+                    {assign var="hasRole" value=1}
 			<tr>
 				{assign var="editorSubmissionsCount" value=$submissionsCount.Editor.$journalId}
 				<td>&#187; <a href="{url journal=$journalPath page="editor"}">{translate key="user.role.editor"}</a></td>
@@ -67,6 +70,7 @@
 			</tr>
 		{/if}
 		{if $isValid.SectionEditor.$journalId}
+                    {assign var="hasRole" value=1}
 			{assign var="sectionEditorSubmissionsCount" value=$submissionsCount.SectionEditor.$journalId}
 			<tr>
 				<td>&#187; <a href="{url journal=$journalPath page="sectionEditor"}">{translate key="user.role.sectionEditor"}</a></td>
@@ -83,6 +87,7 @@
 			</tr>
 		{/if}
 		{if $isValid.LayoutEditor.$journalId}
+                    {assign var="hasRole" value=1}
 			{assign var="layoutEditorSubmissionsCount" value=$submissionsCount.LayoutEditor.$journalId}
 			<tr>
 				<td>&#187; <a href="{url journal=$journalPath page="layoutEditor"}">{translate key="user.role.layoutEditor"}</a></td>
@@ -96,6 +101,7 @@
 			</tr>
 		{/if}
 		{if $isValid.Copyeditor.$journalId}
+                    {assign var="hasRole" value=1}
 			{assign var="copyeditorSubmissionsCount" value=$submissionsCount.Copyeditor.$journalId}
 			<tr>
 				<td>&#187; <a href="{url journal=$journalPath page="copyeditor"}">{translate key="user.role.copyeditor"}</a></td>
@@ -109,6 +115,7 @@
 			</tr>
 		{/if}
 		{if $isValid.Proofreader.$journalId}
+                    {assign var="hasRole" value=1}
 			{assign var="proofreaderSubmissionsCount" value=$submissionsCount.Proofreader.$journalId}
 			<tr>
 				<td>&#187; <a href="{url journal=$journalPath page="proofreader"}">{translate key="user.role.proofreader"}</a></td>
@@ -122,6 +129,7 @@
 			</tr>
 		{/if}
 		{if $isValid.Author.$journalId || $isValid.Reviewer.$journalId}
+                    {assign var="hasRole" value=1}
 			<tr><td class="separator" width="100%" colspan="5">&nbsp;</td></tr>
 		{/if}
 		{if $isValid.Author.$journalId}
@@ -169,9 +177,9 @@
 {/foreach}
 </div>	
 
-
 {if !$hasRole}
 	{if $currentJournal}
+            
 		<div id="noRolesForJournal">
 		<p>{translate key="user.noRoles.noRolesForJournal"}</p>
 		<ul class="plain">
@@ -199,9 +207,11 @@
 		<div id="currentJournal">
 		<p>{translate key="user.noRoles.chooseJournal"}</p>
 		<ul class="plain">
-			{foreach from=$allJournals item=thisJournal}
+			{iterate from=allAllowedJournals item=thisJournal}       
+                            {if not $thisJournal->getPath()|strstr:"_ext"} 
 				<li>&#187; <a href="{url journal=$thisJournal->getPath() page="user" op="index"}">{$thisJournal->getLocalizedTitle()|escape}</a></li>
-			{/foreach}
+                            {/if}
+			{/iterate}
 		</ul>
 		</div>
 	{/if}{* $currentJournal *}

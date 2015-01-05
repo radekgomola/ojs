@@ -536,6 +536,7 @@ Volitelně můžete uživateli poskytnout zdůvodnění, proč byl jeho účet z
 			<li class="highlightCopyediting">Je vyžadována akce v části redigování</li>
 			<li class="highlightLayoutEditing">Je vyžadována akce v části typografických úprav</li>
 			<li class="higlightProofreading">Je vyžadována akce v části korektur</li>
+                        <li class="fastTrack">Článek byl vložen pomocí pluginu QuickSubmit</li>
 		</ul>
 	</li>
 </ol>]]></message>
@@ -1196,7 +1197,7 @@ Ověřování může selhat při vyhledávání URL, které vyžadují "posted f
 	<message key="article.fontSize.small.altText">Malý</message>
 	<message key="article.fontSize.medium.altText">Střední</message>
 	<message key="article.fontSize.large.altText">Velký</message>
-	<message key="user.noRoles.chooseJournal">Váš účet není aktuálně asociován s žádným časopisem. Prosím, vyberte si časopis:</message>
+	<message key="user.noRoles.chooseJournal">Váš účet momentálně nemá přiřazenu roli v žádném časopisu. Prosím, vyberte si časopis:</message>
 	<message key="user.noRoles.noRolesForJournal">Váš účet nemá aktuálně v tomto časopisu žádné role. Vyberte prosím níže akci:</message>
 	<message key="user.noRoles.submitArticle">Poslat článek</message>
 	<message key="user.noRoles.submitArticleRegClosed">Poslat článek: registrace autorů je aktuálně zakázána.</message>

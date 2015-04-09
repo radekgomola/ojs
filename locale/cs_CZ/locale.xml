@@ -1443,4 +1443,20 @@ Masarykovy univerzity</message>
         
         <message key="plugins.generic.publicfolderbrowser.descriptionOnSite">Umožňuje spravovat veřejnou složku časopisu. Touto cestou je manažer schopen spravovat soubory a složky ve veřejné složce. Adresa je https://journals.muni.cz/public/journals/[id_časopisu]/[podsložka]/[název_souboru]</message>
 
+
+        <message key="manager.setup.refferences">Reference</message>
+        <message key="manager.setup.refferencesDescription">Umožní autorům vkládat k příspěvkům reference.</message>
+        <message key="admin.scheduledTask.clearLogs">Vyčistit log rozvrhovaných úloh. </message>
+        <message key="manager.setup.useMuniStyle">Použít design journals.muni.cz</message>
+        <message key="manager.setup.useMuniStyleDescriptionOff">Pokud vypnete používání designu journals.muni.cz, budete moci nahrát vlastní kaskádové styly nebo použít některé z přednastavených, je povolen i levý panel. Po odškrtnutí políčka je potřeba uložit formulář (automaticky je pak použit základní styl OJS).</message>
+        
+        <message key="manager.setup.aboutJournal">Podrobnosti</message>
+        <message key="manager.setup.useTopDescription">Použít horní blok (podrobnosti budou zobrazeny těsně pod nadpisem). </message>
+        <message key="manager.setup.useDownDescription">Použít spodní blok (podrobnost budou zobrazeny až za všemi odkazy). </message>
+        <message key="manager.setup.aboutJournalDescription">Popis časopisu v podrobnostech</message>
+        
+        <message key="manager.setup.socialNetworks">Sociální sítě</message>
+        <message key="manager.setup.facebook">Facebook.com</message>
+        <message key="manager.setup.twitter">Twitter.com</message>
+        <message key="manager.setup.gplus">Plus.google.com</message>
 </locale>

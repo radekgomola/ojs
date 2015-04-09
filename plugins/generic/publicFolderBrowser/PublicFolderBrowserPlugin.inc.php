@@ -53,7 +53,7 @@ class PublicFolderBrowserPlugin extends GenericPlugin {
 		$smarty =& $args[1];
 		$output =& $args[2];
 		$url = Request::url(null, 'manager', 'publicFolder');
-		$output = "<li>&#187; <a href='{$url}'>" . Locale::translate("plugins.generic.publicfolderbrowser.linklabel") . "</a></li>";
+		$output = "<li><a href='{$url}'>" . __('plugins.generic.publicfolderbrowser.linklabel') . "</a></li>";
 		return false;
 	}
 

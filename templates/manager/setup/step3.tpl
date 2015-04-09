@@ -451,7 +451,6 @@
                     });
                 </script>{/literal}
                 {/if}
-                </div>
 
                 <div class="separator"></div>
 

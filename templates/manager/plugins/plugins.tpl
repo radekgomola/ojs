@@ -29,7 +29,7 @@
 		{/if}
 	</ul>
 
-	{if !$preventManagerPluginManagement}
+	{if $isSiteAdmin && !$preventManagerPluginManagement}
 		<ul id="pluginManagement">
 			<li><b><a href="{url op="managePlugins" path=install}">{translate key="manager.plugins.install"}</a></b></li>
 		</ul>

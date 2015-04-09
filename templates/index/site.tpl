@@ -43,11 +43,11 @@
 	
 	{if $site->getSetting('showDescription')}
 		{if $journal->getLocalizedDescription()}
-      {if $journal->getLocalizedDescription()|strlen >= 550}
-  			<p class="description" style="text-align:justify;" >{$journal->getLocalizedDescription()|truncate:550|nl2br} <a href="{url journal=$journal->getPath()}" >{translate key="common.readMore"}</a></p>
-      {else}
+     {* {if $journal->getLocalizedDescription()|strlen >= 550}
+  			<p class="description" style="text-align:justify;" >{$journal->getLocalizedDescription()|nl2br} <a href="{url journal=$journal->getPath()}" >{translate key="common.readMore"}</a></p>
+      {else}*}
         <p class="description" style="text-align:justify;" >{$journal->getLocalizedDescription()|nl2br}</p>
-      {/if}
+      {*{/if}*}
 		{/if}    
 	{/if}
 	<p style="padding-top:-31px; min-width:700px;"><a href="{url journal=$journal->getPath()}" class="action">{translate key="site.journalView"}</a><span class="space"></span>  <a href="{url journal=$journal->getPath() page="issue" op="current"}" class="action">{translate key="site.journalCurrent"}</a><span class="space"></span>  {if ! $journal->getPath()|strstr:"_ext"}<a href="{url journal=$journal->getPath() page="user" op="register"}" class="action">{translate key="site.journalRegister"}</a>{/if}</p>

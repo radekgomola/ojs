@@ -3,8 +3,8 @@
 /**
  * @file tests/plugins/importexport/native/NativeImportExportPluginTest.inc.php
  *
- * Copyright (c) 2013-2014 Simon Fraser University Library
- * Copyright (c) 2000-2014 John Willinsky
+ * Copyright (c) 2013-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class NativeImportExportPluginTest
@@ -99,10 +99,14 @@ class NativeImportExportPluginTest extends DatabaseTestCase {
 		$generatedXml = trim($doc->saveXML());
 
 		$dummyFile = getenv('DUMMYFILE');
+		import('lib.pkp.classes.site.VersionCheck');
+		$currentVersion =& VersionCheck::getCurrentDBVersion();
 		$params = array(
 			'{$embedContents}' => base64_encode(file_get_contents($dummyFile)),
 			'{$currentDate}' => date('Y-m-d'),
+			'{$currentYear}' => date('Y'),
 			'{$dummyFileName}' => basename($dummyFile),
+			'{$version}' => urlencode($currentVersion->getMajor() . '.' . $currentVersion->getMinor() . '.' . $currentVersion->getRevision()),
 		);
 
 		$this->assertEquals(
@@ -126,6 +130,7 @@ class NativeImportExportPluginTest extends DatabaseTestCase {
 		$params = array(
 			'{$embedContents}' => base64_encode(file_get_contents($dummyFile)),
 			'{$currentDate}' => date('Y-m-d'),
+			'{$currentYear}' => date('Y'),
 			'{$dummyFileName}' => basename($dummyFile),
 		);
 
@@ -190,7 +195,7 @@ class NativeImportExportPluginTest extends DatabaseTestCase {
 		$this->assertFalse($article->getId() == $newArticle->getId());
 
 		// Check permissions
-		$this->assertEquals('2014', $newArticle->getCopyrightYear());
+		$this->assertEquals(date('Y'), $newArticle->getCopyrightYear());
 		$this->assertEquals(array('en_US' => 'Brian Vemer'), $newArticle->getCopyrightHolder(null));
 		$this->assertEquals('http://creativecommons.org/licenses/by-nc-nd/4.0', $newArticle->getLicenseURL());
 	}

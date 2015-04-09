@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE article PUBLIC "-//PKP//OJS Articles and Issues XML//EN" "http://pkp.sfu.ca/ojs/dtds/2.4.5/native.dtd">
+<!DOCTYPE article PUBLIC "-//PKP//OJS Articles and Issues XML//EN" "http://pkp.sfu.ca/ojs/dtds/{$version}/native.dtd">
 <article locale="en_US" language="en">
   <title locale="en_US">A Review of Information Systems and Corporate Memory: design for staff turn-over</title>
   <indexing>
@@ -16,7 +16,7 @@
   <permissions>
     <license_url>http://creativecommons.org/licenses/by-nc-nd/4.0</license_url>
     <copyright_holder locale="en_US">Brian Vemer</copyright_holder>
-    <copyright_year>2014</copyright_year>
+    <copyright_year>{$currentYear}</copyright_year>
   </permissions>
   <galley locale="en_US">
     <label>PDF</label>

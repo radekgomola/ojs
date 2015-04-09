@@ -3,15 +3,11 @@
 <!--
   * plugins/blocks/readingTools/locale/ca_ES/locale.xml
   *
-  * Copyright (c) 2013 Simon Fraser University Library
-  * Copyright (c) 2003-2013 John Willinsky
+  * Copyright (c) 2013-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-<<<<<<< HEAD
-  * Localization strings for the en_US (U.S. English) locale.
-=======
   * Credits: http://pkp.sfu.ca/wiki/index.php?title=OJS:_Catalan_%28ca_ES%29
->>>>>>> ojs-2_4_5-0
   *
   * Localization strings.
   -->
@@ -28,4 +24,5 @@
 	<message key="plugins.block.readingTools.loginRequired">Heu d'iniciar sessió</message>
 	<message key="plugins.block.readingTools.printThisArticle">Imprimeix aquest article</message>
 	<message key="plugins.block.readingTools.postComment">Publica un comentari</message>
-</locale> 
+
+</locale>

@@ -2,64 +2,65 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * @file plugins/importexport/medra/locale/en_US/common.xml
+  * @file plugins/importexport/medra/locale/cs_CZ/common.xml
   *
-  * Copyright (c) 2013-2014 Simon Fraser University Library
-  * Copyright (c) 2003-2014 John Willinsky
+  * Copyright (c) 2013-2015 Simon Fraser University Library
+  * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Shared localization strings
+  * Translation Jiří Dlouhý  
   -->
  
 <locale name="cs_CZ" full_name="Čeština">
-	<message key="plugins.importexport.common.error.DOIsNotAvailable">In order to use this plug-in please go to the "Public Identifier" plug-in category, enable and configure the DOI plug-in and specify a valid DOI prefix there.</message>
-	<message key="plugins.importexport.common.error.pluginNotConfigured">The plug-in is not fully set up.</message>
+	<message key="plugins.importexport.common.error.DOIsNotAvailable">Aby bylo možné používat tento plugin, jděte prosím do kategorie pluginů Veřejné identifikátory, povolte a nastavte plugin DOI a specifikujte tam platný prefix DOI.</message>
+	<message key="plugins.importexport.common.error.pluginNotConfigured">Plugin není plně nastavený</message>
 
-	<message key="plugins.importexport.common.settings">Settings</message>
+	<message key="plugins.importexport.common.settings">Nastavení</message>
 
-	<message key="plugins.importexport.common.settings.form.password">Password</message>
-	<message key="plugins.importexport.common.settings.form.password.description">Please note that the password will be saved as plain text, i.e. not encrypted.</message>
-	<message key="plugins.importexport.common.settings.form.passwordRequired">Please enter a password.</message>
+	<message key="plugins.importexport.common.settings.form.password">Heslo</message>
+	<message key="plugins.importexport.common.settings.form.password.description">Upozornění: heslo bude uloženo jako prostý text, nebude tedy zašifrováno.</message>
+	<message key="plugins.importexport.common.settings.form.passwordRequired">Vložte, prosím, heslo.</message>
 	
-	<message key="plugins.importexport.common.register">Register</message>
-	<message key="plugins.importexport.common.registerDescription">Click this button to register this object with the registration agency for the first time. This only works when you've never registered the object before!</message>
-	<message key="plugins.importexport.common.registerDescription.multi">Click this button to register or update the meta-data of the selected object(s) with the registration agency.</message>
-	<message key="plugins.importexport.common.register.error.mdsError">Registration was not successful! The DOI registration server returned an error: '{$param}'.</message>
-	<message key="plugins.importexport.common.register.success">Registration successful!</message>
-	<message key="plugins.importexport.common.register.warning">Registering many objects can take a long time. So please be patient after clicking the "Register" button. You'll be notified when registration is complete.</message>
-	<message key="plugins.importexport.common.register.noCredentials"><![CDATA[Direct registration is currently disabled. Please <a href="{$settingsUrl}">configure</a> a username and password to be able to register objects directly with the registration agency.]]></message>
+	<message key="plugins.importexport.common.register">Registrace</message>
+	<message key="plugins.importexport.common.registerDescription">Klikněte na toto tlačítko, abyste zaregistrovali tento objekt poprvé u registrační agentury. To funguje jen v případě, že objekt nebyl registrován nikdy před tím!</message>
+	<message key="plugins.importexport.common.registerDescription.multi">Klikněte na toto tlačítko, abyste zaregistrovali nebo aktualizovali metadata vybraného objektu u registrační agentury.</message>
+	<message key="plugins.importexport.common.register.error.mdsError">Registrace nebyla úspěšná! Registrační server DOI vrátil následující chybu: '{$param}'.</message>
+	<message key="plugins.importexport.common.register.success">Registrace byla úspěšná!</message>
+	<message key="plugins.importexport.common.register.warning">Registrace mnoho objektů může zabrat dlouhou dobu. Buďte, prosím, trpěliví po stlačení tlačítka "Registrace". Budete upozorněni, až bude registrace dokončena.</message>
+	<message key="plugins.importexport.common.register.noCredentials"><![CDATA[Přímá registrace je momentálně zakázána. <a href="{$settingsUrl}">Nakonfigurujte</a>, prosím, uživatelské jméno a heslo, aby bylo možné registrovat objekty přímo v rámci registrace u registrační agentury.]]></message>
 
-	<message key="plugins.importexport.common.markRegistered">Mark registered</message>
-	<message key="plugins.importexport.common.markRegisteredDescription">Click this button to mark the objects registered (e.g. if registered earlier or manually).</message>
+	<message key="plugins.importexport.common.markRegistered">Označení registrovaných</message>
+	<message key="plugins.importexport.common.markRegisteredDescription">Klikněte na toto tlačítko k označení objektů, které byly registrovány (např. pokud byly registrovány dříve, nebo ručně).</message>
 
-	<message key="plugins.importexport.common.update">Update</message>
-	<message key="plugins.importexport.common.updateDescription">Click this button to update the meta-data of this object with the registration agency. This only works if you successfully registered the object before!</message>
+	<message key="plugins.importexport.common.update">Aktualizace</message>
+	<message key="plugins.importexport.common.updateDescription">Klikněte na toto tlačítko pro aktualizaci metadat těchto objektů u registrační agentury. To bude správně fungovat pouze, pokud jste objekty již dříve úspěšně registrovali.</message>
 		
-	<message key="plugins.importexport.common.export">Export Data</message>
-	<message key="plugins.importexport.common.export.unAvailable">Data export is currently unavailable. Please check the plugin requirements.</message>
-	<message key="plugins.importexport.common.export.unregistered">Export all unregistered issues, articles and galleys</message>
-	<message key="plugins.importexport.common.export.selectUnregistered">Select unregistered Issues, Articles and Galleys</message>
-	<message key="plugins.importexport.common.export.noUnregistered">All published issues, articles and galleys have already been registered (or none of them has a DOI assigned).</message>
-	<message key="plugins.importexport.common.export.issues">All Issues</message>
-	<message key="plugins.importexport.common.export.selectIssue">Select Issues</message>
-	<message key="plugins.importexport.common.export.noIssues">No issues currently have DOIs assigned.</message>
-	<message key="plugins.importexport.common.export.articles">All Articles</message>
-	<message key="plugins.importexport.common.export.selectArticle">Select Articles</message>
-	<message key="plugins.importexport.common.export.noArticles">No articles currently have DOIs assigned.</message>
-	<message key="plugins.importexport.common.export.galleys">Export specific galleys</message>
-	<message key="plugins.importexport.common.export.selectGalley">Select Galleys</message>
-	<message key="plugins.importexport.common.export.noGalleys">No galleys currently have DOIs assigned.</message>
-	<message key="plugins.importexport.common.exportDescription">Click this button to export XML data for the selected object(s) into a local file without registering it with the registration agency. This can be useful if you want a third party to register DOIs for you or if you want to inspect the XML format before registering it.</message>
+	<message key="plugins.importexport.common.export">Export dat</message>
+	<message key="plugins.importexport.common.export.unAvailable">Export dat je v současnosti nedostupný. Zkontrolujte, prosím, požadavky pluginu.</message>
+	<message key="plugins.importexport.common.export.unregistered">Exportujte všechna neregistrovaná vydání, články a sazebnice</message>
+	<message key="plugins.importexport.common.export.selectUnregistered">Vyberte neregistrovaná vydání, články a sazebnice</message>
+	<message key="plugins.importexport.common.export.noUnregistered">Všechna publikovaná čísla, články a sazebnice již byly registrovány (nebo žádné z nich nemá přiřazeno DOI).</message>
+	<message key="plugins.importexport.common.export.issues">Všechna čísla</message>
+	<message key="plugins.importexport.common.export.selectIssue">Vybraná čísla</message>
+	<message key="plugins.importexport.common.export.noIssues">Žádné číslo nemá v současnosti přiděleno DOI.</message>
+	<message key="plugins.importexport.common.export.articles">Všechny články</message>
+	<message key="plugins.importexport.common.export.selectArticle">Vybrané články</message>
+	<message key="plugins.importexport.common.export.noArticles">Žádný článek nemá v současnosti přiděleno DOI.</message>
+	<message key="plugins.importexport.common.export.galleys">Export vybraných sazebnic</message>
+	<message key="plugins.importexport.common.export.selectGalley">Vyberte sazebnice</message>
+	<message key="plugins.importexport.common.export.noGalleys">Žádná sazebnice namá v současnosti přiděleno DOI.</message>
+	<message key="plugins.importexport.common.exportDescription">Klikněte na toto tlačítko pro export XML dat pro vybrané objekty do místního souboru bez jejich registrace u registrační agentury. To může být užitečné, pokud chcete, aby registraci DOI u registrační agentury za vás provedla třetí strana, nebo pokud si chcete XML formát zkontrolovat před jeho registrací.</message>
  
-	<message key="plugins.importexport.common.export.error.issueNotFound">No issue matched the specified issue ID: {$param}.</message>
-	<message key="plugins.importexport.common.export.error.articleNotFound">No article matched the specified article ID: {$param}.</message>
-	<message key="plugins.importexport.common.export.error.galleyNotFound">No galley matched the specified galley ID: {$param}.</message>
-	<message key="plugins.importexport.common.export.error.noDoiAssigned">The object with ID {$param} does not have a DOI assigned.</message>
-	<message key="plugins.importexport.common.export.error.unknownJournal">No journal matched the specified journal path: {$param}.</message>
-	<message key="plugins.importexport.common.export.error.unknownObjectType">The object type {$param} cannot be exported.</message>
-	<message key="plugins.importexport.common.export.error.outputFileNotWritable">The output file {$param} is not writable.</message>
+	<message key="plugins.importexport.common.export.error.issueNotFound">Žádné číslo nevyhovuje zadanému ID čísla: {$param}.</message>
+	<message key="plugins.importexport.common.export.error.articleNotFound">Žádný článek nevyhovuje zadanému ID článku: {$param}.</message>
+	<message key="plugins.importexport.common.export.error.galleyNotFound">Žádná sazebnice nevyhovuje zadanému ID sazebnice: {$param}.</message>
+	<message key="plugins.importexport.common.export.error.noDoiAssigned">Objekt s ID {$param} nemá přiděleno DOI.</message>
+	<message key="plugins.importexport.common.export.error.unknownJournal">Na zadané cestě nevyhovuje žádný časopis: {$param}.</message>
+	<message key="plugins.importexport.common.export.error.unknownObjectType">Typ objektu {$param} nelze exportovat.</message>
+	<message key="plugins.importexport.common.export.error.outputFileNotWritable">Do výstupního souboru {$param} nejde zapisovat.</message>
  
-	<message key="plugins.importexport.common.notification.exportSuccessful">Successfully exported selected objects to '{$param}'</message>
+	<message key="plugins.importexport.common.notification.exportSuccessful">Objekty byly úspěšně exportovány do '{$param}'</message>
  
-	<message key="plugins.importexport.common.cliError">ERROR:</message>
+	<message key="plugins.importexport.common.cliError">CHYBA:</message>
 </locale>

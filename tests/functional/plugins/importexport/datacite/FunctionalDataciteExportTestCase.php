@@ -3,8 +3,8 @@
 /**
  * @file tests/functional/plugins/importexport/datacite/FunctionalDataciteExportTest.inc.php
  *
- * Copyright (c) 2013-2014 Simon Fraser University Library
- * Copyright (c) 2000-2014 John Willinsky
+ * Copyright (c) 2013-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class FunctionalDataciteExportTest
@@ -364,7 +364,6 @@ class FunctionalDataciteExportTest extends FunctionalDoiExportTest {
 
 		// Request the DOI's URL over SSL.
 		$apiUrl = "https://mds.datacite.org/%action/$doi?testMode=true";
-		curl_setopt($curlCh, CURLOPT_SSLVERSION, 3);
 		curl_setopt($curlCh, CURLOPT_SSL_VERIFYPEER, false);
 
 		curl_setopt($curlCh, CURLOPT_RETURNTRANSFER, true);

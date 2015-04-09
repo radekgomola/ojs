@@ -7,8 +7,8 @@
 /**
  * @file classes/user/form/RegistrationForm.inc.php
  *
- * Copyright (c) 2013-2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2013-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class RegistrationForm
@@ -337,7 +337,7 @@ class RegistrationForm extends Form {
 
 				// Send email validation request to user
 				$mail = new MailTemplate('USER_VALIDATE');
-				$mail->setFrom($journal->getSetting('contactEmail'), $journal->getSetting('contactName'));
+				$mail->setReplyTo(null);
 				$mail->assignParams(array(
 					'userFullName' => $user->getFullName(),
 					'activateUrl' => Request::url($journal->getPath(), 'user', 'activateUser', array($this->getData('username'), $accessKey))
@@ -349,7 +349,7 @@ class RegistrationForm extends Form {
 			if ($this->getData('sendPassword')) {
 				// Send welcome email to user
 				$mail = new MailTemplate('USER_REGISTER');
-				$mail->setFrom($journal->getSetting('contactEmail'), $journal->getSetting('contactName'));
+				$mail->setReplyTo(null);
 				$mail->assignParams(array(
 					'username' => $this->getData('username'),
 					'password' => String::substr($this->getData('password'), 0, 30), // Prevent mailer abuse via long passwords

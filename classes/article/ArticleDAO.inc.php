@@ -3,8 +3,8 @@
 /**
  * @file classes/article/ArticleDAO.inc.php
  *
- * Copyright (c) 2013-2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2013-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ArticleDAO
@@ -171,7 +171,7 @@ class ArticleDAO extends DAO {
 				LEFT JOIN section_settings sal ON (s.section_id = sal.section_id AND sal.setting_name = ? AND sal.locale = ?) ';
 		if (is_null($settingValue)) {
 			$sql .= 'LEFT JOIN article_settings ast ON a.article_id = ast.article_id AND ast.setting_name = ?
-				WHERE	(ast.setting_value IS NULL OR ast.setting_value = "")';
+				WHERE	(ast.setting_value IS NULL OR ast.setting_value = \'\')';
 		} else {
 			$params[] = $settingValue;
 			$sql .= 'INNER JOIN article_settings ast ON a.article_id = ast.article_id
@@ -750,6 +750,25 @@ class ArticleDAO extends DAO {
 			);
 			unset($article);
 		}
+		$this->flushCache();
+	}
+
+	/**
+	 * Delete the public ID of an article.
+	 * @param $articleId int
+	 * @param $pubIdType string One of the NLM pub-id-type values or
+	 * 'other::something' if not part of the official NLM list
+	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 */
+	function deletePubId($articleId, $pubIdType) {
+		$settingName = 'pub-id::'.$pubIdType;
+		$this->update(
+			'DELETE FROM article_settings WHERE setting_name = ? AND article_id = ?',
+			array(
+				$settingName,
+				(int)$articleId
+			)
+		);
 		$this->flushCache();
 	}
 

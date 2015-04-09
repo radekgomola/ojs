@@ -1,12 +1,12 @@
 {**
-* templates/manager/setup/step3.tpl
-*
-* Copyright (c) 2013-2014 Simon Fraser University Library
-* Copyright (c) 2003-2014 John Willinsky
-* Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-*
-* Step 3 of journal setup.
-*}
+ * templates/manager/setup/step3.tpl
+ *
+ * Copyright (c) 2013-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * Step 3 of journal setup.
+ *}
 {assign var="pageTitle" value="manager.setup.guidingSubmissions"}
 {include file="manager/setup/setupHeader.tpl"}
 

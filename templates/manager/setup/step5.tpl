@@ -1,8 +1,8 @@
 {**
  * templates/manager/setup/step5.tpl
  *
- * Copyright (c) 2013-2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2013-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Step 5 of journal setup.
@@ -474,7 +474,7 @@ function prepBlockFields() {
 {translate key="common.fileName"}: <a href="{$publicFilesDir}/{$journalStyleSheet.uploadName|escape:"url"}" class="file">{$journalStyleSheet.name|escape}</a> {$journalStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteJournalStyleSheet" value="{translate key="common.delete"}" class="button" />
 {/if} {/if}
 
-<table border="0" align="center">
+<table id="assignBlocksToSidebars" border="0" align="center" style="width: 100%;">
 	<tr align="center">
 		<td rowspan="2" {if $currentJournal->getSetting('useMuniStyle')}style="display:none"{/if}>
 			{translate key="manager.setup.layout.leftSidebar"}<br/>
@@ -486,7 +486,7 @@ function prepBlockFields() {
 					<option value=""></option>
 				{/foreach}
 			</select><br/>
-			<input class="button defaultButton" style="width: 130px;" type="button" value="&darr;" onclick="moveDown(this.form.elements['blockSelectLeftWidget']);" />
+			<input class="button defaultButton" style="width: 100%;" type="button" value="&darr;" onclick="moveDown(this.form.elements['blockSelectLeftWidget']);" />
 		</td>
 		<td {if $currentJournal->getSetting('useMuniStyle')}style="display:none"{/if}>
 			<input class="button defaultButton" style="width: 30px;" type="button" value="&larr;" onclick="jumpList(this.form.elements['blockUnselectedWidget'],this.form.elements['blockSelectLeftWidget']);" /><br/>
@@ -503,10 +503,10 @@ function prepBlockFields() {
 			</select>
 		</td>
 		<td>
-			<input class="button defaultButton" style="width: 30px;" type="button" value="&larr;" onclick="jumpList(this.form.elements['blockSelectRightWidget'],this.form.elements['blockUnselectedWidget']);" /><br/>
-			<input class="button defaultButton" style="width: 30px;" type="button" value="&rarr;" onclick="jumpList(this.form.elements['blockUnselectedWidget'],this.form.elements['blockSelectRightWidget']);" />
+			<input class="button defaultButton" style="width: 100%;" type="button" value="&larr;" onclick="jumpList(this.form.elements['blockSelectRightWidget'],this.form.elements['blockUnselectedWidget']);" /><br/>
+			<input class="button defaultButton" style="width: 100%;" type="button" value="&rarr;" onclick="jumpList(this.form.elements['blockUnselectedWidget'],this.form.elements['blockSelectRightWidget']);" />
 		</td>
-		<td rowspan="2">
+		<td rowspan="2" id="assignBlocksToSidebarRight" style="width: 30%;">
 			{translate key="manager.setup.layout.rightSidebar"}<br/>
 			<input class="button defaultButton" style="width: 130px;" type="button" value="&uarr;" onclick="moveUp(this.form.elements['blockSelectRightWidget']);" /><br/>
 			<select name="blockSelectRightWidget" multiple="multiple" size="10" class="selectMenu" style="width: 200px; height:200px" >
@@ -521,8 +521,8 @@ function prepBlockFields() {
 	</tr>
 	<tr align="center" {if $currentJournal->getSetting('useMuniStyle')}style="display:none"{/if}>
 		<td colspan="3" valign="top" height="60px">
-			<input class="button defaultButton" style="width: 190px;" type="button" value="&larr;" onclick="jumpList(this.form.elements['blockSelectRightWidget'],this.form.elements['blockSelectLeftWidget']);" /><br/>
-			<input class="button defaultButton" style="width: 190px;" type="button" value="&rarr;" onclick="jumpList(this.form.elements['blockSelectLeftWidget'],this.form.elements['blockSelectRightWidget']);" />
+			<input class="button defaultButton" style="width: 100%;" type="button" value="&larr;" onclick="jumpList(this.form.elements['blockSelectRightWidget'],this.form.elements['blockSelectLeftWidget']);" /><br/>
+			<input class="button defaultButton" style="width: 100%;" type="button" value="&rarr;" onclick="jumpList(this.form.elements['blockSelectLeftWidget'],this.form.elements['blockSelectRightWidget']);" />
 		</td>
 	</tr>
 </table>
@@ -609,4 +609,3 @@ function prepBlockFields() {
 </form>
 
 {include file="common/footer.tpl"}
-

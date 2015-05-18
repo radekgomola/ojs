@@ -86,7 +86,7 @@
         <tr valign="top">
 		<td width="20%" class="label">{translate key="article.citace"}</td>
 		<td width="80%" class="value">{$citace[$formLocale]|strip_unsafe_html|default:"&mdash;"}</td>
-	</tr>
+        </tr>
 </table>
 </div>
 <div class="separator"></div>

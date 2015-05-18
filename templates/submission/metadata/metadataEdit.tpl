@@ -428,6 +428,15 @@ function moveAuthor(dir, authorIndex) {
 	<td width="20%" class="label">{fieldLabel name="citations" key="submission.citations"}</td>
 	<td width="80%" class="value"><textarea name="citations" id="citations" class="textArea" rows="15" cols="60">{$citations|escape}</textarea></td>
 </tr>
+{if $loggedInUsername == "admin"}
+<tr>
+    <td>
+    </td>
+    <td height="40px">
+        {call_hook name="Templates::Editor::Index::DOIFinder"}
+    </td>
+</tr>
+{/if}
 </table>
 </div>
 <script type="text/javascript">

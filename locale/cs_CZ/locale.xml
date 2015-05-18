@@ -925,7 +925,7 @@ současného hesla.<br /><br />Pro resetování Vašeho hesla vložte níže Va�
 	<message key="about.submissions">Příspěvky</message>
 	<message key="about.sponsors">Sponzoři</message>
 	<message key="about.contributors">Zdroje podpory</message>
-	<message key="about.onlineSubmissions">Online příspěvky</message>
+	<message key="about.onlineSubmissions">Zaslat příspěvěk</message>
 	<message key="about.onlineSubmissions.haveAccount">Máte již uživatelské jméno/heslo pro {$journalTitle}?</message>
 	<message key="about.onlineSubmissions.login">Jít na přihlášení</message>
 	<message key="about.onlineSubmissions.needAccount">Potřebujete uživatelské jméno/heslo?</message>
@@ -1448,6 +1448,7 @@ Masarykovy univerzity</message>
         <message key="manager.setup.refferencesDescription">Umožní autorům vkládat k příspěvkům reference.</message>
         <message key="admin.scheduledTask.clearLogs">Vyčistit log rozvrhovaných úloh. </message>
         <message key="manager.setup.useMuniStyle">Použít design journals.muni.cz</message>
+         <message key="manager.setup.useMuniStyleDescription"> Pokud políčko zaškrtnete budete využívat korporátní design journals.muni.cz. Používání levého panelu a vlastních kaskádových stylů (CSS) bude vypnuto. </message>
         <message key="manager.setup.useMuniStyleDescriptionOff">Pokud vypnete používání designu journals.muni.cz, budete moci nahrát vlastní kaskádové styly nebo použít některé z přednastavených, je povolen i levý panel. Po odškrtnutí políčka je potřeba uložit formulář (automaticky je pak použit základní styl OJS).</message>
         
         <message key="manager.setup.aboutJournal">Podrobnosti</message>
@@ -1459,4 +1460,6 @@ Masarykovy univerzity</message>
         <message key="manager.setup.facebook">Facebook.com</message>
         <message key="manager.setup.twitter">Twitter.com</message>
         <message key="manager.setup.gplus">Plus.google.com</message>
+        
+        <message key="pedor.announcement">Výzva pro autory</message>
 </locale>

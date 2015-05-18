@@ -1,31 +1,29 @@
 <?php
 
 /**
- * @file PublicFolderBrowserPlugin.inc.php
+ * @file MunipressDOIFinderPlugin.inc.php
  *
- * Copyright (c) 2008 Mahmoud Saghaei
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING..
+ * Copyright (c) 20015 Munipress
  *
- * @class PublicFolderBrowserPlugin
- * @ingroup plugins_generic_publicfolderbrowser
+ * @class MunipressDOIFinderPlugin
+ * @ingroup plugins_generic_munipressdoifinder
  *
- * @brief Enables browsing of the journal public folder
  */
 
 import('classes.plugins.GenericPlugin');
 
-class PublicFolderBrowserPlugin extends GenericPlugin {
+class MunipressDOIFinderPlugin extends GenericPlugin {
 
 	function getName() {
-		return 'PublicFolderBrowserPlugin';
+		return 'MunipressDOIFinderPlugin';
 	}
 
 	function getDisplayName() {
-		return __('plugins.generic.publicfolderbrowser.displayName');
+		return __('plugins.generic.munipressdoifinder.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.generic.publicfolderbrowser.description');
+		return __('plugins.generic.munipressdoifinder.description');
 	}   
 
 	/**
@@ -37,7 +35,7 @@ class PublicFolderBrowserPlugin extends GenericPlugin {
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
-				HookRegistry::register('Templates::Manager::Index::ManagementPages',
+				HookRegistry::register('Templates::Editor::Index::DOIFinder',
 					array(&$this, 'callback'));
 				HookRegistry::register('LoadHandler', array(&$this, 'handleRequest'));
 			}
@@ -52,29 +50,35 @@ class PublicFolderBrowserPlugin extends GenericPlugin {
 		$params =& $args[0];
 		$smarty =& $args[1];
 		$output =& $args[2];
-		$url = Request::url(null, 'manager', 'publicFolder');
-		$output = "<li><a href='{$url}'>" . __('plugins.generic.publicfolderbrowser.linklabel') . "</a></li>";
+
+                $requestedArgs = Request::getRequestedArgs();
+
+                $url = Request::url(null, 'editor', 'munipressDOI',array($requestedArgs[0]));
+                $url_help = Request::url(null, 'editor', 'munipressDOIinfo');
+
+                $output = "<a href=\"javascript:openWindowDoi('{$url}',1000,800)\" class='tlacitko_doi'>" . __('plugins.generic.munipressdoifinder.linklabel') . "</a>"
+                         ."<a href=\"javascript:openWindowDoi('{$url_help}',1000,800)\" class='tlacitko_doi'>" . __('plugins.generic.munipressdoifinder.linklabel.info') . "</a>";
 		return false;
 	}
-
-	function handleRequest($hookName, $args) {
+        
+        function handleRequest($hookName, $args) {
 		$page =& $args[0];
 		$op =& $args[1];
 		$sourceFile =& $args[2];
 
 		// If the request is for the log analyzer itself, handle it.
-		$op_arr = array('publicFolder', 'publicFileUpload', 'publicFileMakeDir', 'publicFileDelete');
-		if ($page === 'manager' && in_array($op, $op_arr)) {
-			$this->import('PublicFolderHandler');
+		$op_arr = array('munipressDOI','munipressDOIinfo','munipressfinder');
+		if ($page === 'editor' && in_array($op, $op_arr)) {
+			$this->import('MunipressDOIHandler');
 			Registry::set('plugin', $this);
-			define('HANDLER_CLASS', 'PublicFolderHandler');
+			define('HANDLER_CLASS', 'MunipressDOIHandler');
 			return true;
 		}
 
 		return false;
 	}
 
-	/**
+        /**
 	 * Determine whether or not this plugin is enabled.
 	 */
 	function getEnabled() {

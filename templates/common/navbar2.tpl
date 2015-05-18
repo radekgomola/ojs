@@ -56,7 +56,7 @@
 
 		{foreach from=$navMenuItems item=navItem key=navItemKey}
 			{if $navItem.url != '' && $navItem.name != ''}
-				<li class="navItem" id="navItem-{$navItemKey|escape}"><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{$baseUrl}{$navItem.url|escape}{/if}">{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name}{/if}</a></li>
+				<li class="navItem" id="navItem-{$navItemKey|escape}"><a class="navItem-{$navItemKey|escape} {if $requestedPage=="navItem-{$navItemKey|escape}"}navItem-{$navItemKey|escape}-selected{/if}" href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{$baseUrl}{$navItem.url|escape}{/if}">{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name}{/if}</a></li>
 			{/if}
 		{/foreach}
 	</ul>

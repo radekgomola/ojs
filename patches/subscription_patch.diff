@@ -1,0 +1,37 @@
+diff --git a/classes/validation/ValidatorInSet.inc.php b/classes/validation/ValidatorInSet.inc.php
+index 2c5cb93..56063e8 100644
+--- a/classes/validation/ValidatorInSet.inc.php
++++ b/classes/validation/ValidatorInSet.inc.php
+@@ -42,7 +42,7 @@ function isValid($value) {
+ 		if (!is_array($this->_acceptedValues)) {
+ 			return false;
+ 		}
+-		return in_array($value, $this->_acceptedValues, true);
++		return in_array($value, $this->_acceptedValues);
+ 	}
+ 
+ }
+diff --git a/tests/classes/validation/ValidatorInSetTest.php b/tests/classes/validation/ValidatorInSetTest.php
+index 453ead3..5ec09ec 100644
+--- a/tests/classes/validation/ValidatorInSetTest.php
++++ b/tests/classes/validation/ValidatorInSetTest.php
+@@ -23,12 +23,15 @@ class ValidatorInSetTest extends PKPTestCase {
+ 	 * @covers Validator
+ 	 */
+ 	public function testValidatorInSet() {
+-		$validator = new ValidatorInSet(array(0, 1, 'a', 'B'));
+-		self::assertTrue($validator->isValid(0)); // Valid for logically false variable
+-		self::assertTrue($validator->isValid(1)); // Valid
+-		self::assertFalse($validator->isValid('b')); // Loose in_array() checking
++		$validator = new ValidatorInSet(array(1, 2, 'a', 'B'));
++		self::assertTrue($validator->isValid(0)); // Warning: depends on loose in_array(), so a value of 0 will match any string
++		self::assertTrue($validator->isValid(1)); // Value in set
++		self::assertFalse($validator->isValid('b')); // Value not in set
++		self::assertTrue($validator->isValid('1')); // Loose in_array() checking matches strings to numerics
+ 		$validator = new ValidatorInSet(array());
+ 		self::assertFalse($validator->isValid(1)); // Any value in empty set
++		$validator = new ValidatorInSet(array(0, 'anything')); // Warning: depends on loose in_array(), so a value of 0 will match any string
++		self::assertTrue($validator->isValid('something')); // Any string value
+ 	}
+ }
+ 

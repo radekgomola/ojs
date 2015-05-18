@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2008 Mahmoud Saghaei
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING..
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id: locale.xml,v 1.5 2008/06/11 18:55:13 asmecher Exp $
+  -->
+ 
+<locale name="cs_CZ" full_name="Czech">
+	<message key="plugins.generic.publicfolderbrowser.displayName">Prohlížeč veřejné složky časopisu</message>
+	<message key="plugins.generic.publicfolderbrowser.description">Tento plugin přidá odkaz do sekce správa pro manažera časopisu. Kliknutím na tento odkaz může manažer spravovat obsah veřejné složky časopisu. Tímto způsobem může manažer časopisu nahrávat a mazat soubory ve veřejné složce a přidávat další složky. Adresa souboru pak bude http://[adresa_stránky]/public/journals/[id_časopisu]/[podsložka]/[název_souboru]. O ID svého časopisu požádejte administrátora stránky.</message>
+	<message key="plugins.generic.publicfolderbrowser.settings">Nastavení</message>
+	<message key="plugins.generic.publicfolderbrowser.linklabel">Prohlížeč veřejné složky časopisu</message>
+
+	<message key="plugins.generic.publicfolderbrowser.descriptionOnSite">Umožňuje spravovat veřejnou složku časopisu. Touto cestou je manažer schopen spravovat soubory a složky ve veřejné složce. Adresa je https://journals.muni.cz/public/journals/[id_časopisu]/[podsložka]/[název_souboru]</message>
+</locale>

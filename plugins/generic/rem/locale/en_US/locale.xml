@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * @file plugins/generic/ejme/locale/en_US/locale.xml
+  *
+  * Rem plugin localization strings for the en_US (U.S. English) locale.
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.rem.displayName">Resource Maps</message>
+	<message key="plugins.generic.rem.description">This plugin enables OAI-PMH harvesting of article Resource Maps (RDF)</message>
+	<message key="plugins.generic.rem.enabled">ResourceMap Plugin has been enabled</message>
+	<message key="plugins.generic.rem.disabled">ResourceMap Plugin has been disabled</message>
+	
+	<message key="plugins.generic.rem.remArticle">View Resource Map (RDF) for this article</message>
+
+</locale>

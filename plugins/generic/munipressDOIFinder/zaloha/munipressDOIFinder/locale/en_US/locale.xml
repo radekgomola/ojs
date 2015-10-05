@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2008 Mahmoud Saghaei
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING..
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id: locale.xml,v 1.5 2008/06/11 18:55:13 asmecher Exp $
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+        <message key="plugins.generic.munipressdoifinder.displayName">References' DOIs finder</message>
+	<message key="plugins.generic.munipressdoifinder.description"><![CDATA[The plugin uses "<a href="https://kic-internal.ics.muni.cz/apps/parscit-to-doi/">parscit-to-doi</a>" program created by Dr Michal Růžička from ICS.]]></message>
+	<message key="plugins.generic.munipressdoifinder.linklabel">Find DOI</message>
+        <message key="plugins.generic.munipressdoifinder.linklabel.info">DOI finder help</message>
+        <message key="plugins.generic.munipressdoifinder.loadingmessage">References' DOIs are being searched. This may take up to several minutes (possibly over 10 minutes if the number of references is very high). Do not refresh the page!</message>
+        <message key="plugins.generic.munipressdoifinder.copyrightmessage"><![CDATA[The plugin uses "<a href="https://kic-internal.ics.muni.cz/apps/parscit-to-doi/">parscit-to-doi</a>" program created by Dr Michal Růžička from ICS.]]></message>
+
+</locale>

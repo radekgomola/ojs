@@ -52,9 +52,9 @@ class SocialBlockPlugin extends BlockPlugin {
 		$journal =& Request::getJournal();
 		if (!$journal) return '';
 
-		$templateMgr->assign('socialFacebook', $journal->getLocalizedSetting('socialFacebook'));
-		$templateMgr->assign('socialTwitter', $journal->getLocalizedSetting('socialTwitter'));
-		$templateMgr->assign('socialGplus', $journal->getLocalizedSetting('socialGplus'));
+		$templateMgr->assign('socFacebook', $journal->getLocalizedSetting('socialFacebook'));
+		$templateMgr->assign('socTwitter', $journal->getLocalizedSetting('socialTwitter'));
+		$templateMgr->assign('socGplus', $journal->getLocalizedSetting('socialGplus'));
 		return parent::getContents($templateMgr);
 	}
 }

@@ -22,9 +22,9 @@
 		<link>{$journal->getUrl()|escape}</link>
 
 		{if $journal->getLocalizedDescription()}
-			{assign var="description" value=$journal->getLocalizedDescription()}
+			{assign var="description" value=$journal->getLocalizedDescription()|strip_tags}
 		{elseif $journal->getLocalizedSetting('searchDescription')}
-			{assign var="description" value=$journal->getLocalizedSetting('searchDescription')}
+			{assign var="description" value=$journal->getLocalizedSetting('searchDescription')|strip_tags}
 		{/if}
 
 		<description>{$description|strip|escape:"html"}</description>

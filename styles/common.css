@@ -204,8 +204,8 @@ table.announcementsMore td {
  */
 
 .tocArticle {
-	width: 100%;
-	padding: 5px 0;
+	width: 830px;
+        padding-top: 5px;
 }
 
 .tocArticleCoverImage {

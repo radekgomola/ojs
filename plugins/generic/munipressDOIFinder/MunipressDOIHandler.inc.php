@@ -10,14 +10,19 @@
  *
  */
 
-import('manager.ManagerHandler');
+import('editor.EditorHandler');
 
 // Import JSON class for use with all AJAX requests.
 import('lib.pkp.classes.core.JSONMessage');
 
 require_once 'classes/simple_html_dom.php';
-class MunipressDOIHandler extends ManagerHandler {
+class MunipressDOIHandler extends EditorHandler {
     
+        public $_nove = 0;
+        public $_chybne = 0;
+        public $_stejne = 0;
+        public $_zadne = 0;
+
 	function munipressDOI($args) {
 		parent::validate();
 		parent::setupTemplate(true);
@@ -25,8 +30,7 @@ class MunipressDOIHandler extends ManagerHandler {
                 
 		import('file.FileManager');
                 $articleId = $args[0];
-
-                $templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'manager'), 'manager.journalManagement')));
+                $templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'editor'), 'editor.metadataEdit')));
                 $plugin =& Registry::get('plugin');
                 $templateMgr->assign('articleId', $articleId);
                 
@@ -36,14 +40,17 @@ class MunipressDOIHandler extends ManagerHandler {
     
         function munipressfinder(){
             $articleId = Request::getUserVar('articleId');
-            
             $citationDao =& DAORegistry::getDAO('CitationDAO'); /* @var $citationDao CitationDAO */
             $citationFactory =& $citationDao->getObjectsByAssocId(ASSOC_TYPE_ARTICLE, $articleId);
 
-            $citace = $this->factory2citace($citationFactory);       
-            $zpracovane = $this->zpracuj_html($this->curl_parsit2doi($citace));
-
-            $returner = $this->vytvor_vystup($zpracovane[0], $zpracovane[1], $zpracovane[2], $zpracovane[3], $zpracovane[4]);
+            $citace = $this->factory2citace($citationFactory);  
+            $zpracovane = "";
+            foreach($citace as $cit){
+                $zpracovane .= $this->zpracuj_html($this->curl_parsit2doi($cit));
+            }
+//            $returner = $this->vytvor_vystup($zpracovane[0], $zpracovane[1], $zpracovane[2], $zpracovane[3], $zpracovane[4]);
+            
+            $returner = $this->vytvor_vystup($zpracovane);
             
             $json = new JSONMessage(true, $returner);
             return $json->getString();
@@ -59,7 +66,6 @@ class MunipressDOIHandler extends ManagerHandler {
         }
         
         function curl_parsit2doi($citace){
-
                 if (!function_exists('curl_init')){
                     die('Sorry cURL is not installed!');
                 }
@@ -85,13 +91,7 @@ class MunipressDOIHandler extends ManagerHandler {
         
         function zpracuj_html($string){
             $html = str_get_html($string);
-            $returner = array();
             $vystup = "";
-            $nove = 0;
-            $stejne = 0;
-            $chybne = 0;
-            $zadne = 0;
-            
             foreach($html->find('ol') as $element){
                 
                 $blok_citaci = str_get_html($element);
@@ -102,31 +102,27 @@ class MunipressDOIHandler extends ManagerHandler {
                     switch ($typCitace){
                         case 1;
                             $citace->class="nove_doi";
-                            $nove++;
+                            $this->_nove++;
                             break;
                         case 2:
                             $citace->class="jine_doi";
-                            $chybne++;
+                            $this->_chybne++;
                             break;
                         case 3:
                             $citace->class="stejne_doi";
-                            $stejne++;
+                            $this->_stejne++;
                             break;
                         default:
                             $citace->class="zadne_doi";
-                            $zadne++;
+                            $this->_zadne++;
                             break;
                     }
                     $vystup .= $citace. "<br />\n";
                     $i++;
                 }
             }
-            $returner[] = $vystup;
-            $returner[] = $nove;
-            $returner[] = $stejne;
-            $returner[] = $chybne;
-            $returner[] = $zadne;
-            
+            $returner = $vystup;
+
             return $returner;
         }
         
@@ -139,10 +135,13 @@ class MunipressDOIHandler extends ManagerHandler {
             $doi = 'span[id=doi-ref-'.$id.']';
             
             $link = $html->find('a');
+            $ref = $html->find($retezec);
+            $ref_doi = $html->find($doi);
             if(isset($link[0]->href)){
-                $ref = $html->find($retezec);
-                $ref_doi = $html->find($doi);
+                
                 if(preg_match("/doi:(\s|)\d\d\.\d\d\d\d\//i", $ref[0])>0) {
+                    $ref[0] = str_replace("&amp;", "&", $ref[0]);
+//                    echo strip_tags($ref[0])."\n\n".strip_tags($ref_doi[0])."\n\n";
                     if(strpos($ref[0],strip_tags($ref_doi[0]))>0){
                         $returner = 3;
                     } else{
@@ -151,36 +150,22 @@ class MunipressDOIHandler extends ManagerHandler {
                 } else{
                     $returner = 1;
                 }
+            } elseif(preg_match("/doi:(\s|)\d\d\.\d\d\d\d\//i", $ref[0])>0) {
+                return 2;
             }
             return $returner;
         }
         
         
         private function factory2citace($citationFactory){
-//            $i=0;
             $citation = $citationFactory->next();
             
             $string = $citation->getRawCitation();
             $references = $this->zpracuj_citace($string);
-//            $i++;
+
             return $references;
         }
                 
-//        private function zpracuj_citace($string){
-//            $html = str_get_html($string);
-//            $citace = "";
-//            foreach($html->find('p') as $element){
-//                
-//                $element = str_replace("&amp;", "&", $element);
-//                
-//                $element = $this->clearBr($element);
-//                $test = $this->zpracuj_html($element);
-//                $citace .= strip_tags($element). "\n\n";
-//            }
-//
-//            return $citace;
-//        }
-        
         private function zpracuj_citace($string){
             $html = str_get_html($string);
             $citace = "";
@@ -191,10 +176,10 @@ class MunipressDOIHandler extends ManagerHandler {
                 $element = str_replace("&amp;", "&", $element);
                 
                 $element = $this->clearBr($element);
-                $test = $this->zpracuj_html($element);
+//                $test = $this->zpracuj_html($element);
                 $citace .= strip_tags($element). "\n\n";
                 $i++;
-                if($i >=50 ){
+                if($i >=80){
                     $returner[] = $citace;
                     $citace = "";
                     $i = 0;
@@ -205,14 +190,14 @@ class MunipressDOIHandler extends ManagerHandler {
             return $returner;
         }
         
-        private function vytvor_vystup($string, $nove, $stejne, $chybne, $zadne){
+         private function vytvor_vystup($string){
             $statistika = "
                 <table width=\"600px\" class=\"statistika_doi\">\n
                     <tr><td></td><td>Celkem</td>
-                    <tr class=\"nove_doi\"><td>U citace bylo nalezeno nové doi.</td><td>".$nove."</td></tr>\n
-                    <tr class=\"jine_doi\"><td>Bylo nalezeno DOI, ale neshoduje se s DOI obsaženém v citaci.</td><td>".$chybne."</td></tr>\n
-                    <tr class=\"stejne_doi\"><td>Citace již stejné DOI obsahuje.</td><td>".$stejne."</td></tr>\n
-                    <tr class=\"zadne_doi\"><td>U citace nebylo nalezeno doi.</td><td>".$zadne."</td></tr>\n
+                    <tr class=\"nove_doi\"><td>U citace bylo nalezeno nové doi.</td><td>".$this->_nove."</td></tr>\n
+                    <tr class=\"jine_doi\"><td>Bylo nalezeno DOI, ale neshoduje se s DOI obsaženém v citaci.</td><td>".$this->_chybne."</td></tr>\n
+                    <tr class=\"stejne_doi\"><td>Citace již stejné DOI obsahuje.</td><td>".$this->_stejne."</td></tr>\n
+                    <tr class=\"zadne_doi\"><td>U citace nebylo nalezeno doi.</td><td>".$this->_zadne."</td></tr>\n
                 </table>\n";
             $citace = "<ol>\n".$string."</ol>\n";
             $returner = $statistika."<hr />".$citace;

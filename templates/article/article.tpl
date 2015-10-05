@@ -7,7 +7,7 @@
  *
  * Article View.
  *}
-
+TEST
 {strip}
 {if $galley}
 	{assign var=pubObject value=$galley}
@@ -25,6 +25,7 @@
 {/strip}
 
 {if $galley}
+        
 	{if $galley->isHTMLGalley()}
 		{$galley->getHTMLContents()}
 	{elseif $galley->isPdfGalley()}

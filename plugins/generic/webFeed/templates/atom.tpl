@@ -58,7 +58,7 @@
 				{* required elements *}
 				<id>{url page="article" op="view" path=$article->getBestArticleId($currentJournal)}</id>
 				<title>{$article->getLocalizedTitle()|strip|escape:"html"}</title>
-				<updated>{$article->getLastModified()|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</updated>
+				{*<updated>{$article->getLastModified()|date_format:"%Y-%m-%dT%T%z"|regex_replace:"/00$/":":00"}</updated>*}
 
 				{* recommended elements *}
 

@@ -16,9 +16,9 @@
 		<link>{$journal->getUrl()|escape}</link>
 
 		{if $journal->getLocalizedDescription()}
-			{assign var="description" value=$journal->getLocalizedDescription()}
+			{assign var="description" value=$journal->getLocalizedDescription()|strip_tags}
 		{elseif $journal->getLocalizedSetting('searchDescription')}
-			{assign var="description" value=$journal->getLocalizedSetting('searchDescription')}
+			{assign var="description" value=$journal->getLocalizedSetting('searchDescription')|strip_tags}
 		{/if}
 
 		<description>{$description|strip|escape:"html"}</description>
@@ -70,11 +70,11 @@
 						{translate|escape key="submission.copyrightStatement" copyrightYear=$article->getCopyrightYear() copyrightHolder=$article->getLocalizedCopyrightHolder()}
 						{$article->getLicenseURL()|escape}
 					</dc:rights>
-					{if ($article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || ($article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_ISSUE_DEFAULT && $issue->getAccessStatus() == $smarty.const.ISSUE_ACCESS_OPEN)) && $article->isCCLicense()}
+					{*{if ($article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || ($article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_ISSUE_DEFAULT && $issue->getAccessStatus() == $smarty.const.ISSUE_ACCESS_OPEN)) && $article->isCCLicense()}
 						<cc:license rdf:resource="{$article->getLicenseURL()|escape}" />
 					{else}
 						<cc:license></cc:license>
-					{/if}
+					{/if}*}
 					<guid isPermaLink="true">{url page="article" op="view" path=$article->getBestArticleId($currentJournal)}</guid>
 					{if $article->getDatePublished()}
 						<pubDate>{$article->getDatePublished()|date_format:"%a, %d %b %Y %T %z"}</pubDate>

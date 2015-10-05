@@ -10,7 +10,7 @@
 {assign var="pageTitle" value="manager.setup.guidingSubmissions"}
 {include file="manager/setup/setupHeader.tpl"}
 
-<form name="setupForm" id="setupForm" method="post" action="{url op="saveSetup" path="3"}">
+<form id="setupForm" method="post" action="{url op="saveSetup" path="3"}" enctype="multipart/form-data">
     {include file="common/formErrors.tpl"}
 
     {if count($formLocales) > 1}

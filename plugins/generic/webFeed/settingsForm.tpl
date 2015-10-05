@@ -10,7 +10,7 @@
  *}
 {strip}
 {assign var="pageTitle" value="plugins.generic.webfeed.displayName"}
-<!--{include file="common/header.tpl"}-->
+{include file="common/header.tpl"}
 {/strip}
 <div id="webFeedSettings">
 <div id="description">{translate key="plugins.generic.webfeed.description"}</div>
@@ -58,4 +58,4 @@
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 </div>
-<!--{include file="common/footer.tpl"}-->
+{include file="common/footer.tpl"}

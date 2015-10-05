@@ -102,6 +102,10 @@
 			<td class="label">{fieldLabel name="salutation" key="user.salutation"}</td>
 			<td class="value"><input type="text" name="salutation" id="salutation" value="{$salutation|escape}" size="20" maxlength="40" class="textField" /></td>
 		</tr>
+                <tr valign="top">
+                    <td class="label">{fieldLabel name="titleBefore" key="user.title.before"}</td>
+			<td class="value"><input type="text" id="titleBefore" name="titleBefore" value="{$titleBefore|escape}" size="20" maxlength="40" class="textField" /></td>
+		</tr>
 		<tr valign="top">
 			<td class="label">{fieldLabel name="firstName" required="true" key="user.firstName"}</td>
 			<td class="value"><input type="text" id="firstName" name="firstName" value="{$firstName|escape}" size="20" maxlength="40" class="textField" /></td>
@@ -116,11 +120,8 @@
 			<td class="label">{fieldLabel name="lastName" required="true" key="user.lastName"}</td>
 			<td class="value"><input type="text" id="lastName" name="lastName" value="{$lastName|escape}" size="20" maxlength="90" class="textField" /></td>
 		</tr>
-    <tr valign="top">
-    	<td class="label">{fieldLabel name="titleBefore" key="user.title.before"}</td>
-			<td class="value"><input type="text" id="titleBefore" name="titleBefore" value="{$titleBefore|escape}" size="20" maxlength="40" class="textField" /></td>
-		</tr>
-    <tr valign="top">
+                
+                <tr valign="top">
 			<td class="label">{fieldLabel name="titleAfter" key="user.title.after"}</td>
 			<td class="value"><input type="text" id="titleAfter" name="titleAfter" value="{$titleAfter|escape}" size="20" maxlength="90" class="textField" /></td>
 		</tr>

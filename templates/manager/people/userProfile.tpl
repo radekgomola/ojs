@@ -24,14 +24,15 @@
 		<td width="20%" class="label">{translate key="user.username"}</td>
 		<td width="80%" class="data"><strong>{$user->getUsername()|escape}</strong></td>
 	</tr>
-  <tr valign="top">
-    <td class="label">{translate key="user.title.before"}</td>
-		<td class="value">{$user->getTitleBefore()|escape|default:"&mdash;"}</td>
-	</tr>
-	<tr valign="top">
+        <tr valign="top">
 		<td class="label">{translate key="user.salutation"}</td>
 		<td class="value">{$user->getSalutation()|escape|default:"&mdash;"}</td>
 	</tr>
+        <tr valign="top">
+          <td class="label">{translate key="user.title.before"}</td>
+		<td class="value">{$user->getTitleBefore()|escape|default:"&mdash;"}</td>
+	</tr>
+	
 	<tr valign="top">
 		<td class="label">{translate key="user.firstName"}</td>
 		<td class="value">{$user->getFirstName()|escape|default:"&mdash;"}</td>

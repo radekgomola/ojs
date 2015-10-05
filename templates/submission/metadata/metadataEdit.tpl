@@ -232,10 +232,10 @@ function moveAuthor(dir, authorIndex) {
         <tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
-        <tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="citace" key="article.citace"}</td>
-		<td width="80%" class="value"><textarea type="text" name="citace[{$formLocale|escape}]" id="citace" value="{$citace[$formLocale]|escape}" rows="5" cols="60" class="textArea" />{$citace[$formLocale]|escape}</textarea></td>
-	</tr>
+            <tr valign="top">
+                    <td width="20%" class="label">{fieldLabel name="citace" key="article.citace"}</td>
+                    <td width="80%" class="value"><textarea type="text" name="citace[{$formLocale|escape}]" id="citace" value="{$citace[$formLocale]|escape}" rows="5" cols="60" class="textArea" />{$citace[$formLocale]|escape}</textarea></td>
+            </tr>
 </table>
 </div>
 
@@ -428,7 +428,7 @@ function moveAuthor(dir, authorIndex) {
 	<td width="20%" class="label">{fieldLabel name="citations" key="submission.citations"}</td>
 	<td width="80%" class="value"><textarea name="citations" id="citations" class="textArea" rows="15" cols="60">{$citations|escape}</textarea></td>
 </tr>
-{if $loggedInUsername == "admin"}
+{if $isEditor}
 <tr>
     <td>
     </td>

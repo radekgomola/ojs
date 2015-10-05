@@ -94,10 +94,10 @@
         <tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
-        <tr valign="top">
-		<td width="20%" class="label">{translate key="article.citace"}</td>
-		<td width="80%" class="value">{$submission->getLocalizedCitace()|strip_unsafe_html|default:"&mdash;"}</td>
-	</tr>
+            <tr valign="top">
+                    <td width="20%" class="label">{translate key="article.citace"}</td>
+                    <td width="80%" class="value">{$submission->getLocalizedCitace()|strip_unsafe_html|default:"&mdash;"}</td>
+            </tr>
 </table>
 </div>
 

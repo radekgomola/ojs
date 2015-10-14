@@ -57,7 +57,7 @@ class MunipressDOIFinderPlugin extends GenericPlugin {
                 $url_help = Request::url(null, 'editor', 'munipressDOIinfo');
 
                 $output = "<a href=\"javascript:openWindowDoi('{$url}',1000,800)\" class='tlacitko_doi'>" . __('plugins.generic.munipressdoifinder.linklabel') . "</a>"
-                         ."<a href=\"https://journals.muni.cz/tutorials/doi_finder.htm\" class='tlacitko_doi' target=\"_blank\">" . __('plugins.generic.munipressdoifinder.linklabel.info') . "</a>";
+                         ."&nbsp;&nbsp;<a href=\"https://journals.muni.cz/tutorials/doi_finder.htm\" class='tlacitko_doi' target=\"_blank\">" . __('plugins.generic.munipressdoifinder.linklabel.info') . "</a>";
 		return false;
 	}
         

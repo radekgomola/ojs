@@ -1,4 +1,6 @@
 #!/bin/bash
+git config --global user.email "pkp@mailinator.com"
+git config --global user.name "PKP"
 echo "1 - Retrieving git user:"
 gitUser=$(cat .git/config | grep -A2 "remote \"origin\"" | grep "url" | cut -f2 -d":" | cut -f4 -d"/")
 echo "    Gituser: $gitUser"
@@ -16,7 +18,7 @@ fi
 echo "3 - Verifying if last non merge commit is a subproject commit:"
 libModuleHash=$(git show "$commitHash" | grep "+Subproject commit" | cut -f3 -d" ")
 strLength=${#libModuleHash}
-echo "    Subprojet commit hash: $libModuleHash"
+echo "    Subproject commit hash: $libModuleHash"
 if [ \( -n "$libModuleHash" \) -a \( "$strLength" -eq 40 \) ]; then
 	echo "    Last non merge commit is subproject commit."
 	echo "4 - Trying to get user and branch from commit message:"
@@ -33,7 +35,7 @@ if [ \( -n "$libModuleHash" \) -a \( "$strLength" -eq 40 \) ]; then
 		cd lib/pkp
 		echo "7 - Updating pkp-lib with code from $gitUser repository, $branch branch."
 		git remote add "$gitUser" git://github.com/"$gitUser"/pkp-lib
-		git pull "$gitUser" "$branch"
+		git pull --rebase "$gitUser" "$branch"
 		exit 0
 	fi
 fi

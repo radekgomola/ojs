@@ -43,10 +43,14 @@
 	
 	{if $site->getSetting('showDescription')}
 		{if $journal->getLocalizedDescription()}
+<<<<<<< HEAD
      {* {if $journal->getLocalizedDescription()|strlen >= 550}
   			<p class="description" style="text-align:justify;" >{$journal->getLocalizedDescription()|nl2br} <a href="{url journal=$journal->getPath()}" >{translate key="common.readMore"}</a></p>
       {else}*}
-        <p class="description" style="text-align:justify;" >{$journal->getLocalizedDescription()|nl2br}</p>
+        <p class="description" style="text-align:justify;" id="journalDescription-{$journal->getId()|escape}">{$journal->getLocalizedDescription()|nl2br}</p>
+        {*<div class="journalDescription" id="journalDescription-{$journal->getId()|escape}">
+				{$journal->getLocalizedDescription()|nl2br}
+			</div>*}
       {*{/if}*}
 		{/if}    
 	{/if}

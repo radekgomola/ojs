@@ -191,6 +191,8 @@ class ProfileForm extends Form {
       'titleBefore' => $user->getTitleBefore(),
       'titleAfter' => $user->getTitleAfter(), 
 		);
+
+		return parent::initData();
 	}
 
 	/**
@@ -274,8 +276,12 @@ class ProfileForm extends Form {
 			}
 		}
 		$user->setLocales($locales);
-    $user->setTitleBefore($this->getData('titleBefore'));
-    $user->setTitleAfter($this->getData('titleAfter'));
+
+                $user->setTitleBefore($this->getData('titleBefore'));
+                $user->setTitleAfter($this->getData('titleAfter'));
+
+                parent::execute($user);
+
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$userDao->updateObject($user);
 

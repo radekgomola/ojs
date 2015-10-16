@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/.../classes/DOIExportPlugin.inc.php
  *
- * Copyright (c) 2013-2014 Simon Fraser University Library
- * Copyright (c) 2003-2014 John Willinsky
+ * Copyright (c) 2013-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class DOIExportPlugin
@@ -417,12 +417,12 @@ class DOIExportPlugin extends ImportExportPlugin {
 						$request->redirect(null, 'manager', 'importexport', array('plugin', $this->getName()));
 					} else {
 						$this->setBreadCrumbs(array(), true);
-						$form->display();
+						$form->display($request);
 					}
 				} else {
 					$this->setBreadCrumbs(array(), true);
 					$form->initData();
-					$form->display();
+					$form->display($request);
 				}
 				return true;
 

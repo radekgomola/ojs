@@ -171,10 +171,44 @@ class MunipressDOIHandler extends EditorHandler {
             $citace = "";
             $i = 0;
             $returner = array();
+            foreach ($html->find('ul') as $blok) {
+                $blok_citaci = str_get_html($blok);
+                foreach($blok_citaci->find('li') as $element){
+
+                    $element = str_replace("&amp;", "&", $element);
+
+                    $element = $this->clearBr($element);
+    //                $test = $this->zpracuj_html($element);
+                    $citace .= strip_tags($element). "\n\n";
+                    $i++;
+                    if($i >=80){
+                        $returner[] = $citace;
+                        $citace = "";
+                        $i = 0;
+                    }
+                }
+            }
+            foreach ($html->find('ol') as $blok) {
+                $blok_citaci = str_get_html($blok);
+                foreach($blok_citaci->find('li') as $element){
+
+                    $element = str_replace("&amp;", "&", $element);
+
+                    $element = $this->clearBr($element);
+    //                $test = $this->zpracuj_html($element);
+                    $citace .= strip_tags($element). "\n\n";
+                    $i++;
+                    if($i >=80){
+                        $returner[] = $citace;
+                        $citace = "";
+                        $i = 0;
+                    }
+                }
+            }
             foreach($html->find('p') as $element){
-                
+
                 $element = str_replace("&amp;", "&", $element);
-                
+
                 $element = $this->clearBr($element);
 //                $test = $this->zpracuj_html($element);
                 $citace .= strip_tags($element). "\n\n";
@@ -185,6 +219,7 @@ class MunipressDOIHandler extends EditorHandler {
                     $i = 0;
                 }
             }
+            
 
             if(!empty($citace)) $returner[] = $citace;
             return $returner;

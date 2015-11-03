@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">     
+<html  xmlns="http://www. w3. org/1999/xhtml">              
+  <head>                      
+    <meta http-equiv="Content-Type" content="text/html;  charset=UTF-8">                      
+    <title>Formátování textu v TinyMCE                     
+    </title>                      
+    <link  href="ojs.css" rel="stylesheet" type="text/css">             
+  </head>             
+  <body>
+  <a href="index.htm" target="_self" title="zpět na index"> &#171; zpět </a>
+  <h1>Formátování textu v TinyMCE</h1>    
+    <div  class="obsah">                              
+      <ol>                                      
+        <li>                                     
+        <a href="#1">Prvky editoru</a>                                     
+        </li>                                     
+        <li>                                     
+        <a  href="#2">Základní formátování</a>                                      
+        </li>                                      
+        <li>                                      
+        <a  href="#3">Odkazy</a>                                     
+        </li>        
+        <li>        
+        <a  href="#4">Režim celé obrazovky</a>                                     
+        </li>          
+        <li>        
+        <a  href="#5">Nahrávání obrázků</a>                                     
+        </li>          
+        <li>        
+        <a  href="#6">Použití HTML editoru</a>                                     
+        </li>                              
+      </ol>                     
+    </div>      <h3>Editor TinyMCE</h3>                    
+    <p>      
+      <span class="role">TinyMCE
+      </span> je plugin přidaný do OJS pro vylepšení formátování textu. Využívá se všude, kde je možné vkládat formátovaný text. Ať už se jedná o manažera stránek, který pomocí něj může formátovat text na stránkách časopisu, nebo autora, který může jednoduše zformátovat abstrakt podle svých představ.                       
+    </p>                                        
+    <p align="center">         
+      <img  src="tinymce/tinymce.png"  border="1" />    
+    </p>                              
+    <a name="1"></a><h3>Prvky editoru</h3>                                    
+    <p>                              Editor obsahuje několik základních prvku, které jsou zastoupeny ikonkami, jež jsou obecně známy (např. z MS Word nebo OpenOffice Writer).                   
+    </p>                     
+    <p>      
+      <table style="border:none;">
+        <tr>
+          <td style="padding-right: 10px">        
+            <img  src="tinymce/undo.png" /></td><td> 
+            <span class="loc">Zpět
+            </span> - vrátí zpět poslední provedenou změnu.<br />        </td>
+        </tr>
+        <tr>
+          <td>        
+            <img  src="tinymce/redo.png" /></td><td> 
+            <span class="loc">Vpřed
+            </span> - vrátí stav před poslední provedenou akci "Zpět".<br />        </td>
+        </tr>
+        <tr>
+          <td>        
+            <img  src="tinymce/cut.png" /></td><td> 
+            <span class="loc">Vyjmout
+            </span> - vyjme text zabraný do bloku a uloží jej do schránky <br />        </td>
+        </tr>
+        <tr><td>        
+            <img  src="tinymce/copy.png" /></td><td> 
+            <span class="loc">Kopírovat
+            </span> - zkopíruje text zabraný do bloku a uloží jej do schránky<br />        </td>
+        </tr>
+        <tr><td>        
+            <img  src="tinymce/paste.png" /></td><td> 
+            <span class="loc">Vložit
+            </span> - vloží text ze schránky<br />        </td>
+        </tr>
+        <tr><td>        
+            <img  src="tinymce/b.png" /></td><td> 
+            <span class="loc">Tučné
+            </span><br />        </td>
+        </tr>
+        <tr><td>        
+            <img  src="tinymce/i.png" /></td><td>
+            <span class="loc">Kurzíva
+            </span><br />        </td>
+        </tr>
+        <tr><td>        
+            <img  src="tinymce/u.png" /></td><td> 
+            <span class="loc">Podtržené
+            </span><br />        </td>
+        </tr>
+        <tr><td>        
+            <img  src="tinymce/ul.png" /> </td><td>
+            <span class="loc">Seznam s odrážkami
+            </span> - text je zapisován do odrážek<br />        </td>
+        </tr>
+        <tr><td>        
+            <img  src="tinymce/ol.png" /></td><td> 
+            <span class="loc">Číslovaný seznam
+            </span> - text je zapisován do číslovaného seznamu<br />        </td>
+        </tr>
+        <tr><td>        
+            <img  src="tinymce/link.png" /></td><td> 
+            <span class="loc">Vložit/upravit odkaz
+            </span><br />        </td>
+        </tr>
+        <tr><td>        
+            <img  src="tinymce/unlink.png" /></td><td> 
+            <span class="loc">Odebrat odkaz
+            </span><br />        </td>
+        </tr>
+        <tr><td>        
+            <img  src="tinymce/html.png" /></td><td> 
+            <span class="loc">Upravit HTML zdroj
+            </span> - zapíná editor pro úpravu textu HTML tagy<br />        </td>
+        </tr>
+        <tr><td>        
+            <img  src="tinymce/fs.png" /></td><td> 
+            <span class="loc">Přepnout na celostránkové zobrazení
+            </span> - přepne editor do zobrazení na celou stránku<br />        </td>
+        </tr>
+        <tr><td>                   
+            <img  src="tinymce/img.png" /></td><td> 
+            <span class="loc">Nahrát obrázek
+            </span> - umožňuje nahrávat a spravovat obrázky<br />        </td>
+        </tr>      
+      </table>    
+    </p>      
+      
+    <a name="2"></a><h3>Základní formátování</h3>
+    <p>
+      Základní formátování slouží, jak již název předestírá, k běžným úpravám textu jako jsou tučné či podtržené písmo nebo kurzíva. Dále umožňuje strukturovat text pomocí odrážek nebo číslování.
+    </p>    
+    <p>
+      Na obrázku je vidět jak je možné text upravovat a zároveň jsou zde uvedeny i klávesové zkratky, které je možné použít namísto ikonek.
+    <p align="center" >                              
+      <img  src="tinymce/formatovani.png" border="1" />                     
+    </p>                
+    <div class="note">
+      Formátování je možné libovolně kombinovat.
+    </div>
+    <a name="3"></a><h3>Odkazy</h3>      
+    <p>                              
+      Vložit odkaz je možné až ve chvíli, kdy je text zabrán do bloku. Vybrání textu aktivuje tlačítka pro <span class="loc">Přídání/úpravu odkazu</span> a pro <span class="loc">Odebrání odkazu</span>.                     
+    </p>                 
+    <p align="center">
+      <img  src="tinymce/odkaz.png" border="1" />
+    </p>
+    <h2>Postup vložení odkazu</h2>
+    <ol>
+      <li>
+        Nejdříve zaberete text, který chcete použít jako odkaz, do bloku.
+      </li>
+      <li>
+        Následně kliknete na ikonu <img  src="tinymce/link.png" style="vertical-align: bottom"/> a tím aktivujete nabídku pro vkládání odkazu a vyplníte ji.
+      </li>
+      <p align="center">
+         <img  src="tinymce/odkaz_nabidka.png" border="1" />
+      </p>
+      <p>
+        Nabídka obsahuje 3 údaje:
+        <ul>
+          <li>
+            <span class="role">URL odkaz</span> - zde vložíte adresu stránky, na kterou chcete odkazovat (prefix <span class="role">http://</span> je povinný).
+          </li>
+          <li>
+            <span class="role">Cíl</span> - určuje, jestli bude odkaz otevřen v <span class="loc">novém okně</span> nebo v <span class="loc">okně stávajícím</span>.
+            <br />
+            <p align="center">
+               <img  src="tinymce/odkazy_cil.png" border="1" />
+            </p>
+          </li>
+          <li>
+            <span class="role">Titulek</span> - zde můžete, ale nemusíte, vepsat popisek odkazu, který se objeví po najetí kurzorem myši na odkaz
+          </li>
+        </ul>
+      </p>
+      <li>
+        Kliknete na tlačítko <span class="loc">Vložit</span> a tím uložíte informace pro odkaz. Vybraný text se změní na odkaz.
+      </li>
+    </ol>                            
+    <h2>Editace/smazání odkazu</h2>               
+    <p>                              
+      Pokud by bylo potřeba odkaz editovat nebo smazat stačí kliknout kurzorem myši doprostřed odkazu. V tuto chvíli se zobrazí aktivní tlačítka pro správu odkazu:
+      <br /><img  src="tinymce/link.png" style="vertical-align: bottom"/>  - otevře nabídku pro úpravu odkazu
+      <br /><img  src="tinymce/unlink.png" style="vertical-align: bottom"/>  - smaže vybraný odkaz               
+    </p>
+    <p align="center">
+      <img  src="tinymce/odkazy_uprava.png" border="1" />
+    </p>     
+    <a name="4"></a><h3>Celostránkový režim</h3>      
+    <p>                              
+      Po zapnutím režimu na celou stránku, se editor roztáhne na plochu otevřené stránky. Režim umožňuje pracovat s rozsáhlejšími texty, kdy je potřeba vidět před sebou celý text a jeho formátování.                    
+    </p>
+    <p>
+      Celostránkový režim se spustí kliknutím na tlačítko <img  src="tinymce/fs.png" style="vertical-align: bottom"/>. Editor se zobrazí na celé stránce a tlačítko se stane aktivním. 
+      <br />
+      Pokud budete chtít režim vypnout, musíte kliknout opět na tlačítko <img  src="tinymce/fs.png" style="vertical-align: bottom"/> a režim se zavře.
+    </p>
+    <div class="note">
+      Přepínání režimů není destruktivní proces a data, která byla vytvořena se mezi nimi přenáší. Nedochází k žádným ztrátám.
+    </div>          
+    <a name="5"></a><h3>Nahrání a správa obrázků</h3>      
+    <p>                              
+      Editor <span class="role">TinyMCE</span> umožňuje i snadné nahrávání a správu menších obrázků. Obrázky jsou pak v textu zobrazeny.                     
+    </p>      
+    <div class="note">
+      Pro lepší pozicování a sofistikovanější práci s nahraným obrázkem je nutné použít <span class="loc">Editor formátování HTML</span> viz níže</span>.
+    </div>
+    <p>
+      Pro nahrání obrázku nebo jejich správu musíte kliknout na ikonu <img  src="tinymce/img.png" style="vertical-align: bottom"/>. Následně se otevře nabídka pro vkládání.
+    </p>
+    <p align="center">
+      <img  src="tinymce/nahrat_obrazek.png" border="1" />
+    </p>
+    <ol>
+      <li>
+        Kliknete na tlačítko <span class="loc">Procházet</span>
+      </li>
+      <li>
+        Vyhledejte obrázek v počítači a potvrďte jej.
+      </li>
+      <li>
+        Obrázek by se měl automaticky nahrát, uložit a následně zobrazit v editoru a ve správci obrázků. Pokud se tak nestane, klikněte na tlačítko <span class="loc">Nahrát</span>.
+      </li>
+    </ol>
+    <div class="note">
+      Pro vypsání všech nahraných obrázku stačí kliknout na odkaz <span class="loc">Spravovat nahrané obrázky</span>. zde si můžete obrázky prohlednout, smazat je a nebo zjistit odkaz na obrázek pro jeho vložení přes <span class="loc">HTML editor</span>. Pro lepší práci s obrázky je dobré využívat i <span class="loc">HTML editor</span>.
+    </div>
+    <a name="6"></a><h3>HTML editor </h3>      
+    <p>      
+      Pokud chcete na stránce zobrazovat složitěji formátovaný text (např. tabulky, odrážky se zanořováním apod.) je nutné využít formátování pomocí tzv. <span class="role">HTML tagů</span> v <span class="loc">HTML editoru</span>.     
+    </p> 
+    <p>
+      Kliknutím na tlačítko <img  src="tinymce/html.png" style="vertical-align: bottom"/> otevřeme <span class="loc">HTML editor</span>. Pokud jsme již  nějaký text zapsali a dříve zformátovali (např. pomocí základního formátování), bude již editor vyplněn několika danými tagy.
+    </p> 
+    <p>
+      Například:
+    </p>
+    <p align="center">
+      <img  src="tinymce/html-edit.png" />
+    </p>
+    <div class="note">
+      Pokud nejste v <span class="loc">HTML</span> zběhlí, můžete se základní principy naučit na adrese <a href="http://www.jakpsatweb.cz/html/" target="_blank" title="příručka HTML">http://www.jakpsatweb.cz/html/</a> .
+    </div>
+    <p>
+      <span class="loc">HTML editor</span> podporuje i práci za pomocí stylů přes parametr <span class="role">style</span>. Vkládání externích kaskádových stylů přes <span class="loc">tag LINK</span> není možné.
+      <br />
+      Složitější práce v editoru by mohla vypadat následovně. V příkladu je použito stylování a tabulka.
+    </p>
+    <p align="center">
+      <span class="role">"Zdrojový kód"</span>  <br />
+      <img  src="tinymce/html_kod.png" />
+    </p>  
+    <p align="center">
+      <span class="role">Výsledný zformátovaný text</span> <br />
+      <img  src="tinymce/formatovani.png" />
+    </p> 
+    <div class="note">
+      Formátování přes HTML je velmi silný nástroj, který je možné použít skoro vždy. Pokud si s ním však nejste jistí, poraďte se se svým administrátorem.
+    </div>
+  </body>                                                                                             
+</html>

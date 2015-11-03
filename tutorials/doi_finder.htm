@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html  xmlns="http://www. w3. org/1999/xhtml">           
+  <head>                 
+    <meta http-equiv="Content-Type" content="text/html;  charset=UTF-8" />                 
+    <title>Použití pluginu DOI finder.                 
+    </title>                 
+    <link  href="ojs.css" rel="stylesheet" type="text/css" />          
+  </head>          
+  <body>
+  <a href="index.htm" target="_self" title="zpět na index"> &#171; zpět </a>
+  <h1>DOI finder</h1>
+    <div  class="obsah">                       
+      <ol>Jsem editor a chci nálezt doi pro reference článku.<br /> Jak na to?                             
+        <li>                            
+        <a href="#1"><span class="role">Zapnutí pluginu       
+      </span></a>                            
+        </li>                            
+        <li>                            
+        <a  href="#2"><span class="role">Spuštění vyhledávání      
+      </span></a>                             
+        </li>                             
+        <li>                             
+        <a  href="#3"><span class="role">Vysvětlení výpisu       
+      </span></a>                            
+        </li>
+        <li>
+        <a  href="#4"><span class="role">Obecné informace    
+      </span></a>                            
+        </li>                      
+      </ol>                
+    </div>           
+  <p>Cílem následujícího návodu je představit doplněk <span class="loc">DOI finder</span>, který umožní editorům časopisů dohledat pro uložené reference identifikátory DOI a následně je překopírovat do referencí.
+  </p>                                             
+       
+    <a name="1"></a><h2>1. Zapnutí pluginu DOI finder</h2>  
+    <div class="note">
+        Doplňky systému může spravovat pouze <span class="role">Manažer časopisu</span>.
+    </div>
+    <p>                       
+      <img src="doi_finder/doi_finder_01.png" border="0" />                
+    </p>                
+    <p>
+         Stačí v části <span class="loc">Správa časopisu</span> vybrat položku <span class="loc">Doplňky systému</span> a následně si najít mezi <span class="loc">Obecnými doplňky</span> doplněk <span class="loc">Vyhledavač DOI k citacím</span>.
+    </p>
+    <p>
+        Doplněk stačí jen povolit a je rovnou připraven k použití. Není nutné jej dále nastavovat
+    </p>
+    <p>                       
+      <img src="doi_finder/doi_finder_02.png" border="0" />                
+    </p>  
+     
+    <div class="note">Doplněk přidává novou funkcionalitu editorům časopisu!</div>
+    <a name="2"></a><h2>2. Spuštění vyhledávání</h2>
+    <p>
+        Vyhledávač DOI mohou používat pouze <span class="loc">Editoři</span> a <span class="loc">Editoři sekcí</span> přiřazeni k danému článku.
+    </p>
+    <p>
+        U každého příspěvku je nyní možné při libovolné editaci metadat vyhledat DOI k referencím.  
+    </p>
+    <div class="note">Editor má možnost editovat metadata v částech <span class="loc">Souhrn</span> a <span class="loc">Editování</span></div>
+    <p>                       
+      <img src="doi_finder/doi_finder_03.png" border="0" />                 
+    </p>           
+    <p>Ve výpisu metadat přibyla k formuláři pro vkládání referencí dvě nová tlačítka.                
+    </p>                
+    <p>             
+      <img  src="doi_finder/doi_finder_04.png"  border="0" />              
+    </p>   
+    <br />
+    <ol>
+        <li>
+            <strong>Vyhledej DOI</strong> - spustí vyhledávaní 
+        </li>
+        <li>
+            <strong>Nápověda k vyhledávači DOI</strong> - spustí tuto stránku s návodem
+        </li>
+    </ol>
+    <p>
+        Po zmáčknutí tlačítka <span class="loc">Vyhledej DOI</span> se v novém měnším okně spustí proces vyhledávání.
+    </p>
+    <p>             
+      <img  src="doi_finder/doi_finder_05.png"  border="0" />              
+    </p>  
+    <div class="note">Délka vyhledávání referenci se odvíjí od počtu referencí. U 250 referencí může doba vyhledávání a kontrolování trvat i více než 15 minut. Toto okno nezavírejte ani neaktualizujte.</div>
+    
+    <a name="3"></a><h2>3. Vysvětlení výpisu</h2>
+    <p>             
+      <img  src="doi_finder/doi_finder_06.png"  border="0" />              
+    </p>
+    <p>
+        <ul>
+            <li>
+                <strong>Copyright</strong> - plugin využívá již dříve vytvořený program a jeho tvůrce je tedy zmíněn v záhlaví stránky
+            </li>
+            <li>
+                <strong>Barevně rozlišená statistika</strong> - zobrazuje počty jednotlivých dohledaných DOI k citacím
+            </li>
+            <li>
+                <strong>Barevně rozlišený seznam citací</strong> - jednotlivé barvy napomáhají při orientaci v seznamu
+                <ul>
+                    <li>
+                        <span class="role">Zelená:</span> K referenci bylo nalezeno nové DOI. (Je nutné zkopírovat k citaci) 
+                    </li>
+                    <li>
+                        <span class="role">Modrá:</span> K referenci bylo nalezeno DOI, ale reference již stejné DOI obsahuje. (Nevyžaduje žádnou další akci) 
+                    </li>
+                    <li>
+                        <span class="role">Červená:</span> K referenci bylo nalezeno DOI, ale reference obsahuje chybné DOI. (Je nutné DOI opravit) 
+                    </li>
+                    <li>
+                        <span class="role">Bezbarvá:</span> K referenci NEbylo nalezeno DOI. (Nevyžaduje žádnou další akci)
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </p>     
+    <p>
+        Pokud byla nalezena nová nebo chybná DOI, je nutné je do formuláře s referencemi RUČNĚ zkopírovat. 
+    </p>
+    <p>             
+      <img  src="doi_finder/doi_finder_07.png"  border="0" />              
+    </p>   
+    <p>
+        Stačí celé DOI označit do bloku a následně <span class="loc">Zkopírovat (CTRL+C)</span> a vložit do otevřeného formuláře pomocí <span class="loc">Vložit (CTRL+V)</span>
+    </p>
+    <p>
+        <img  src="doi_finder/doi_finder_08.png"  border="0" />              
+    </p>
+    <div class="note">Pokud bychom nyní reference s opraveným a doplněným DOI uložili a následně zkusili DOI znovu vyhledat bude, pokud jsme vše udělali správně, obsahovat výpis pouze duplicitní DOI a nebo nenalezené.<br />
+    <p>
+        <img  src="doi_finder/doi_finder_09.png"  border="0" />              
+    </p>
+    </div>
+    
+    <a name="4"></a><h2>4. Obecné informace</h2> 
+    <ol>
+        <li>
+            Je nutné, aby byl formulář s metadaty uložen. Vyhledávač DOI pracuje pouze s uloženými referencemi. Pokud uděláte nějakou změnu v referencich, ve vyhledávači se projeví až po uložení celého formuláře.
+        </li><br />
+        <li>
+            Vyhledávač vyžaduje povolený javascript. Pokud je vypnutý, tak nemusí vyhledávač pracovat správně.
+        </li><br />
+        <li>
+            Musíte mít povoleno přidávání referencí k článkům. Nastavení naleznete ve <span class="loc">Správě časopisu</span> v části <span class="loc">Nastavení - 3.6 Reference</span>.
+        </li><br />
+        <li>
+            Může být otevřen vždy pouze jedno menší okno s vyhledávačem. Spuštění dalšího vyhledávání, ať už u stejného nebo jiného článku, přepíše dřívější data.
+        </li><br />
+        <li>
+            Mále okno s vyhledávačem neaktualizujte. Aktualizace by proces vyhledávání spustila opět od začátku.
+        </li><br />
+        <li>
+            Pokud byla již dříve reference vyhledávána, objeví se u citace text <span class="loc">(záznam z cache uložený 2015-05-18 14:37:02)</span>, což označuje den, kdy byla data uložena do cache programu <span class="loc">"parscit-to-doi"</span>
+        </li><br />
+        <li>
+            Každá reference musí být samostatným odstavcem v seznamu referencí.
+        </li><br />
+    </ol>
+  </body>                                                                                            
+</html>

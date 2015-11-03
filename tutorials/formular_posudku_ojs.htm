@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>OJS: Tvorba formuláře posudku pro recenzenty</title>
+<link href="formulare_posudku_ojs_soubory/ojs.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<a href="index.htm" target="_self" title="zpět na index"> &#171; zpět </a>
+<h1>OJS: Tvorba formuláře posudku pro recenzenty</h1>
+
+<div class="obsah">
+<ul>
+<li><a href="#formular">1. Tvorba nového formuláře</a></li>
+<li><a href="#tabulka">1.1 Tabulka formulářů posudků</a></li>
+<li><a href="#polozky">2. Vytváření obsahu nového formuláře</a>
+</li></ul>
+</div>
+
+
+<p>V následujícím tutoriálu si ukážeme, jak připravit formulář posudku 
+pro recenzenty. (O přidělování již vytvořeného posudku recenzentům více v
+ návodu <a href="http://www.phil.muni.cz/%7Epezlar/ojs_recenze.html">zde</a>.) </p><p>
+
+</p><p>Zjednodušeně řečeno, celý proces se skládá ze dvou hlavních fází.
+ V první fázi vytvoříme formulář (prázdný), v druhém kroku do již 
+vytvořeného formuláře vkládáme obsah prostřednictvím položek různého 
+typu (např. <i>jednořádkové textové pole</i>, <i>zaškrtávací políčka</i> atp.). </p>
+
+<div class="note">Vytvoření vlastního formuláře posudku není podmínkou 
+pro započetí recenzního řízení – v případě, že žádný nevytvoříme, OJS 
+poskytne recenzentům základní nestrukturovaný formulář obsahující pouze 
+dvě textová pole: (1) jedno je určeno pro slovní hodnocení, které se 
+zobrazí jak autorovi, tak i editorovi, který je zodpovědný za tento 
+článek, (2) druhé je vyhrazeno pro slovní hodnocení, které se zobrazí 
+jen odpovědnému editorovi.</div>
+
+<p>Vytváření formulářů posudků má na starost <span class="role">Manažer časopisu</span>. Přihlásíme se tedy pod touto rolí a v menu <span class="loc">Stránky pro správu</span> na domovské stránce manažera časopisu klikneme na odkaz <span class="loc">Formuláře posudků</span>.</p>
+
+<p><img src="formulare_posudku_ojs_soubory/posudky_01.png" border="1" width="800"></p>
+
+
+<p>Zobrazí se nám (zatím) prázdná tabulka – zde se bude zobrazovat přehled všech doposud vytvořených formulářů.  </p>
+
+<p>Klikneme tedy na <span class="loc">Vytvořit formulář posudku</span>.</p>
+
+<p><img src="formulare_posudku_ojs_soubory/posudky_02.png" border="1" width="800"></p>
+
+
+
+
+<h2><a name="formular"></a>1. Tvorba nového formuláře</h2>
+<p>Jako první vybereme jazyk formuláře. Pokud bude formulář jednojazyčný
+ v češtině, není potřeba nic měnit, ani nic dodatečného dělat. Pokud si 
+přejeme mít formulář dvoj(či více)jazyčný, je třeba se přepnout do 
+odpovídajícího jazykového prostředí a vše vyplnit znovu, ale již v jiném
+ jazyce. To znamená, že pokud budeme chtít mít formulář trojjazyčný, 
+všechny příslušné texty budeme muset vypsat 3x dohromady, tj. zvlášť pro
+ každé jazykové prostředí. </p>
+
+<p>Dále zvolíme název posudku (povinné) a případně můžeme doplnit i dodatečné informace pro recenzenty (kolonka "<i>Popis a instrukce</i>"), které se zobrazí na začátku daného formuláře. </p>
+ 
+<p><img src="formulare_posudku_ojs_soubory/posudky_03.png" border="1" width="800"></p>
+ 
+<p>Až vyplníme vše potřebné, klikneme na <span class="button">Uložit</span> a systém nás přesměruje zpátky na hlavní stránku pro posudky, kde už teď ovšem bude zobrazený i náš právě vytvořený formulář. </p>
+
+<p>Než se však pustíme do vytváření obsahu daného formuláře (doposud 
+máme jen jeho "formu", do které zbývá vložit obsah), prohlédneme si 
+blížeji tabulku a jí přidružené ovládací prvky. </p>
+
+
+
+
+<h3><a name="tabulka"></a>1.1 Tabulka formulářů posudků</h3>
+<p>V tabulce ve sloupečku úplně nalevo se vypisuje název formuláře. 
+Následující dva sloupečky jsou vyhrazeny pro dvě počítadla použití 
+daného formuláře: číslo ve sloupečku <span class="loc">V recenzi</span> indikuje kolik recenzních řízení momentálně probíhá s daným formulářem. Číslo ve sloupci <span class="loc">Dokončeno</span> zase vyjadřuje, kolik recenzních řízení již bylo dokončeno s daným formulářem. V posledním sloupci <span class="loc">Akce</span> máme základní výběr operací: </p><p>
+
+</p><p><img src="formulare_posudku_ojs_soubory/posudky_04.png" border="1" width="800"></p>
+
+<ul>
+<li> <b>Editovat</b> – slouží k úpravám již vytvořeného formuláře a vytváření jeho obsahu, tj. vkládání položek, viz sekce <i>2.&nbsp;Vytváření obsahu nového formuláře</i> níže. </li>
+<li> <b>Aktivovat</b> – kliknutím na toto tlačítko dáváme systému vědět,
+ že tento formulář je hotový a připravený k použití v recenzním řízení. 
+Pozor, aktivace je nutnou podmínkou pro přiřazení formuláře do 
+recenzního řízení. Jinými slovy, dokud není formulář aktivovaný, nelze 
+jej použít.</li>
+<li> <b>Náhled</b> – zobrazení formuláře tak, jak ho uvidí <span class="role">Recenzenti</span>.</li>
+<li> <b>Smazat</b> – vymazání formuláře. Pozor, nelze smazat formuláře, které už byly použity v nějakém recenzním řízení.</li>
+<li> <b>Šipky nahoru/dolů</b> – slouží ke změně pořadí formulářů v tabulce.</li>
+</ul>
+
+<div class="note">Pozor, editovat lze pouze ty formuláře, které doposud 
+nebyly přiděleny do žádného recenzního řízení. Jinak řečeno, pokud 
+započneme recenzní řízení s nějakým formulářem A, není možné v průběhu 
+tohoto již běžícího řízení do něj zanášet jakékoli dodatečné změny či 
+jej nahradit nějakým novým formulářem B.</div>
+
+
+<p>V případě, že aktivujeme formulář, změní se nabídka možných akcí:</p>
+
+<ul>
+<li> <b>Deaktivovat</b> – vrátí formulář zpět mezi neaktivní.</li>
+
+<li> <b>Kopie</b> – vytvoří kopii daného formuláře. Např. pokud chceme vytvořit nový formulář, který se od toho stávajícího liší jen minimálně.</li>
+</ul>
+
+<div class="note">Pokud tedy chceme vytvořit více podobných formulářů 
+(či upravit již jednou použitý formulář, resp. připravit jeho novější 
+verzi), nemusíme každý dělat od začátku. Stačí udělat jeden, 
+nakopírovat, pak jen přejmenovat a upravit dané položky (viz níže).</div>
+
+
+
+
+<h2><a name="polozky"></a>2. Vytváření obsahu nového formuláře</h2>
+Po kliknutí na <span class="loc">Editovat</span> ve výše představené 
+tabulce se přesuneme na stránku připomínající již známé prostředí na 
+vytváření formulářů, ale navíc se nám nahoře objevilo nové menu se třemi
+ možnostmi:
+<ul>
+<li> <b>Formulář posudku</b> – stávající stránka, slouží k úpravě názvu formuláře či případného popisu a instrukcí.</li>
+<li> <b>Položky formuláře</b> – slouží k vytváření samotného obsahu formuláře pomocí vkládání různých položek (viz níže) </li>
+<li> <b>Náhled formuláře</b> – slouží k prohlédnutí formuláře v podobě, ve které se bude zobrazovat <span class="role">Recenzentům</span>.</li>
+</ul>
+
+
+
+<p>Klikneme tedy na prostřední možnost, tj. <b>Položky formuláře</b>, a pustíme se do tvorby obsahu.</p>
+
+<p><img src="formulare_posudku_ojs_soubory/posudky_05.png" border="1" width="800"></p>
+
+<p>Zobrazí se nám prázdná tabulka s komentářem "<i>Nebyly vytvořeny žádné položky formuláře.</i>" (zde se bude generovat přehled obsahu daného formuláře, podobně jako tomu bylo s tabulkou pro přehled formulářů výše) a odkaz <span class="loc">Vytvořit novou položku"</span>, na který klikneme.</p>
+
+<p><img src="formulare_posudku_ojs_soubory/posudky_06.png" border="1" width="800"></p>
+
+<p>Opět máme na výběr možné jazykové prostředí. (Pamatujte, že pro každé
+ nové jazykové prostředí je třeba odpovídající textová pole náležitě 
+pozměnit, tj. přeložit.) </p>
+
+<p>Textové pole nazvané <span class="loc">Položka</span> (povinné) specifikuje zadání (to se bude měnit vzhledem ke zvolenému typu položky, viz níže), resp. název položky. </p>
+
+<p>Dále máme možnost zvolit, zda bude tato položka (otázka) pro 
+recenzenta povinná a případně, zda má být její obsah, resp. odpověď 
+recenzenta, přístupná i <span class="role">Autorovi</span> recenzovaného článku. </p>
+
+<p>Typ položky určuje druh otázky na recenzenta, resp. způsob jejího zodpovězení. Celkem je na výběr ze šesti možností. </p>
+
+<ol>
+<li> <i>Textové pole pro jedno slovo</i></li>
+<li> <i>Jednořádkové textové pole</i></li>
+<li> <i>Rozšířené textové pole</i></li>
+<li> <i>Zaškrtávací políčka</i> (<span class="role">Recenzent</span> může vybrat jednu nebo více možností</li>
+<li> <i>Přepínače</i> (<span class="role">Recenzent</span> může vybrat pouze jednu možnost)</li>
+<li> <i>Pole se seznamem (<span class="role">Recenzent</span> může vybrat pouze jednu možnost)</i></li>
+</ol>
+
+<p>Při zvolení typu, který nabízí výběr z více předdefinovaných 
+odpovědí, tj. typy 4, 5 a 6, je třeba ručně přidat jednotlivé možnosti 
+prostřednictvím tlačítka <span class="button">Přidat výběr</span>. Pak stačí jen vypsat požadované možnosti do kolonek <span class="loc">Výběr</span> a případně změnit jejich pořadí změnou číselné hodnoty v kolonkách <span class="loc">Seřadit</span> (tj. 1 = první možnost atd.).</p>
+
+<p>Na obrázku níže je na úkazku vytvořena položka (povinná - všimněte si zatrhnutí odpovídajícího čtverečku) s otázkou "<i>Jsou bibliografické odkazy úplné a odpovídají citační normě?</i>" a dvěma možnými odpověďmi (typ Přepínač): buď <i>Ano</i>, nebo <i>Ne</i>.</p>
+
+
+<p><img src="formulare_posudku_ojs_soubory/posudky_07.png" border="1" width="800"></p>
+
+<div class="note">Nezapomeňte, že pokud je váš formulář (resp. položka) vícejazyčný, musíte vypsat odpovědi zvlášť pro každé jazykové prostředí.</div>
+
+<p>Poté, co vytvoříme jednu celou položku, klikneme na <span class="button">Uložit</span>.</p>
+
+<p>Opět se vrátíme na stránku s (dříve prázdnou) tabulkou, která už 
+tentokrát bude ale obsahovat námi zrovna vytvořenou položku. Odsud ji 
+můžeme upravit (viz výše), smazat nebo změnit její pořadí ve formuláři. </p>
+
+<p><img src="formulare_posudku_ojs_soubory/posudky_08.png" border="1" width="800"></p>
+
+<p>Zcela analogicky pak postupujeme při tvorbě dalších položek přes odkaz <span class="loc">Vytvořit novou položku</span>. </p>
+
+<p>Rovněž se nám objevila na výběr i nová akce, a to <span class="loc">Kopírovat do</span>.
+ Tato funkce slouží ke sdílení již vytvořených položek mezi různými 
+formuláři. Jinými slovy, pokud jsme vytvořili nějakou položku, kterou 
+bychom rádi využili ve více než jednom formuláři, stačí ji vybrat 
+"zakliknutím" čtverečku vpravo od jména dané položky, případně pomocí 
+tlačítka <span class="button">Vyber vše</span>, chceme-li překopírovat 
+všechny položky. Z rozbalovacího menu pak vybereme cílový formulář, kam 
+chceme vybrané položky nahrát, a potvrdíme kliknutím na tlačítko <span class="button">Kopie</span>.</p><p>
+
+Na závěr můžeme kliknout na <span class="loc">Náhled formuláře</span> a prohlédnout si, jak se otázka bude zobrazovat <span class="role">Recenzentovi</span>.
+
+</p><p><img src="formulare_posudku_ojs_soubory/posudky_09.png" border="1" width="800"></p>
+
+
+<p>&nbsp;</p>
+
+
+
+
+</body></html>

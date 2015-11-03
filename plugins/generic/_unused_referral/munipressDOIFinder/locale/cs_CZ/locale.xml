@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--**
+ * @file MunipressDOIFinderPlugin.inc.php
+ *
+ * Copyright (c) 20015 Munipress
+ *
+ * @class MunipressDOIFinderPlugin
+ * @ingroup plugins_generic_munipressdoifinder
+ *
+ *-->
+ 
+<locale name="cs_CZ" full_name="Czech">
+	<message key="plugins.generic.munipressdoifinder.displayName">Vyhledavač DOI k citacím</message>
+	<message key="plugins.generic.munipressdoifinder.description">Plugin se připojuje k Vyhledávači DOI od RNDr. Michala Ružičky "parscit-to-doi". Vyhledá a vyznačí DOI, která je pak možné překopírovat do Citací.</message>
+	<message key="plugins.generic.munipressdoifinder.linklabel">Vyhledej DOI</message>
+        <message key="plugins.generic.munipressdoifinder.linklabel.info">Nápověda k vyhledávači DOI</message>
+</locale>

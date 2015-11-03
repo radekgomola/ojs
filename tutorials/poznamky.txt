@@ -1,0 +1,100 @@
+##plugins.generic.referral.status.accept.confirm## Jste si jistý, že chcete publikovat vybrané citace?
+##plugins.generic.referral.status.decline.confirm## Jste si jistá, že chcete ignorovat vybrané citace?
+##plugins.generic.referral.status.accepted## Publikováno
+##plugins.generic.referral.status.declined## Ignorováno
+
+##plugins.reports.subscriptions.displayName## Report pøedplatných
+##plugins.reports.timedView.displayName## Report èasovaných shlédnutí
+##plugins.reports.views.displayName## Report shlédnutí
+##plugins.reports.usageStats.report.displayName## OJS statistiky využití
+
+##plugins.reports.timedView.form.useTimedViewRecords## Zatrhnìte, pokud chcete statistiky vytvoøit za pomoci starší verze pluginu pro Report shlédnutí. Pokud chcete generovat report s novými statistickými daty, nechte políèko prázdné.
+##plugins.reports.timedView.form.generate## Generovat report
+##plugins.reports.timedView.form.clearLogs## Smazat záznamy
+##plugins.reports.timedView.form.clearLogs.description## Vyberte datum pro výbìr záznomù pro smazání z výpisu. Záznamy spojené s tímto datem budou vymazány. Pozn. ovlivní pouze plugin generující shlédnutí podle èasu a ne ostatní èítaèe shlédnutí.
+##plugins.reports.timedView.form.clearLogs## Smazat záznamy
+
+##plugins.reports.timedView.report.articleId## ID èlánku
+##plugins.reports.timedView.report.articleTitle##Titul Èlánku
+##plugins.reports.timedView.report.issue## Èíslo
+##plugins.reports.timedView.report.datePublished## Datum publikování
+##plugins.reports.timedView.report.abstractViews## Shlédnutí abstraktu
+##plugins.reports.timedView.report.galleyViews## Celkem shlédnutí
+
+##plugins.reports.subscriptions.institutionMailingAddress##Doruèovací adresa
+##plugins.reports.subscriptions.ipRanges##Rozsah IP
+
+##plugins.reports.views.articleId## ID èlánku
+##plugins.reports.views.articleTitle##Titul èlánku
+##plugins.reports.views.datePublished##Datum publikování
+##plugins.reports.views.abstractViews##Shlédnutí abstraktu
+##plugins.reports.views.galleyViews##Celkem shlédnutí
+
+##plugins.reports.usageStats.report.description##Výchozí statistika využití OJS
+
+
+
+
+
+##plugins.metadata.dc11.displayName## Dublin Core 1.1 meta-data
+##plugins.metadata.dc11.description## Pøidává Dublin Core 1.1 schémata a adaptery pro aplikace.
+##plugins.metadata.mods34.displayName## MODS 3.4 meta-data
+##plugins.metadata.mods34.description## Pøidává MODS 3.4 schémata a adaptery pro aplikace.
+##plugins.metadata.nlm30.displayName##NLM 3.0 meta-data
+##plugins.metadata.nlm30.description## Pøidává NLM 3.0 schémata a adaptery pro aplikace.
+##plugins.metadata.openurl10.displayName##OpenURL 1.0 meta-data
+##plugins.metadata.openurl10.description## Pøidává OpenURL 1.0 schémata a adaptery pro aplikace.
+##plugins.block.authorBios.displayName## Blok autorovy biografie
+##plugins.block.authorBios.description## Plugin zobrazuje blok autorových biografii v èásti pro ètenáøské nástroje.
+##plugins.block.readingTools.displayName## Blok ètenáøských nástrojù
+##plugins.block.readingTools.description## Plugin zobrazuje blok obsahujicí ètenáøské nástroje  v èásti ètenáøských nástrojù.
+##plugins.block.relatedItems.displayName## Blok souvisejících položek
+##plugins.block.relatedItems.description## Plugin zobrazuje blok obsahující související položky v èásti ètenáøských nástrojù.
+
+plugins.citationLookup.crossref.displayName Spojení s CrossRef databází
+plugins.citationLookup.crossref.description Pøipojuje k bibliografické databázi CrossRef
+plugins.citationLookup.isbndb.displayName Spojení s databází ISBNdb
+plugins.citationLookup.isbndb.description Pøipojuje k bibliografické databázi ISBNdb
+plugins.citationLookup.pubmed.displayName Spojení s databází PubMed 
+plugins.citationLookup.pubmed.description Pøipojuje k bibliografické databázi PubMed 
+plugins.citationLookup.worldcat.displayName Spojení s databází WorldCat 
+plugins.citationLookup.worldcat.description Pøipojuje k bibliografické databázi WorldCat 
+
+
+plugins.citationOutput.abnt.displayName Styl citací ABNT
+plugins.citationOutput.abnt.description Implementuje citaèní styl ABNT
+plugins.citationOutput.apa.displayName Styl citací
+plugins.citationOutput.apa.description Implementuje citaèní styl
+plugins.citationOutput.mla.displayName Styl citací
+plugins.citationOutput.mla.description Implementuje citaèní styl
+plugins.citationOutput.vancouver.displayName Styl citací Vancouver
+plugins.citationOutput.vancouver.description Implementuje citaèní styl Vancouver
+
+
+plugins.generic.usageEvent.displayName
+plugins.generic.usageEvent.description
+plugins.generic.usageStats.displayName
+plugins.generic.usageStats.description
+plugins.generic.backup.name
+plugins.generic.backup.description
+plugins.generic.booksForReview.displayName
+plugins.generic.booksForReview.description
+plugins.generic.browse.displayName
+plugins.generic.browse.description
+plugins.generic.customBlockManager.description
+plugins.generic.driver.displayName
+plugins.generic.driver.description
+plugins.generic.externalFeed.displayName
+plugins.generic.externalFeed.description
+plugins.generic.googleViewer.name
+plugins.generic.googleViewer.description
+plugins.generic.lucene.displayName
+plugins.generic.lucene.description
+plugins.generic.openAIRE.displayName
+plugins.generic.openAIRE.description
+plugins.generic.piwik.displayName
+plugins.generic.piwik.description
+plugins.generic.stopForumSpam.displayName
+plugins.generic.stopForumSpam.description
+plugins.generic.sword.displayName
+plugins.generic.sword.description

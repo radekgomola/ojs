@@ -1,0 +1,26 @@
+table style=bordernone
+trtd style=bordernonestrongtučný textstrongtd
+td style=bordernone - stiskni ikonutd
+td style=bordernone img src=OJSpublicsiteimagesAdminb.png alt= td 
+td style=bordernone(nebo Ctrl + b)tdtr
+trtd style=bordernoneemkurzívaemtd
+td style=bordernone - stiskni ikonutd
+td style=bordernoneimg src=OJSpublicsiteimagesAdmini.png alt= td
+td style=bordernone(nebo Ctrl + i)tdtr
+trtd style=bordernonespan style=text-decoration underlinepodtržený textspantd
+td style=bordernone - stiskni ikonutd
+td style=bordernone img src=OJSpublicsiteimagesAdminu.png alt= td 
+td style=bordernone(nebo Ctrl + u)tdtr
+table
+br 
+table style=border none
+trtd style=bordernone; padding-right 10px ulliOdrážkovaný text 1liliOdrážkovaný text 2liultd
+td style=bordernone;  vertical-align top; padding-right 10px - stiskni ikonutd
+td style=border none; vertical-align top; padding-right 10pximg src=OJSpublicsiteimagesAdminul.png alt= td
+tr
+trtd style=bordernone; padding-right 10px olliČíslovaný text 1liliČíslovaný text 2lioltd
+td style=bordernone; vertical-align top; padding-right 10px - stiskni ikonutd
+td style=border none; vertical-align top; padding-right 10pximg src=OJSpublicsiteimagesAdminol.png alt= td
+tr
+table
+ulliOdrážkovaný text 1liliOdrážkovaný text 2liulolliČíslovaný text 1liliČíslovaný text 2liol

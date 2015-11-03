@@ -1,0 +1,1944 @@
+diff -w -r C:/xampp_new/htdocs/ojs/.git/COMMIT_EDITMSG C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/COMMIT_EDITMSG
+1c1
+< prvni vlozeni - clone submodulu ode me
+---
+> commit
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git: FETCH_HEAD
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git: ORIG_HEAD
+diff -w -r C:/xampp_new/htdocs/ojs/.git/config C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/config
+10c10
+< 	url = https://github.com/radekgomola/ojs
+---
+> 	url = https://github.com/radekgomola/ojs/
+18,21d17
+< [submodule "lib/pkp"]
+< 	url = https://github.com/radekgomola/pkp-lib
+< [submodule "plugins/importexport/duracloud/lib/DuraCloud-PHP"]
+< 	url = git@github.com:asmecher/DuraCloud-PHP
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git: gitk.cache
+Binary files C:/xampp_new/htdocs/ojs/.git/index and C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/index differ
+diff -w -r C:/xampp_new/htdocs/ojs/.git/logs/HEAD C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/logs/HEAD
+1,3c1,30
+< 0000000000000000000000000000000000000000 62f3cc71ede9b1ba0990806b5dc04554ceb60852 Radek Gomola <radek.gomola@gmail.com> 1398230588 +0200	clone: from https://github.com/radekgomola/ojs
+< 62f3cc71ede9b1ba0990806b5dc04554ceb60852 90b506991c452004ea43c16a7dafeab9fc7dcf1e Radek Gomola <radek.gomola@gmail.com> 1398230685 +0200	checkout: moving from master to ojs-jmc
+< 90b506991c452004ea43c16a7dafeab9fc7dcf1e d4bbced20bac711cb7c3594b6b69ae44d8d27959 Radek Gomola <radek.gomola@gmail.com> 1398230778 +0200	commit: prvni vlozeni - clone submodulu ode me
+---
+> 0000000000000000000000000000000000000000 62f3cc71ede9b1ba0990806b5dc04554ceb60852 Radek Gomola <radek.gomola@gmail.com> 1396524577 +0200	clone: from https://github.com/radekgomola/ojs/
+> 62f3cc71ede9b1ba0990806b5dc04554ceb60852 90b506991c452004ea43c16a7dafeab9fc7dcf1e Radek Gomola <radek.gomola@gmail.com> 1396524671 +0200	checkout: moving from master to ojs-jmc
+> 90b506991c452004ea43c16a7dafeab9fc7dcf1e 8a280e86c0399586bb0d69e4df746d4349f84c39 Radek Gomola <radek.gomola@gmail.com> 1396531203 +0200	commit: 3.4.14 - implementovany vsechny zmeny pro jmc
+> 8a280e86c0399586bb0d69e4df746d4349f84c39 f20608fda222b6e9b9eb42025729a92957af2a05 Radek Gomola <radek.gomola@gmail.com> 1396590036 +0200	commit: 4.4.14 - ranni pokus
+> f20608fda222b6e9b9eb42025729a92957af2a05 ef3a1c10b9d6baf403d3ee9db828c2df6b101553 Radek Gomola <radek.gomola@gmail.com> 1396593497 +0200	commit: 4.4.14 - upraveny pluginy jak jsou na jmc, ale nefunguje TinyMCE
+> ef3a1c10b9d6baf403d3ee9db828c2df6b101553 da51be46fc769f6e7e90e487cedebd58de34879d Radek Gomola <radek.gomola@gmail.com> 1396594110 +0200	commit: probl�m s TinyMCE vy�e�en (nesm�m m�nit slo�ky instalace)
+> da51be46fc769f6e7e90e487cedebd58de34879d da51be46fc769f6e7e90e487cedebd58de34879d Radek Gomola <radek.gomola@gmail.com> 1396594479 +0200	checkout: moving from ojs-jmc to ojs-jmc
+> da51be46fc769f6e7e90e487cedebd58de34879d 8a280e86c0399586bb0d69e4df746d4349f84c39 Radek Gomola <radek.gomola@gmail.com> 1396594539 +0200	checkout: moving from ojs-jmc to remotes/origin/ojs-jmc
+> 8a280e86c0399586bb0d69e4df746d4349f84c39 981caadb417ba697c8ef9087896cdf1ed6f6fb8e Radek Gomola <radek.gomola@gmail.com> 1396595055 +0200	pull https://github.com/radekgomola/ojs ojs-jmc: Fast-forward
+> 981caadb417ba697c8ef9087896cdf1ed6f6fb8e da51be46fc769f6e7e90e487cedebd58de34879d Radek Gomola <radek.gomola@gmail.com> 1396595248 +0200	checkout: moving from 981caadb417ba697c8ef9087896cdf1ed6f6fb8e to ojs-jmc
+> da51be46fc769f6e7e90e487cedebd58de34879d 872f1012949ad5c896f9988b169b07abe51cd0ed Radek Gomola <radek.gomola@gmail.com> 1396595312 +0200	pull https://github.com/radekgomola/ojs ojs-jmc: Merge made by the 'recursive' strategy.
+> 872f1012949ad5c896f9988b169b07abe51cd0ed 13defbf8830119f39e1dd9f3326a17efde415563 Radek Gomola <radek.gomola@gmail.com> 1396595721 +0200	commit: opraveno zobrazovani jmen v medailonku
+> 13defbf8830119f39e1dd9f3326a17efde415563 7d8f1032a613481ae3bf83c8fc7b5d65fb9279be Radek Gomola <radek.gomola@gmail.com> 1396595781 +0200	commit: opraveno zobrazovani jmen v medailonku
+> 7d8f1032a613481ae3bf83c8fc7b5d65fb9279be f1dfe23283377e97f770c08283bbfcd819bcb965 Radek Gomola <radek.gomola@gmail.com> 1396595919 +0200	commit: opraveno zobrazovani jmen v medailonku - smazan nadpis navic
+> f1dfe23283377e97f770c08283bbfcd819bcb965 f8a388a2a9a9643e8197c757e56bf5bbc891408b Radek Gomola <radek.gomola@gmail.com> 1396596010 +0200	commit: opraveno zobrazovani jmen v medailonku - velikost pole pro text
+> f8a388a2a9a9643e8197c757e56bf5bbc891408b 6e137c871d883207bd26bf4b4c308b218879ac47 Radek Gomola <radek.gomola@gmail.com> 1396961866 +0200	commit: 8.4.14 - upraveny identifikatory u importu a exportu clanku a cisel
+> 6e137c871d883207bd26bf4b4c308b218879ac47 510be9df1928702d748de6e8812f8c4f044d37fb Radek Gomola <radek.gomola@gmail.com> 1397025458 +0200	commit: 9.4.2014 - upraven export cisel, pridano zvyraznovani radku
+> 510be9df1928702d748de6e8812f8c4f044d37fb f5c273929760f9a57d760dc395fa7f34d7a0bf38 Radek Gomola <radek.gomola@gmail.com> 1397039148 +0200	commit: 9.4.14 - upraveno zobrazovani cisel a medailonky + upraveny lokalizace
+> f5c273929760f9a57d760dc395fa7f34d7a0bf38 4f82fe63d49e743c4caff8c648de7ea87b975078 Radek Gomola <radek.gomola@gmail.com> 1397051220 +0200	commit: 9.4.14 - drobne změny v zobrazovani sazebnic a drobeckova navigace na clanek
+> 4f82fe63d49e743c4caff8c648de7ea87b975078 b83cad38cb23372cfd7f93c127dec01346d1bb67 Radek Gomola <radek.gomola@gmail.com> 1397129150 +0200	commit: 10.4.2014 - xml zaloha cisel + upravy zobrazovani pdf
+> b83cad38cb23372cfd7f93c127dec01346d1bb67 d5cef2f8880585916720207d78c1afd52fb79fd1 Radek Gomola <radek.gomola@gmail.com> 1397456644 +0200	commit: 11.4.14 - medailonky, casopis clanky
+> d5cef2f8880585916720207d78c1afd52fb79fd1 3936aa5655098dbaffe0812eee321e2ed89b0235 Radek Gomola <radek.gomola@gmail.com> 1397462696 +0200	commit: odstraneni slozky casopisy
+> 3936aa5655098dbaffe0812eee321e2ed89b0235 906bd4a9c811c2d326cbdf94eaf9b93cae928831 Radek Gomola <radek.gomola@gmail.com> 1397465669 +0200	commit: commit
+> 906bd4a9c811c2d326cbdf94eaf9b93cae928831 243bef79d56189f2b34a8deef615f62d7554404d Radek Gomola <radek.gomola@gmail.com> 1397466832 +0200	commit: commit
+> 243bef79d56189f2b34a8deef615f62d7554404d 3936aa5655098dbaffe0812eee321e2ed89b0235 Radek Gomola <radek.gomola@gmail.com> 1397467125 +0200	reset: moving to 3936aa5655098dbaffe0812eee321e2ed89b0235
+> 3936aa5655098dbaffe0812eee321e2ed89b0235 d5cef2f8880585916720207d78c1afd52fb79fd1 Radek Gomola <radek.gomola@gmail.com> 1397467222 +0200	reset: moving to d5cef2f8880585916720207d78c1afd52fb79fd1
+> d5cef2f8880585916720207d78c1afd52fb79fd1 3936aa5655098dbaffe0812eee321e2ed89b0235 Radek Gomola <radek.gomola@gmail.com> 1397467312 +0200	reset: moving to 3936aa5655098dbaffe0812eee321e2ed89b0235
+> 3936aa5655098dbaffe0812eee321e2ed89b0235 2067c03fc6def882d85989947c27fa9e578712a2 Radek Gomola <radek.gomola@gmail.com> 1397467442 +0200	commit: commit
+> 2067c03fc6def882d85989947c27fa9e578712a2 3d5bf777d78f960f6a4cbc2625992bd5d802034e Radek Gomola <radek.gomola@gmail.com> 1397472073 +0200	commit: upraveny .gitignore
+> 3d5bf777d78f960f6a4cbc2625992bd5d802034e 46d1afd8ff3752c93ce4134eba5ff270985bffb9 Radek Gomola <radek.gomola@gmail.com> 1397472619 +0200	commit (merge): commit
+diff -w -r C:/xampp_new/htdocs/ojs/.git/logs/refs/heads/master C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/logs/refs/heads/master
+1c1
+< 0000000000000000000000000000000000000000 62f3cc71ede9b1ba0990806b5dc04554ceb60852 Radek Gomola <radek.gomola@gmail.com> 1398230588 +0200	clone: from https://github.com/radekgomola/ojs
+---
+> 0000000000000000000000000000000000000000 62f3cc71ede9b1ba0990806b5dc04554ceb60852 Radek Gomola <radek.gomola@gmail.com> 1396524577 +0200	clone: from https://github.com/radekgomola/ojs/
+diff -w -r C:/xampp_new/htdocs/ojs/.git/logs/refs/heads/ojs-jmc C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/logs/refs/heads/ojs-jmc
+1,2c1,25
+< 0000000000000000000000000000000000000000 90b506991c452004ea43c16a7dafeab9fc7dcf1e Radek Gomola <radek.gomola@gmail.com> 1398230685 +0200	branch: Created from ojs-2_4_3-0
+< 90b506991c452004ea43c16a7dafeab9fc7dcf1e d4bbced20bac711cb7c3594b6b69ae44d8d27959 Radek Gomola <radek.gomola@gmail.com> 1398230778 +0200	commit: prvni vlozeni - clone submodulu ode me
+---
+> 0000000000000000000000000000000000000000 90b506991c452004ea43c16a7dafeab9fc7dcf1e Radek Gomola <radek.gomola@gmail.com> 1396524671 +0200	branch: Created from ojs-2_4_3-0
+> 90b506991c452004ea43c16a7dafeab9fc7dcf1e 8a280e86c0399586bb0d69e4df746d4349f84c39 Radek Gomola <radek.gomola@gmail.com> 1396531203 +0200	commit: 3.4.14 - implementovany vsechny zmeny pro jmc
+> 8a280e86c0399586bb0d69e4df746d4349f84c39 f20608fda222b6e9b9eb42025729a92957af2a05 Radek Gomola <radek.gomola@gmail.com> 1396590036 +0200	commit: 4.4.14 - ranni pokus
+> f20608fda222b6e9b9eb42025729a92957af2a05 ef3a1c10b9d6baf403d3ee9db828c2df6b101553 Radek Gomola <radek.gomola@gmail.com> 1396593497 +0200	commit: 4.4.14 - upraveny pluginy jak jsou na jmc, ale nefunguje TinyMCE
+> ef3a1c10b9d6baf403d3ee9db828c2df6b101553 da51be46fc769f6e7e90e487cedebd58de34879d Radek Gomola <radek.gomola@gmail.com> 1396594110 +0200	commit: probl�m s TinyMCE vy�e�en (nesm�m m�nit slo�ky instalace)
+> da51be46fc769f6e7e90e487cedebd58de34879d 872f1012949ad5c896f9988b169b07abe51cd0ed Radek Gomola <radek.gomola@gmail.com> 1396595312 +0200	pull https://github.com/radekgomola/ojs ojs-jmc: Merge made by the 'recursive' strategy.
+> 872f1012949ad5c896f9988b169b07abe51cd0ed 13defbf8830119f39e1dd9f3326a17efde415563 Radek Gomola <radek.gomola@gmail.com> 1396595721 +0200	commit: opraveno zobrazovani jmen v medailonku
+> 13defbf8830119f39e1dd9f3326a17efde415563 7d8f1032a613481ae3bf83c8fc7b5d65fb9279be Radek Gomola <radek.gomola@gmail.com> 1396595781 +0200	commit: opraveno zobrazovani jmen v medailonku
+> 7d8f1032a613481ae3bf83c8fc7b5d65fb9279be f1dfe23283377e97f770c08283bbfcd819bcb965 Radek Gomola <radek.gomola@gmail.com> 1396595919 +0200	commit: opraveno zobrazovani jmen v medailonku - smazan nadpis navic
+> f1dfe23283377e97f770c08283bbfcd819bcb965 f8a388a2a9a9643e8197c757e56bf5bbc891408b Radek Gomola <radek.gomola@gmail.com> 1396596010 +0200	commit: opraveno zobrazovani jmen v medailonku - velikost pole pro text
+> f8a388a2a9a9643e8197c757e56bf5bbc891408b 6e137c871d883207bd26bf4b4c308b218879ac47 Radek Gomola <radek.gomola@gmail.com> 1396961866 +0200	commit: 8.4.14 - upraveny identifikatory u importu a exportu clanku a cisel
+> 6e137c871d883207bd26bf4b4c308b218879ac47 510be9df1928702d748de6e8812f8c4f044d37fb Radek Gomola <radek.gomola@gmail.com> 1397025458 +0200	commit: 9.4.2014 - upraven export cisel, pridano zvyraznovani radku
+> 510be9df1928702d748de6e8812f8c4f044d37fb f5c273929760f9a57d760dc395fa7f34d7a0bf38 Radek Gomola <radek.gomola@gmail.com> 1397039148 +0200	commit: 9.4.14 - upraveno zobrazovani cisel a medailonky + upraveny lokalizace
+> f5c273929760f9a57d760dc395fa7f34d7a0bf38 4f82fe63d49e743c4caff8c648de7ea87b975078 Radek Gomola <radek.gomola@gmail.com> 1397051220 +0200	commit: 9.4.14 - drobne změny v zobrazovani sazebnic a drobeckova navigace na clanek
+> 4f82fe63d49e743c4caff8c648de7ea87b975078 b83cad38cb23372cfd7f93c127dec01346d1bb67 Radek Gomola <radek.gomola@gmail.com> 1397129150 +0200	commit: 10.4.2014 - xml zaloha cisel + upravy zobrazovani pdf
+> b83cad38cb23372cfd7f93c127dec01346d1bb67 d5cef2f8880585916720207d78c1afd52fb79fd1 Radek Gomola <radek.gomola@gmail.com> 1397456644 +0200	commit: 11.4.14 - medailonky, casopis clanky
+> d5cef2f8880585916720207d78c1afd52fb79fd1 3936aa5655098dbaffe0812eee321e2ed89b0235 Radek Gomola <radek.gomola@gmail.com> 1397462696 +0200	commit: odstraneni slozky casopisy
+> 3936aa5655098dbaffe0812eee321e2ed89b0235 906bd4a9c811c2d326cbdf94eaf9b93cae928831 Radek Gomola <radek.gomola@gmail.com> 1397465669 +0200	commit: commit
+> 906bd4a9c811c2d326cbdf94eaf9b93cae928831 243bef79d56189f2b34a8deef615f62d7554404d Radek Gomola <radek.gomola@gmail.com> 1397466832 +0200	commit: commit
+> 243bef79d56189f2b34a8deef615f62d7554404d 3936aa5655098dbaffe0812eee321e2ed89b0235 Radek Gomola <radek.gomola@gmail.com> 1397467125 +0200	reset: moving to 3936aa5655098dbaffe0812eee321e2ed89b0235
+> 3936aa5655098dbaffe0812eee321e2ed89b0235 d5cef2f8880585916720207d78c1afd52fb79fd1 Radek Gomola <radek.gomola@gmail.com> 1397467222 +0200	reset: moving to d5cef2f8880585916720207d78c1afd52fb79fd1
+> d5cef2f8880585916720207d78c1afd52fb79fd1 3936aa5655098dbaffe0812eee321e2ed89b0235 Radek Gomola <radek.gomola@gmail.com> 1397467312 +0200	reset: moving to 3936aa5655098dbaffe0812eee321e2ed89b0235
+> 3936aa5655098dbaffe0812eee321e2ed89b0235 2067c03fc6def882d85989947c27fa9e578712a2 Radek Gomola <radek.gomola@gmail.com> 1397467442 +0200	commit: commit
+> 2067c03fc6def882d85989947c27fa9e578712a2 3d5bf777d78f960f6a4cbc2625992bd5d802034e Radek Gomola <radek.gomola@gmail.com> 1397472073 +0200	commit: upraveny .gitignore
+> 3d5bf777d78f960f6a4cbc2625992bd5d802034e 46d1afd8ff3752c93ce4134eba5ff270985bffb9 Radek Gomola <radek.gomola@gmail.com> 1397472619 +0200	commit (merge): commit
+diff -w -r C:/xampp_new/htdocs/ojs/.git/logs/refs/remotes/origin/HEAD C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/logs/refs/remotes/origin/HEAD
+1c1
+< 0000000000000000000000000000000000000000 62f3cc71ede9b1ba0990806b5dc04554ceb60852 Radek Gomola <radek.gomola@gmail.com> 1398230588 +0200	clone: from https://github.com/radekgomola/ojs
+---
+> 0000000000000000000000000000000000000000 62f3cc71ede9b1ba0990806b5dc04554ceb60852 Radek Gomola <radek.gomola@gmail.com> 1396524577 +0200	clone: from https://github.com/radekgomola/ojs/
+diff -w -r C:/xampp_new/htdocs/ojs/.git/logs/refs/remotes/origin/ojs-jmc C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/logs/refs/remotes/origin/ojs-jmc
+1c1,10
+< 0000000000000000000000000000000000000000 d4bbced20bac711cb7c3594b6b69ae44d8d27959 Radek Gomola <radek.gomola@gmail.com> 1398230824 +0200	update by push
+---
+> 0000000000000000000000000000000000000000 8a280e86c0399586bb0d69e4df746d4349f84c39 Radek Gomola <radek.gomola@gmail.com> 1396531765 +0200	update by push
+> 8a280e86c0399586bb0d69e4df746d4349f84c39 981caadb417ba697c8ef9087896cdf1ed6f6fb8e unknown <LordDrake@Drake.(none)> 1396594743 +0200	pull: fast-forward
+> 981caadb417ba697c8ef9087896cdf1ed6f6fb8e 872f1012949ad5c896f9988b169b07abe51cd0ed Radek Gomola <radek.gomola@gmail.com> 1396595470 +0200	update by push
+> 872f1012949ad5c896f9988b169b07abe51cd0ed f8a388a2a9a9643e8197c757e56bf5bbc891408b Radek Gomola <radek.gomola@gmail.com> 1396596507 +0200	update by push
+> f8a388a2a9a9643e8197c757e56bf5bbc891408b 510be9df1928702d748de6e8812f8c4f044d37fb Radek Gomola <radek.gomola@gmail.com> 1397026345 +0200	update by push
+> 510be9df1928702d748de6e8812f8c4f044d37fb 4f82fe63d49e743c4caff8c648de7ea87b975078 Radek Gomola <radek.gomola@gmail.com> 1397051389 +0200	update by push
+> 4f82fe63d49e743c4caff8c648de7ea87b975078 d5cef2f8880585916720207d78c1afd52fb79fd1 Radek Gomola <radek.gomola@gmail.com> 1397456910 +0200	update by push
+> d5cef2f8880585916720207d78c1afd52fb79fd1 3936aa5655098dbaffe0812eee321e2ed89b0235 Radek Gomola <radek.gomola@gmail.com> 1397462785 +0200	update by push
+> 3936aa5655098dbaffe0812eee321e2ed89b0235 9ced480a8d7cb9354e7322421103e27113b2bd0c unknown <LordDrake@Radek.(none)> 1397472020 +0200	fetch: forced-update
+> 9ced480a8d7cb9354e7322421103e27113b2bd0c 46d1afd8ff3752c93ce4134eba5ff270985bffb9 Radek Gomola <radek.gomola@gmail.com> 1397474364 +0200	update by push
+Only in C:/xampp_new/htdocs/ojs/.git: modules
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 00
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 01
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 02
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 03
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 04
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 05
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 06
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 07
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 08
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 09
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 0a
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 0b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 0c
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 0d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 0e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 0f
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 10
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 11
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 12
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 13
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 14
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 15
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 16
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 17
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 18
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 19
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 1a
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 1b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 1c
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 1d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 1e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 1f
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 20
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 21
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 22
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 23
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 24
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 25
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 26
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 27
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 28
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 29
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 2a
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 2b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 2c
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 2d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 2e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 2f
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 30
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 31
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 32
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 33
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 34
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 35
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 36
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 37
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 38
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 39
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 3a
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 3b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 3c
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 3d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 3e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 3f
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 40
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 057e0a58aacfadb5556aa1958cfc06ccc1fa17
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 0c7ad084db698e9f35e3230233aa4040682566
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 0c867bf43d8763db9bc87af759e49755e99ace
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 0d1230ea3b3f005dc864bd8ab16f7aa99cd67f
+Only in C:/xampp_new/htdocs/ojs/.git/objects/41: 1cdd2d04986d6bb8626b1b6de0b21f66ea0045
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 2a355023fe28354fb71c2156e919a6a9c76301
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 2cd1b9ee102c0ce89652315f5b67d8a614d0d5
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 33234e7563b7d2d4aea061e6f5705e3f3d8c82
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 355633ccfeb494a0fe3c6b553735972988d0df
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 36e6050265c8d182ad4fdaf97e2053ebf63716
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 51e373605016c1126ea915608b4fe95a6c806e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 566558cbe904eb21f8d8eb0169487da709df6e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 59998b1a849002e673412aebb9fbfbf4038d7c
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 60d972b874cc60a9f5598fcd8528d251441f91
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 6b08fed1f0064dfc557be1a45d7dc993081122
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 86ccd0d196ad2a4846c7e25781e1f119c067c6
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 8cdaf7d499750a81351db8fd6f02ada12b83f4
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 9951203e89d4c462af8a2b581b48a1ba902af4
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: 9ac24db398085756bf1c8f9804306a1408da80
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: a255ef0d3aeabbbd44182fc0ed4f0ce152ad66
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: a2cfc79c769cbd15f81fb3294162f16a6f0139
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: a9c69c201409bb6134aa158431742b12a763ee
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: d3b0dc1f843b4180ba937e355fd9ea1d5e97d3
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: d97e734fe068e466c7bfffbc79e95791ba9171
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/41: fe7e690a07ab8fad9cd793445f4d45463b887a
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 42
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 43
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 44
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 45
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 46
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 47
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 48
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 49
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 4a
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 4b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 4c
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 4d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 4e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 4f
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 50
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 51
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 52
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 53
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 54
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 55
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 56
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 57
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 58
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 59
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 5a
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 5b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 5c
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 5d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 5e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 5f
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 60
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 61
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 62
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 63
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 64
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 65
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 66
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 67
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 68
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 69
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 6a
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 6b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 6c
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 6d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 6e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 6f
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 70
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 71
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 72
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 73
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 74
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 75
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 76
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 77
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 78
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 79
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 7a
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 7b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 7c
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 7d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 04eae84b871782d4c0c76903663f126a1da4c2
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 0623001af006cf6120573ee67387d0c1cae775
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 09874892ddd89e91087153468338aacfd0e8b4
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 1473965dc140e2f1f861c750eedfe0ff0f901d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 17593ef2d8c903fe5dbba40e9e626c24340975
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 2430b65450e51fa742eba3ae16760de87d463d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 34252bcad40807d20e5fcdcb797c3b96f16a40
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 397ec876ba53e3392df2c6644ddd8d981c5050
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 3cf00eb003cccd55d17524d14030522f7ec3ff
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 3deaf8d1c3e2717aefd2805663432297aa23bb
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 40265d71fab30a1476fcb230340dc2451e4fc0
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 4a0b25e71260f7554232475af0fbbf2e0408a7
+Only in C:/xampp_new/htdocs/ojs/.git/objects/7e: 70ba4cd2a3337e67858b2ea7f3d179525b1f67
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 7cb5c171f86114fb8eadb7bc87db35a7def330
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 82717a174f9a0de503fdc36d3385c97532b961
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 9319d039f4142266545ae40a37ffe304368ef0
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: 9e6d40474a516b60db9ea4eeb86910bcfd487b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: a51f2858fe6f414969ab05a292bf62f3215124
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: aa362722337ba9d5c3aa813606b2cd7fead8b7
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: b6e9e403c8a927c214b392163d782892a4e368
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: cbdabb4b173c4fa981a8a9ff1968ea6af6aeed
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: ccb88d373115145d514ebb720c6d7f4a08fcb0
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: cee51f8c860c139ce1f1fac8a7406d51ad2496
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: d672d87f67637aa15b05e62cc0e698bed1057d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: d7acaa8affe9963c7f53dc2ac179ed3e200ec4
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: ea9a60b19648de07f7609c0685aa6d2ab85932
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/7e: f399b9908976fc36f760fad7876a4d9c38e006
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 7f
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 80
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 81
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 82
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 83
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 84
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 85
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 86
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 87
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 88
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 89
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 8a
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 8b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 8c
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 8d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 8e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 8f
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 90
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 91
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 92
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 93
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 94
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 95
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 96
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 97
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 98
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 99
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 9a
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 9b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 9c
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 9d
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 9e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: 9f
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: a0
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: a1
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: a2
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: a3
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: a4
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: a5
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: a6
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: a7
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: a8
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: a9
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: aa
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ab
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ac
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ad
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ae
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: af
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: b0
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: b1
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: b2
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: b3
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: b4
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: b5
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: b6
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: b7
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: b8
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: b9
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ba
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: bb
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: bc
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: bd
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: be
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: bf
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: c0
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: c1
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: c2
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: c3
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: c4
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: c5
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: c6
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: c7
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: c8
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: c9
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ca
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: cb
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: cc
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: cd
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ce
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: cf
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: d0
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: d1
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: d2
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: d3
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 01df96519dd998d945d3c3fd4e9d4c4666dec7
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 0938a2d483b1d8b6de85824036037666153381
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 1021802b1b97c98a6ddbc06b848e7386c87189
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 20721c9383b102f6b1b69bdabbf03c20b73b27
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 27080c530683f842f2aa723947e940efaebb7e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 2e612f725c571918eabdadcb8db9535d06f6b1
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 40ffa660d9c4e1e3d4d4dc13f5d2c403f3d941
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 4c77b4d646adcf2242d812417062273a771ccf
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 67a939e42403d82dc3d864c27008601c6268e8
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 67c2ef1b02398d5fd34451699d7868dc78b3cf
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 68a229bf2b820be85505bc26f9c19496628f6e
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 698ad4cd6ff51e4e8b89e4b5a052c96bac5b4b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 89379bc2c5e787b5ea557cc6622d6e358f828c
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 8d9ac15b5daba9da02daa80116577f94f9a7e0
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: 9b196c429ea75d4bd2a1237fc2d3adb0a9fea3
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: b14a2e3a9a1c96ef3b4180a99009d2bda5868f
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: bbae857cf15426b5d66f651dd758528489fda2
+Only in C:/xampp_new/htdocs/ojs/.git/objects/d4: bbced20bac711cb7c3594b6b69ae44d8d27959
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: ca1e1f5a4a5c93c60c801be93dac620014f39b
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: cc35c4bc1cd7e16a94742f03b72b1586c16532
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: eec388cad7334db3f8208d5142495cd4975dc6
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: fb32fbbb8f3e9832fe3140361f3ea4f4dbcde3
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/d4: fc2082818e5c870126b826de49ca7257c8ab81
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: d5
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: d6
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: d7
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: d8
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: d9
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: da
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: db
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: dc
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: dd
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: de
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: df
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: e0
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: e1
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: e2
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: e3
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: e4
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: e5
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: e6
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: e7
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: e8
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: e9
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ea
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: eb
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ec
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ed
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ee
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ef
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: f0
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: f1
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: f2
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: f3
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: f4
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: f5
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: f6
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: f7
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: f8
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: f9
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: fa
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: fb
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: fc
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: fd
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: fe
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects: ff
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/pack: pack-b521122d7d682bd79bb413cd2eed516d25687b9b.idx
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/objects/pack: pack-b521122d7d682bd79bb413cd2eed516d25687b9b.pack
+Only in C:/xampp_new/htdocs/ojs/.git/objects/pack: pack-e6c44d5a84948fb4f3bbc1442f11a1f93b39ea59.idx
+Only in C:/xampp_new/htdocs/ojs/.git/objects/pack: pack-e6c44d5a84948fb4f3bbc1442f11a1f93b39ea59.pack
+diff -w -r C:/xampp_new/htdocs/ojs/.git/refs/heads/ojs-jmc C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/refs/heads/ojs-jmc
+1c1
+< d4bbced20bac711cb7c3594b6b69ae44d8d27959
+---
+> 34dbfd82852deea9ee6b1af08674199ae9d867f6
+diff -w -r C:/xampp_new/htdocs/ojs/.git/refs/remotes/origin/ojs-jmc C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.git/refs/remotes/origin/ojs-jmc
+1c1
+< d4bbced20bac711cb7c3594b6b69ae44d8d27959
+---
+> 34dbfd82852deea9ee6b1af08674199ae9d867f6
+diff -w -r C:/xampp_new/htdocs/ojs/.gitignore C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.gitignore
+0a1,6
+> lokalizace_vedle_sebe
+> ojs_styly_rdg
+> tutorials
+> cache
+> casopisy
+> zaloha_db
+4a11,12
+> lib
+> lib_moje
+7a16
+> .my.cnf
+8a18,19
+> .logfile.txt
+> .logfile2.txt
+diff -w -r C:/xampp_new/htdocs/ojs/.gitmodules C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/.gitmodules
+3c3
+< 	url = https://github.com/radekgomola/pkp-lib
+---
+> 	url = git@github.com:pkp/pkp-lib.git
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs: README.md
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: HTML
+Only in C:/xampp_new/htdocs/ojs/cache: _db
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: d0fe6740ad4593543ea4887318ec3e55.gz
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-country-cs_CZ.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-journalSettings-2.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-journalSettings-3.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-journalSettings-4.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-journalSettings-5.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-00181aeea44e488de84aa3ddd7b66516.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-031ca768f86edd9c85cd5b31ec2e3476.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-034264b25727c6093665fa2a775e52f2.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-0393942b63a6ef1c874d2d6324e3c897.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/fc-locale-03b174b61510807426c2a2c128f6a86a.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/fc-locale-03b174b61510807426c2a2c128f6a86a.php
+2c2
+<   'about.aboutSite' => 'About the Site',
+---
+>   'about.aboutSite' => 'About',
+376a377
+>   'common.readMore' => 'read more...',
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-044d797f82b2a293d65fe5e855bb52ec.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-052053c9fdaf7f8e75a200a957de3b5d.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-060b54f5ec922ace60afc62be3963566.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/fc-locale-1112c8b8c76c23cf35e23ca2588e9a12.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/fc-locale-1112c8b8c76c23cf35e23ca2588e9a12.php
+27a28
+>   'admin.scheduledTask' => 'Naplánovaný úkol',
+35a37
+>   'admin.settings' => 'Nastavení',
+51a54
+>   'admin.settings.siteTheme' => 'Vzhled stránek',
+55a59
+>   'admin.siteSetup' => 'Nastavení stránky',
+70a75,78
+>   'admin.fileLoader.wrongBasePathLocation' => 'Cesta {$path} musí vést do veřejné složky se soubory',
+>   'admin.fileLoader.pathNotAccessible' => 'Složka {$path} není adresář nebo jej nelze číst.',
+>   'admin.fileLoader.moveFileFailed' => 'soubor {$filename} nemohl být přesunut z {$currentFilePath} do {$destinationPath}',
+>   'admin.fileLoader' => 'Načtení souboru',
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-113e65ce563903dccab844f614b68570.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-132a969d0a010107948805488594b019.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/fc-locale-1655572c219c967d114d79ff1d5ff26a.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/fc-locale-1655572c219c967d114d79ff1d5ff26a.php
+1a2,9
+>   'common.journal' => 'Časopis',
+>   'navigation.categories' => 'Kategorie',
+>   'navigation.categories.browse' => 'Procházet',
+>   'submission.reviewForm' => 'Formulář posudku',
+>   'submission.reviewFormResponse' => 'Odpovědi na formulář posudku',
+>   'reviewer.article.enterReviewForm' => 'Pro vyplnění formuláře posudku klikněte na ikonu.',
+>   'reviewer.article.reviewFormResponse.form.responseRequired' => 'Vyplňte prosím požadované položky.',
+>   'site.upgradeAvailable.manager' => 'Je dostupná nová verze OJS! Současně používaná verze OJS je {$currentVersion}. Poslední verze OJS {$latestVersion}. Prosím kontaktujte administrátora ({$siteAdminName}, <a href="mailto:{$siteAdminEmail}">{$siteAdminEmail}</a>) a oznamte mu dostupnost nové verze. Více informací je možné najít <a href="http://pkp.sfu.ca/ojs_download" target="_new">zde</a>.',
+5a14,17
+>   'common.pageHeader.altText' => 'Záhlaví stránky',
+>   'common.homePageHeader.altText' => 'Záhlaví domácí stránky',
+>   'common.journalHomepageImage.altText' => 'Obrázek domácí stránky časopisu',
+>   'navigation.about.journal' => 'O časopisu',
+33a46
+>   'article.article' => 'Článek',
+59a73,82
+>   'article.coverPage.altText' => 'Obrázek obalu',
+>   'article.accessLogoOpen.altText' => 'Otevřený přístup',
+>   'article.accessLogoRestricted.altText' => 'Omezený přístup',
+>   'article.comments.sectionDefault' => 'Výchozí',
+>   'article.comments.disable' => 'Zakázat',
+>   'article.comments.enable' => 'Povolit',
+>   'article.fontSize' => 'Velikost fontu',
+>   'article.fontSize.small.altText' => 'Malý',
+>   'article.fontSize.medium.altText' => 'Střední',
+>   'article.fontSize.large.altText' => 'Velký',
+101a125,127
+>   'journal.issn' => 'ISSN',
+>   'user.registration.validationEmail' => 'Váš účet je potřeba aktivovat. Na Vaši e-mailovou adresu byl zaslán aktivační e-mail.',
+>   'user.profile.profileImage' => 'Obrázek profilu',
+104a131,137
+>   'user.manageMySubscriptions' => 'Spravovat moje předplatné',
+>   'user.noRoles.chooseJournal' => 'Váš účet není aktuálně asociován s žádným časopisem. Prosím, vyberte si časopis:',
+>   'user.noRoles.noRolesForJournal' => 'Váš účet nemá aktuálně v tomto časopisu žádné role. Vyberte prosím níže akci:',
+>   'user.noRoles.submitArticle' => 'Poslat článek',
+>   'user.noRoles.submitArticleRegClosed' => 'Poslat článek: registrace autorů je aktuálně zakázána.',
+>   'user.noRoles.regReviewer' => 'Registrovat se jako recenzent',
+>   'user.noRoles.regReviewerClosed' => 'Registrovat se jako recenzent: registrace recenzentů je aktuálně zakázána.',
+131a165,190
+>   'issue.coverPage.altText' => 'Titulní stránka',
+>   'issue.fullIssue' => 'Celé číslo',
+>   'issue.nonpdf.title' => 'Stáhnout číslo',
+>   'issue.viewIssue' => 'Prohlédnout číslo',
+>   'issue.viewIssueDescription' => 'Prohlédnout nebo stáhnout celé číslo',
+>   'subscriptionTypes.currency' => 'Měna',
+>   'subscriptionTypes.year' => 'rok',
+>   'subscriptionTypes.years' => 'roků',
+>   'subscriptionTypes.month' => 'měsíc',
+>   'subscriptionTypes.months' => 'měsíců',
+>   'subscriptionTypes.nonExpiring' => 'Nevyprší',
+>   'subscriptionTypes.format' => 'Formát',
+>   'subscriptionTypes.format.online' => 'Online',
+>   'subscriptionTypes.format.print' => 'Tištěný',
+>   'subscriptionTypes.format.printOnline' => 'Tištěný a online',
+>   'subscriptions.inactive' => 'Neaktivní',
+>   'subscriptions.status' => 'Stav',
+>   'subscriptions.status.active' => 'Aktivní',
+>   'subscriptions.status.needsInformation' => 'Vyžaduje informace',
+>   'subscriptions.status.needsApproval' => 'Vyžaduje schválení',
+>   'subscriptions.status.awaitingManualPayment' => 'Čekání na ručně provedenou platbu',
+>   'subscriptions.status.awaitingOnlinePayment' => 'Čekání na online platbu',
+>   'subscriptions.status.other' => 'Jiné, viz poznámky',
+>   'subscriptions.individualDescription' => 'Individuální předplatné vyžaduje pro přístup k obsahu předplatného přihlášení.',
+>   'subscriptions.institutionalDescription' => 'Institucionální předplatné nevyžaduje přihlášení. Pro udělení přístupu k předplacenému obsahu je použita doména uživatele a/nebo IP adresa.',
+>   'subscriptions.institutionalOnlinePaymentDescription' => '<strong>Poznámka:</strong> Institucionální předplatné pořízené online vyžaduje schválení domény a IP adresy před tím, než je předplatné aktivováno.',
+191a251,253
+>   'subscriptionManager.individualSubscriptions' => 'Individuální předplatné',
+>   'subscriptionManager.institutionalSubscriptions' => 'Institucionální předplatné',
+>   'subscriptionManager.subscriptionTypes' => 'Typy předplatného',
+194a257,263
+>   'plugins.categories.implicitAuth' => 'Výchozí autentifikační pluginy',
+>   'plugins.categories.implicitAuth.description' => 'Výchozí autentifikační pluginy zavádí podporu autentifikace uživatelů založenou na http záhlavích.',
+>   'plugins.categories.oaiMetadataFormats' => 'Plugin formátu OAI metadat',
+>   'plugins.categories.oaiMetadataFormats.description' => 'Tyto formátové pluginy vydávají matadata v OAI komunikaci.',
+>   'plugins.categories.pubIds' => 'Plug-iny pro veřejné identifikátory',
+>   'plugins.categories.pubIds.description' => 'Tyto plug-iny implementují podporu pro veřejné identifikátory.',
+>   'manager.setup.reviewProcessEmailDescription' => 'Editoři posílají recenzentům požadavky na recenze s příspěvkem v příloze emailu. Recenzenti posílají editorům jejich souhlas (nebo odmítnutí) se zpracováním recenze a stejně tak posudek a doporučení. Editoři vkládají souhlas (nebo odmítnutí) a stejně tak posudek a doporučení na stránkách pro recenzování příspěvku, aby zaznamenali recenzní řízení.',
+220a290
+>   'manager.setup.citations' => 'Povolit autorům samostatně poskytnout formátovaný seznam referencí (citací) jako součást jejich příspěvku.',
+238c308,316
+< 	<li>Zvýrazněné položky indikují, že je vyžadována akce editora.</li>
+---
+> 	<li>Zvýrazněné položky indikují, že je vyžadována akce editora:
+> 		<ul>
+> 			<li class="highlightReviewerNotNotified">Recenzent byl přiřazen, ale nebyl ještě zpraven e-mailem</li>
+> 			<li class="highlightNoDecision">Všichni recenzenti nahráli své komentáře, ale nebylo nahráno žádné rozhodnutí</li>
+> 			<li class="highlightRevisedCopyUploaded">Autor nahrál revidovaný rukopis</li>
+> 			<li class="highlightReviewerConfirmationOverdue">Recenzent ještě nepotvrdil příjmutí zpracování posudku</li>
+> 			<li class="highlightReviewerCompletionOverdue">Recenzent ještě nedokončil posudek</li>
+> 		</ul>
+> 	</li>
+240a319,327
+>   'editor.submissionEditing.notes' => '<ol>
+> 	<li>Zvýrazněné položky indikují, že je vyžadována akce editora:
+> 		<ul>
+> 			<li class="highlightCopyediting">Je vyžadována akce v části redigování</li>
+> 			<li class="highlightLayoutEditing">Je vyžadována akce v některé vrstvě části editování</li>
+> 			<li class="higlightProofreading">Je vyžadována akce v části korektur</li>
+> 		</ul>
+> 	</li>
+> </ol>',
+305a393
+>   'reviewer.article.reviewGuidelinesDescription' => 'Pokyny pro zpracování recenze poskytnou recenzentům kritéria pro posouzení vhodnosti příspěvku k publikování v časopisu a muhou zahrnovat jakékoliv specifické instrukce pro přípravu efektivního a užitečného (nápomocného) posudku. Při zpracování recenze mají recenzenti k dispozici dvě otevřená textová pole - provní "pro autora a editora" a druhé "pro editora." Alternativně může manažer časopisu pod "Forluláři posudků" vytvořit formulář posudku. V každem případě budou mít editoři možnost vložit posudky do korespondece s autorem.',
+343a432,433
+>   'submission.layout.publicGalleyId' => 'Identifikátor veřejné sazebnice',
+>   'submission.layout.galleyPublicIdentificationExists' => 'Identifikace veřejné sazebnice již existuje.',
+385a476,514
+>   'user.register.reviewerInterests' => 'Určete recenzní zájmy (podstatné oblasti a výzkumné metody):',
+>   'user.subscriptions.mySubscriptions' => 'Moje předplatné',
+>   'user.subscriptions.subscriptionStatus' => 'Status předplatných',
+>   'user.subscriptions.statusInformation' => 'Aktivní a prošlá předplatné jsou zobrazeny níže pomocí jeji data expirace. Navíc, následující informace mohou být vloženy pro každé předplatné.',
+>   'user.subscriptions.status' => 'Status',
+>   'user.subscriptions.statusDescription' => 'Popis',
+>   'user.subscriptions.status.needsInformationDescription' => 'Jsou vyžadovány další informace pro aktivaci předplatného',
+>   'user.subscriptions.status.needsApprovalDescription' => 'Předplatné musí být zkontrolováno před tím než bude aktivní',
+>   'user.subscriptions.status.awaitingManualPaymentDescription' => 'Platba již mohla započnout, ale ještě nemusela dorazit.',
+>   'user.subscriptions.status.awaitingOnlinePaymentDescription' => 'Online platba byla započata, ale byla zrušena nebo nebyla dokončena',
+>   'user.subscriptions.individualSubscriptions' => 'Individuální předplatné',
+>   'user.subscriptions.institutionalSubscriptions' => 'Institucionální předplatné',
+>   'user.subscriptions.renew' => 'Obnovit',
+>   'user.subscriptions.purchase' => 'Koupit',
+>   'user.subscriptions.purchaseNewSubscription' => 'Koupit nové předplatné',
+>   'user.subscriptions.purchaseIndividualSubscription' => 'Koupit individuální předplatné',
+>   'user.subscriptions.purchaseInstitutionalSubscription' => 'Koupit institucionální předplatné',
+>   'user.subscriptions.expires' => 'Vyprší',
+>   'user.subscriptions.expired' => 'Vypršené',
+>   'user.subscriptions.viewSubscriptionTypes' => 'Zobrazit dostupné typy předplatného',
+>   'user.subscriptions.form.typeId' => 'Typ předplatného',
+>   'user.subscriptions.form.membership' => 'Členství',
+>   'user.subscriptions.form.membershipRequired' => 'Zvolený typ předplatného vyžaduje informace o členství.',
+>   'user.subscriptions.form.typeIdValid' => 'Zvolte prosím platný typ předplatného.',
+>   'user.subscriptions.form.subscriptionExists' => 'Tento uživatelský účet již má individuální předplatné.',
+>   'user.subscriptions.form.membershipInstructions' => 'Informace o členství pokud jsou požadovány pro zvolený typ předplatného.',
+>   'user.subscriptions.form.institutionName' => 'Název instituce',
+>   'user.subscriptions.form.institutionNameRequired' => 'Je vyžadován název instituce.',
+>   'user.subscriptions.form.institutionMailingAddress' => 'Poštovní adresa',
+>   'user.subscriptions.form.domain' => 'Doména',
+>   'user.subscriptions.form.domainInstructions' => 'Pokud je zde vložena doména, je rozsah IP volitelný.<br />Platné hodnoty jsou doménová jména (např.: lib.sfu.ca).',
+>   'user.subscriptions.form.domainIPRangeRequired' => 'Zvolený typ předplatného vyžaduje doméno a/nebo IP rozsah pro ověření předplatného.',
+>   'user.subscriptions.form.domainValid' => 'Vložte prosím platnou doménu.',
+>   'user.subscriptions.form.ipRange' => 'Rozsah IP',
+>   'user.subscriptions.form.ipRangeItem' => '&#8226;',
+>   'user.subscriptions.form.ipRangeInstructions' => 'Pokud je zde vložen rozsah IP, je doména volitelná.<br />Platné hodnoty zahrnují IP adresu (např.: 142.58.103.1), IP rozsah (např.: 142.58.103.1 - 142.58.103.4), IP rozsah se zástupným symbolem \'*\' (např.: 142.58.*.*), a IP rozsah s CIDR (např.: 142.58.100.0/24).',
+>   'user.subscriptions.form.ipRangeValid' => 'Vložte prosím platný rozsah IP.',
+>   'user.subscriptions.form.deleteIpRange' => 'Smazat',
+>   'user.subscriptions.form.addIpRange' => 'Přidat',
+403a533,534
+>   'article.pdf.download' => 'Stáhnout PDF soubor',
+>   'article.pdf.pluginMissing' => '<p>Vybrané PDF je možné zobrazit přímo v prohlížeči, pokud má Váš prohlížeč nainstalován plugin pro čtení PDF (např. aktuální verzi <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>).</p> <p>Pokud byste chtěl více informací o tom jak tisknout, ukládat nebo procovat s PDF soubory, Highwire Press poskytuje nápomocný <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">FAQ o PDF</a>.</p> <p>Respektivě je možné PDF soubor stáhnout přímo do Vašeho počítače, kde si jej můžete otevřít za pomocí PDF reader-u. Pro stažení PDF, klikněte na odkaz výše.</p>',
+409a541
+>   'site.noJournals' => 'Zatím zde nejsou přístupné žádné časopisy.',
+419c551,552
+<   'about.editorialTeam' => 'Editorský tým',
+---
+>   'about.history' => 'Historie časopisu',
+>   'about.editorialTeam' => 'Redakce',
+448a582,583
+>   'about.subscriptions.individual' => 'Individuální předplatné',
+>   'about.subscriptions.institutional' => 'Institucionální předplatné',
+449a585,588
+>   'about.subscriptionTypes.name' => 'Jméno',
+>   'about.subscriptionTypes.format' => 'Formát',
+>   'about.subscriptionTypes.duration' => 'Trvání',
+>   'about.subscriptionTypes.cost' => 'Cena',
+457a597
+>   'help.searchReturnResults' => 'Zpět k výsledkům vyhledávání',
+459a600,632
+>   'gifts.buyer' => 'Od',
+>   'gifts.buyerDescription' => 'Od koho je dar?',
+>   'gifts.recipient' => 'Pro',
+>   'gifts.recipientDescription' => 'Komu je dar určen?',
+>   'gifts.thankYou' => 'Děkujeme',
+>   'gifts.thankYouMessage' => 'Vaše darovací platba byla provedena. Obdržíte kopii darovacího e-mailu, který byl zaslán příjemci až bude platba dokončena.',
+>   'gifts.purchaseGiftIndividualSubscription' => 'Darovat předplatné',
+>   'gifts.subscriptionFormIntroduction' => 'Prosím vyplňte formulář níže. Poskytnuté kontaktní informace, společně s vaší darovací zprávou, budou zaslány příjemci společně s informací o darovaném předplatném. (Kopii e-mailu obdržíte také Vy).',
+>   'gifts.details' => 'Detaily daru',
+>   'gifts.detailsDescription' => 'prosím vyberte dar níže a vložte svou zprávu, která bude následně zaslána e-mailem příjemci. (Kopii e-mailu obdržíte také Vy).',
+>   'gifts.gift' => 'Dar',
+>   'gifts.noteTitle' => 'Nadpis',
+>   'gifts.note' => 'Darovazí zpráva',
+>   'gifts.noteTitleRequired' => 'Prosím vyplňte nadpis zprávy.',
+>   'gifts.noteRequired' => 'prosím vyplňte darovací zprávu.',
+>   'gifts.localeRequired' => 'Prosím zvolte jazyk zprávy.',
+>   'gifts.myGifts' => 'Mé dary',
+>   'gifts.manageMyGifts' => 'Spravovat mé dary',
+>   'gifts.redeemGift' => 'Vykoupit dar',
+>   'gifts.status.notRedeemed' => 'Dostupné',
+>   'gifts.status.redeemed' => 'Vykoupené',
+>   'gifts.status.redeemGift' => 'Vykoupený dar',
+>   'gifts.subscriptions' => 'Předplatné',
+>   'gifts.subscriptionsDescription' => 'Vykoupení darované předplatné nahradí existující předplatné (pokud nějaké máte).  Předplatné započne od data vykoupení a platné podle podle daného typu.',
+>   'gifts.purchaseGiftSubscription' => 'Darovat předplatné',
+>   'gifts.giftSubscriptionsAvailable' => 'Darovaná předplatné jsou také dostupná. Darované předplatné může být kdykolliv vykoupeno příjemcem a je to skvělý způsob jak podpořit časopis.',
+>   'gifts.noSubscriptions' => 'Žádná darovaná předplatné',
+>   'gifts.giftRedeemed' => 'Dar byl úspěšně vykoupen.',
+>   'gifts.noGiftToRedeem' => 'Tento dar není dostupný pro vykoupení.',
+>   'gifts.giftAlreadyRedeemed' => 'Tento dar již byl vykoupen.',
+>   'gifts.giftNotValid' => 'Tento dar není platný a nemůže být proto vykoupen.',
+>   'gifts.subscriptionTypeNotValid' => 'Typ předplatného pro tento dar není platný. Prosím kontaktujte správce předplatných.',
+>   'gifts.subscriptionNonExpiring' => 'Dar nebyl před expirací vykoupen.',
+461a635
+>   'payment.loginRequired.forIssue' => 'pro přístup je vyžadováno předplatné nebo koupě čísla. Pro ověření předplatného, přístupu k předchozí platbě či k platbě za číslo je nutné se přihlásit do časopisu.',
+469a644
+>   'payment.authorFees' => 'Poplatky autora',
+473a649,650
+>   'payment.type.purchaseArticle' => 'Zaplatit poplatek za článek',
+>   'payment.type.purchaseIssue' => 'Zaplatit poplatek za číslo',
+475,476c652,655
+<   'payment.type.donation' => 'Dary',
+<   'payment.donation.makeDonation' => 'Darovat',
+---
+>   'payment.type.donation' => 'Příspěvek',
+>   'payment.type.gift' => 'Dar',
+>   'payment.type.gift.subscription' => 'Předplatné',
+>   'payment.donation.makeDonation' => 'Přispět',
+484a664
+>   'payment.subscription.purchase' => 'Koupit předplatné',
+538a719,720
+>   'installer.allowFileUploads' => 'Váš server nyní dovoluje nahrávat soubory: <strong>{$allowFileUploads}</strong>',
+>   'installer.maxFileUploadSize' => 'Váš server nyní dovoluje nahrávat soubory s maximální velikostí: <strong>{$maxFileUploadSize}</strong>',
+542a725,726
+>   'installer.installApplication' => 'Instalovat Open Journal Systems',
+>   'installer.upgradeApplication' => 'Upgradovat Open Journal Systems',
+551a736
+>   'site.upgradeAvailable.admin' => 'Je dostupná nová verze OJS! Současně používaná verze OJS je {$currentVersion}. Poslední verze OJS {$latestVersion}. Navštivte <a href="http://pkp.sfu.ca/ojs_download" target="_new">tuto stránku</a> pro stažení poslední verze a informace k aktualizaci.',
+613a799,803
+>   'user.authorization.copyeditorAssignmentMissing' => 'Přístup zamítnut. Musíte být označen jako redaktor článku.',
+>   'user.authorization.noJournal' => 'nebyl vybrán žádný časopis!',
+>   'user.authorization.sectionAssignment' => 'Snažíte se přistupovat k článku, který není součástí této sekce.',
+>   'user.authorization.invalidCopyditorSubmission' => 'Neplatný redaktorský příspevek!',
+>   'user.authorization.invalidSectionEditorSubmission' => 'Neplatný příspěvek redaktora sekce!',
+615,712d804
+<   'help.searchReturnResults' => 'Zpět k výsledkům vyhledávání',
+<   'submission.reviewForm' => 'Formulář posudku',
+<   'submission.reviewFormResponse' => 'Odpovědi na formulář posudku',
+<   'reviewer.article.enterReviewForm' => 'Pro vyplnění formuláře posudku klikněte na ikonu.',
+<   'reviewer.article.reviewFormResponse.form.responseRequired' => 'Vyplňte prosím požadované položky.',
+<   'common.pageHeader.altText' => 'Záhlaví stránky',
+<   'common.homePageHeader.altText' => 'Záhlaví domácí stránky',
+<   'common.journalHomepageImage.altText' => 'Obrázek domácí stránky časopisu',
+<   'article.coverPage.altText' => 'Obrázek obalu',
+<   'article.accessLogoOpen.altText' => 'Otevřený přístup',
+<   'article.accessLogoRestricted.altText' => 'Omezený přístup',
+<   'article.comments.sectionDefault' => 'Výchozí',
+<   'article.comments.disable' => 'Zakázat',
+<   'article.comments.enable' => 'Povolit',
+<   'article.fontSize' => 'Velikost fontu',
+<   'article.fontSize.small.altText' => 'Malý',
+<   'article.fontSize.medium.altText' => 'Střední',
+<   'article.fontSize.large.altText' => 'Velký',
+<   'user.noRoles.chooseJournal' => 'Váš účet není aktuálně asociován s žádným časopisem. Prosím, vyberte si časopis:',
+<   'user.noRoles.noRolesForJournal' => 'Váš účet nemá aktuálně v tomto časopisu žádné role. Vyberte prosím níže akci:',
+<   'user.noRoles.submitArticle' => 'Poslat článek',
+<   'user.noRoles.submitArticleRegClosed' => 'Poslat článek: registrace autorů je aktuálně zakázána.',
+<   'user.noRoles.regReviewer' => 'Registrovat se jako recenzent',
+<   'user.noRoles.regReviewerClosed' => 'Registrovat se jako recenzent: registrace recenzentů je aktuálně zakázána.',
+<   'issue.coverPage.altText' => 'Titulní stránka',
+<   'plugins.categories.implicitAuth' => 'Výchozí autentifikační pluginy',
+<   'plugins.categories.implicitAuth.description' => 'Výchozí autentifikační pluginy zavádí podporu autentifikace uživatelů založenou na http záhlavích.',
+<   'submission.layout.publicGalleyId' => 'Identifikátor veřejné sazebnice',
+<   'submission.layout.galleyPublicIdentificationExists' => 'Identifikace veřejné sazebnice již existuje.',
+<   'payment.type.purchaseArticle' => 'Zaplatit poplatek za článek',
+<   'journal.issn' => 'ISSN',
+<   'article.article' => 'Článek',
+<   'subscriptionTypes.currency' => 'Měna',
+<   'subscriptionTypes.year' => 'rok',
+<   'subscriptionTypes.years' => 'roků',
+<   'subscriptionTypes.month' => 'měsíc',
+<   'subscriptionTypes.months' => 'měsíců',
+<   'subscriptionTypes.nonExpiring' => 'Nevyprší',
+<   'subscriptionTypes.format' => 'Formát',
+<   'subscriptionTypes.format.online' => 'Online',
+<   'subscriptionTypes.format.print' => 'Tištěný',
+<   'subscriptionTypes.format.printOnline' => 'Tištěný a online',
+<   'subscriptions.inactive' => 'Neaktivní',
+<   'subscriptions.status' => 'Stav',
+<   'subscriptions.status.active' => 'Aktivní',
+<   'subscriptions.status.needsInformation' => 'Vyžaduje informace',
+<   'subscriptions.status.needsApproval' => 'Vyžaduje schválení',
+<   'subscriptions.status.awaitingManualPayment' => 'Čekání na ručně provedenou platbu',
+<   'subscriptions.status.awaitingOnlinePayment' => 'Čekání na online platbu',
+<   'subscriptions.status.other' => 'Jiné, viz poznámky',
+<   'subscriptionManager.individualSubscriptions' => 'Individuální předplatné',
+<   'subscriptionManager.institutionalSubscriptions' => 'Institucionální předplatné',
+<   'subscriptionManager.subscriptionTypes' => 'Typy předplatného',
+<   'user.subscriptions.form.deleteIpRange' => 'Smazat',
+<   'user.subscriptions.form.addIpRange' => 'Přidat',
+<   'about.subscriptionTypes.format' => 'Formát',
+<   'about.subscriptionTypes.duration' => 'Trvání',
+<   'installer.installApplication' => 'Instalovat Open Journal Systems',
+<   'installer.upgradeApplication' => 'Upgradovat Open Journal Systems',
+<   'user.manageMySubscriptions' => 'Spravovat moje předplatné',
+<   'subscriptions.individualDescription' => 'Individuální předplatné vyžaduje pro přístup k obsahu předplatného přihlášení.',
+<   'subscriptions.institutionalDescription' => 'Institucionální předplatné nevyžaduje přihlášení. Pro udělení přístupu k předplacenému obsahu je použita doména uživatele a/nebo IP adresa.',
+<   'subscriptions.institutionalOnlinePaymentDescription' => '<strong>Poznámka:</strong> Institucionální předplatné pořízené online vyžaduje schválení domény a IP adresy před tím, než je předplatné aktivováno.',
+<   'plugins.categories.oaiMetadataFormats' => 'Plugin formátu OAI metadat',
+<   'plugins.categories.oaiMetadataFormats.description' => 'Tyto formátové pluginy vydávají matadata v OAI komunikaci.',
+<   'manager.setup.reviewProcessEmailDescription' => 'Editoři posílají recenzentům požadavky na recenze s příspěvkem v příloze emailu. Recenzenti posílají editorům jejich souhlas (nebo odmítnutí) se zpracováním recenze a stejně tak posudek a doporučení. Editoři vkládají souhlas (nebo odmítnutí) a stejně tak posudek a doporučení na stránkách pro recenzování příspěvku, aby zaznamenali recenzní řízení.',
+<   'manager.setup.citations' => 'Povolit autorům samostatně poskytnout formátovaný seznam referencí (citací) jako součást jejich příspěvku.',
+<   'reviewer.article.reviewGuidelinesDescription' => 'Pokyny pro zpracování recenze poskytnou recenzentům kritéria pro posouzení vhodnosti příspěvku k publikování v časopisu a muhou zahrnovat jakékoliv specifické instrukce pro přípravu efektivního a užitečného (nápomocného) posudku. Při zpracování recenze mají recenzenti k dispozici dvě otevřená textová pole - provní "pro autora a editora" a druhé "pro editora." Alternativně může manažer časopisu pod "Forluláři posudků" vytvořit formulář posudku. V každem případě budou mít editoři možnost vložit posudky do korespondece s autorem.',
+<   'user.subscriptions.mySubscriptions' => 'Moje předplatné',
+<   'user.subscriptions.individualSubscriptions' => 'Individuální předplatné',
+<   'user.subscriptions.institutionalSubscriptions' => 'Institucionální předplatné',
+<   'user.subscriptions.renew' => 'Obnovit',
+<   'user.subscriptions.purchase' => 'Koupit',
+<   'user.subscriptions.purchaseNewSubscription' => 'Koupit nové předplatné',
+<   'user.subscriptions.purchaseIndividualSubscription' => 'Koupit individuální předplatné',
+<   'user.subscriptions.purchaseInstitutionalSubscription' => 'Koupit institucionální předplatné',
+<   'user.subscriptions.expires' => 'Vyprší',
+<   'user.subscriptions.expired' => 'Vypršené',
+<   'user.subscriptions.viewSubscriptionTypes' => 'Zobrazit dostupné typy předplatného',
+<   'user.subscriptions.form.typeId' => 'Typ předplatného',
+<   'user.subscriptions.form.membership' => 'Členství',
+<   'user.subscriptions.form.membershipRequired' => 'Zvolený typ předplatného vyžaduje informace o členství.',
+<   'user.subscriptions.form.typeIdValid' => 'Zvolte prosím platný typ předplatného.',
+<   'user.subscriptions.form.subscriptionExists' => 'Tento uživatelský účet již má individuální předplatné.',
+<   'user.subscriptions.form.membershipInstructions' => 'Informace o členství pokud jsou požadovány pro zvolený typ předplatného.',
+<   'user.subscriptions.form.institutionName' => 'Název instituce',
+<   'user.subscriptions.form.institutionNameRequired' => 'Je vyžadován název instituce.',
+<   'user.subscriptions.form.institutionMailingAddress' => 'Poštovní adresa',
+<   'user.subscriptions.form.domain' => 'Doména',
+<   'user.subscriptions.form.ipRange' => 'Rozsah IP',
+<   'user.subscriptions.form.ipRangeItem' => '&#8226;',
+<   'user.subscriptions.form.ipRangeValid' => 'Vložte prosím platný rozsah IP.',
+<   'about.history' => 'Historie časopisu',
+<   'about.subscriptions.individual' => 'Individuální předplatné',
+<   'about.subscriptions.institutional' => 'Institucionální předplatné',
+<   'about.subscriptionTypes.name' => 'Jméno',
+<   'about.subscriptionTypes.cost' => 'Cena',
+<   'payment.subscription.purchase' => 'Koupit předplatné',
+719,722d810
+<   'user.subscriptions.form.domainInstructions' => 'Pokud je zde vložena doména, je rozsah IP volitelný.<br />Platné hodnoty jsou doménová jména (např.: lib.sfu.ca).',
+<   'user.subscriptions.form.domainIPRangeRequired' => 'Zvolený typ předplatného vyžaduje doméno a/nebo IP rozsah pro ověření předplatného.',
+<   'user.subscriptions.form.domainValid' => 'Vložte prosím platnou doménu.',
+<   'user.subscriptions.form.ipRangeInstructions' => 'Pokud je zde vložen rozsah IP, je doména volitelná.<br />Platné hodnoty zahrnují IP adresu (např.: 142.58.103.1), IP rozsah (např.: 142.58.103.1 - 142.58.103.4), IP rozsah se zástupným symbolem \'*\' (např.: 142.58.*.*), a IP rozsah s CIDR (např.: 142.58.100.0/24).',
+725,736c813,837
+<   'notification.type.articleSubmitted' => 'Byl odeslán nový článek "{$param}".',
+<   'notification.type.copyeditComment' => 'Redaktor zanechal komentář u "{$param}".',
+<   'notification.type.editorDecisionComment' => 'Byl zanechán komentář k rozhodnutí editora pro "{$param}".',
+<   'notification.type.galleyModified' => 'Byla změněna sazebnice pro "{$param}".',
+<   'notification.type.layoutComment' => 'Byl zanechán komentář ke grafickému formátu pro "{$param}".',
+<   'notification.type.metadataModified' => 'Byla modifikována metadata pro "{$param}".',
+<   'notification.type.proofreadComment' => 'Korektor zanechal komentář pro "{$param}".',
+<   'notification.type.reviewerComment' => 'Recenzent zanechal komentář pro "{$param}".',
+<   'notification.type.reviewerFormComment' => 'Byl odeslán recenzní posudek pro "{$param}".',
+<   'notification.type.submissionComment' => 'Editora zanechal komentář pro "{$param}".',
+<   'notification.type.suppFileModified' => 'Byl změněn doplňkový soubor(y) u "{$param}".',
+<   'notification.type.userComment' => 'Čtenář zanechal komentář k "{$param}".',
+---
+>   'notification.type.articleSubmitted' => 'Byl odeslán nový článek "{$title}".',
+>   'notification.type.copyeditComment' => 'Redaktor zanechal komentář u "{$title}".',
+>   'notification.type.editorDecisionComment' => 'Byl zanechán komentář k rozhodnutí editora pro "{$title}".',
+>   'notification.type.galleyModified' => 'Byla změněna sazebnice pro "{$title}".',
+>   'notification.type.layoutComment' => 'Byl zanechán komentář ke grafickému formátu pro "{$title}".',
+>   'notification.type.metadataModified' => 'Byla modifikována metadata pro "{$title}".',
+>   'notification.type.proofreadComment' => 'Korektor zanechal komentář pro "{$title}".',
+>   'notification.type.reviewerComment' => 'Recenzent zanechal komentář pro "{$title}".',
+>   'notification.type.reviewerFormComment' => 'Byl odeslán recenzní posudek pro "{$title}".',
+>   'notification.type.submissionComment' => 'Editora zanechal komentář pro "{$title}".',
+>   'notification.type.suppFileModified' => 'Byl změněn doplňkový soubor(y) u "{$title}".',
+>   'notification.type.userComment' => 'Čtenář zanechal komentář k "{$title}".',
+>   'footer.publisher' => 'Nakladatelství MU',
+>   'footer.contacts' => 'Kontakty:',
+>   'footer.novotna' => '(zástupkyně ředitelky, odborná redaktorka)',
+>   'footer.brodecka' => '(odborná redaktorka)',
+>   'footer.gomola' => '(redaktor, administrace)',
+>   'footer.uvt' => 'Provoz serveru technicky zajišťuje
+> Ústav výpočetní techniky
+> Masarykovy univerzity',
+>   'footer.uvt.link' => 'http://www.muni.cz/ics/',
+>   'navigation.czHelp' => 'CZ návody',
+>   'about.profile' => 'Profil',
+>   'user.title.before' => 'Tituly před jménem',
+>   'user.title.after' => 'Tituly za jménem',
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-174e6cae659d7725f63eee18dfade8c8.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-185dbb2ba13fdf7875056f2f512379eb.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-1a35fd3e4f610e48289013a6895fef59.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-1aa906c159a379eda56e0803dc382b63.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-1c126df729426aff81f5f3a7d96c0f54.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-1eabbb8a0e71c303801f6c2f09513e93.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-28a3a3e75bab9664fe5d230d33f3c3bc.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-28c6bdf773e93c42c2b64d3788d65706.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-2a7633a52749c35a7fdb9d3a629cd098.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-2abc57971d9fd2408c7d1456255ac0a9.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-2b323344515b2991112af2469f9aaffe.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-2eda6905cbad536e6b0b0b43a552dd4b.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-2f7de5d3d58e8223b6ec11778675e981.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-304924477e08dcc61494b5c002ff489f.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-30756403733bf69873442b7f2b0b1635.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-30d745beb87591f5bb2575de65080092.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-330961b0314bff67e27d282ce9764c28.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-35a194b05033d435ed8ba9150236ee1e.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-3719c9270a4bef9d86b1066322f88ff6.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-3788187d09fb7891a3eb5434102daefe.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-378e8baf77838db4598d19c27c197b8b.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-37bc9c8fcb1f85e3a9c2ec72d6b59f2c.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/fc-locale-39ad57a0a799a092b476f7b3d029e60d.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/fc-locale-39ad57a0a799a092b476f7b3d029e60d.php
+15a16
+>   'navigation.about.journal' => 'About',
+123a125
+>   'user.registration.validationEmail' => 'You need to activate your e-mail. Activation e-mail has to been sent to your address.',
+818a821,833
+>   'footer.publisher' => 'MU Publisher',
+>   'footer.contacts' => 'Contacts:',
+>   'footer.novotna' => '(assistant manager, editor)',
+>   'footer.brodecka' => '(editor)',
+>   'footer.gomola' => '(editor, adminitration)',
+>   'footer.uvt' => 'Hosted by 
+> Institute of Computer Science,
+> Masaryk University',
+>   'footer.uvt.link' => 'http://www.muni.cz/ics/?lang=en',
+>   'navigation.czHelp' => 'CZ Help',
+>   'about.profile' => 'Profile',
+>   'user.title.before' => 'Titles before name',
+>   'user.title.after' => 'Titles after name',
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-3d4dafeb2053f79648c88241089d8d7e.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/fc-locale-3d82d4f0bcb15df01c1a26b50e4e4ce6.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/fc-locale-3d82d4f0bcb15df01c1a26b50e4e4ce6.php
+1a2
+>   'user.accountInformation' => 'Informace o účtu',
+4a6,14
+>   'user.authorization.accessDenied' => 'Přístup zamítnut.',
+>   'user.authorization.processAuthenticationTokenRequired' => 'Token pro autorizaci chybí nebo je chybný.',
+>   'user.authorization.contextRequired' => 'Nemůžete volat tuto operaci bez kontextu (vydavatelství, časopis, konference, atd).',
+>   'user.authorization.loginRequired' => 'Vyžadováno přihlášení.',
+>   'user.authorization.privateOperation' => 'Operace, kterou se snažíte zpřístupnit spadá pod jiná práva nebo neexistuje.',
+>   'user.authorization.restrictedSiteAccess' => 'Váš přístup byl zamítnut. Přístup k této stránce momentálně není povolen.',
+>   'user.authorization.roleBasedAccessDenied' => 'Používaná role nemé přístup k dané operaci.',
+>   'user.authorization.userGroupRequired' => 'Musíte použít správnou uživatelskou skupinu k přístupu k této operaci.',
+>   'user.authorization.pressManagerRequired' => 'A user with a Press Manager role (i.e. Press or Production Editor) must be assigned to the stage before you can proceed.',
+12a23
+>   'user.confirmEmail' => 'Potvrzení e-mailu',
+19a31
+>   'user.interests.description' => '(Separate interests by pressing the enter or comma key)',
+20a33
+>   'user.group' => 'Uživatelská skupina',
+40a54
+>   'user.hello' => 'Zdravím,',
+43c57
+<   'user.middleName' => 'Druhé jméno',
+---
+>   'user.middleName' => 'Prostřední jméno',
+47a62
+>   'user.repeatPassword' => 'Opakovat heslo',
+50a66
+>   'user.profile.form.countryRequired' => 'Je vyžadována země.',
+54a71
+>   'user.profile.form.mailingAddressRequired' => 'je vyžadováná e-mailová adresa.',
+58a76
+>   'user.profile.form.passwordSameAsOld' => 'Vaše nové heslo je stejné jako Vaše současné heslo.',
+62a81
+>   'user.profile.form.usergroupRequired' => 'Je vyžadována uživatelská skupina.',
+69a89
+>   'user.register.form.emailsDoNotMatch' => 'E-mailové adresy nejsou totožné.',
+74a95
+>   'user.register.reviewerInterests' => 'Recenzní oblasti zájmu',
+87a109
+>   'user.suffix' => 'Suffix',
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-3db02fca320135283dce6c5e8cd1d5df.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-41160401839473398da948cf6b960392.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-44376827bb5094030a161cd533da89ee.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-48140bf74aac5387a7d59db38e326775.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-4bcc440e6b47fbf576ab9f30c1f1e221.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-4ea7e077e6680007a89d799f98beeeee.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-5612b631975724bf18ae85ae09b2036d.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-580a6d087ef1e13c12b824c9721a1bae.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-58ae6e045dfae552004307a6fb5255a8.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-5b7f915a5b6983c4f63124942f31fdb3.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-5bf2f91298e9c68163e5b7488cee49d2.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-60222960aca552c19a1cbe7d9e060105.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-64b0f9e2ab826b49e3e93a096aba8259.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-666e6dc7ffc194c70f6e2b048d08e62c.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-679ecd1f2da3726bb4eef071ac7131ba.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/fc-locale-685df71172564dcff3b4f5332d6006e8.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/fc-locale-685df71172564dcff3b4f5332d6006e8.php
+2c2
+<   'about.aboutSite' => 'Podrobnosti o těchto stránkách',
+---
+>   'about.aboutSite' => 'Podrobnosti',
+17a18
+>   'announcement.postedOn' => 'Publikováno {$postDate}',
+20a22,24
+>   'common.accepted' => 'Schváleno',
+>   'common.acknowledged' => 'Potvrzený',
+>   'common.activate' => 'Aktivovat',
+37a42,43
+>   'common.warning' => 'Varování',
+>   'common.error' => 'Chyba',
+62a69,72
+>   'common.confirm' => 'Potvrdit',
+>   'common.content' => 'Obsah',
+>   'common.considered' => 'Zvažovaný',
+>   'common.copy' => 'Kopie',
+69a80
+>   'common.deactivate' => 'Deaktivovat',
+70a82
+>   'common.declined' => 'Zamítnuto',
+73a86
+>   'common.disable' => 'Zakázat',
+78a92
+>   'common.enable' => 'Povolit',
+84a99,101
+>   'common.finish' => 'Dokončit',
+>   'common.fullscreen' => 'Celá obrazovka',
+>   'common.fullscreenOff' => 'Celá obrazovka vypnout',
+86c103
+<   'common.false' => 'Ne',
+---
+>   'common.false' => 'Neplatný',
+90a108
+>   'common.go' => 'Přejdi',
+100a119
+>   'common.less' => 'Méně',
+102,103c121,123
+<   'common.mailingAddress' => 'Poštovní adresa',
+<   'common.minute' => 'Minuta(y)',
+---
+>   'common.mailingAddress' => 'Doručovací adresa',
+>   'common.billingAddress' => 'Fakturační adresa (pokud je jiná než doručovací)',
+>   'common.minute' => 'Minuta/y',
+105a126
+>   'common.more' => 'Více',
+115a137,138
+>   'common.notified' => 'Nahlásit',
+>   'common.noMatches' => 'Nic nenalezeno',
+123a147
+>   'common.overdue' => 'Nezaplaceno',
+125a150,152
+>   'common.pluginEnabled' => 'Plugin "{$pluginName}" byl zapnut.',
+>   'common.pluginDisabled' => 'Plugin "{$pluginName}" byl vypnut.',
+>   'common.preview' => 'Náhled',
+128a156,158
+>   'common.reminder' => 'Připomínka',
+>   'common.remote' => 'Vzdálený',
+>   'common.remoteURL' => 'Vzdálené URL',
+134a165
+>   'common.reset' => 'Reset',
+139c170
+<   'common.second' => 'Sekunda(y)',
+---
+>   'common.second' => 'Sekunda/y',
+142a174
+>   'common.signoff' => 'Odznačit',
+151a184
+>   'common.element' => 'Článek',
+152a186
+>   'common.unread' => 'Nepřečteno',
+157a192,193
+>   'common.fileUpload.maxFileSizeStatus' => 'Server dovoluje nahrát soubory s maximální velikostí {$fileSize}.  V případě potřeby prosím kontaktujte <a href="mailto:{$supportEmail}">{$supportName}</a>.',
+>   'common.invalidFileType' => 'Nebyl vybrán žádný soubor nebo má soubor špatný typ',
+165a202,205
+>   'common.loading' => 'Načítání ...',
+>   'common.plugins' => 'Pluginy',
+>   'common.metric' => 'Metrický',
+>   'common.count' => 'Počet',
+172a213,214
+>   'defaultMetric.title' => 'Výchozí metrika',
+>   'defaultMetric.availableMetrics' => 'Dostupné metrikys',
+194a237,238
+>   'email.subjectRequired' => 'Prosím vyplňte předmět e-mailu.',
+>   'email.bodyRequired' => 'Prosím doplňte text e-mailu.',
+195a240,243
+>   'form.confirmSubmit' => 'Opravdu chcete odeslat?',
+>   'form.confirmSubmit.title' => 'Potvrdit',
+>   'form.emailRequired' => 'Je vyžádována e-mailová adresa.',
+>   'form.dataHasChanged' => 'Data ve formuláři se změnila. Skutečně pokračovat??',
+207a256
+>   'form.invalidImage' => 'Byl nahrán neplatný obrázek. Podporované formáty jsou .png, .gif, .jpg.',
+209,210c258,261
+<   'help.help' => 'Pomoc',
+<   'help.helpIndex' => 'Index pomoci',
+---
+>   'help.help' => 'Nápověda',
+>   'help.toggleInlineHelpOn' => 'Zapnout nápovědu',
+>   'help.toggleInlineHelpOff' => 'Vypnout nápovědu',
+>   'help.helpIndex' => 'Index nápovědy',
+234a286
+>   'navigation.website' => 'Webová stránka',
+235a288,289
+>   'navigation.access' => 'Uživatelé &amp; Role',
+>   'navigation.admin' => 'Administrace',
+236a291
+>   'navigation.browseByAuthor' => 'Podle autora',
+238a294
+>   'navigation.data' => 'Data',
+247a304
+>   'navigation.publicMenu' => 'Veřejné menu',
+249a307,309
+>   'navigation.settings' => 'Nastavení',
+>   'navigation.setup' => 'Nastavit',
+>   'navigation.sitemap' => 'Mapa stránek',
+250a311,312
+>   'navigation.submissions' => 'Odevzdání',
+>   'navigation.system' => 'System',
+252a315
+>   'navigation.userManagement' => 'Správa uživatele',
+281a345,347
+>   'search.activeFilters' => 'Pokročilé filtrování',
+>   'search.advancedSearchMore' => 'Další možnosti vyhledávání (klikni pro zobrazení)',
+>   'search.advancedSearchLess' => 'Další možnosti vyhledávání (klikni pro skrytí)',
+282a349,355
+>   'search.cli.rebuildIndex.clearingIndex' => 'Vymazání indexu',
+>   'search.cli.rebuildIndex.done' => 'Hotovo',
+>   'search.cli.rebuildIndex.error' => 'Error',
+>   'search.cli.rebuildIndex.indexing' => 'Indexace "{$journalName}"',
+>   'search.cli.rebuildIndex.indexingByJournalNotSupported' => 'Toto vyhledávání nedovoluje pře-indexování per-jounals.',
+>   'search.cli.rebuildIndex.result' => '{$numIndexed} články indexovány',
+>   'search.cli.rebuildIndex.unknownJournal' => 'Zadaná cesta "{$journalPath}" nepatří žádnému časopisu.',
+287c360,361
+<   'search.discipline' => 'Disciplína(y)',
+---
+>   'search.deleteFilter' => 'Smazat',
+>   'search.discipline' => 'Disciplína/y',
+289a364
+>   'search.indexTermsLong' => 'Pole všech termínů indexů',
+304,307c379,380
+<   'common.copy' => 'Kopie',
+<   'common.preview' => 'Náhled',
+<   'common.activate' => 'Aktivovat',
+<   'common.deactivate' => 'Deaktivovat',
+---
+>   'grid.action.downloadFile' => 'Stáhnout soubor',
+>   'common.readMore' => 'číst dále...',
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-68c008da1fccf44f05a79b6fe13fc230.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-6c956fa5865afb8a9159f2cd4a19955a.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-6fa0767503cb38f7692df1e92212ba27.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-7c09ea9a8cb76186816cf7b6e63b703c.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-7c4942d219b564e45dca64885624b156.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-7e95be4beafb821838b870fde0c0296d.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-8199a15074ae410d8bd1bcdcce1f6a55.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-81a7b7244b850f5078b756252abc4054.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-8811a6c05dc2a84d03fe0d06dc076c37.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-886bdf2835197208361e6f94d8c13c5e.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-8953a82a14a073e969af19cb171f5666.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-89d42a5273429a1f41f354a4b6298f42.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-8b80ab8ddf356ba544d33231d8f22e68.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-8bfc71ba75ece78c99018f74e29c7c53.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-8c15ce7dfec31e437114d80f1f936272.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-8d621c2b2b9e98ddd4e349c92f970f7a.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-8fe847ac881daa63e88a02d2fb9c3d6e.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-92b697b1642564be81a1301dc0457947.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-9772ebd69cb48dabfbe89917e6496a5c.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-9da3df60a8b3a90c29257daaf6ba17f3.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-9f1bb3e9212d66927fcc703b0adc4594.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-a03444bd6b0abeab88e670ca8a41972a.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-a16fd1e71fda07f141ad2629c07cd068.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-a693fd658d4d789b2bfd2a303335d959.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-a95a674fe6ab2832af794c3a7af64569.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-aebc6fc76de755506fea0e68bf5b237f.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-aefb1388bba7b673a5cc602025e3402e.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-b0bcfbc5ba59463ad133a509be3e8ed1.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-b1a71f00fb548d961c3883e12a6a8d00.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-b51a9fb9703f22d20ddbe275b479f63f.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-b623d9d9973ed237655585254526aa90.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-b7700059efb24d5ce0c39572f4bbd81f.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-b83a329ad0444478d71e5677bdc8c315.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-bdcfebb3744dbb2e63de61b85e84f305.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-be1ed5afd341073b4b94a1e845b62246.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-c46d51ed623e5dd74d5a56c5a6ed4f12.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-cd39ecee2ccad2611b562dc6b5cc9ae6.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-d1c78867740fa5b58f4b1073fc0657b4.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-d20be57bb305d999dbcf073bb906a2aa.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-d322e6f60d5d4d5dd85954449eb3b25d.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-d8121ef5623fbe92a52d7d80c94028e3.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-d8fbf4888f674652788a251e6bdbe671.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-d9cdcd719ab44e96563fc691f34db43e.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-da5f1fea602a3094380bc6641b646bf4.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-dbe3a2dc06a918a2704bd8d80bee7f29.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-dd2c9041817c6985e19a00d92af3c62f.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-df3a70c230d72cb89eb6552203e33244.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-e09c7a75aaacf631ccb635dc8d5a640c.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-e63c4244b6700ce9cb703c4ccd600fb3.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-e73f52d04f242b704e00c0b5865f18bd.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-e89dc79a939eede823a353e7d8a17f94.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-eacfae2b47a730dcfe3c07bd2ad7a56d.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-ec5aaafbda196eaff6c9161b8eb9aa90.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-ed373e3a0593971c0f419ce743997880.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-eeddea90b8b2452b5b1fabc0826139f1.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-f151f99a37a4ec5ea3fe0eaf75e9a901.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-f229ed6413de8e5ac52a03586c17d6df.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-f56451535e688c45ba19e91751975362.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-locale-f6cdd3d4db363823debf4883c83d1bc7.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-locale-fd8775eb0e300ffe8b09bc9aa449efb0.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-0-backupplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-0-cztutorialsblockplugin.php
+Only in C:/xampp_new/htdocs/ojs/cache: fc-pluginSettings-0-donationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-0-journalmuniczblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-0-luceneplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-0-mods34metadataplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-0-nlm30metadataplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-0-openurl10metadataplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-0-socialblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-0-translatorplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-0-usageeventplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-announcementfeedblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-announcementfeedplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-cztutorialsblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-developedbyblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-fontsizeblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-helpblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-informationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-journalmuniczblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-languagetoggleblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-navigationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-notificationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-roleblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-socialblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-subscriptionblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-tinymceplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-userblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-webfeedblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-2-webfeedplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-customblockmanagerplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-fontsizeblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-informationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-navigationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-notificationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-roleblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-staticpagesplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-subscriptionblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-test2.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-testovacĂ­ plugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-userblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-webfeedblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-3-webfeedplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-cztutorialsblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-developedbyblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-fontsizeblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-helpblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-informationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-journalmuniczblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-languagetoggleblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-navigationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-notificationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-roleblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-socialblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-subscriptionblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-tinymceplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-userblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-4-webfeedplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-cztutorialsblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-developedbyblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-fontsizeblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-helpblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-informationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-journalmuniczblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-languagetoggleblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-navigationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-notificationblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-roleblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-socialblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-subscriptionblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-tinymceplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-userblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-webfeedblockplugin.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache: fc-pluginSettings-5-webfeedplugin.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/fc-siteSettings-site.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/fc-siteSettings-site.php
+1a2
+>   'categoriesEnabled' => false,
+4c5,6
+<     'en_US' => 'gomola@rect.muni.cz',
+---
+>     'cs_CZ' => 'radek.gomola@gmail.com',
+>     'en_US' => 'radek.gomola@gmail.com',
+7a10
+>     'cs_CZ' => 'Radek Gomola',
+9a13,37
+>   'defaultMetricType' => '',
+>   'intro' => 
+>   array (
+>     'cs_CZ' => '<em>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui do<strong>lorem ipsum</strong>, quia <strong>dolor sit, amet, consectetur, adipisci</strong> v<strong>elit, sed</strong> quia non numquam <strong>eius mod</strong>i <strong>tempor</strong>a <strong>incidunt, ut labore et dolore magna</strong>m <strong>aliqua</strong>m quaerat voluptatem. <strong>Ut enim ad minim</strong>a <strong>veniam, quis nostru</strong>m <strong>exercitation</strong>em <strong>ullam co</strong>rporis suscipit <strong>laborios</strong>am, <strong>nisi ut aliquid ex ea commodi consequat</strong>ur? <strong>Quis aute</strong>m vel eum <strong>iure reprehenderit,</strong> qui <strong>in</strong> ea <strong>voluptate velit esse</strong>, quam nihil molestiae <strong>c</strong>onsequatur, vel <strong>illum</strong>, qui <strong>dolore</strong>m <strong>eu</strong>m <strong>fugiat</strong>, quo voluptas <strong>nulla pariatur</strong>?</em>',
+>   ),
+>   'pageHeaderTitleImage' => 
+>   array (
+>     'cs_CZ' => 
+>     array (
+>       'originalFilename' => 'logo.png',
+>       'width' => 716,
+>       'height' => 91,
+>       'uploadName' => 'pageHeaderTitleImage_cs_CZ.png',
+>       'dateUploaded' => '2014-03-04 10:26:13',
+>       'altText' => '<strong>Časopisy</strong> Masarykovy univerzity',
+>     ),
+>     'en_US' => 
+>     array (
+>       'altText' => NULL,
+>     ),
+>   ),
+>   'pageHeaderTitleType' => 
+>   array (
+>     'cs_CZ' => '1',
+>   ),
+12a41
+>   'siteTheme' => '',
+15c44,45
+<     'en_US' => 'Open Journal Systems',
+---
+>     'cs_CZ' => '<strong>Časopisy</strong> Masarykovy univerzity',
+>     'en_US' => 'MUNI Journals',
+16a47,48
+>   'useAlphalist' => true,
+>   'usePaging' => false,
+Only in C:/xampp_new/htdocs/ojs/cache: t_cache
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%05^05D^05D0B553%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%0F^0F2^0F2827D9%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%16^161^161F6743%%login.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%17^17F^17F04482%%viewPage.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%1A^1A1^1A1D79F0%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%1B^1BB^1BB6B265%%block.tpl.php
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: %%21^216^216C6813%%installComplete.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%23^23E^23E0E25A%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%24^245^2452519B%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%26^26D^26D6B7FC%%journals.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%2C^2C1^2C1F000D%%issue.tpl.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/t_compile/%%30^309^309A5EF8%%site.tpl.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile/%%30^309^309A5EF8%%site.tpl.php
+1c1
+< <?php /* Smarty version 2.6.26, created on 2014-04-23 07:47:17
+---
+> <?php /* Smarty version 2.6.26, created on 2014-04-16 10:21:29
+4c4
+< smarty_core_load_plugins(array('plugins' => array(array('modifier', 'nl2br', 'index/site.tpl', 20, false),array('modifier', 'escape', 'index/site.tpl', 25, false),array('function', 'url', 'index/site.tpl', 25, false),array('function', 'translate', 'index/site.tpl', 25, false),array('function', 'page_info', 'index/site.tpl', 52, false),array('function', 'page_links', 'index/site.tpl', 53, false),array('block', 'iterate', 'index/site.tpl', 28, false),)), $this); ?>
+---
+> smarty_core_load_plugins(array('plugins' => array(array('modifier', 'nl2br', 'index/site.tpl', 20, false),array('modifier', 'escape', 'index/site.tpl', 25, false),array('modifier', 'strlen', 'index/site.tpl', 45, false),array('modifier', 'truncate', 'index/site.tpl', 46, false),array('modifier', 'strstr', 'index/site.tpl', 52, false),array('function', 'url', 'index/site.tpl', 25, false),array('function', 'translate', 'index/site.tpl', 25, false),array('function', 'page_info', 'index/site.tpl', 61, false),array('function', 'page_links', 'index/site.tpl', 62, false),array('block', 'iterate', 'index/site.tpl', 28, false),)), $this); ?>
+14,15c14,15
+< <?php if ($this->_tpl_vars['intro']): ?><?php echo ((is_array($_tmp=$this->_tpl_vars['intro'])) ? $this->_run_mod_handler('nl2br', true, $_tmp) : smarty_modifier_nl2br($_tmp)); ?>
+< <?php endif; ?>
+---
+> <?php if ($this->_tpl_vars['intro']): ?><div class="description"><?php echo ((is_array($_tmp=$this->_tpl_vars['intro'])) ? $this->_run_mod_handler('nl2br', true, $_tmp) : smarty_modifier_nl2br($_tmp)); ?>
+> </div><br /><br /><?php endif; ?>
+31a32,37
+> 	<table>
+>       <tr><td>
+> 	<?php if ($this->_tpl_vars['site']->getSetting('showTitle')): ?>
+> 		<h3 style="font-family: Arial, Helvetica, sans-serif"><?php echo ((is_array($_tmp=$this->_tpl_vars['journal']->getLocalizedTitle())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+> </h3>
+> 	<?php endif; ?> 
+47,50d52
+< 	<?php if ($this->_tpl_vars['site']->getSetting('showTitle')): ?>
+< 		<h3><?php echo ((is_array($_tmp=$this->_tpl_vars['journal']->getLocalizedTitle())) ? $this->_run_mod_handler('escape', true, $_tmp) : $this->_plugins['modifier']['escape'][0][0]->smartyEscape($_tmp)); ?>
+< </h3>
+< 	<?php endif; ?>
+53c55,61
+< 			<p><?php echo ((is_array($_tmp=$this->_tpl_vars['journal']->getLocalizedDescription())) ? $this->_run_mod_handler('nl2br', true, $_tmp) : smarty_modifier_nl2br($_tmp)); ?>
+---
+>       <?php if (((is_array($_tmp=$this->_tpl_vars['journal']->getLocalizedDescription())) ? $this->_run_mod_handler('strlen', true, $_tmp) : strlen($_tmp)) >= 550): ?>
+>   			<p class="description" style="text-align:justify;" ><?php echo ((is_array($_tmp=((is_array($_tmp=$this->_tpl_vars['journal']->getLocalizedDescription())) ? $this->_run_mod_handler('truncate', true, $_tmp, 550) : $this->_plugins['modifier']['truncate'][0][0]->smartyTruncate($_tmp, 550)))) ? $this->_run_mod_handler('nl2br', true, $_tmp) : smarty_modifier_nl2br($_tmp)); ?>
+>  <a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('journal' => $this->_tpl_vars['journal']->getPath()), $this);?>
+> " ><?php echo $this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => "common.readMore"), $this);?>
+> </a></p>
+>       <?php else: ?>
+>         <p class="description" style="text-align:justify;" ><?php echo ((is_array($_tmp=$this->_tpl_vars['journal']->getLocalizedDescription())) ? $this->_run_mod_handler('nl2br', true, $_tmp) : smarty_modifier_nl2br($_tmp)); ?>
+57c65,66
+< 	<p><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('journal' => $this->_tpl_vars['journal']->getPath()), $this);?>
+---
+> 	<?php endif; ?>
+> 	<p style="padding-top:-31px; min-width:700px;"><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('journal' => $this->_tpl_vars['journal']->getPath()), $this);?>
+59c68
+< </a> | <a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('journal' => $this->_tpl_vars['journal']->getPath(),'page' => 'issue','op' => 'current'), $this);?>
+---
+> </a><span class="space"></span>  <a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('journal' => $this->_tpl_vars['journal']->getPath(),'page' => 'issue','op' => 'current'), $this);?>
+61c70
+< </a> | <a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('journal' => $this->_tpl_vars['journal']->getPath(),'page' => 'user','op' => 'register'), $this);?>
+---
+> </a><span class="space"></span>  <?php if (((is_array($_tmp=$this->_tpl_vars['journal']->getPath())) ? $this->_run_mod_handler('strstr', true, $_tmp, '_ext') : strstr($_tmp, '_ext'))): ?><a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('journal' => $this->_tpl_vars['journal']->getPath(),'page' => 'user','op' => 'register'), $this);?>
+63c72,74
+< </a></p>
+---
+> </a><?php endif; ?></p>
+>   </td></tr>
+>   </table>  
+64a76
+>  
+73,74c85
+< 
+< 
+---
+> </div>
+diff -w -r C:/xampp_new/htdocs/ojs/cache/t_compile/%%32^32D^32D13D85%%header.tpl.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile/%%32^32D^32D13D85%%header.tpl.php
+1c1
+< <?php /* Smarty version 2.6.26, created on 2014-04-23 07:38:21
+---
+> <?php /* Smarty version 2.6.26, created on 2014-04-11 14:35:58
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%34^346^346F0F59%%registerSite.tpl.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/t_compile/%%36^36E^36E89D0E%%header.tpl.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile/%%36^36E^36E89D0E%%header.tpl.php
+1c1
+< <?php /* Smarty version 2.6.26, created on 2014-04-23 07:38:21
+---
+> <?php /* Smarty version 2.6.26, created on 2014-04-16 08:57:30
+4,5c4,5
+< smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'core:common/header.tpl', 11, false),array('function', 'call_hook', 'core:common/header.tpl', 53, false),array('function', 'url', 'core:common/header.tpl', 111, false),array('modifier', 'assign', 'core:common/header.tpl', 11, false),array('modifier', 'escape', 'core:common/header.tpl', 22, false),)), $this); ?>
+< <?php echo ''; ?><?php if (! $this->_tpl_vars['pageTitleTranslated']): ?><?php echo ''; ?><?php echo ((is_array($_tmp=$this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => $this->_tpl_vars['pageTitle']), $this))) ? $this->_run_mod_handler('assign', true, $_tmp, 'pageTitleTranslated') : $this->_plugins['modifier']['assign'][0][0]->smartyAssign($_tmp, 'pageTitleTranslated'));?><?php echo ''; ?><?php endif; ?><?php echo ''; ?><?php if ($this->_tpl_vars['pageCrumbTitle']): ?><?php echo ''; ?><?php echo ((is_array($_tmp=$this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => $this->_tpl_vars['pageCrumbTitle']), $this))) ? $this->_run_mod_handler('assign', true, $_tmp, 'pageCrumbTitleTranslated') : $this->_plugins['modifier']['assign'][0][0]->smartyAssign($_tmp, 'pageCrumbTitleTranslated'));?><?php echo ''; ?><?php elseif (! $this->_tpl_vars['pageCrumbTitleTranslated']): ?><?php echo ''; ?><?php $this->assign('pageCrumbTitleTranslated', $this->_tpl_vars['pageTitleTranslated']); ?><?php echo ''; ?><?php endif; ?><?php echo ''; ?>
+---
+> smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'core:common/header.tpl', 21, false),array('function', 'call_hook', 'core:common/header.tpl', 65, false),array('function', 'url', 'core:common/header.tpl', 146, false),array('modifier', 'assign', 'core:common/header.tpl', 21, false),array('modifier', 'escape', 'core:common/header.tpl', 33, false),array('modifier', 'strip_tags', 'core:common/header.tpl', 34, false),array('modifier', 'strstr', 'core:common/header.tpl', 83, false),)), $this); ?>
+> <?php echo '<!-- vytváří záplatu pro chybu menu, kdy se nezobrazuje správně nadpis-->'; ?><?php if ($this->_tpl_vars['pageTitle'] == "common.openJournalSystems"): ?><?php echo ''; ?><?php if ($this->_tpl_vars['requestedPage'] == 'user'): ?><?php echo ''; ?><?php $this->assign('pageTitle', 'user.register'); ?><?php echo ''; ?><?php elseif ($this->_tpl_vars['requestedPage'] == 'issue'): ?><?php echo ''; ?><?php $this->assign('pageTitle', 'journal.currentIssue'); ?><?php echo ''; ?><?php endif; ?><?php echo ''; ?><?php endif; ?><?php echo '<!--jenom po sem-->'; ?><?php if (! $this->_tpl_vars['pageTitleTranslated']): ?><?php echo ''; ?><?php echo ((is_array($_tmp=$this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => $this->_tpl_vars['pageTitle']), $this))) ? $this->_run_mod_handler('assign', true, $_tmp, 'pageTitleTranslated') : $this->_plugins['modifier']['assign'][0][0]->smartyAssign($_tmp, 'pageTitleTranslated'));?><?php echo ''; ?><?php endif; ?><?php echo ''; ?><?php if ($this->_tpl_vars['pageCrumbTitle']): ?><?php echo ''; ?><?php echo ((is_array($_tmp=$this->_plugins['function']['translate'][0][0]->smartyTranslate(array('key' => $this->_tpl_vars['pageCrumbTitle']), $this))) ? $this->_run_mod_handler('assign', true, $_tmp, 'pageCrumbTitleTranslated') : $this->_plugins['modifier']['assign'][0][0]->smartyAssign($_tmp, 'pageCrumbTitleTranslated'));?><?php echo ''; ?><?php elseif (! $this->_tpl_vars['pageCrumbTitleTranslated']): ?><?php echo ''; ?><?php $this->assign('pageCrumbTitleTranslated', $this->_tpl_vars['pageTitleTranslated']); ?><?php echo ''; ?><?php endif; ?><?php echo ''; ?>
+10a11
+> 
+13c14
+< 	<title><?php echo $this->_tpl_vars['pageTitleTranslated']; ?>
+---
+> 	<title><?php echo ((is_array($_tmp=$this->_tpl_vars['pageTitleTranslated'])) ? $this->_run_mod_handler('strip_tags', true, $_tmp, true) : smarty_modifier_strip_tags($_tmp, true)); ?>
+35a37,38
+>   <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
+> /styles/pdfView.css" type="text/css" />
+70a74,75
+>   
+>   <!-- upravuji používání korporátního designu. ve chvíli kdy je použit korporátní design, tak není povolen levý blok -->
+73,74d77
+< 	<?php if ($this->_tpl_vars['leftSidebarCode']): ?><link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
+< /styles/leftSidebar.css" type="text/css" /><?php endif; ?>
+77c80,83
+< 	<?php if ($this->_tpl_vars['leftSidebarCode'] && $this->_tpl_vars['rightSidebarCode']): ?><link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
+---
+>   <?php if ($this->_tpl_vars['currentJournal']): ?>
+>   	<?php if (! $this->_tpl_vars['currentJournal']->getSetting('useMuniStyle') && $this->_tpl_vars['leftSidebarCode']): ?><link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
+> /styles/leftSidebar.css" type="text/css" /><?php endif; ?>
+>   	<?php if (! $this->_tpl_vars['currentJournal']->getSetting('useMuniStyle') && $this->_tpl_vars['leftSidebarCode'] && $this->_tpl_vars['rightSidebarCode']): ?><link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseUrl']; ?>
+78a85
+>   <?php endif; ?>
+79a87,89
+>   
+>   
+>   <!--použitelné pouze pro muni press. Upravuje to zapínání a vypínání korporátního designu-->
+82a93,96
+>     
+>     <?php if ($this->_tpl_vars['currentJournal']): ?> 
+>        <?php if ($this->_tpl_vars['currentJournal']->getSetting('useMuniStyle')): ?>
+>           <?php if (((is_array($_tmp=$this->_tpl_vars['cssUrl'])) ? $this->_run_mod_handler('strstr', true, $_tmp, "sitestyle.css") : strstr($_tmp, "sitestyle.css"))): ?>
+84a99,112
+>           <?php endif; ?>
+>        <?php else: ?>
+>         <?php if (((is_array($_tmp=$this->_tpl_vars['cssUrl'])) ? $this->_run_mod_handler('strstr', true, $_tmp, "sitestyle.css") : strstr($_tmp, "sitestyle.css"))): ?>
+>         <?php else: ?>
+> 		      <link rel="stylesheet" href="<?php echo $this->_tpl_vars['cssUrl']; ?>
+> " type="text/css" />
+>         <?php endif; ?>
+>       <?php endif; ?>
+>     <?php else: ?>
+>       <?php if (((is_array($_tmp=$this->_tpl_vars['cssUrl'])) ? $this->_run_mod_handler('strstr', true, $_tmp, "sitestyle.css") : strstr($_tmp, "sitestyle.css"))): ?>
+>         <link rel="stylesheet" href="<?php echo $this->_tpl_vars['cssUrl']; ?>
+> " type="text/css" />
+>       <?php endif; ?>
+>     <?php endif; ?>
+184a213,215
+> <!--přídán odkaz v hlavičce a upraveno zobrazování loga-->
+> <a href="<?php echo $this->_plugins['function']['url'][0][0]->smartyUrl(array('page' => 'index'), $this);?>
+> " class="header_link" style="text-decoration:none; outline:none;">
+186a218
+> <div class="header_logo">
+193a226
+> </div>
+213c246
+< 	<?php echo $this->_tpl_vars['applicationName']; ?>
+---
+> 	<?php echo $this->_tpl_vars['siteTitle']; ?>
+216a250
+> </a>
+220,222c254,256
+< <div id="body">
+< 
+< <?php if ($this->_tpl_vars['leftSidebarCode'] || $this->_tpl_vars['rightSidebarCode']): ?>
+---
+> <div id="bodyA">
+> <!-- upraveno aby se nezobrazoval levý blok ve chvíli, kdy jej někdo použije s korporátním designem-->
+> <?php if ($this->_tpl_vars['currentJournal']): ?>
+224c258,264
+< 		<?php if ($this->_tpl_vars['leftSidebarCode']): ?>
+---
+>       <?php if ($this->_tpl_vars['rightSidebarCode']): ?>   
+>   			<div id="rightSidebar">
+>   				<?php echo $this->_tpl_vars['rightSidebarCode']; ?>
+> 
+>   			</div>
+>       <?php endif; ?>
+>       <?php if (! $this->_tpl_vars['currentJournal']->getSetting('useMuniStyle') && $this->_tpl_vars['leftSidebarCode']): ?>
+229a270,271
+>   	</div>
+> <?php else: ?>
+230a273
+>     <div id="sidebar">    
+233a277,281
+>         <?php $_smarty_tpl_vars = $this->_tpl_vars;
+> $this->_smarty_include(array('smarty_include_tpl_file' => "nove_pridane/blok_odkazy.tpl", 'smarty_include_vars' => array()));
+> $this->_tpl_vars = $_smarty_tpl_vars;
+> unset($_smarty_tpl_vars);
+>  ?>
+235d282
+< 		<?php endif; ?>
+237a285
+> <?php endif; ?>
+239a288
+> 
+241c290
+< $this->_smarty_include(array('smarty_include_tpl_file' => "common/navbar.tpl", 'smarty_include_vars' => array()));
+---
+> $this->_smarty_include(array('smarty_include_tpl_file' => "common/navbar2.tpl", 'smarty_include_vars' => array()));
+245a295
+> 
+251c301
+< 
+---
+> <div class="headTitle">
+256a307,308
+> </div>
+> <div id="content">
+259a312
+>   <br />
+262,263d314
+< <div id="content">
+< 
+\ No newline at end of file
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%39^391^391796A8%%extrasOnDemand.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%3C^3C1^3C1D008B%%block.tpl.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/t_compile/%%3D^3DF^3DF5686C%%jsLocaleKeys.tpl.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile/%%3D^3DF^3DF5686C%%jsLocaleKeys.tpl.php
+1c1
+< <?php /* Smarty version 2.6.26, created on 2014-04-23 07:38:21
+---
+> <?php /* Smarty version 2.6.26, created on 2014-04-11 14:35:58
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%42^426^4268BFBC%%emails.tpl.php
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: %%45^456^4569EA7A%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%4A^4AE^4AE1127F%%journalSettings.tpl.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/t_compile/%%4B^4B4^4B45D846%%breadcrumbs.tpl.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile/%%4B^4B4^4B45D846%%breadcrumbs.tpl.php
+1c1
+< <?php /* Smarty version 2.6.26, created on 2014-04-23 07:38:21
+---
+> <?php /* Smarty version 2.6.26, created on 2014-04-11 14:35:58
+21d20
+< 
+\ No newline at end of file
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%51^512^5125FA34%%block.tpl.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/t_compile/%%56^561^5616391A%%minifiedScripts.tpl.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile/%%56^561^5616391A%%minifiedScripts.tpl.php
+1c1
+< <?php /* Smarty version 2.6.26, created on 2014-04-23 07:38:21
+---
+> <?php /* Smarty version 2.6.26, created on 2014-04-11 15:02:05
+54a55,56
+> 
+> 
+\ No newline at end of file
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%5A^5A5^5A5A0067%%index.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%5B^5BC^5BC5864A%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%5C^5C2^5C21797E%%site.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%5D^5DD^5DDD4904%%view.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%5F^5F5^5F5AA392%%settings.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%6F^6F0^6F06B097%%inPlaceNotificationContent.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%70^703^703BB0EC%%settingsSaved.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%70^70D^70D99612%%index.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%72^720^720ACFDF%%journal.tpl.php
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: %%73^736^73609D70%%install.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%77^773^7730770D%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%79^790^7909A37A%%editorialTeamBio.tpl.php
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: %%7D^7DC^7DC17B21%%install.tpl.php
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: %%7F^7F4^7F419BB6%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%80^808^8086B0AC%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%84^846^846A87BC%%searchFilter.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%87^870^87070182%%setupHeader.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%87^878^878FC2A8%%index.tpl.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/t_compile/%%89^89D^89D0B816%%formErrors.tpl.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile/%%89^89D^89D0B816%%formErrors.tpl.php
+1c1
+< <?php /* Smarty version 2.6.26, created on 2014-04-23 07:38:21
+---
+> <?php /* Smarty version 2.6.26, created on 2014-04-11 15:02:35
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: %%8A^8AD^8ADF80CA%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%9C^9CF^9CFA75A4%%login.tpl.php
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: %%9D^9DE^9DE72373%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%9F^9F9^9F996827%%header.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%B3^B34^B34D88B1%%index.tpl.php
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: %%B5^B5E^B5E0744C%%installComplete.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%B8^B8A^B8A9B482%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%B8^B8C^B8C602E2%%block.tpl.php
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: %%BA^BA2^BA2EB386%%block.tpl.php
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: %%BA^BA4^BA4105E6%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%BB^BB9^BB9C6707%%blok_odkazy.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%BD^BD2^BD2D9356%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%C8^C80^C806736B%%externi_casopisy.tpl.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/t_compile/%%CB^CB6^CB620954%%footer.tpl.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile/%%CB^CB6^CB620954%%footer.tpl.php
+1c1
+< <?php /* Smarty version 2.6.26, created on 2014-04-23 07:38:21
+---
+> <?php /* Smarty version 2.6.26, created on 2014-04-11 14:35:58
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%CC^CC2^CC235ECA%%step4.tpl.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/t_compile/%%CF^CF5^CF5BA9DF%%footer.tpl.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile/%%CF^CF5^CF5BA9DF%%footer.tpl.php
+1c1
+< <?php /* Smarty version 2.6.26, created on 2014-04-23 07:38:21
+---
+> <?php /* Smarty version 2.6.26, created on 2014-04-11 14:35:58
+4c4
+< smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'core:common/footer.tpl', 12, false),array('function', 'call_hook', 'core:common/footer.tpl', 18, false),array('function', 'get_debug_info', 'core:common/footer.tpl', 23, false),)), $this); ?>
+---
+> smarty_core_load_plugins(array('plugins' => array(array('function', 'translate', 'core:common/footer.tpl', 12, false),array('function', 'call_hook', 'core:common/footer.tpl', 18, false),array('function', 'get_debug_info', 'core:common/footer.tpl', 29, false),)), $this); ?>
+15a16,17
+> 
+> 
+18a21,28
+> <?php if (! $this->_tpl_vars['currentJournal']): ?>
+> 
+> <?php $_smarty_tpl_vars = $this->_tpl_vars;
+> $this->_smarty_include(array('smarty_include_tpl_file' => "common/footer_nakl.tpl", 'smarty_include_vars' => array()));
+> $this->_tpl_vars = $_smarty_tpl_vars;
+> unset($_smarty_tpl_vars);
+>  ?>
+> <?php endif; ?>
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%CF^CF9^CF9303A9%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%D7^D77^D77F86D5%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%DA^DA7^DA7A3978%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%E4^E46^E46840C4%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%E7^E70^E7074BA8%%footer_nakl.tpl.php
+diff -w -r C:/xampp_new/htdocs/ojs/cache/t_compile/%%EA^EA7^EA73B28E%%fieldLabel.tpl.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile/%%EA^EA7^EA73B28E%%fieldLabel.tpl.php
+1c1
+< <?php /* Smarty version 2.6.26, created on 2014-04-23 07:38:21
+---
+> <?php /* Smarty version 2.6.26, created on 2014-04-11 15:02:35
+12d11
+< 
+\ No newline at end of file
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%EB^EB3^EB33E1F0%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%EB^EB5^EB5C5790%%block.tpl.php
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: %%EC^EC1^EC1C53D0%%navbar.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%EE^EE8^EE821D7F%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%F0^F0E^F0E76CBD%%navbar2.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%F1^F14^F143777A%%step5.tpl.php
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: %%F2^F24^F240F1CC%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%F3^F34^F34568E5%%displayMembership.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%F6^F62^F62E9C64%%search.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%F9^F98^F986CA6C%%index.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%F9^F9A^F9A9B4C4%%block.tpl.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/cache/t_compile: %%FF^FFA^FFA67636%%error.tpl.php
+Only in C:/xampp_new/htdocs/ojs/cache/t_compile: .gitignore
+diff -w -r C:/xampp_new/htdocs/ojs/classes/manager/form/setup/JournalSetupStep5Form.inc.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/classes/manager/form/setup/JournalSetupStep5Form.inc.php
+53a54
+>         
+diff -w -r C:/xampp_new/htdocs/ojs/classes/user/form/ProfileForm.inc.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/classes/user/form/ProfileForm.inc.php
+333a334
+>     
+diff -w -r C:/xampp_new/htdocs/ojs/config.inc.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/config.inc.php
+32c32
+< base_url = "http://localhost/ojs"
+---
+> base_url = "http://localhost/OJS"
+109,110c109,110
+< password = 
+< name = ojs_new
+---
+> password = admin
+> name = ojs
+190c190
+< files_dir = "C:/xampp_new/htdocs/ojs/files"
+---
+> files_dir = "C:\xampp_new\htdocs\OJS\files\"
+307c307
+< require_validation = Off
+---
+> require_validation = on
+397c397
+< font_location = /usr/share/fonts/truetype/freefont/FreeSerif.ttf
+---
+> font_location = FreeSerif/FreeSerif.ttf
+Only in C:/xampp_new/htdocs/ojs: diff.txt
+Only in C:/xampp_new/htdocs/ojs: favicon.ico
+Only in C:/xampp_new/htdocs/ojs: files
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs: images
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/js: colorbox
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/js: jquery.fancybox-1.3.4
+Only in C:/xampp_new/htdocs/ojs/lib/pkp: .git
+Only in C:/xampp_new/htdocs/ojs/lib/pkp: .gitignore
+Only in C:/xampp_new/htdocs/ojs/lib/pkp: .gitmodules
+diff -w -r C:/xampp_new/htdocs/ojs/lib/pkp/classes/group/GroupMembershipDAO.inc.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/classes/group/GroupMembershipDAO.inc.php
+63d62
+< 
+diff -w -r C:/xampp_new/htdocs/ojs/lib/pkp/classes/submission/PKPAuthor.inc.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/classes/submission/PKPAuthor.inc.php
+279a280
+>   
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/classes/submission: PKPAuthor.inc.php.bak
+diff -w -r C:/xampp_new/htdocs/ojs/lib/pkp/classes/user/PKPUser.inc.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/classes/user/PKPUser.inc.php
+398a399
+> 
+diff -w -r C:/xampp_new/htdocs/ojs/lib/pkp/classes/user/PKPUserDAO.inc.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/classes/user/PKPUserDAO.inc.php
+280d279
+< 
+339a339
+>         
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/classes/user: PKPUserDAO_upr.inc.php
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/js: .gitignore
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/swordappv2: .git
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/swordappv2: test
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/langs: cs.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/advhr/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/advimage/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/advlink/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/emotions/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/fullpage/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/jbimages/ci/application/language: czech
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/jbimages/langs: cs.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/jbimages/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/media/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/paste/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/searchreplace/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/style/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/table/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/template/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/plugins/xhtmlxtras/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/themes/advanced/langs: cs.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/themes/advanced/langs: cs_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/themes/advanced/langs: de.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/themes/advanced/langs: de_dlg.js
+Only in C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/themes/simple/langs: cs.js
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce: tiny_mce.js
+diff -w -r C:/xampp_new/htdocs/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/tiny_mce_gzip.js C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/lib/tinymce/jscripts/tiny_mce/tiny_mce_gzip.js
+5c5
+< 		languages : '',
+---
+> 		languages : 'en, cs',
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/locale/cs_CZ: ojs_lib_pkp_locale_cs_CZ.rar
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/locale/cs_CZ: submission3.xml
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/styles: __history
+diff -w -r C:/xampp_new/htdocs/ojs/lib/pkp/templates/common/footer.tpl C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/templates/common/footer.tpl
+18a19,20
+> 
+> 
+diff -w -r C:/xampp_new/htdocs/ojs/lib/pkp/templates/common/header.tpl C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/templates/common/header.tpl
+194,195c194
+< <div id="body">
+< 
+---
+> <div id="bodyA">
+221a221
+> 
+237d236
+< 
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/lib/pkp/templates/common: header2.tpl
+Only in C:/xampp_new/htdocs/ojs/lib/pkp: tests
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/locale/cs_CZ: ojs_locale_cs_CZ.rar
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs: ojs_styly_rdg
+Only in C:/xampp_new/htdocs/ojs/plugins/blocks: .gitignore
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/blocks: _unused blocks
+Only in C:/xampp_new/htdocs/ojs/plugins/blocks: authorBios
+Only in C:/xampp_new/htdocs/ojs/plugins/blocks: czTutorials
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/blocks: czTutorials.rar
+Only in C:/xampp_new/htdocs/ojs/plugins/blocks: journalMuniCz
+diff -w -r C:/xampp_new/htdocs/ojs/plugins/blocks/languageToggle/LanguageToggleBlockPlugin.inc.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/blocks/languageToggle/LanguageToggleBlockPlugin.inc.php
+93a94
+> 
+Only in C:/xampp_new/htdocs/ojs/plugins/blocks: social
+Only in C:/xampp_new/htdocs/ojs/plugins/blocks: unused_blocks
+diff -w -r C:/xampp_new/htdocs/ojs/plugins/generic/.gitignore C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/.gitignore
+3d2
+< _unused_referral
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic: _unuse_referral
+Only in C:/xampp_new/htdocs/ojs/plugins/generic: _unused_referral
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/acron/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic: alm
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/backup/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/booksForReview/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic: dataverse
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/driver/locale: pt_PT
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/driver/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/externalFeed/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/googleViewer/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/lucene/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/openAIRE/locale: pt_PT
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/openAIRE/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/piwik/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/staticPages/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/stopForumSpam/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/sword/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/tinymce: advhr
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/tinymce: advimage
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/tinymce: advlink
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/tinymce: emotions
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/tinymce: fullpage
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/tinymce: media
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/tinymce: paste
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/tinymce: searchreplace
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/tinymce: style
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/tinymce: table
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/tinymce: template
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/tinymce: xhtmlxtras
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/usageEvent/locale: cs_CZ
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/usageEvent/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/usageStats/locale: cs_CZ
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/usageStats/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/generic/webFeed: settingsForm - kopie.tpl
+Only in C:/xampp_new/htdocs/ojs/plugins/importexport: .gitignore
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/importexport: _unuse
+Only in C:/xampp_new/htdocs/ojs/plugins/importexport: _unused
+diff -w -r C:/xampp_new/htdocs/ojs/plugins/importexport/native/NativeExportDom.inc.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/importexport/native/NativeExportDom.inc.php
+25d24
+< 
+106a106
+>     
+113d112
+< 
+125d123
+< 
+131d128
+< 
+137d133
+< 
+143d138
+< 
+Only in C:/xampp_new/htdocs/ojs/plugins/importexport/pubIds/locale: cs_CZ
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/importexport/pubIds/locale: ru_RU
+diff -w -r C:/xampp_new/htdocs/ojs/plugins/importexport/users/UserImportExportPlugin.inc.php C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/importexport/users/UserImportExportPlugin.inc.php
+122d121
+< 
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/metadata/dc11: locale
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/metadata/mods34/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/oaiMetadataFormats/marc/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/oaiMetadataFormats/marcxml/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/oaiMetadataFormats/nlm/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/oaiMetadataFormats/rfc1807/locale: ru_RU
+Only in C:/xampp_new/htdocs/ojs/plugins/pubIds/doi/locale: cs_CZ
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/pubIds/doi/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/pubIds/urn/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/reports: _unuse
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/reports/subscriptions/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/reports/timedView/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/reports/views/locale: ru_RU
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/plugins/themes/uncommon: __history
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs: prezentace
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public: __history
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/journals: 2
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/journals: 3
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/journals: 4
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/journals: 5
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/site: __history
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/site: blank_page.css
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/site: check_radio_sheet.png
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/site: images
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/site: munistyle.css
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/site: pageHeaderTitleImage_cs_CZ.png
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/site: sitestyle-funkcni(vsechno krom IE).css
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/site: sitestyle-sandbox.css
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/site: sitestyle-test.css
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public/site: sitestyle.css
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public: sitestyle.css
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/public: sitestyle2.css
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/styles: __history
+Only in C:/xampp_new/htdocs/ojs/styles: bio.css
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/styles: ojs_.css
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates: _unuse_citation
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates/about: editorialTeamBio2.tpl
+diff -w -r C:/xampp_new/htdocs/ojs/templates/article/pdfViewer.tpl C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates/article/pdfViewer.tpl
+10c10
+< 
+---
+> <!--
+12,14c12
+<  <!--<div id="pdfDownloadLinkContainer">
+< 	<a class="action pdf" id="pdfDownloadLink" target="_parent" href="{url op="download" path=$articleId|to_array:$galley->getBestGalleyId($currentJournal)}">{translate key="article.pdf.download"}</a>
+< </div> -->
+---
+> <div id="pdfDownloadLinkContainer">
+15a14
+> </div>-->
+diff -w -r C:/xampp_new/htdocs/ojs/templates/common/minifiedScripts.tpl C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates/common/minifiedScripts.tpl
+48a49,50
+> 
+> 
+Only in C:/xampp_new/htdocs/ojs/templates/common: navbar2.tpl
+Only in C:/xampp_new/htdocs/ojs/templates/images: button_bg_slice.png
+diff -w -r C:/xampp_new/htdocs/ojs/templates/index/site.tpl C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates/index/site.tpl
+32c32
+< 		<h3>{$journal->getLocalizedTitle()|escape}</h3>
+---
+> 		<h3 style="font-family: Arial, Helvetica, sans-serif">{$journal->getLocalizedTitle()|escape}</h3>
+43d42
+< 	
+56a56
+>  
+diff -w -r C:/xampp_new/htdocs/ojs/templates/issue/view.tpl C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates/issue/view.tpl
+77a78
+>   
+diff -w -r C:/xampp_new/htdocs/ojs/templates/manager/groups/memberships.tpl C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates/manager/groups/memberships.tpl
+29c29
+< 
+---
+> {assign var=i value=0}
+49a50,54
+>   {if $i==1}
+>   {assign var=i value=0}
+>   {else}
+>   {assign var=i value=1}
+>   {/if}
+60c65
+< 	<tr>
+---
+> 	<tr {if $i==1}style="background_line"{/if}>
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates/manager/setup: setupHeader2.tpl
+diff -w -r C:/xampp_new/htdocs/ojs/templates/manager/setup/step3.tpl C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates/manager/setup/step3.tpl
+326,327d325
+< </div>
+< 
+diff -w -r C:/xampp_new/htdocs/ojs/templates/manager/setup/step5.tpl C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates/manager/setup/step5.tpl
+442a443
+> 
+451d451
+< 
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates/subscription: userProfile.tpl
+diff -w -r C:/xampp_new/htdocs/ojs/templates/user/profile.tpl C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates/user/profile.tpl
+40a41
+> 
+60a62
+> 
+diff -w -r C:/xampp_new/htdocs/ojs/templates/user/register.tpl C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/templates/user/register.tpl
+119a120
+>        
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional: FunctionalTestingEnvironmentTest.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/oai: FunctionalOaiDcTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/oai: FunctionalOaiNlmTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/pages/editor: FunctionalEditingTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/generic/lucene: FunctionalLucenePluginAutocompletionTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/generic/lucene: FunctionalLucenePluginConfigTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/generic/lucene: FunctionalLucenePluginCustomRankingTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/generic/lucene: FunctionalLucenePluginFacetingTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/generic/lucene: FunctionalLucenePluginHighlightingTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/generic/lucene: FunctionalLucenePluginRankingTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/generic/lucene: FunctionalLucenePluginSearchTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/generic/lucene: FunctionalLucenePluginSimDocTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/generic/lucene: FunctionalLucenePluginSpellingTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/generic/sword: FunctionalSwordDepositTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/importexport: FunctionalDoiExportTestCase.inc.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/importexport/crossref: FunctionalCrossrefExportTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/importexport/datacite: FunctionalDataciteExportTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/importexport/medra: FunctionalMedraExportTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/importexport/native: FunctionalNativeExportTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/importexport/native: FunctionalNativeImportTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/importexport/pubIds: FunctionalPubIdsImportExportTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/importexport/pubmed: FunctionalPubmedExportTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/pubIds: FunctionalDoiPubIdPluginTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs/tests/functional/plugins/pubIds: FunctionalUrnPubIdPluginTestCase.php
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs: tutorials
+Only in C:/xampp_new/htdocs/OJS_-_release2_4_3-0/ojs: zaloha_db

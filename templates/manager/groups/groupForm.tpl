@@ -17,7 +17,7 @@
 {if $group}
 	<ul class="menu">
 		<li class="current"><a href="{url op="editGroup" path=$group->getId()}">{translate key="manager.groups.editTitle"}</a></li>
-		<li><a href="{url op="groupMembership" path=$group->getId()}">{translate key="manager.groups.membership}</a></li>
+		<li><a href="{url op="groupMembership" path=$group->getId()}">{translate key="manager.groups.membership"}</a></li>
 	</ul>
 {/if}
 
@@ -52,6 +52,20 @@
 	<td width="80%" class="value">
 		<input type="checkbox" name="publishEmail" value="1" {if $publishEmail}checked="checked" {/if} id="publishEmail" />&nbsp;
 		{fieldLabel name="publishEmail" key="manager.groups.publishEmails"}
+	</td>
+</tr>
+<tr valign="top">
+        <td width="20%" class="label">&nbsp;</td>
+        <td width="80%" class="value">
+		<input type="checkbox" name="publishEmailList" value="1" {if $publishEmailList}checked="checked" {/if} id="publishEmailList" />&nbsp;
+		{fieldLabel name="publishEmailList" key="manager.groups.publishEmailList"}
+	</td>
+</tr>
+<tr valign="top">
+        <td width="20%" class="label">&nbsp;</td>
+        <td width="80%" class="value">
+		<input type="checkbox" name="allowMedailon" value="1" {if $allowMedailon}checked="checked" {/if} id="allowMedailon" />&nbsp;
+		{fieldLabel name="allowMedailon" key="manager.groups.allowMedailon"}
 	</td>
 </tr>
 <tr valign="top">

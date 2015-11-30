@@ -85,7 +85,7 @@
 		<br />
     <div class="separator"></div>
 	{/if}
-	<h3>{translate key="issue.toc"}</h3>
+	<h3 class="issueToc">{translate key="issue.toc"}</h3>
 	{include file="issue/issue.tpl"}
 {else}
 	{translate key="current.noCurrentIssueDesc"}

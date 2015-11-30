@@ -53,7 +53,7 @@
 
 	{call_hook name="Templates::Issue::Issue::ArticleCoverImage"}
 
-	<td class="tocArticleTitleAuthors{if $showCoverPage} showCoverImage{/if}">
+	<td class="tocArticleTitle{if $showCoverPage} showCoverImage{/if}" colspan="2">
 		<div class="tocTitle">
 			{if !$hasAccess || $hasAbstract || $hasCitace}
 				<a href="{url page="article" op="view" path=$articlePath}">{$article->getLocalizedTitle()|strip_unsafe_html}</a>
@@ -61,7 +61,12 @@
 				{$article->getLocalizedTitle()|strip_unsafe_html}
 			{/if}
 		</div>
-		<div class="tocAuthors">
+		
+	</td>
+</tr>
+<tr>
+    <td class="tocArticleAuthors">
+    <div class="tocAuthors">
 			{if (!$section.hideAuthor && $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_DEFAULT) || $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_SHOW}
 				{foreach from=$article->getAuthors() item=author name=authorList}
 					{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
@@ -70,7 +75,7 @@
 				&nbsp;
 			{/if}
 		</div>
-	</td>
+    </td>
 	<td class="tocArticleGalleysPages{if $showCoverPage} showCoverImage{/if}">
 		<div class="tocGalleys">
 			{if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
@@ -85,6 +90,7 @@
                                                     {rdelim}                                    
                                                 </script>
                                         {else}
+                                            
                                             <a href="{url page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>
                                         {/if}
 					{if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}

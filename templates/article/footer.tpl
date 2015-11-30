@@ -56,7 +56,9 @@
 {call_hook name="Templates::Article::Footer::PageFooter"}
 {if $pageFooter}
 <br /><br />
+<div id="pageFooter">
 {$pageFooter}
+</div>
 {/if}
 </div><!-- content -->
 </div><!-- main -->

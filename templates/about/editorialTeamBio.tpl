@@ -27,7 +27,7 @@
 	{foreach from=$stylesheets item=cssUrl}
 		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
-
+{*
 	<!-- Compiled scripts -->
 	{if $useMinifiedJavaScript}
 		<script type="text/javascript" src="{$baseUrl}/js/pkp.min.js"></script>
@@ -35,9 +35,9 @@
 		{include file="common/minifiedScripts.tpl"}
 	{/if}
 
-	{$additionalHeadData}
+	{$additionalHeadData}*}
 </head>
-<body id="pkp-{$pageTitle|replace:'.':'-'}">
+<body id="pkp-{$pageTitle|replace:'.':'-'}" class="biography">
 {literal}
 <script type="text/javascript">
 <!--
@@ -49,12 +49,12 @@
 {assign var=pageTitleTranslated value=$user->getFullName()|escape}
 {if !$pageTitleTranslated}{translate|assign:"pageTitleTranslated" key=$pageTitle}{/if}
 
-<div id="container" style="padding-top:10px">
+<div id="container">
 <div id="body">
 <div id="top"></div>
 <h1>{translate key="about.profile"}</h1>
 <div class="separator"></div>
-<div id="main">
+<div id="main" class="editorialTeamBio">
 
 {literal}
 <script type="text/javascript">
@@ -83,8 +83,37 @@
 	{/if}
 	{if $user->getUrl()}<a href="{$user->getUrl()|escape:"quotes"}" target="_new">{$user->getUrl()|escape}</a><br/>{/if}
 	{if $user->getLocalizedAffiliation()}{$user->getLocalizedAffiliation()|escape}{assign var=needsComma value=1}{/if}{if $country}{if $needsComma}, {/if}{$country|escape}{/if}
-  {$user->getLocalizedBiography()|nl2br|strip_unsafe_html}</p>
+</p>
+  <div class="teamBioBiography">
+      {$user->getLocalizedBiography()|nl2br|strip_unsafe_html}
+  </div>
 
+{if $publishedArticles|@count > 0}  
+  <ul>
+{foreach from=$publishedArticles item=article}
+	{assign var=issueId value=$article->getIssueId()}
+	{assign var=issue value=$issues[$issueId]}
+	{assign var=issueUnavailable value=$issuesUnavailable.$issueId}
+	{assign var=sectionId value=$article->getSectionId()}
+	{assign var=journalId value=$article->getJournalId()}
+	{assign var=journal value=$journals[$journalId]}
+	{assign var=section value=$sections[$sectionId]}
+	{if $issue->getPublished() && $section && $journal}
+	<li>
+            <a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()}" class="file" target="_new"><span class="clanek">{$article->getLocalizedTitle()|strip_unsafe_html}</span></a><br />
+		{if (!$issueUnavailable || $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN)}
+		{foreach from=$article->getGalleys() item=galley name=galleyList}
+		<a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file" target="_new">{$galley->getGalleyLabel()|escape}</a> | 
+		{/foreach} 
+		{/if}<em><a href="{url journal=$journal->getPath() page="issue" op="view" path=$issue->getBestIssueId()}" target="_blank" target="_new">{$issue->getIssueIdentification()|strip_unsafe_html|nl2br}</a> - {$section->getLocalizedTitle()|escape}</em><br />
+                
+		
+	</li>
+	{/if}
+{/foreach}
+</ul>
+{/if}
+<br />
 <input type="button" onclick="window.close()" value="{translate key="common.close"}" class="button defaultButton" />
 
 </div><!-- content -->

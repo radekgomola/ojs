@@ -14,7 +14,17 @@
 		{translate|assign:"help" key="navigation.home"}
 		<li id="home"><a class="button-home {if $requestedPage=="index"}home-selected{/if} " href="{url page="index"}">{translate key="navigation.home"}</a></li>
     {if $currentJournal && $currentJournal->getSetting('publishingMode') != $smarty.const.PUBLISHING_MODE_NONE}
-		  <li id="about"><a class="button-about {if $requestedPage=="about"}about-selected{/if}" href="{url page="about"}">{translate key="navigation.about.journal"}</a></li>
+                    <li id="about"><a class="button-about {if $requestedPage=="about"}about-selected{/if}" href="{url page="about"}">{translate key="navigation.about.journal"}</a>
+                        <ul class="submenu-about">
+                            <li><a class="submenu-contact" href="{url page="about" op="contact"}">{translate key="about.contact"}</a></li>
+                            <li><a class="submenu-editorialTeam" href="{url page="about" op="editorialTeam"}">{translate key="about.editorialTeam"}</a></li>
+                            <li><a class="submenu-policies" href="{url page="about" op="editorialPolicies"}">{translate key="about.policies"}</a></li>              
+                            {*odkaz pouze pro Mujlt a Revue *}
+                            <li><a class="submenu-others" href="{url page="about" op="editorialPolicies"}">{translate key="about.other"}</a></li>
+                            {*po sem *}
+                        </ul>
+                    </li>
+                  
     {else}
       <li id="about"><a class="button-about {if $requestedPage=="about"}about-selected{/if}" href="{url page="about"}">{translate key="navigation.about"}</a></li>
     {/if}

@@ -73,7 +73,7 @@
 <ul>
 	{if not ($currentJournal->getSetting('publisherInstitution') == '' && $currentJournal->getLocalizedSetting('publisherNote') == '' && $currentJournal->getLocalizedSetting('contributorNote') == '' && empty($journalSettings.contributors) && $currentJournal->getLocalizedSetting('sponsorNote') == '' && empty($journalSettings.sponsors))}<li><a href="{url op="journalSponsorship"}">{translate key="about.journalSponsorship"}</a></li>{/if}
 	{if $currentJournal->getLocalizedSetting('history') != ''}<li><a href="{url op="history"}">{translate key="about.history"}</a></li>{/if}
-	<li><a href="{url op="siteMap"}">{translate key="about.siteMap"}</a></li>
+	<li class="siteMap"><a href="{url op="siteMap"}">{translate key="about.siteMap"}</a></li>
 	<li><a href="{url op="aboutThisPublishingSystem"}">{translate key="about.aboutThisPublishingSystem"}</a></li>
 	{if $publicStatisticsEnabled}<li><a href="{url op="statistics"}">{translate key="about.statistics"}</a></li>{/if}
 	{call_hook name="Templates::About::Index::Other"}

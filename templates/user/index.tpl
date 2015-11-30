@@ -251,7 +251,16 @@
 	<li><a href="{url page="login" op="signOut"}">{translate key="user.logOut"}</a></li>
 	{call_hook name="Templates::User::Index::MyAccount"}
 </ul>
-</div>
-
+{if $currentJournal}
+    <div id="notification">
+        <h3>{translate key="notification.notifications"}</h3>
+        <ul>
+                <li><a href="{url page="notification"}">{translate key="common.view"}</a>
+                        {if $unreadNotifications > 0}{translate key="notification.notificationsNew" numNew=$unreadNotifications}{/if}</li>
+                <li><a href="{url page="notification" op="settings"}">{translate key="common.manage"}</a></li>
+        </ul>
+    </div>
+{/if}
+        </div>
 {include file="common/footer.tpl"}
 

@@ -516,7 +516,7 @@ function updateAbstractRequired() {
 
 	{if $journal->getSetting('metaCitations')}
 	<div id="metaCitations">
-	<h4>{translate key="submission.citations"}</h4>
+	<h3>{translate key="submission.citations"}</h3>
 
 	<p>{translate key="author.submit.submissionCitations"}</p>
 

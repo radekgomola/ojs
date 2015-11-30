@@ -69,11 +69,15 @@ class GroupForm extends Form {
 			$this->_data = array(
 				'title' => $this->group->getTitle(null), // Localized
 				'publishEmail' => $this->group->getPublishEmail(),
+                                'publishEmailList' => $this->group->getPublishEmailList(),
+                                'allowMedailon' => $this->group->getAllowMedailon(),
 				'context' => $this->group->getContext()
 			);
 		} else {
 			$this->_data = array(
 				'publishEmail' => 1,
+                                'publishEmailList' => 0,
+                                'allowMedailon' => 1,
 				'context' => GROUP_CONTEXT_EDITORIAL_TEAM
 			);
 		}
@@ -83,7 +87,7 @@ class GroupForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'context', 'publishEmail'));
+		$this->readUserVars(array('title', 'context', 'publishEmailList', '','allowMedailon'));
 	}
 
 	/**
@@ -102,6 +106,8 @@ class GroupForm extends Form {
 		$this->group->setTitle($this->getData('title'), null); // Localized
 		$this->group->setContext($this->getData('context'));
 		$this->group->setPublishEmail($this->getData('publishEmail'));
+                $this->group->getPublishEmailList($this->getData('publishEmailList'));
+                $this->group->getAllowMedailon($this->getData('allowMedailon'));
 
 		// Eventually this will be a general Groups feature; for now,
 		// we're just using it to display journal team entries in About.

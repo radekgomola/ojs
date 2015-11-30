@@ -22,11 +22,13 @@ $(document).ready(function() { setupTableDND("#dragTable", {/literal}"{url op=mo
 
 <ul class="menu">
 	<li><a href="{url op="editGroup" path=$group->getId()}">{translate key="manager.groups.editTitle"}</a></li>
-	<li class="current"><a href="{url op="groupMembership" path=$group->getId()}">{translate key="manager.groups.membership}</a></li>
+	<li class="current"><a href="{url op="groupMembership" path=$group->getId()}">{translate key="manager.groups.membership"}</a></li>
 </ul>
 
 <br/>
-
+<a href="{url op="sortGroup" path=$group->getId()}">{translate key="manager.groups.sortLexicographically"}</a>
+<br />
+<br />
 <div id="membership">
 <table width="100%" class="listing" id="dragTable">
 	<tr>

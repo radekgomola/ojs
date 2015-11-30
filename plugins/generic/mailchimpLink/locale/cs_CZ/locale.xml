@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  -->
+ 
+<locale name="cs_CZ" full_name="Czech">
+	<message key="plugins.generic.mailchimplink.displayName">Mailchimp newsletter</message>
+	<message key="plugins.generic.mailchimplink.description">Zpřístupní odkaz na Mailchimp v nabídce správy časopisu</message>
+	<message key="plugins.generic.mailchimplink.linklabel">Mailchimp newsletter</message>
+</locale>

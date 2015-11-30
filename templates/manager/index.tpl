@@ -41,6 +41,7 @@
 	<li><a href="{url op="plugins"}">{translate key="manager.plugins"}</a></li>
 	<li><a href="{url op="importexport"}">{translate key="manager.importExport"}</a></li>
 	{call_hook name="Templates::Manager::Index::ManagementPages"}
+        {call_hook name="Templates::Manager::Index::ManagementPages2"}
   
 </ul>
 </div>

@@ -16,7 +16,7 @@
 	<message key="manager.emails.confirmResetAll">Jste si jisti, že chcete resetovat všechny šablony e-mailů v tomto časopisu? Ztratíte tak veškerá přizpůsobení, která jste dopsud udělali.</message>
 	<message key="manager.files.note">Poznámka: Prohlížeč souborů je pokročilý nástroj, který umožňuje zobrazení a přímou manipulaci se soubory a adresáři souvisejícími s časopisem.</message>
 	<message key="manager.groups">Lidé v časopisu</message>
-  <message key="manager.groups.publishEmails">Publikovat e-mailovou adresu člena.</message>
+  <message key="manager.groups.publishEmails">Publikovat e-mailové adresy členů</message>
 	<message key="manager.groups.context.editorialTeam">Zobrazit název pod Edičním týmem na stránce O časopisu v sekci Lidé (např. Editor)</message>
 	<message key="manager.groups.context.editorialTeam.short">Redakce</message>
 	<message key="manager.groups.context.people">Zobrazit název jako vlastní kategorii pod Lidé (e.g. Redakční rada)</message>
@@ -27,7 +27,7 @@
 	<message key="manager.groups.noneCreated">Nebyly vytvořeny žádné pozice redakce.</message>
 	<message key="manager.journalManagement">Správa časopisu</message>
   <message key="manager.language.ui">UI</message>
-	<message key="manager.language.submissions">příspěvky</message>
+	<message key="manager.language.submissions">Příspěvky</message>
 	<message key="manager.language.forms">Formuláře</message>
 	<message key="manager.language.confirmDefaultSettingsOverwrite">Toto nahradí všechna nastavení časopisu specifická pro lokalizaci, které jste měl pro tuto lokalizaci</message>
 	<message key="manager.language.reloadLocalizedDefaultSettings">Znovu načíst výchozí nastavení specifická pro lokalizaci</message>

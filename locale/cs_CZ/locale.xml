@@ -1460,6 +1460,12 @@ Masarykovy univerzity</message>
         <message key="manager.setup.facebook">Facebook.com</message>
         <message key="manager.setup.twitter">Twitter.com</message>
         <message key="manager.setup.gplus">Plus.google.com</message>
+       
+        <message key="manager.groups.sortLexicographically">Setřiď členy lexikograficky</message>
+        <message key="manager.setup.medailon">Medailon autorů u článků</message>
+        <message key="manager.setup.medailon.description">Povolením této možnosti umožníte zobrazovat u jednotlivých autorů článků biografické meidalonky a webové stránky. (Vložený e-mail se zde zobrazovat nebude!)</message>
+        <message key="manager.setup.meidalon.allow">Povolit zobrazení medailonu.</message>
         
-        <message key="pedor.announcement">Výzva pro autory</message>
+        <message key="manager.groups.publishEmailList">Povolit zobrazení e-mailu v seznamu členů.</message>
+        <message key="manager.groups.allowMedailon">Povolit zobrazaní medailonů členů.</message>
 </locale>

@@ -117,7 +117,16 @@ class MunipressDOIHandler extends EditorHandler {
                             $this->_zadne++;
                             break;
                     }
-                    $vystup .= $citace. "<br />\n";
+                    $id = str_pad($i, 5, "0", STR_PAD_LEFT); 
+                    $doi = 'span[id=doi-ref-'.$id.']';
+                    $html = str_get_html($citace);
+                    $ref_doi = $html->find($doi);
+                    
+                     if (preg_match("/^.*(10\.[^\s]+).*$/i", $ref_doi[0])>0){
+                        $apa_citace = "APA formát: <a href='http://dx.doi.org/".strip_tags($ref_doi[0])."' target='_blank'><span id=\"doi-ref-".$id."\" style=\"color: green\">http://dx.doi.org/".strip_tags($ref_doi[0])."</span></a>";
+                        $citace->innertext = $citace->innertext ."<br />\n". $apa_citace;
+                     }
+                    $vystup .= $citace."<br />\n";
                     $i++;
                 }
             }
@@ -128,6 +137,7 @@ class MunipressDOIHandler extends EditorHandler {
         
         
         function zkontroluj_citaci($citace, $i){
+            //echo $citace;
             $returner = 0;
             $id = str_pad($i, 5, "0", STR_PAD_LEFT); 
             $html = str_get_html($citace);
@@ -137,21 +147,15 @@ class MunipressDOIHandler extends EditorHandler {
             $link = $html->find('a');
             $ref = $html->find($retezec);
             $ref_doi = $html->find($doi);
-            if(isset($link[0]->href)){
-                
-                if(preg_match("/doi:(\s|)\d\d\.\d\d\d\d\//i", $ref[0])>0) {
-                    $ref[0] = str_replace("&amp;", "&", $ref[0]);
-//                    echo strip_tags($ref[0])."\n\n".strip_tags($ref_doi[0])."\n\n";
-                    if(strpos($ref[0],strip_tags($ref_doi[0]))>0){
-                        $returner = 3;
-                    } else{
-                        $returner = 2;
-                    }
+            if(preg_match("/^.*doi(?:(?:\s*[:-]?\s*)|(?:\s+))(10\.[^\s]+).*$/i", $ref[0])>0 || preg_match("/^.*(?:http:\/\/)?dx.doi.org\/(10\.[^\s]+).*$/i", $ref[0])>0) {
+                $ref[0] = str_replace("&amp;", "&", $ref[0]);
+                if(strpos($ref[0],strip_tags($ref_doi[0]))>0){
+                    $returner = 3;
                 } else{
-                    $returner = 1;
+                    $returner = 2;
                 }
-            } elseif(preg_match("/doi:(\s|)\d\d\.\d\d\d\d\//i", $ref[0])>0) {
-                return 2;
+            } elseif (isset($link[0]->href)){
+                $returner = 1;
             }
             return $returner;
         }

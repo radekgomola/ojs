@@ -151,7 +151,18 @@
 					{/if}
 					{if $hasAccess}
 						{foreach from=$publishedArticle->getLocalizedGalleys() item=galley name=galleyList}
-							&nbsp;<a href="{url journal=$journal->getPath() page="article" op="view" path=$publishedArticle->getBestArticleId($journal)|to_array:$galley->getBestGalleyId($journal)}" class="file">{$galley->getGalleyLabel()|escape}</a>
+                                                    {if $galley->isPdfGalley()}
+                                                            <script type="text/javascript">
+                                                                if(detectIE()===10 || detectIE()===11){ldelim}
+                                                                    document.write('&nbsp;<a href="{url page="article" journal=$journal->getPath() op="viewFile" path=$publishedArticle->getBestArticleId($journal)|to_array:$galley->getBestGalleyId($journal)}" target="_blank" class="file">{$galley->getGalleyLabel()|escape}</a>');                                    
+                                                                {rdelim}
+                                                                else{ldelim}
+                                                                    document.write('&nbsp;<a href="{url journal=$journal->getPath() page="article" op="view" path=$publishedArticle->getBestArticleId($journal)|to_array:$galley->getBestGalleyId($journal)}" class="file">{$galley->getGalleyLabel()|escape}</a>');
+                                                                {rdelim}                                    
+                                                            </script>
+                                                    {else}
+                                                        <a href="{url page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>
+                                                    {/if}
 						{/foreach}
 					{/if}
 					{call_hook name="Templates::Search::SearchResults::AdditionalArticleLinks" articleId=$publishedArticle->getId()}

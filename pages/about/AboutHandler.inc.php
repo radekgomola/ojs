@@ -296,11 +296,66 @@ class AboutHandler extends Handler {
 		if (!$user) Request::redirect(null, 'about', 'editorialTeam');
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
+                $country = null;
 		if ($user && $user->getCountry() != '') {
 			$country = $countryDao->getCountry($user->getCountry());
 			$templateMgr->assign('country', $country);
 		}
+                
+                if ($user){
+                   
+//                        $roles =& $roleDao->getRolesByUserId($userId, $journal->getId());
+//                        if(in_array(ROLE_ID_EDITOR, $roles)){
+//                         Echo "jsem zde !!!!";
+                            $firstName = $user->getFirstName();
+                            $middleName = $user->getMiddleName();
+                            $lastName = $user->getLastName();
+                            $affiliation = $user->getLocalizedAffiliation();
 
+                            $authorDao =& DAORegistry::getDAO('AuthorDAO');
+                            $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation);
+
+                            
+                            // Load information associated with each article.
+                            $journals = array();
+                            $issues = array();
+                            $sections = array();
+                            $issuesUnavailable = array();
+
+                            $issueDao =& DAORegistry::getDAO('IssueDAO');
+                            $sectionDao =& DAORegistry::getDAO('SectionDAO');
+                            $journalDao =& DAORegistry::getDAO('JournalDAO');
+
+                            foreach ($publishedArticles as $article) {
+                                    $articleId = $article->getId();
+                                    $issueId = $article->getIssueId();
+                                    $sectionId = $article->getSectionId();
+                                    $journalId = $article->getJournalId();
+
+                                    if (!isset($issues[$issueId])) {
+                                            import('classes.issue.IssueAction');
+                                            $issue =& $issueDao->getIssueById($issueId);
+                                            $issues[$issueId] =& $issue;
+                                            $issuesUnavailable[$issueId] = IssueAction::subscriptionRequired($issue) && (!IssueAction::subscribedUser($journal, $issueId, $articleId) && !IssueAction::subscribedDomain($journal, $issueId, $articleId));
+                                    }
+                                    if (!isset($journals[$journalId])) {
+                                            $journals[$journalId] =& $journalDao->getById($journalId);
+                                    }
+                                    if (!isset($sections[$sectionId])) {
+                                            $sections[$sectionId] =& $sectionDao->getSection($sectionId, $journalId, true);
+                                    }
+                            }
+
+                            if (!empty($publishedArticles)) {
+                                $templateMgr->assign_by_ref('publishedArticles', $publishedArticles);
+                                $templateMgr->assign_by_ref('issues', $issues);
+                                $templateMgr->assign('issuesUnavailable', $issuesUnavailable);
+                                $templateMgr->assign_by_ref('sections', $sections);
+                                $templateMgr->assign_by_ref('journals', $journals);
+                            }
+//                        }
+                    
+                }
 		$templateMgr->assign_by_ref('user', $user);
 		$templateMgr->assign_by_ref('publishEmail', $publishEmail);
 		$templateMgr->display('about/editorialTeamBio.tpl');

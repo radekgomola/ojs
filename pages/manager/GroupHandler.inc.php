@@ -213,6 +213,24 @@ class GroupHandler extends ManagerHandler {
 		$templateMgr->assign_by_ref('group', $group);
 		$templateMgr->display('manager/groups/memberships.tpl');
 	}
+        
+        function sortGroup($args){
+                $groupId = isset($args[0])?(int)$args[0]:0;
+                $this->validate($groupId);
+		$group =& $this->group;
+                
+                $groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
+                $memberships =& $groupMembershipDao->getMembershipsLexicographically($group->getId());
+                
+                $seq = 0;
+                while (!$memberships->eof()) {
+			$member =& $memberships->next();
+                        $groupMembershipDao->updateObjectSeq($member, $seq);
+                        $seq++;
+                }
+                
+                Request::redirect(null, null, 'groupMembership', $group->getId());
+        }
 
 	/**
 	 * Add group membership (or list users if none chosen).

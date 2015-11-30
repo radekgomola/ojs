@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.generic.mailchimplink.displayName">Mailchimp newsletter</message>
+	<message key="plugins.generic.mailchimplink.description">Enable link to Mailchimp in the section "Journal Management"</message>
+	<message key="plugins.generic.mailchimplink.linklabel">Mailchimp newsletter</message>
+
+</locale>

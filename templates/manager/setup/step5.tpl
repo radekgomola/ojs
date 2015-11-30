@@ -601,6 +601,20 @@ function prepBlockFields() {
 	</tr>
 </table>
 </div>
+<br />
+<div class="separator"></div>
+<div id="setupInfo">
+<h3>5.8 {translate key="manager.setup.medailon"}</h3>
+
+<p>{translate key="manager.setup.medailon.description"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="5%" class="label"><input type="checkbox" name="allowMedailon" id="allowMedailon" value="1" {if !$allowMedailon}{else} checked="checked"{/if} /></td>
+		<td width="95%" class="value"><label for="allowMedailon">{translate key="manager.setup.meidalon.allow"}</label></td>
+	</tr>
+</table>
+</div>
 <div class="separator"></div>
 <p><input type="submit" onclick="prepBlockFields()" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>
 

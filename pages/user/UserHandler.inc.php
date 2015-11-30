@@ -108,10 +108,19 @@ class UserHandler extends Handler {
 			if ( $membershipEnabled ) {
 				$templateMgr->assign('dateEndMembership', $user->getSetting('dateEndMembership', 0));
 			}
+                        
 			$templateMgr->assign('allowRegAuthor', $journal->getSetting('allowRegAuthor'));
 			$templateMgr->assign('allowRegReviewer', $journal->getSetting('allowRegReviewer'));
 
 			$templateMgr->assign_by_ref('userJournals', $userJournals);
+
+                        if ($user && $journal) {
+                                $userId = $user->getId();
+                                $notificationDao =& DAORegistry::getDAO('NotificationDAO');
+                                $templateMgr->assign('unreadNotifications',  $notificationDao->getNotificationCount(false, $userId, $journal->getId()));
+                        }
+
+
 		}
 
 		$templateMgr->assign('isValid', $isValid);

@@ -7,7 +7,7 @@
  *
  * Article View.
  *}
-TEST
+
 {strip}
 {if $galley}
 	{assign var=pubObject value=$galley}
@@ -27,26 +27,28 @@ TEST
 {if $galley}
         
 	{if $galley->isHTMLGalley()}
+            <div class="htmlContents">
 		{$galley->getHTMLContents()}
+            </div>
 	{elseif $galley->isPdfGalley()}
-                
                 {if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
-                    {foreach from=$article->getGalleys() item=galley name=galleyList}
+                    {foreach from=$article->getGalleys() item=galleyItem name=galleyList}
                             <script type="text/javascript">
-                                vypisKdyzIE('<h4>{translate key=IE10.problem}</h4>','<h4>{translate key=IE11.problem}</h4>','<p>{translate key=IE.problem.redirect} <a target="_blank" href="{url page="article" op="viewFile" path=$article->getBestArticleId($currentJournal)|to_array:$galley->getBestGalleyId($currentJournal)}" class="file" >{translate key=click.here}</a></p><p>{translate key=IE.problem.solution}</p>')
+                                vypisKdyzIE('<h4>{translate key=IE10.problem}</h4>','<h4>{translate key=IE11.problem}</h4>','<p>{translate key=IE.problem.redirect} <a target="_blank" href="{url page="article" op="viewFile" path=$article->getBestArticleId($currentJournal)|to_array:$galleyItem->getBestGalleyId($currentJournal)}" class="file" >{translate key=click.here}</a></p><p>{translate key=IE.problem.solution}</p>')
                             </script>
                             {if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}
-                                    {if $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || !$galley->isPdfGalley()}
+                                    {if $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || !$galleyItem->isPdfGalley()}
                                             <img class="accessLogo" src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_open_medium.gif" alt="{translate key="article.accessLogoOpen.altText"}" />
                                     {else}
                                             <img class="accessLogo" src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_restricted_medium.gif" alt="{translate key="article.accessLogoRestricted.altText"}" />
                                     {/if}
                             {/if}
+                            
                     {/foreach}
-                                                  
+                    {include file="article/pdfViewer.tpl" ga=$galley}                          
                 {/if}
                  
-		{include file="article/pdfViewer.tpl"}
+		
 	{/if}
 {else}
 	<div id="topBar">

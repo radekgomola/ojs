@@ -45,12 +45,13 @@ class JournalSetupStep5Form extends JournalSetupForm {
 				'homepageImageAltText' => 'string',
 				'pageHeaderTitleImageAltText' => 'string',
 				'pageHeaderLogoImageAltText' => 'string',
-        'useMuniStyle' => 'bool',
-        'aboutJournal' => 'string',
-        'socialFacebook' => 'string',
-        'socialTwitter' => 'string',
-        'socialGplus' => 'string',
-        'aboutSetupTopDown' => 'int'
+                                'useMuniStyle' => 'bool',
+                                'aboutJournal' => 'string',
+                                'socialFacebook' => 'string',
+                                'socialTwitter' => 'string',
+                                'socialGplus' => 'string',
+                                'aboutSetupTopDown' => 'int',
+                                'allowMedailon' => 'bool'
 			)
 		);
 	}

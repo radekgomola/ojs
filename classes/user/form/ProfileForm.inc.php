@@ -188,8 +188,9 @@ class ProfileForm extends Form {
 			'isReviewer' => Validation::isReviewer(),
 			'interestsKeywords' => $interestManager->getInterestsForUser($user),
 			'interestsTextOnly' => $interestManager->getInterestsString($user), 
-      'titleBefore' => $user->getTitleBefore(),
-      'titleAfter' => $user->getTitleAfter(), 
+                        'titleBefore' => $user->getTitleBefore(),
+                        'titleAfter' => $user->getTitleAfter(), 
+                        'allowPublishingEmail' => $user->getAllowPublishingEmail()
 		);
 
 		return parent::initData();
@@ -222,8 +223,9 @@ class ProfileForm extends Form {
 			'readerRole',
 			'authorRole',
 			'reviewerRole',
-      'titleBefore',
-      'titleAfter'   
+                        'titleBefore',
+                        'titleAfter',
+                        'allowPublishingEmail'
 		));
 
 		if ($this->getData('userLocales') == null || !is_array($this->getData('userLocales'))) {
@@ -279,6 +281,7 @@ class ProfileForm extends Form {
 
                 $user->setTitleBefore($this->getData('titleBefore'));
                 $user->setTitleAfter($this->getData('titleAfter'));
+                $user->setAllowPublishingEmail($this->getData('allowPublishingEmail'));
 
                 parent::execute($user);
 

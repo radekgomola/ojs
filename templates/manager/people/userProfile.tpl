@@ -80,6 +80,11 @@
 			{icon name="mail" url=$url}
 		</td>
 	</tr>
+        <tr valign="top">
+                <td class="label"></td>
+                <td class="value"><input type="checkbox" name="allowPublishingEmail" value="1" {if $allowPublishingEmail}checked="checked" {/if} id="allowPublishingEmail" />&nbsp;
+                        {fieldLabel name="allowPublishingEmail" key="user.allowPublishingEmail"}</td>
+        </tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.url"}</td>
 		<td class="value"><a href="{$user->getUrl()|escape:"quotes"}">{$user->getUrl()|escape}</a></td>

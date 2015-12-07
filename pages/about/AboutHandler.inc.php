@@ -218,12 +218,20 @@ class AboutHandler extends Handler {
 			unset($membership);
 		}
 
+                $publishEmailList = $publishUrlList = $allowMedailon = false;
+                if ($group->getPublishEmailList()) $publishEmailList = true;
+                if ($group->getAllowMedailon()) $allowMedailon = true;
+                if ($group->getPublishUrlList()) $publishUrlList = true;
+                
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
 
 		$templateMgr->assign_by_ref('group', $group);
 		$templateMgr->assign_by_ref('memberships', $memberships);
+                $templateMgr->assign('publishEmailList', $publishEmailList);
+                $templateMgr->assign('publishUrlList', $publishUrlList);
+                $templateMgr->assign('allowMedailon', $allowMedailon);
 		$templateMgr->display('about/displayMembership.tpl');
 	}
 
@@ -310,10 +318,12 @@ class AboutHandler extends Handler {
                             $firstName = $user->getFirstName();
                             $middleName = $user->getMiddleName();
                             $lastName = $user->getLastName();
-                            $affiliation = $user->getLocalizedAffiliation();
+
+                            $affiliation = $user->getLocalizedAffiliation()?$user->getLocalizedAffiliation():"";
+                            $country = "";
 
                             $authorDao =& DAORegistry::getDAO('AuthorDAO');
-                            $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation);
+                            $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $country);
 
                             
                             // Load information associated with each article.
@@ -361,6 +371,142 @@ class AboutHandler extends Handler {
 		$templateMgr->display('about/editorialTeamBio.tpl');
 	}
 
+        /**
+	 * Display a biography for an editorial team member.
+	 * @param $args array
+	 */
+	function editorialTeamBioFullProfile($args) {
+		$this->addCheck(new HandlerValidatorJournal($this));
+		$this->validate();
+		$this->setupTemplate(true);
+
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$journal =& Request::getJournal();
+
+		$templateMgr =& TemplateManager::getManager();
+
+		$userId = isset($args[0])?(int)$args[0]:0;
+
+		// Make sure we're fetching a biography for
+		// a user who should appear on the listing;
+		// otherwise we'll be exposing user information
+		// that might not necessarily be public.
+
+		// FIXME: This is pretty inefficient. Should be cached.
+
+		$user = null;
+		if ($journal->getSetting('boardEnabled') != true) {
+			$roles =& $roleDao->getRolesByUserId($userId, $journal->getId());
+			$acceptableRoles = array(
+				ROLE_ID_EDITOR,
+				ROLE_ID_SECTION_EDITOR,
+				ROLE_ID_LAYOUT_EDITOR,
+				ROLE_ID_COPYEDITOR,
+				ROLE_ID_PROOFREADER
+			);
+			foreach ($roles as $role) {
+				$roleId = $role->getRoleId();
+				if (in_array($roleId, $acceptableRoles)) {
+					$userDao =& DAORegistry::getDAO('UserDAO');
+					$user =& $userDao->getUser($userId);
+					break;
+				}
+			}
+
+			// Currently we always publish emails in this mode.
+			$publishEmail = true;
+		} else {
+			$groupDao =& DAORegistry::getDAO('GroupDAO');
+			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
+
+			$allGroups =& $groupDao->getGroups(ASSOC_TYPE_JOURNAL, $journal->getId());
+			$publishEmail = false;
+			while ($group =& $allGroups->next()) {
+				if (!$group->getAboutDisplayed()) continue;
+				$allMemberships =& $groupMembershipDao->getMemberships($group->getId());
+				while ($membership =& $allMemberships->next()) {
+					if (!$membership->getAboutDisplayed()) continue;
+					$potentialUser =& $membership->getUser();
+					if ($potentialUser->getId() == $userId) {
+						$user = $potentialUser;
+						if ($group->getPublishEmail()) $publishEmail = true;
+					}
+					unset($membership);
+				}
+				unset($group);
+			}
+		}
+
+		if (!$user) Request::redirect(null, 'about', 'editorialTeam');
+
+		$countryDao =& DAORegistry::getDAO('CountryDAO');
+                $country = null;
+		if ($user && $user->getCountry() != '') {
+			$country = $countryDao->getCountry($user->getCountry());
+			$templateMgr->assign('country', $country);
+		}
+                
+                if ($user){
+                   
+//                        $roles =& $roleDao->getRolesByUserId($userId, $journal->getId());
+//                        if(in_array(ROLE_ID_EDITOR, $roles)){
+//                         Echo "jsem zde !!!!";
+                            $firstName = $user->getFirstName();
+                            $middleName = $user->getMiddleName();
+                            $lastName = $user->getLastName();
+
+                            $affiliation = $user->getLocalizedAffiliation()?$user->getLocalizedAffiliation():"";
+                            $country = "";
+
+                            $authorDao =& DAORegistry::getDAO('AuthorDAO');
+                            $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $country);
+
+                            
+                            // Load information associated with each article.
+                            $journals = array();
+                            $issues = array();
+                            $sections = array();
+                            $issuesUnavailable = array();
+
+                            $issueDao =& DAORegistry::getDAO('IssueDAO');
+                            $sectionDao =& DAORegistry::getDAO('SectionDAO');
+                            $journalDao =& DAORegistry::getDAO('JournalDAO');
+
+                            foreach ($publishedArticles as $article) {
+                                    $articleId = $article->getId();
+                                    $issueId = $article->getIssueId();
+                                    $sectionId = $article->getSectionId();
+                                    $journalId = $article->getJournalId();
+
+                                    if (!isset($issues[$issueId])) {
+                                            import('classes.issue.IssueAction');
+                                            $issue =& $issueDao->getIssueById($issueId);
+                                            $issues[$issueId] =& $issue;
+                                            $issuesUnavailable[$issueId] = IssueAction::subscriptionRequired($issue) && (!IssueAction::subscribedUser($journal, $issueId, $articleId) && !IssueAction::subscribedDomain($journal, $issueId, $articleId));
+                                    }
+                                    if (!isset($journals[$journalId])) {
+                                            $journals[$journalId] =& $journalDao->getById($journalId);
+                                    }
+                                    if (!isset($sections[$sectionId])) {
+                                            $sections[$sectionId] =& $sectionDao->getSection($sectionId, $journalId, true);
+                                    }
+                            }
+
+                            if (!empty($publishedArticles)) {
+                                $templateMgr->assign_by_ref('publishedArticles', $publishedArticles);
+                                $templateMgr->assign_by_ref('issues', $issues);
+                                $templateMgr->assign('issuesUnavailable', $issuesUnavailable);
+                                $templateMgr->assign_by_ref('sections', $sections);
+                                $templateMgr->assign_by_ref('journals', $journals);
+                            }
+//                        }
+                    
+                }
+		$templateMgr->assign_by_ref('user', $user);
+		$templateMgr->assign_by_ref('publishEmail', $publishEmail);
+		$templateMgr->display('about/editorialTeamBioFullProfile.tpl');
+	}
+        
 	/**
 	 * Display editorialPolicies page.
 	 * @param $args array

@@ -53,34 +53,34 @@
 {/if}{* count($formLocales) > 1 && !$existingUser *}
 
 {if !$implicitAuth}
-	<tr valign="top">
+	<tr valign="top" class="registerUsername">
 		<td width="20%" class="label">{fieldLabel name="username" required="true" key="user.username"}</td>
 		<td width="80%" class="value"><input type="text" name="username" value="{$username|escape}" id="username" size="20" maxlength="32" class="textField" /></td>
 	</tr>
 	{if !$existingUser}
-	<tr valign="top">
+	<tr valign="top" class="registerInstruct">
 		<td></td>
 		<td class="instruct">{translate key="user.register.usernameRestriction"}</td>
 	</tr>
 	{/if}{* !$existingUser *}
 
-	<tr valign="top">
+	<tr valign="top" class="registerPassword">
 		<td class="label">{fieldLabel name="password" required="true" key="user.password"}</td>
 		<td class="value"><input type="password" name="password" value="{$password|escape}" id="password" size="20" class="textField" /></td>
 	</tr>
 
 	{if !$existingUser}
-		<tr valign="top">
+		<tr valign="top" class="registerPasswordInstruct">
 			<td></td>
 			<td class="instruct">{translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}</td>
 		</tr>
-		<tr valign="top">
+		<tr valign="top" class="registerPassword2">
 			<td class="label">{fieldLabel name="password2" required="true" key="user.repeatPassword"}</td>
 			<td class="value"><input type="password" name="password2" id="password2" value="{$password2|escape}" size="20" class="textField" /></td>
 		</tr>
 
 		{if $captchaEnabled}
-			<tr>
+			<tr class="registerCaptcha">
 				{if $reCaptchaEnabled}
 				<td class="label" valign="top">{fieldLabel name="recaptcha_challenge_field" required="true" key="common.captchaField"}</td>
 				<td class="value">
@@ -98,39 +98,39 @@
 			</tr>
 		{/if}{* $captchaEnabled *}
 
-		<tr valign="top">
+		<tr valign="top" class="registerSalution">
 			<td class="label">{fieldLabel name="salutation" key="user.salutation"}</td>
 			<td class="value"><input type="text" name="salutation" id="salutation" value="{$salutation|escape}" size="20" maxlength="40" class="textField" /></td>
 		</tr>
-                <tr valign="top">
+                <tr valign="top" class="registerTitleBefore">
                     <td class="label">{fieldLabel name="titleBefore" key="user.title.before"}</td>
 			<td class="value"><input type="text" id="titleBefore" name="titleBefore" value="{$titleBefore|escape}" size="20" maxlength="40" class="textField" /></td>
 		</tr>
-		<tr valign="top">
+		<tr valign="top" class="registerFirstName">
 			<td class="label">{fieldLabel name="firstName" required="true" key="user.firstName"}</td>
 			<td class="value"><input type="text" id="firstName" name="firstName" value="{$firstName|escape}" size="20" maxlength="40" class="textField" /></td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerMiddleName">
 			<td class="label">{fieldLabel name="middleName" key="user.middleName"}</td>
 			<td class="value"><input type="text" id="middleName" name="middleName" value="{$middleName|escape}" size="20" maxlength="40" class="textField" /></td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerLastName">
 			<td class="label">{fieldLabel name="lastName" required="true" key="user.lastName"}</td>
 			<td class="value"><input type="text" id="lastName" name="lastName" value="{$lastName|escape}" size="20" maxlength="90" class="textField" /></td>
 		</tr>
                 
-                <tr valign="top">
+                <tr valign="top" class="registerTitleAfter">
 			<td class="label">{fieldLabel name="titleAfter" key="user.title.after"}</td>
 			<td class="value"><input type="text" id="titleAfter" name="titleAfter" value="{$titleAfter|escape}" size="20" maxlength="90" class="textField" /></td>
 		</tr>
-		<tr valign="top">
+		<tr valign="top" class="registerInitials">
 			<td class="label">{fieldLabel name="initials" key="user.initials"}</td>
 			<td class="value"><input type="text" id="initials" name="initials" value="{$initials|escape}" size="5" maxlength="5" class="textField" />&nbsp;&nbsp;{translate key="user.initialsExample"}</td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerGender">
 			<td class="label">{fieldLabel name="gender-m" key="user.gender"}</td>
 			<td class="value">
 				<select name="gender" id="gender" size="1" class="selectMenu">
@@ -139,7 +139,7 @@
 			</td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerAffliation">
 			<td class="label">{fieldLabel name="affiliation" key="user.affiliation"}</td>
 			<td class="value">
 				<textarea id="affiliation" name="affiliation[{$formLocale|escape}]" rows="5" cols="40" class="textArea">{$affiliation[$formLocale]|escape}</textarea><br/>
@@ -147,47 +147,47 @@
 			</td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerSignature">
 			<td class="label">{fieldLabel name="signature" key="user.signature"}</td>
 			<td class="value"><textarea name="signature[{$formLocale|escape}]" id="signature" rows="5" cols="40" class="textArea">{$signature[$formLocale]|escape}</textarea></td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerEmail">
 			<td class="label">{fieldLabel name="email" required="true" key="user.email"}</td>
 			<td class="value"><input type="text" id="email" name="email" value="{$email|escape}" size="30" maxlength="90" class="textField" /> {if $privacyStatement}<a class="action" href="#privacyStatement">{translate key="user.register.privacyStatement"}</a>{/if}</td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerConfirmEmail">
 			<td class="label">{fieldLabel name="confirmEmail" required="true" key="user.confirmEmail"}</td>
 			<td class="value"><input type="text" id="confirmEmail" name="confirmEmail" value="{$confirmEmail|escape}" size="30" maxlength="90" class="textField" /></td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerOrcid">
 			<td class="label">{fieldLabel name="orcid" key="user.orcid"}</td>
 			<td class="value"><input type="text" id="orcid" name="orcid" value="{$orcid|escape}" size="40" maxlength="255" class="textField" /><br />{translate key="user.orcid.description"}</td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerUserUrl">
 			<td class="label">{fieldLabel name="userUrl" key="user.url"}</td>
 			<td class="value"><input type="text" id="userUrl" name="userUrl" value="{$userUrl|escape}" size="30" maxlength="255" class="textField" /></td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerPhone">
 			<td class="label">{fieldLabel name="phone" key="user.phone"}</td>
 			<td class="value"><input type="text" name="phone" id="phone" value="{$phone|escape}" size="15" maxlength="24" class="textField" /></td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerFax">
 			<td class="label">{fieldLabel name="fax" key="user.fax"}</td>
 			<td class="value"><input type="text" name="fax" id="fax" value="{$fax|escape}" size="15" maxlength="24" class="textField" /></td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerMailingAddress">
 			<td class="label">{fieldLabel name="mailingAddress" key="common.mailingAddress"}</td>
 			<td class="value"><textarea name="mailingAddress" id="mailingAddress" rows="3" cols="40" class="textArea">{$mailingAddress|escape}</textarea></td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerCountry">
 			<td class="label">{fieldLabel name="country" key="common.country"}</td>
 			<td class="value">
 				<select name="country" id="country" class="selectMenu">
@@ -197,12 +197,12 @@
 			</td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerBiography">
 			<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
 			<td class="value"><textarea name="biography[{$formLocale|escape}]" id="biography" rows="5" cols="40" class="textArea">{$biography[$formLocale]|escape}</textarea></td>
 		</tr>
 
-		<tr valign="top">
+		<tr valign="top" class="registerSendPassword">
 			<td class="label">{fieldLabel name="sendPassword" key="user.sendPassword"}</td>
 			<td class="value">
 				<input type="checkbox" name="sendPassword" id="sendPassword" value="1"{if $sendPassword} checked="checked"{/if} /> <label for="sendPassword">{translate key="user.sendPassword.description"}</label>
@@ -210,7 +210,7 @@
 		</tr>
 
 		{if count($availableLocales) > 1}
-			<tr valign="top">
+			<tr valign="top" class="registerUserLocales">
 				<td class="label">{translate key="user.workingLanguages"}</td>
 				<td class="value">{foreach from=$availableLocales key=localeKey item=localeName}
 				<input type="checkbox" name="userLocales[]" id="userLocales-{$localeKey|escape}" value="{$localeKey|escape}"{if in_array($localeKey, $userLocales)} checked="checked"{/if} /> <label for="userLocales-{$localeKey|escape}">{$localeName|escape}</label><br />
@@ -221,7 +221,7 @@
 {/if}{* !$implicitAuth *}
 
 {if $allowRegReader || $allowRegReader === null || $allowRegAuthor || $allowRegAuthor === null || $allowRegReviewer || $allowRegReviewer === null || ($currentJournal && $currentJournal->getSetting('publishingMode') == $smarty.const.PUBLISHING_MODE_SUBSCRIPTION && $enableOpenAccessNotification)}
-	<tr valign="top">
+	<tr valign="top" class="registerRegisterRole">
 		<td class="label">{fieldLabel suppressId="true" name="registerAs" key="user.register.registerAs"}</td>
 		<td class="value">{if $allowRegReader || $allowRegReader === null}<input type="checkbox" name="registerAsReader" id="registerAsReader" value="1"{if $registerAsReader} checked="checked"{/if} /> <label for="registerAsReader">{translate key="user.role.reader"}</label>: {translate key="user.register.readerDescription"}<br />{/if}
 		{if $currentJournal && $currentJournal->getSetting('publishingMode') == $smarty.const.PUBLISHING_MODE_SUBSCRIPTION && $enableOpenAccessNotification}<input type="checkbox" name="openAccessNotification" id="openAccessNotification" value="1"{if $openAccessNotification} checked="checked"{/if} /> <label for="openAccessNotification">{translate key="user.role.reader"}</label>: {translate key="user.register.openAccessNotificationDescription"}<br />{/if}

@@ -70,14 +70,20 @@ class GroupForm extends Form {
 				'title' => $this->group->getTitle(null), // Localized
 				'publishEmail' => $this->group->getPublishEmail(),
                                 'publishEmailList' => $this->group->getPublishEmailList(),
+                                'publishUrlList' => $this->group->getPublishUrlList(),
                                 'allowMedailon' => $this->group->getAllowMedailon(),
+                                'opacnyTvarJmena' => $this->group->getOpacnyTvarJmena(),
+                                'fullProfile' => $this->group->getFullProfile(),
 				'context' => $this->group->getContext()
 			);
 		} else {
 			$this->_data = array(
 				'publishEmail' => 1,
                                 'publishEmailList' => 0,
+                                'publishUrlList' => 0,
                                 'allowMedailon' => 1,
+                                'opacnyTvarJmena' => 0,
+                                'fullProfile' => 0,
 				'context' => GROUP_CONTEXT_EDITORIAL_TEAM
 			);
 		}
@@ -87,7 +93,7 @@ class GroupForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'context', 'publishEmailList', '','allowMedailon'));
+		$this->readUserVars(array('title', 'context', 'publishEmail', 'publishEmailList', 'allowMedailon', 'publishUrlList', 'opacnyTvarJmena', 'fullProfile'));
 	}
 
 	/**
@@ -106,8 +112,11 @@ class GroupForm extends Form {
 		$this->group->setTitle($this->getData('title'), null); // Localized
 		$this->group->setContext($this->getData('context'));
 		$this->group->setPublishEmail($this->getData('publishEmail'));
-                $this->group->getPublishEmailList($this->getData('publishEmailList'));
-                $this->group->getAllowMedailon($this->getData('allowMedailon'));
+                $this->group->setPublishEmailList($this->getData('publishEmailList'));
+                $this->group->setPublishUrlList($this->getData('publishUrlList'));
+                $this->group->setAllowMedailon($this->getData('allowMedailon'));
+                $this->group->setOpacnyTvarJmena($this->getData('opacnyTvarJmena'));
+                $this->group->setFullProfile($this->getData('fullProfile'));
 
 		// Eventually this will be a general Groups feature; for now,
 		// we're just using it to display journal team entries in About.

@@ -86,6 +86,11 @@
 	<td class="value"><input type="text" name="email" id="email" value="{$email|escape}" size="30" maxlength="90" class="textField" /></td>
 </tr>
 <tr valign="top">
+	<td class="label"></td>
+	<td class="value"><input type="checkbox" name="allowPublishingEmail" value="1" {if $allowPublishingEmail}checked="checked" {/if} id="allowPublishingEmail" />&nbsp;
+		{fieldLabel name="allowPublishingEmail" key="user.allowPublishingEmail"}</td>
+</tr>
+<tr valign="top">
 	<td class="label">{fieldLabel name="orcid" key="user.orcid"}</td>
 	<td class="value"><input type="text" name="orcid" id="orcid" value="{$orcid|escape}" size="40" maxlength="255" class="textField" /><br />{translate key="user.orcid.description"}</td>
 </tr>

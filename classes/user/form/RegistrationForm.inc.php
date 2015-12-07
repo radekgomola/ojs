@@ -173,7 +173,7 @@ class RegistrationForm extends Form {
 			'affiliation', 'email', 'confirmEmail', 'orcid', 'userUrl', 'phone', 'fax', 'signature',
 			'mailingAddress', 'biography', 'interestsTextOnly', 'keywords', 'userLocales',
 			'registerAsReader', 'openAccessNotification', 'registerAsAuthor',
-			'registerAsReviewer', 'existingUser', 'sendPassword', 'titleBefore', 'titleAfter'
+			'registerAsReviewer', 'existingUser', 'sendPassword', 'titleBefore', 'titleAfter', 'allowPublishingEmail'
 		);
 		if ($this->captchaEnabled) {
 			if ($this->reCaptchaEnabled) {
@@ -248,8 +248,9 @@ class RegistrationForm extends Form {
 			$user->setFax($this->getData('fax'));
 			$user->setMailingAddress($this->getData('mailingAddress'));
 			$user->setBiography($this->getData('biography'), null); // Localized
-      $user->setTitleBefore($this->getData('titleBefore'));
-      $user->setTitleAfter($this->getData('titleAfter'));
+                        $user->setTitleBefore($this->getData('titleBefore'));
+                        $user->setTitleAfter($this->getData('titleAfter'));
+                        $user->setAllowPublishingEmail($this->getData('allowPublishingEmail'));
 			$user->setDateRegistered(Core::getCurrentDate());
 			$user->setCountry($this->getData('country'));
 

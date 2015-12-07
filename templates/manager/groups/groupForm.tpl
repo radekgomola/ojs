@@ -64,8 +64,29 @@
 <tr valign="top">
         <td width="20%" class="label">&nbsp;</td>
         <td width="80%" class="value">
+		<input type="checkbox" name="publishUrlList" value="1" {if $publishUrlList}checked="checked" {/if} id="publishUrlList" />&nbsp;
+		{fieldLabel name="publishUrlList" key="manager.groups.publishUrlList"}
+	</td>
+</tr>
+<tr valign="top">
+        <td width="20%" class="label">&nbsp;</td>
+        <td width="80%" class="value">
 		<input type="checkbox" name="allowMedailon" value="1" {if $allowMedailon}checked="checked" {/if} id="allowMedailon" />&nbsp;
 		{fieldLabel name="allowMedailon" key="manager.groups.allowMedailon"}
+	</td>
+</tr>
+<tr valign="top">
+        <td width="20%" class="label">&nbsp;</td>
+        <td width="80%" class="value">
+		<input type="checkbox" name="opacnyTvarJmena" value="1" {if $opacnyTvarJmena}checked="checked" {/if} id="opacnyTvarJmena" />&nbsp;
+		{fieldLabel name="opacnyTvarJmena" key="manager.groups.opacnyTvarJmena"}
+	</td>
+</tr>
+<tr valign="top">
+        <td width="20%" class="label">&nbsp;</td>
+        <td width="80%" class="value">
+		<input type="checkbox" name="fullProfile" value="1" {if $fullProfile}checked="checked" {/if} id="fullProfile" />&nbsp;
+		{fieldLabel name="fullProfile" key="manager.groups.fullProfile"}
 	</td>
 </tr>
 <tr valign="top">

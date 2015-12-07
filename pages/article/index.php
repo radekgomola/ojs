@@ -25,6 +25,7 @@ switch ($op) {
 	case 'viewFile':
 	case 'download':
 	case 'downloadSuppFile':
+        case 'authorBio':   
 		define('HANDLER_CLASS', 'ArticleHandler');
 		import('pages.article.ArticleHandler');
 		break;

@@ -170,8 +170,9 @@ class UserManagementForm extends Form {
 					'interestsTextOnly' => $interestManager->getInterestsString($user),
 					'gossip' => $user->getGossip(null), // Localized
 					'userLocales' => $user->getLocales(),
-          'titleBefore' => $user->getTitleBefore(),
-          'titleAfter' => $user->getTitleAfter()
+                                        'titleBefore' => $user->getTitleBefore(),
+                                        'titleAfter' => $user->getTitleAfter(),
+                                        'allowPublishingEmail' => $user->getAllowPublishingEmail()
 				);
 
 			} else {
@@ -225,8 +226,9 @@ class UserManagementForm extends Form {
 			'generatePassword',
 			'sendNotify',
 			'mustChangePassword',
-      'titleBefore',
-      'titleAfter'
+                        'titleBefore',
+                        'titleAfter',
+                        'allowPublishingEmail'
 		));
 		if ($this->userId == null) {
 			$this->readUserVars(array('username'));
@@ -292,8 +294,10 @@ class UserManagementForm extends Form {
 		$user->setGossip($this->getData('gossip'), null); // Localized
 		$user->setMustChangePassword($this->getData('mustChangePassword') ? 1 : 0);
 		$user->setAuthId((int) $this->getData('authId'));
-    $user->setTitleBefore($this->getData('titleBefore'));
-    $user->setTitleAfter($this->getData('titleAfter'));
+                $user->setTitleBefore($this->getData('titleBefore'));
+                $user->setTitleAfter($this->getData('titleAfter'));
+                $user->setAllowPublishingEmail($this->getData('allowPublishingEmail'));
+                
 		$site =& Request::getSite();
 		$availableLocales = $site->getSupportedLocales();
 

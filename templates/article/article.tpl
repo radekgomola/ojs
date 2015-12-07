@@ -28,6 +28,11 @@
         
 	{if $galley->isHTMLGalley()}
             <div class="htmlContents">
+                {if $article->getLocalizedCitace()}
+                        <div id="articleCitace">
+                            {$article->getLocalizedCitace()|strip_unsafe_html|nl2br}
+                        </div>
+                {/if}
 		{$galley->getHTMLContents()}
             </div>
 	{elseif $galley->isPdfGalley()}

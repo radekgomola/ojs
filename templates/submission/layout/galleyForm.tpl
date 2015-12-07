@@ -174,6 +174,16 @@
 <input type="file" name="imageFile" id="imageFile" class="uploadField" />&nbsp;
 <input type="submit" name="uploadImage" class="button" value="{translate key="common.upload"}" />
 </div>
+<br />
+<div id="htmlGalleySettings">
+    <h3>{translate key="htmlGalley.settings"}</h3>
+    <table class="data" width="100%">
+        <tr valign="top">
+                <td width="20%" class="label">{translate key="htmlGalley.settings.directLink"}</td>
+                <td width="80%" class="value"><input type="checkbox" name="directLink" id="directLink" value="{$directLink|escape}" class="checkbox" /></td>
+        </tr>
+    </table>
+</div>
 {/if}
 <br />
 

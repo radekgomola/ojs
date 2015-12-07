@@ -1255,5 +1255,11 @@ Masaryk University</message>
         <message key="manager.setup.medailon.description">Povolením této možnosti umožníte zobrazovat u jednotlivých autorů článků biografické meidalonky a webové stránky. (Vložený e-mail se zde zobrazovat nebude!)</message>
         <message key="manager.setup.meidalon.medailon">Allow showing of medallions.</message>
         <message key="manager.groups.publishEmailList">Povolit zobrazení e-mailu v seznamu členů.</message>
-        <message key="manager.groups.allowMedailon">Povolit zobrazaní medailonů členů.</message>
+        <message key="manager.groups.allowMedailon">Povolit zobrazení medailonů členů.</message>
+        <message key="manager.groups.publishUrlList">Povolit zobrazení url v seznamu členů.</message>
+        <message key="editorialTeam.email">Email</message>
+        <message key="editorialTeam.url">URL</message>
+        <message key="user.allowPublishingEmail">Deny publishing an email.</message>
+        <message key="manager.groups.opacnyTvarJmena">Reverse name format</message>
+        <message key="manager.groups.fullProfile">Show profiles on a full page(not in pop-up window)</message>
 </locale>

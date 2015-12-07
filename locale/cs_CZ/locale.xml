@@ -1467,5 +1467,11 @@ Masarykovy univerzity</message>
         <message key="manager.setup.meidalon.allow">Povolit zobrazení medailonu.</message>
         
         <message key="manager.groups.publishEmailList">Povolit zobrazení e-mailu v seznamu členů.</message>
-        <message key="manager.groups.allowMedailon">Povolit zobrazaní medailonů členů.</message>
+        <message key="manager.groups.allowMedailon">Povolit zobrazení medailonů členů.</message>
+        <message key="manager.groups.publishUrlList">Povolit zobrazení url v seznamu členů.</message>
+        <message key="editorialTeam.email">E-mail</message>
+        <message key="editorialTeam.url">URL</message>
+        <message key="user.allowPublishingEmail">Zakázat zobrazování e-mailu</message>
+        <message key="manager.groups.opacnyTvarJmena">Opačný tvar jména</message>
+        <message key="manager.groups.fullProfile">Zobrazovat profily na plnohodnotné stránce (ne v pop-up okně)</message>
 </locale>

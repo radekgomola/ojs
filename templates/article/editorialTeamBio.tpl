@@ -36,39 +36,6 @@
 	{/if}
 
 	{$additionalHeadData}*}
-        <script type="text/javascript">
-            {literal}
-                function detectIE() {
-                    var ua = window.navigator.userAgent;
-                    var msie = ua.indexOf('MSIE ');
-                    var trident = ua.indexOf('Trident/');
-
-                    if (msie > 0) {
-                        // IE 10 or older => return version number
-                        return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
-                    }
-
-                    if (trident > 0) {
-                        // IE 11 (or newer) => return version number
-                        var rv = ua.indexOf('rv:');
-                        return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
-                    }
-
-                    // other browser
-                    return false;
-                } 
-                function vypisKdyzIE(IE10,IE11,vypis){
-                    if(detectIE()==10){
-                        document.write(IE10);
-                        document.write(vypis);
-                    }
-                    if(detectIE()==11){
-                        document.write(IE11);
-                        document.write(vypis);
-                    }
-                }
-            {/literal}
-        </script>
 </head>
 <body id="pkp-{$pageTitle|replace:'.':'-'}" class="biography">
 {literal}
@@ -107,7 +74,7 @@
 <div id="mainContent">
 <h2>{$pageTitleTranslated}</h2>
 
-<div id="content">
+<div id="content" style="top:0px; width:600px;">
 <p>
 	
 	{if $publishEmail && !$user->getAllowPublishingEmail()}
@@ -136,20 +103,7 @@
             <a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()}" class="file" target="_new"><span class="clanek">{$article->getLocalizedTitle()|strip_unsafe_html}</span></a><br />
 		{if (!$issueUnavailable || $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN)}
 		{foreach from=$article->getGalleys() item=galley name=galleyList}
-                    {if $galley->isPdfGalley()}
-                            <script type="text/javascript">
-                                if(detectIE()===10 || detectIE()===11){ldelim}
-                                    document.write('&nbsp;<a href="{url journal=$journal->getPath() page="article" op="viewFile" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file" target="_new">{$galley->getGalleyLabel()|escape}</a>');                                    
-                                {rdelim}
-                                else{ldelim}
-                                    document.write('&nbsp;<a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file" target="_new">{$galley->getGalleyLabel()|escape}</a>');
-                                {rdelim}                                    
-                            </script> | 
-                    {else}
-                        {*<a href="{url page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>*}
-                        <a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file" target="_new">{$galley->getGalleyLabel()|escape}</a> | 
-                    {/if}
-		{*<a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file" target="_new">{$galley->getGalleyLabel()|escape}</a>*}
+		<a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file" target="_new">{$galley->getGalleyLabel()|escape}</a> | 
 		{/foreach} 
 		{/if}<em><a href="{url journal=$journal->getPath() page="issue" op="view" path=$issue->getBestIssueId()}" target="_blank" target="_new">{$issue->getIssueIdentification()|strip_unsafe_html|nl2br}</a> - {$section->getLocalizedTitle()|escape}</em><br />
                 
@@ -169,3 +123,4 @@
 </div><!-- container -->
 </body>
 </html>
+

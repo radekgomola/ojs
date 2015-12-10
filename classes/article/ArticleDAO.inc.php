@@ -106,16 +106,19 @@ class ArticleDAO extends DAO {
 			$locale,
 			$articleId
 		);
+                
 		$sql = 'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number
 			FROM	articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN section_settings sal ON (s.section_id = sal.section_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	article_id = ?';
+			WHERE	a.article_id = ?';
 		if ($journalId !== null) {
 			$sql .= ' AND a.journal_id = ?';
 			$params[] = $journalId;
@@ -161,9 +164,11 @@ class ArticleDAO extends DAO {
 
 		$sql = 'SELECT a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number
 			FROM	articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -228,6 +233,7 @@ class ArticleDAO extends DAO {
 		$article->setFastTracked($row['fast_tracked']);
 		$article->setHideAuthor($row['hide_author']);
 		$article->setCommentsStatus($row['comments_status']);
+                $article->setArticleNumber($row['article_number']);
 
 		$this->getDataObjectSettings('article_settings', 'article_id', $row['article_id'], $article);
 
@@ -268,8 +274,18 @@ class ArticleDAO extends DAO {
 				(int) $article->getCommentsStatus()
 			)
 		);
+                
+                $article->setId($this->getInsertArticleId());
+                
+                $this->update('INSERT INTO article_munipress
+				(article_id, article_number)
+				VALUES
+				(?, ?)',
+			array(	(int) $article->getId(),
+				(int) $article->getArticleNumber(),
+			)
+		);
 
-		$article->setId($this->getInsertArticleId());
 		$this->updateLocaleFields($article);
 
 		return $article->getId();
@@ -323,6 +339,15 @@ class ArticleDAO extends DAO {
 				(int) $article->getFastTracked(),
 				(int) $article->getHideAuthor(),
 				(int) $article->getCommentsStatus(),
+				$article->getId()
+			)
+		);
+                
+                $this->update('UPDATE article_munipress
+				SET	article_number = ?					
+				WHERE article_id = ?',
+			array(
+				(int) $article->getArticleNumber(),				
 				$article->getId()
 			)
 		);
@@ -431,6 +456,7 @@ class ArticleDAO extends DAO {
 		$citationDao =& DAORegistry::getDAO('CitationDAO');
 		$citationDao->deleteObjectsByAssocId(ASSOC_TYPE_ARTICLE, $articleId);
 
+                $this->update('DELETE FROM article_munipress WHERE article_id = ?', $articleId);
 		$this->update('DELETE FROM article_settings WHERE article_id = ?', $articleId);
 		$this->update('DELETE FROM articles WHERE article_id = ?', $articleId);
 
@@ -466,9 +492,11 @@ class ArticleDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number
 			FROM	articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -520,9 +548,11 @@ class ArticleDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number
 			FROM	articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)

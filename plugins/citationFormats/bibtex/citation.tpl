@@ -8,7 +8,6 @@
  * Article reading tools -- Capture Citation BibTeX format
  *
  *}
-<div class="separator"></div>
 <div id="citation">
 {literal}
 <pre style="font-size: 1.5em; white-space: pre-wrap; white-space: -moz-pre-wrap !important; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;">@article{{/literal}{$journal->getLocalizedInitials()|bibtex_escape}{$articleId|bibtex_escape}{literal},

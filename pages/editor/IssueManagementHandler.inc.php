@@ -575,7 +575,10 @@ class IssueManagementHandler extends EditorHandler {
 		$enablePublicArticleId = $journalSettingsDao->getSetting($journalId,'enablePublicArticleId');
 		$templateMgr->assign('enablePublicArticleId', $enablePublicArticleId);
 		$enablePageNumber = $journalSettingsDao->getSetting($journalId, 'enablePageNumber');
+                $enableArticleNumber = $journalSettingsDao->getSetting($journalId, 'enableArticleNumber');
 		$templateMgr->assign('enablePageNumber', $enablePageNumber);
+                $templateMgr->assign('enableArticleNumber', $enableArticleNumber);
+                
 		$templateMgr->assign('customSectionOrderingExists', $customSectionOrderingExists = $sectionDao->customSectionOrderingExists($issueId));
 
 		$templateMgr->assign('issueId', $issueId);
@@ -652,6 +655,8 @@ class IssueManagementHandler extends EditorHandler {
 		$removedArticles = $request->getUserVar('remove');
 		$accessStatus = $request->getUserVar('accessStatus');
 		$pages = $request->getUserVar('pages');
+                
+                $articleNumber = $request->getUserVar('articleNumber');
 
 		$articleDao =& DAORegistry::getDAO('ArticleDAO');
 		$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
@@ -670,6 +675,9 @@ class IssueManagementHandler extends EditorHandler {
 			if (!isset($removedArticles[$articleId])) {
 				if (isset($pages[$articleId])) {
 					$article->setPages($pages[$articleId]);
+				}
+                                if (isset($articleNumber[$articleId])) {
+					$article->setArticleNumber($articleNumber[$articleId]);
 				}
 				if (isset($publishedArticles[$articleId])) {
 					$journalDao =& DAORegistry::getDAO('JournalDAO'); /* @var $journalDao JournalDAO */

@@ -8,7 +8,6 @@
  * Article reading tools -- Capture Citation
  *
  *}
-<div class="separator"></div>
 <div id="citation">
 <form action="http://www.refworks.com/express/expressimport.asp?vendor=Public%20Knowledge%20Project&filter=BibTeX&encoding=65001" method="post" target="RefWorksMain">
 	<textarea name="ImportData" rows=15 cols=70>{literal}@article{{{/literal}{$journal->getLocalizedInitials()|escape}{literal}}{{/literal}{$articleId|escape}{literal}},

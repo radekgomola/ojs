@@ -101,6 +101,21 @@ class AbntCitationPlugin extends CitationPlugin {
 		$templateMgr->register_modifier('abnt_date_format_with_day', array($this, 'abntDateFormatWithDay'));
 		return parent::displayCitation($article, $issue, $journal);
 	}
+        
+        /**
+	 * Return an HTML-formatted citation. Default implementation displays
+	 * an HTML-based citation using the citation.tpl template in the plugin
+	 * path.
+	 * @param $article object
+	 * @param $issue object
+	 */
+	function fetchCitation(&$article, &$issue, &$journal, &$articleUrl) {
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->register_modifier('mb_upper', array('String', 'strtoupper'));
+		$templateMgr->register_modifier('abnt_date_format', array($this, 'abntDateFormat'));
+		$templateMgr->register_modifier('abnt_date_format_with_day', array($this, 'abntDateFormatWithDay'));
+		return parent::fetchCitation($article, $issue, $journal, $articleUrl);
+	}
 
 	/**
 	 * Execute a management verb on this plugin

@@ -92,12 +92,13 @@ class CitationPlugin extends Plugin {
 	 * @param $article object
 	 * @param $issue object
 	 */
-	function fetchCitation(&$article, &$issue, &$journal) {
+	function fetchCitation(&$article, &$issue, &$journal, &$articleUrl = null) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('citationPlugin', $this);
 		$templateMgr->assign_by_ref('article', $article);
 		$templateMgr->assign_by_ref('issue', $issue);
 		$templateMgr->assign_by_ref('journal', $journal);
+                if($articleUrl) $templateMgr->assign_by_ref('articleUrl', $articleUrl);
 		return $templateMgr->fetch($this->getTemplatePath() . '/citation.tpl');
 	}
 }

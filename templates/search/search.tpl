@@ -127,9 +127,9 @@
 				{if !$currentJournal}
 					<td><a href="{url journal=$journal->getPath()}">{$journal->getLocalizedTitle()|escape}</a></td>
 				{/if}
-				<td><a href="{url journal=$journal->getPath() page="issue" op="view" path=$issue->getBestIssueId($journal)}">{$issue->getIssueIdentification()|escape}</a></td>
-				<td width="30%">{$article->getLocalizedTitle()|strip_unsafe_html}</td>
-				<td width="30%" align="right">
+				<td width="30%"><a href="{url journal=$journal->getPath() page="issue" op="view" path=$issue->getBestIssueId($journal)}">{$issue->getIssueIdentification()|escape}</a></td>
+				<td width="45%">{$article->getLocalizedTitle()|strip_unsafe_html}</td>
+				<td width="20%" align="right">
 					{if $publishedArticle->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN|| $issueAvailable}
 						{assign var=hasAccess value=1}
 					{else}
@@ -141,7 +141,7 @@
 						{assign var=hasAbstract value=0}
 					{/if}
 					{if !$hasAccess || $hasAbstract}
-						<a href="{url journal=$journal->getPath() page="article" op="view" path=$publishedArticle->getBestArticleId($journal)}" class="file">
+						<a href="{url journal=$journal->getPath() page="article" op="view" path=$publishedArticle->getBestArticleId($journal)}" class="file searchAbstract">
 							{if !$hasAbstract}
 								{translate key="article.details"}
 							{else}
@@ -161,7 +161,7 @@
                                                                 {rdelim}                                    
                                                             </script>
                                                     {else}
-                                                        <a href="{url page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>
+                                                        <a href="{url page="article" op="view" path=$publishedArticle->getBestArticleId($journal)|to_array:$galley->getBestGalleyId($journal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>
                                                     {/if}
 						{/foreach}
 					{/if}

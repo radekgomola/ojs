@@ -62,6 +62,7 @@ $(document).ready(function() {
 {if $issueAccess == $smarty.const.ISSUE_ACCESS_SUBSCRIPTION && $currentJournal->getSetting('publishingMode') == $smarty.const.PUBLISHING_MODE_SUBSCRIPTION}{assign var=numCols value=$numCols+1}{/if}
 {if $enablePublicArticleId}{assign var=numCols value=$numCols+1}{/if}
 {if $enablePageNumber}{assign var=numCols value=$numCols+1}{/if}
+{if $enableArticleNumber}{assign var=numCols value=$numCols+1}{/if}
 
 {foreach from=$sections key=sectionKey item=section}
 <h4>{$section[1]}{if $section[4]}<a href="{url op="moveSectionToc" path=$issueId d=u newPos=$section[4] sectionId=$section[0]}" class="plain">&uarr;</a>{else}&uarr;{/if} {if $section[5]}<a href="{url op="moveSectionToc" path=$issueId d=d newPos=$section[5] sectionId=$section[0]}" class="plain">&darr;</a>{else}&darr;{/if}</h4>
@@ -76,7 +77,8 @@ $(document).ready(function() {
 		<td>{translate key="article.title"}</td>
 		{if $issueAccess == $smarty.const.ISSUE_ACCESS_SUBSCRIPTION && $currentJournal->getSetting('publishingMode') == $smarty.const.PUBLISHING_MODE_SUBSCRIPTION}<td width="10%">{translate key="editor.issues.access"}</td>{/if}
 		{if $enablePublicArticleId}<td width="7%">{translate key="editor.issues.publicId"}</td>{/if}
-		{if $enablePageNumber}<td width="7%">{translate key="editor.issues.pages"}</td>{/if}
+		{if $enablePageNumber}<td width="5%">{translate key="editor.issues.pages"}</td>{/if}
+                {if $enableArticleNumber}<td width="5%">{translate key="editor.issues.articleNumber"}</td>{/if}
 		<td width="5%">{translate key="common.remove"}</td>
 		<td width="5%">{translate key="editor.issues.proofed"}</td>
 	</tr>
@@ -101,9 +103,10 @@ $(document).ready(function() {
 		<td><select name="accessStatus[{$article->getPublishedArticleId()}]" size="1" class="selectMenu">{html_options options=$accessOptions selected=$article->getAccessStatus()}</select></td>
 		{/if}
 		{if $enablePublicArticleId}
-		<td><input type="text" name="publishedArticles[{$article->getId()}]" value="{$article->getPubId('publisher-id')|escape}" size="7" maxlength="255" class="textField" /></td>
+		<td><input type="text" name="publishedArticles[{$article->getId()}]" value="{$article->getPubId('publisher-id')|escape}" size="7" maxlength="255" class="textField textFieldToc" /></td>
 		{/if}
-		{if $enablePageNumber}<td><input type="text" name="pages[{$article->getId()}]" value="{$article->getPages()|escape}" size="7" maxlength="255" class="textField" /></td>{/if}
+		{if $enablePageNumber}<td><input type="text" name="pages[{$article->getId()}]" value="{$article->getPages()|escape}" size="5" maxlength="255" class="textField textFieldToc" /></td>{/if}
+                {if $enableArticleNumber}<td><input type="text" name="articleNumber[{$article->getId()}]" value="{$article->getArticleNumber()|escape}" size="5" maxlength="255" class="textField textFieldToc" /></td>{/if}
 		<td><input type="checkbox" name="remove[{$article->getId()}]" value="{$article->getPublishedArticleId()}" /></td>
 		<td>
 			{if in_array($article->getId(), $proofedArticleIds)}

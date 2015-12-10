@@ -58,7 +58,8 @@ class JournalSetupStep4Form extends JournalSetupForm {
 				'enablePublicArticleId' => 'bool',
 				'enablePublicGalleyId' => 'bool',
 				'enablePublicSuppFileId' => 'bool',
-				'enablePageNumber' => 'bool'
+				'enablePageNumber' => 'bool',
+                                'enableArticleNumber' => 'bool'
 			)
 		);
 	}

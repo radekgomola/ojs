@@ -39,6 +39,7 @@ class JournalSetupStep5Form extends JournalSetupForm {
 				'itemsPerPage' => 'int',
 				'numPageLinks' => 'int',
 				'journalTheme' => 'string',
+                                'citationType' => 'string',
 				'journalThumbnailAltText' => 'string',
 				'homeHeaderTitleImageAltText' => 'string',
 				'homeHeaderLogoImageAltText' => 'string',
@@ -51,7 +52,9 @@ class JournalSetupStep5Form extends JournalSetupForm {
                                 'socialTwitter' => 'string',
                                 'socialGplus' => 'string',
                                 'aboutSetupTopDown' => 'int',
-                                'allowMedailon' => 'bool'
+                                'allowMedailon' => 'bool',
+                                'showCitation' => 'bool',
+                                'showCitationHtml' => 'bool'
 			)
 		);
 	}
@@ -79,6 +82,17 @@ class JournalSetupStep5Form extends JournalSetupForm {
 			unset($plugin);
 		}
 
+                $allCitations =& PluginRegistry::loadCategory('citationFormats');
+                
+                $citationPlugins = array();
+		foreach ($allCitations as $key => $junk) {
+                    if($key !="EndNoteCitationPlugin" && $key!="ProCiteCitationPlugin" && $key != "RefWorksCitationPlugin"){
+			$plugin =& $allCitations[$key]; // by ref
+			$citationPlugins[basename($plugin->getPluginPath())] =& $plugin;
+			unset($plugin);
+                    }
+		}
+
 		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign(array(
@@ -94,10 +108,11 @@ class JournalSetupStep5Form extends JournalSetupForm {
 			'librarianInformation' => $journal->getSetting('librarianInformation'),
 			'journalThemes' => $journalThemes,
 			'journalFavicon' => $journal->getSetting('journalFavicon'),
-      'aboutJournal' => $journal->getSetting('aboutJournal'),
-      'socialFacebook' => $journal->getSetting('socialFacebook'),
-      'socialTwitter' => $journal->getSetting('socialTwitter'),
-      'socialGplus' => $journal->getSetting('socialGplus')
+                        'aboutJournal' => $journal->getSetting('aboutJournal'),
+                        'socialFacebook' => $journal->getSetting('socialFacebook'),
+                        'socialTwitter' => $journal->getSetting('socialTwitter'),
+                        'socialGplus' => $journal->getSetting('socialGplus'),
+                        'citationPlugins' => $citationPlugins,
 		));
 
 		// Make lists of the sidebar blocks available.

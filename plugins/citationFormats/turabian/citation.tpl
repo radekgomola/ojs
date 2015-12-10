@@ -8,8 +8,6 @@
  * Article reading tools -- Capture Citation
  *
  *}
-<div class="separator"></div>
-
 <div id="citation">
 {assign var=authors value=$article->getAuthors()}
 {assign var=authorCount value=$authors|@count}

@@ -9,9 +9,11 @@
  *
  *}
 {foreach name=sections from=$publishedArticles item=section key=sectionId}
+
 {if $section.title}<h4 class="tocSectionTitle">{$section.title|escape}</h4>{/if}
 
 {foreach from=$section.articles item=article}
+        {assign var=pubObject value=$article}
 	{assign var=articlePath value=$article->getBestArticleId($currentJournal)}
 	{assign var=articleId value=$article->getId()}
 
@@ -114,6 +116,24 @@
 			{$article->getPages()|escape}
 		</div>
 	</td>
+</tr>
+<tr class="tocArticleDoi">
+    <td class="tocDoi">
+        <div class="tocAuthors">
+        {foreach from=$pubIdPlugins item=pubIdPlugin}
+                {if $issue->getPublished()}
+                        {assign var=pubId value=$pubIdPlugin->getPubId($pubObject)}
+                {else}
+                        {assign var=pubId value=$pubIdPlugin->getPubId($pubObject, true)}{* Preview rather than assign a pubId *}
+                {/if}
+                {if $pubId}
+                        {$pubIdPlugin->getPubIdDisplayType()|escape}: {if $pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}" href="{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}">{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}</a>{else}{$pubId|escape}{/if}
+                {/if}
+        {/foreach}
+        </div>
+    </td>
+    <td class="tocArticleNumber">
+    </td>
 </tr>
 </table>
 {call_hook name="Templates::Issue::Issue::Article"}

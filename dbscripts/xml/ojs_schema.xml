@@ -605,6 +605,24 @@
 			<UNIQUE/>
 		</index>
 	</table>
+        
+        <!--
+	  *
+	  * TABLE article_munipress
+	  *
+	  -->
+	<table name="article_munipress">
+		<field name="article_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="article_number" type="I4">
+			<NOTNULL />
+		</field>
+		<descr>Journal article metadata (munipress).</descr>
+		<index name="article_munipress_article_id">
+			<col>article_id</col>
+		</index>
+	</table>
 
 	<!--
 	  *

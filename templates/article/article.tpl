@@ -23,14 +23,18 @@
 {/if}
 
 {/strip}
-
+{$article->getArticleNumber()}
 {if $galley}
         
 	{if $galley->isHTMLGalley()}
             <div class="htmlContents">
-                {if $article->getLocalizedCitace()}
+                {if $article->getLocalizedCitace() || ($citation && $showCitationHtml)}
                         <div id="articleCitace">
-                            {$article->getLocalizedCitace()|strip_unsafe_html|nl2br}
+                            {if $article->getLocalizedCitace()} 
+                                {$article->getLocalizedCitace()|strip_unsafe_html|nl2br}
+                            {else}
+                                {$citation}
+                            {/if}
                         </div>
                 {/if}
 		{$galley->getHTMLContents()}
@@ -77,7 +81,18 @@
 	{/if}
 	{call_hook name="Templates::Article::Article::ArticleCoverImage"}
 	<div id="articleTitle"><h3>{$article->getLocalizedTitle()|strip_unsafe_html}</h3></div>
-	<div id="authorString"><em>{$article->getAuthorString()|escape}</em></div>
+	{if $journal->getSetting('allowMedailon')}
+            {assign var=authors value=$article->getAuthors()}
+            <div id="authorString">
+                <em>
+                    {foreach from=$authors item=author}
+                        <a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$author->getId()}')">{$author->getFullName()}</a>
+                    {/foreach}
+                </em>
+            </div>
+        {else}
+            <div id="authorString"><em>{$article->getAuthorString()|escape}</em></div>
+        {/if}
 	<br />
 	{if $article->getLocalizedAbstract()}
 		<div id="articleAbstract">
@@ -92,6 +107,13 @@
 		<h4>{translate key="article.citace"}</h4>
 		<br />
 		<div>{$article->getLocalizedCitace()|strip_unsafe_html|nl2br}</div>
+		<br />
+		</div>
+        {else if $citation}
+                <div id="articleCitace">
+		<h4>{translate key="article.citace"}</h4>
+		<br />
+		<div>{$citation}</div>
 		<br />
 		</div>
 	{/if}

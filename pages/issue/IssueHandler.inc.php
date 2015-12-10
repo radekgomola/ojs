@@ -520,6 +520,8 @@ class IssueHandler extends Handler {
 			);
 		}
 
+                $pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
+		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
 		$templateMgr->assign('pageCrumbTitleTranslated', $issueCrumbTitle);
 		$templateMgr->assign('issueHeadingTitle', $issueHeadingTitle);
 	}

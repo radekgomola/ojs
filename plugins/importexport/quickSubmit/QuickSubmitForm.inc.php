@@ -310,6 +310,7 @@ class QuickSubmitForm extends Form {
 		$temporaryFileManager = new TemporaryFileManager();
 		$articleFileManager = new ArticleFileManager($articleId);
 		$designatedPrimary = false;
+                
 		foreach (array_keys($tempFileIds) as $locale) {
 			$temporaryFile = $temporaryFileManager->getFile($tempFileIds[$locale], $user->getId());
 			$fileId = null;
@@ -367,7 +368,6 @@ class QuickSubmitForm extends Form {
 			}
 			$articleSearchIndex->articleChangesFinished();
 		}
-
 
 		// Designate this as the review version by default.
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');

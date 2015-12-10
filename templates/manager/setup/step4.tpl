@@ -274,6 +274,14 @@ function setRegAllowOpts(form) {
 		<td width="95%" class="value"><label for="enablePageNumber">{translate key="manager.setup.enablePageNumber"}</label></td>
 	</tr>
 </table>
+<h4>{translate key="manager.setup.articleNumberIdentifier"}</h4>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="5%" class="label"><input type="checkbox" name="enableArticleNumber" id="enableArticleNumber" value="1"{if $enableArticleNumber} checked="checked"{/if} /></td>
+		<td width="95%" class="value"><label for="enableArticleNumber">{translate key="manager.setup.enableArticleNumber"}</label></td>
+	</tr>
+</table>
 </div><!-- pageNumberIdentifier -->
 </div><!-- publicIdentifier -->
 <div class="separator"></div>

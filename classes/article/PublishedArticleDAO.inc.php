@@ -93,9 +93,11 @@ class PublishedArticleDAO extends DAO {
 				SUBSTRING(COALESCE(stl.setting_value, stpl.setting_value) FROM 1 FOR 255) AS section_title,
 				SUBSTRING(COALESCE(sal.setting_value, sapl.setting_value) FROM 1 FOR 255) AS section_abbrev,
 				COALESCE(o.seq, s.seq) AS section_seq,
-				pa.seq
+				pa.seq,
+                                am.article_number
 			FROM	published_articles pa,
 				articles a LEFT JOIN sections s ON s.section_id = a.section_id
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN custom_section_orders o ON (a.section_id = o.section_id AND o.issue_id = ?)
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
@@ -157,9 +159,11 @@ class PublishedArticleDAO extends DAO {
 			'SELECT	pa.*,
 				a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number
 			FROM	published_articles pa
 				LEFT JOIN articles a ON pa.article_id = a.article_id
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN issues i ON pa.issue_id = i.issue_id
 				LEFT JOIN sections s ON s.section_id = a.section_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
@@ -206,10 +210,12 @@ class PublishedArticleDAO extends DAO {
 				s.hide_title AS section_hide_title,
 				s.hide_author AS section_hide_author,
 				COALESCE(o.seq, s.seq) AS section_seq,
-				pa.seq
+				pa.seq,
+                                am.article_number
 			FROM	published_articles pa,
 				articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN custom_section_orders o ON (a.section_id = o.section_id AND o.issue_id = ?)
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
@@ -277,10 +283,12 @@ class PublishedArticleDAO extends DAO {
 			'SELECT	pa.*,
 				a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number
 			FROM	published_articles pa,
 				articles a,
 				sections s
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -380,10 +388,12 @@ class PublishedArticleDAO extends DAO {
 			'SELECT	pa.*,
 				a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number
 			FROM	published_articles pa,
 				articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -460,10 +470,12 @@ class PublishedArticleDAO extends DAO {
 		$sql = 'SELECT	pa.*,
 				a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number
 			FROM	published_articles pa
 				INNER JOIN articles a ON pa.article_id = a.article_id
 				LEFT JOIN sections s ON s.section_id = a.section_id
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -527,12 +539,14 @@ class PublishedArticleDAO extends DAO {
 		$functionName = $useCache?'retrieveCached':'retrieve';
 		$result =& $this->$functionName(
 			'SELECT	a.article_id AS pub_id,
-				COALESCE(atl.setting_value, atpl.setting_value) AS article_title
+				COALESCE(atl.setting_value, atpl.setting_value) AS article_title,
+                                am.article_number
 			FROM	published_articles pa,
 				issues i,
 				articles a
 				JOIN journals j ON (a.journal_id = j.journal_id)
 				LEFT JOIN sections s ON s.section_id = a.section_id
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN article_settings atl ON (a.article_id = atl.article_id AND atl.setting_name = ? AND atl.locale = ?)
 				LEFT JOIN article_settings atpl ON (a.article_id = atpl.article_id AND atpl.setting_name = ? AND atpl.locale = a.locale)
 			WHERE	pa.article_id = a.article_id

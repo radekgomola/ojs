@@ -29,7 +29,7 @@
 </select>
 	
 </form>
-
+<div class="separator"></div>
 {call_hook name="Template::RT::CaptureCite"}
 </div>
 <div class="separator"></div>

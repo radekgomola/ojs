@@ -509,5 +509,22 @@ input.cz{
     margin-right: 15px;
 }
 
+#headerPanel{
+    display:none;
+}
+
+#footerPanel{
+    display: none;
+}
+
+.submenu-about{
+    display: none;
+}
+
+.tocDoi {
+    display: none;
+}
+
+
 /* @end */
 

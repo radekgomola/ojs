@@ -602,7 +602,7 @@ function prepBlockFields() {
 </table>
 </div>
 <br />
-<div class="separator"></div>
+{*<div class="separator"></div>
 <div id="setupInfo">
 <h3>5.8 {translate key="manager.setup.medailon"}</h3>
 
@@ -613,6 +613,36 @@ function prepBlockFields() {
 		<td width="5%" class="label"><input type="checkbox" name="allowMedailon" id="allowMedailon" value="1" {if !$allowMedailon}{else} checked="checked"{/if} /></td>
 		<td width="95%" class="value"><label for="allowMedailon">{translate key="manager.setup.meidalon.allow"}</label></td>
 	</tr>
+</table>
+</div>*}
+<div class="separator"></div>
+<div id="showCitationSetup">
+<h3>5.8 {translate key="manager.setup.citace"}</h3>
+
+<p>{translate key="manager.setup.citace.description"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label"><label for="showCitation">{translate key="manager.setup.citace.allow"}</label></td>
+		<td width="80%" class="value"><input type="checkbox" name="showCitation" id="showCitation" value="1" {if !$showCitation}{else} checked="checked"{/if} /></td>
+	</tr>
+        <tr valign="top">
+		<td width="20%" class="label"><label for="showCitationHtml">{translate key="manager.setup.citace.allowHtml"}</label></td>
+		<td width="80%" class="value"><input type="checkbox" name="showCitationHtml" id="showCitationHtml" value="1" {if !$showCitationHtml}{else} checked="checked"{/if} /></td>
+	</tr>
+        <tr valign="top">
+		<td width="20%" class="label"><label for="citeType">{translate key="rt.captureCite.format"}</label></td>
+                <td width="80%" class="value">
+                        <select name="citationType" class="selectMenu" id="citationType"{if empty($citationPlugins)} disabled="disabled"{/if}>
+                                <option value="">{translate key="common.none"}</option>
+                                {foreach from=$citationPlugins key=path item=citationTypePlugin}
+                                    
+                                        <option value="{$citationTypePlugin->getName()|escape}"{if $citationTypePlugin->getName() == $citationType} selected="selected"{/if}>{$citationTypePlugin->getCitationFormatName()|escape}</option>
+                                {/foreach}
+                        </select>
+                </td>
+        </tr>
+</select>
 </table>
 </div>
 <div class="separator"></div>

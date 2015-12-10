@@ -171,6 +171,30 @@ class ArticleHandler extends Handler {
 			}
 		}
 
+                /*
+                 * Citace z nastavení
+                 */
+                
+                $citationPlugins =& PluginRegistry::loadCategory('citationFormats');
+                uasort($citationPlugins, create_function('$a, $b', 'return strcmp($a->getDisplayName(), $b->getDisplayName());'));
+                $showCitation = $journal->getSetting('showCitation');
+                $showCitationHtml = $journal->getSetting('showCitationHtml');
+                $citationType = $journal->getSetting('citationType');
+                
+                $articleUrl = $request->getCompleteUrl();
+                if(($showCitation || $showCitationHtml)&& $citationType){
+                    if (isset($citationPlugins[$citationType])) {                        
+                            // A citation type has been selected; display citation.
+                            $citationPlugin =& $citationPlugins[$citationType];
+                    } else {
+                            // No citation type chosen; choose a default off the top of the list.
+                            $citationPlugin = $citationPlugins[array_shift(array_keys($citationPlugins))];
+                    }
+                    $citation = $citationPlugin->fetchCitation($article, $issue, $journal, $articleUrl);
+                    $templateMgr->assign('citation', $citation);
+                    $templateMgr->assign('showCitationHtml', $showCitationHtml);
+                }                              
+                
 		$templateMgr->assign_by_ref('issue', $issue);
 		$templateMgr->assign_by_ref('article', $article);
 		$templateMgr->assign_by_ref('galley', $galley);
@@ -224,6 +248,83 @@ class ArticleHandler extends Handler {
 		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
 		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
 		$templateMgr->display('article/article.tpl');
+	}
+        
+        /**
+	 * Display a biography for an author
+	 * @param $args array
+	 */
+	function editorialTeamBio($args) {
+		$this->addCheck(new HandlerValidatorJournal($this));
+		$this->validate();
+		$this->setupTemplate(true);
+
+		$journal =& Request::getJournal();
+
+		$templateMgr =& TemplateManager::getManager();
+
+		$authorId = isset($args[0])?(int)$args[0]:0;
+
+
+                if ($user){
+                   
+//                        $roles =& $roleDao->getRolesByUserId($userId, $journal->getId());
+//                        if(in_array(ROLE_ID_EDITOR, $roles)){
+//                         Echo "jsem zde !!!!";
+                            $firstName = $user->getFirstName();
+                            $middleName = $user->getMiddleName();
+                            $lastName = $user->getLastName();
+
+                            $affiliation = $user->getLocalizedAffiliation()?$user->getLocalizedAffiliation():"";
+                            $country = "";
+
+                            $authorDao =& DAORegistry::getDAO('AuthorDAO');
+                            $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $country);
+
+                            
+                            // Load information associated with each article.
+                            $journals = array();
+                            $issues = array();
+                            $sections = array();
+                            $issuesUnavailable = array();
+
+                            $issueDao =& DAORegistry::getDAO('IssueDAO');
+                            $sectionDao =& DAORegistry::getDAO('SectionDAO');
+                            $journalDao =& DAORegistry::getDAO('JournalDAO');
+
+                            foreach ($publishedArticles as $article) {
+                                    $articleId = $article->getId();
+                                    $issueId = $article->getIssueId();
+                                    $sectionId = $article->getSectionId();
+                                    $journalId = $article->getJournalId();
+
+                                    if (!isset($issues[$issueId])) {
+                                            import('classes.issue.IssueAction');
+                                            $issue =& $issueDao->getIssueById($issueId);
+                                            $issues[$issueId] =& $issue;
+                                            $issuesUnavailable[$issueId] = IssueAction::subscriptionRequired($issue) && (!IssueAction::subscribedUser($journal, $issueId, $articleId) && !IssueAction::subscribedDomain($journal, $issueId, $articleId));
+                                    }
+                                    if (!isset($journals[$journalId])) {
+                                            $journals[$journalId] =& $journalDao->getById($journalId);
+                                    }
+                                    if (!isset($sections[$sectionId])) {
+                                            $sections[$sectionId] =& $sectionDao->getSection($sectionId, $journalId, true);
+                                    }
+                            }
+
+                            if (!empty($publishedArticles)) {
+                                $templateMgr->assign_by_ref('publishedArticles', $publishedArticles);
+                                $templateMgr->assign_by_ref('issues', $issues);
+                                $templateMgr->assign('issuesUnavailable', $issuesUnavailable);
+                                $templateMgr->assign_by_ref('sections', $sections);
+                                $templateMgr->assign_by_ref('journals', $journals);
+                            }
+//                        }
+                    
+                }
+		$templateMgr->assign_by_ref('user', $user);
+		$templateMgr->assign_by_ref('publishEmail', $publishEmail);
+		$templateMgr->display('about/editorialTeamBio.tpl');
 	}
 
 	/**

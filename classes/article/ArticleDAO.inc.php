@@ -110,7 +110,7 @@ class ArticleDAO extends DAO {
 		$sql = 'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-                                am.article_number
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
                                 LEFT JOIN article_munipress am ON a.article_id = am.article_id
@@ -165,7 +165,7 @@ class ArticleDAO extends DAO {
 		$sql = 'SELECT a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-                                am.article_number
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
                                 LEFT JOIN article_munipress am ON a.article_id = am.article_id
@@ -234,7 +234,9 @@ class ArticleDAO extends DAO {
 		$article->setHideAuthor($row['hide_author']);
 		$article->setCommentsStatus($row['comments_status']);
                 $article->setArticleNumber($row['article_number']);
-
+                $article->setSkipLandingPage($row['skip_landing_page']);
+                $article->setSkipGalleyId($row['skip_galley_id']);
+                
 		$this->getDataObjectSettings('article_settings', 'article_id', $row['article_id'], $article);
 
 		HookRegistry::call('ArticleDAO::_returnArticleFromRow', array(&$article, &$row));
@@ -278,11 +280,13 @@ class ArticleDAO extends DAO {
                 $article->setId($this->getInsertArticleId());
                 
                 $this->update('INSERT INTO article_munipress
-				(article_id, article_number)
+				(article_id, article_number, skip_landing_page, skip_galley_id)
 				VALUES
 				(?, ?)',
 			array(	(int) $article->getId(),
-				(int) $article->getArticleNumber(),
+				$article->getArticleNumber(),
+                                (int) $article->getSkipLandingPage(),
+                                (int) $article->getSkipGalleyId()
 			)
 		);
 
@@ -344,10 +348,14 @@ class ArticleDAO extends DAO {
 		);
                 
                 $this->update('UPDATE article_munipress
-				SET	article_number = ?					
+				SET	article_number = ?,
+                                        skip_landing_page = ?, 
+                                        skip_galley_id = ?
 				WHERE article_id = ?',
 			array(
-				(int) $article->getArticleNumber(),				
+				$article->getArticleNumber(),
+                                (int) $article->getSkipLandingPage(),
+                                (int) $article->getSkipGalleyId(),
 				$article->getId()
 			)
 		);
@@ -493,7 +501,7 @@ class ArticleDAO extends DAO {
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-                                am.article_number
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
                                 LEFT JOIN article_munipress am ON a.article_id = am.article_id
@@ -549,7 +557,7 @@ class ArticleDAO extends DAO {
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-                                am.article_number
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
                                 LEFT JOIN article_munipress am ON a.article_id = am.article_id

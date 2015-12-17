@@ -142,6 +142,8 @@ switch ($op) {
 	case 'downloadLayoutTemplate':
         
         case 'completeWithoutLayoutEditor':
+        case 'viewSkipLandingPageSettings':
+        case 'setSkipLandingPageSettings';
 		define('HANDLER_CLASS', 'SubmissionEditHandler');
 		import('pages.sectionEditor.SubmissionEditHandler');
 		break;

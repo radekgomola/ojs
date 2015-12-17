@@ -167,6 +167,26 @@ class PublishedArticle extends Article {
 
 		return $galleys;
 	}
+        
+        /**
+	 * Get the galley by Id for published article.
+	 * @return array ArticleGalley
+	 */
+	function &getGalleyById($galleyId) {
+		$allGalleys =& $this->getData('galleys');
+		$galley = null;
+                foreach (array_keys($allGalleys) as $key) {
+                        if ($allGalleys[$key]->getId() == $galleyId) {
+                            
+                                $galley = $allGalleys[$key];
+                        }
+                }
+                if (!empty($galley)) {
+                        return $galley;
+                }	
+
+		return $galley;
+	}
 
 	/**
 	 * Set the galleys for an article.

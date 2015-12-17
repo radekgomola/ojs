@@ -23,7 +23,7 @@
 {/if}
 
 {/strip}
-{$article->getArticleNumber()}
+
 {if $galley}
         
 	{if $galley->isHTMLGalley()}

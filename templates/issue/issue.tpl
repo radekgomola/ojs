@@ -16,6 +16,14 @@
         {assign var=pubObject value=$article}
 	{assign var=articlePath value=$article->getBestArticleId($currentJournal)}
 	{assign var=articleId value=$article->getId()}
+        {assign var=skipGalleyId value=$article->getSkipGalleyId()}
+        {assign var=skipLandingPage value=$article->getSkipLandingPage()}
+        
+        {if $skipLandingPage && $skipGalleyId && $skipGalleyId > 0}
+            {assign var=skipGalley value=$article->getGalleyById($skipGalleyId)}
+        {else}
+            {assign var=skipGalley value=0}
+        {/if}
 
 	{if $article->getLocalizedFileName() && $article->getLocalizedShowCoverPage() && !$article->getHideCoverPageToc($locale)}
 		{assign var=showCoverPage value=true}
@@ -57,11 +65,34 @@
 
 	<td class="tocArticleTitle{if $showCoverPage} showCoverImage{/if}" colspan="2">
 		<div class="tocTitle">
+                    {if $skipGalley}
+                        {if $skipGalley->isPdfGalley()}
+                                <script type="text/javascript">
+                                    if(detectIE()===10 || detectIE()===11){ldelim}
+                                        document.write('<a href="{url page="article" op="viewFile" path=$articlePath|to_array:$skipGalley->getBestGalleyId($currentJournal)}" target="_blank" class="file">{$article->getLocalizedTitle()|strip_unsafe_html}</a>');                                    
+                                    {rdelim}
+                                    else{ldelim}
+                                        document.write('<a href="{url page="article" op="view" path=$articlePath|to_array:$skipGalley->getBestGalleyId($currentJournal)}" {if $skipGalley->getRemoteURL()}target="_blank" {/if}class="file">{$article->getLocalizedTitle()|strip_unsafe_html}</a>');
+                                    {rdelim}                                    
+                                </script>
+                        {else}
+
+                            <a href="{url page="article" op="view" path=$articlePath|to_array:$skipGalley->getBestGalleyId($currentJournal)}" {if $skipGalley->getRemoteURL()}target="_blank" {/if}class="file">{$article->getLocalizedTitle()|strip_unsafe_html}</a>
+                        {/if}
+                        {if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}
+                                {if $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || !$skipGalley->isPdfGalley()}
+                                        <img class="accessLogo" src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_open_medium.gif" alt="{translate key="article.accessLogoOpen.altText"}" />
+                                {else}
+                                        <img class="accessLogo" src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_restricted_medium.gif" alt="{translate key="article.accessLogoRestricted.altText"}" />
+                                {/if}
+                        {/if}
+                    {else}
 			{if !$hasAccess || $hasAbstract || $hasCitace}
 				<a href="{url page="article" op="view" path=$articlePath}">{$article->getLocalizedTitle()|strip_unsafe_html}</a>
 			{else}
 				{$article->getLocalizedTitle()|strip_unsafe_html}
 			{/if}
+                    {/if}
 		</div>
 		
 	</td>
@@ -127,12 +158,17 @@
                         {assign var=pubId value=$pubIdPlugin->getPubId($pubObject, true)}{* Preview rather than assign a pubId *}
                 {/if}
                 {if $pubId}
-                        {$pubIdPlugin->getPubIdDisplayType()|escape}: {if $pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}" href="{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}">{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}</a>{else}{$pubId|escape}{/if}
+                        <span class="citation_doi">{$pubIdPlugin->getPubIdDisplayType()|escape}: </span>{if $pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}" href="{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}">{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}</a>{else}{$pubId|escape}{/if}
                 {/if}
         {/foreach}
         </div>
     </td>
     <td class="tocArticleNumber">
+        {if $article->getArticleNumber()}
+            <div class="tocArticleNumber">
+                {translate key="article.clanek.articleNumber"}: {$article->getArticleNumber()}
+            </div>
+        {/if}
     </td>
 </tr>
 </table>

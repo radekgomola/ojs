@@ -1262,4 +1262,22 @@ Masaryk University</message>
         <message key="user.allowPublishingEmail">Deny publishing an email.</message>
         <message key="manager.groups.opacnyTvarJmena">Reverse name format</message>
         <message key="manager.groups.fullProfile">Show profiles on a full page(not in pop-up window)</message>
+        
+        
+        <message key="editor.issues.articleNumber">Article number</message>
+        <message key="manager.setup.enableArticleNumber">Umožňuje zapnout číslování článků (objeví se v obsahu při editování). Číslování může nahradit stránkování a objevuje se v obsaahu a APA citaci.</message>
+        <message key="manager.setup.articleNumberIdentifier">Article number identifier</message>
+        <message key="article.clanek.articleNumber">Article</message>
+        
+        <message key="manager.setup.citace">Show articles' citations</message>
+        <message key="manager.setup.citace.description">You can allow showing citation of the article on landing page or HTML galleys.</message>
+        <message key="manager.setup.citace.allow">Show on the landing page</message>
+        <message key="manager.setup.citace.allowHtml">Show in the HTML galleys</message>
+        <message key="rt.captureCite.format">Citation format</message>
+        
+        <message key="submission.skipLandingPage">Skip Landing Page </message>
+        <message key="submission.skipLandingPage.description">You can set to skipping Landing Page for this article and choose galley to go there.</message>
+        <message key="submission.layout.skipLandingPage">Skip Landing Page</message>
+        <message key="submission.layout.skipLandingPage.vypisSazebnic">Choose galley to go there:</message>
+        <message key="submission.layout.skipLandingPage.nastaveni">Settings</message>
 </locale>

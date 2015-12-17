@@ -284,6 +284,9 @@ class SubmissionEditHandler extends SectionEditorHandler {
 		$journal =& $request->getJournal();
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $articleId);
+                
+                $articleDao =& DAORegistry::getDAO('ArticleDAO');
+		$article =& $articleDao->getArticle($articleId, $journal->getId());              
 
 		$useCopyeditors = $journal->getSetting('useCopyeditors');
 		$useLayoutEditors = $journal->getSetting('useLayoutEditors');
@@ -297,6 +300,9 @@ class SubmissionEditHandler extends SectionEditorHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 
+                $templateMgr->assign('skipLandingPage', $article->getSkipLandingPage());
+                $templateMgr->assign('skipGalleyId', $article->getSkipGalleyId());
+                
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('copyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
@@ -2784,6 +2790,56 @@ class SubmissionEditHandler extends SectionEditorHandler {
 
 		$filename = "template-$templateId." . $journalFileManager->parseFileExtension($template['originalFilename']);
 		$journalFileManager->downloadFile($filename, $template['fileType']);
+	}
+        
+        /*
+         * MUNIPRESS
+         */
+        
+        /**
+	 * Edit skip landing page settings.
+	 * @param $args array ($articleId, $galleyId)
+	 * @param $request PKPRequest
+	 */
+	function viewSkipLandingPageSettings($args, $request) {
+            $articleId = (int) array_shift($args);
+            $this->validate($articleId, SECTION_EDITOR_ACCESS_EDIT);
+
+            $this->setupTemplate(true, $articleId, 'editing');
+
+            import('classes.submission.form.LandingPageSettingForm');
+            $submitForm = new LandingPageSettingForm($articleId);
+            if ($submitForm->isLocaleResubmit()) {
+                    $submitForm->readInputData();
+            } else {
+                    $submitForm->initData();
+            }
+            $submitForm->display();
+	}
+
+	/**
+	 * Save changes to a galley.
+	 * @param $args array ($articleId, $galleyId)
+	 * @param $request Request
+	 */
+	function setSkipLandingPageSettings($args, $request) {
+		$articleId = (int) array_shift($args);
+		$this->validate($articleId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->setupTemplate(true, $articleId, 'editing');
+		$submission =& $this->submission;
+
+		import('classes.submission.form.LandingPageSettingForm');
+
+		$submitForm = new LandingPageSettingForm($articleId);
+
+		$submitForm->readInputData();
+		if ($submitForm->validate()) {
+			$submitForm->execute();
+
+			$request->redirect(null, null, 'submissionEditing', $articleId);
+		} else {
+			$submitForm->display();
+		}
 	}
 }
 

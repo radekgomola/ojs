@@ -154,7 +154,7 @@
 	{/foreach}
 	<tr>
 		<td colspan="7" class="separator">&nbsp;</td>
-	</tr>
+	</tr>        
 </table>
 
 <form method="post" action="{url op="uploadLayoutFile"}"  enctype="multipart/form-data">
@@ -189,5 +189,15 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="downloadLayoutTemplate" path=$submission->getId()|to_array:$templateId}" class="action">{$template.title|escape}</a>
 {/foreach}
 </div>
+<br />
+<div id="skipLandingPage">
+{translate key="submission.layout.skipLandingPage"}: 
+{if $skipLandingPage && $skipGalleyId && $skipGalleyId > 0}    
+        {icon name="checked"}
+{else}
+        {icon name="unchecked"}
+{/if} <a href="{url op="viewSkipLandingPageSettings" path=$submission->getId()}" class="action">{translate key="submission.layout.skipLandingPage.nastaveni"}</a>
+</div>
+
 </div>
 

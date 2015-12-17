@@ -1474,4 +1474,21 @@ Masarykovy univerzity</message>
         <message key="user.allowPublishingEmail">Zakázat zobrazování e-mailu</message>
         <message key="manager.groups.opacnyTvarJmena">Opačný tvar jména</message>
         <message key="manager.groups.fullProfile">Zobrazovat profily na plnohodnotné stránce (ne v pop-up okně)</message>
+        
+        <message key="editor.issues.articleNumber">Číslo článku</message>
+        <message key="manager.setup.enableArticleNumber">Umožňuje zapnout číslování článků (objeví se v obsahu při editování). Číslování může nahradit stránkování a objevuje se v obsaahu a APA citaci.</message>
+        <message key="manager.setup.articleNumberIdentifier">Identifikátor číslování článků</message>
+        <message key="article.clanek.articleNumber">Článek</message>
+        
+        <message key="manager.setup.citace">Zobrazení citací článků</message>
+        <message key="manager.setup.citace.description">Umožňuje zobrazit na landing page (resp. v HTML sazebnicích) citaci daného článku</message>
+        <message key="manager.setup.citace.allow">Zobrazit na landing page</message>
+        <message key="manager.setup.citace.allowHtml">Zobrazit v HTML sazebnicích</message>
+        <message key="rt.captureCite.format">Formát citací</message>
+        
+        <message key="submission.skipLandingPage">Vynechat Landing Page </message>
+        <message key="submission.skipLandingPage.description">Zde můžete zvolit vynechání Landing Page a sazebnici, na kterou se bude přecházet z obsahu čísla.</message>
+        <message key="submission.layout.skipLandingPage">Vynechej Landing Page</message>
+        <message key="submission.layout.skipLandingPage.vypisSazebnic">Vyberte sazebnici, na kterou se bude přecházet:</message>
+        <message key="submission.layout.skipLandingPage.nastaveni">Nastavení</message>
 </locale>

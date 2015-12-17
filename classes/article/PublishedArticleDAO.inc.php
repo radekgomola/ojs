@@ -94,7 +94,7 @@ class PublishedArticleDAO extends DAO {
 				SUBSTRING(COALESCE(sal.setting_value, sapl.setting_value) FROM 1 FOR 255) AS section_abbrev,
 				COALESCE(o.seq, s.seq) AS section_seq,
 				pa.seq,
-                                am.article_number
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	published_articles pa,
 				articles a LEFT JOIN sections s ON s.section_id = a.section_id
                                 LEFT JOIN article_munipress am ON a.article_id = am.article_id
@@ -160,7 +160,7 @@ class PublishedArticleDAO extends DAO {
 				a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-                                am.article_number
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	published_articles pa
 				LEFT JOIN articles a ON pa.article_id = a.article_id
                                 LEFT JOIN article_munipress am ON a.article_id = am.article_id
@@ -211,7 +211,7 @@ class PublishedArticleDAO extends DAO {
 				s.hide_author AS section_hide_author,
 				COALESCE(o.seq, s.seq) AS section_seq,
 				pa.seq,
-                                am.article_number
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	published_articles pa,
 				articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
@@ -284,7 +284,7 @@ class PublishedArticleDAO extends DAO {
 				a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-                                am.article_number
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	published_articles pa,
 				articles a,
 				sections s
@@ -389,7 +389,7 @@ class PublishedArticleDAO extends DAO {
 				a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-                                am.article_number
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	published_articles pa,
 				articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
@@ -471,7 +471,7 @@ class PublishedArticleDAO extends DAO {
 				a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-                                am.article_number
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	published_articles pa
 				INNER JOIN articles a ON pa.article_id = a.article_id
 				LEFT JOIN sections s ON s.section_id = a.section_id
@@ -540,7 +540,7 @@ class PublishedArticleDAO extends DAO {
 		$result =& $this->$functionName(
 			'SELECT	a.article_id AS pub_id,
 				COALESCE(atl.setting_value, atpl.setting_value) AS article_title,
-                                am.article_number
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	published_articles pa,
 				issues i,
 				articles a

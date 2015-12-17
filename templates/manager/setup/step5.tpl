@@ -617,7 +617,7 @@ function prepBlockFields() {
 </div>*}
 <div class="separator"></div>
 <div id="showCitationSetup">
-<h3>5.8 {translate key="manager.setup.citace"}</h3>
+<h3>5.11 {translate key="manager.setup.citace"}</h3>
 
 <p>{translate key="manager.setup.citace.description"}</p>
 

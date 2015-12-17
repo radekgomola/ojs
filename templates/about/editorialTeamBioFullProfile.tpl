@@ -33,25 +33,25 @@
 	{assign var=section value=$sections[$sectionId]}
 	{if $issue->getPublished() && $section && $journal}
 	<li>
-            <a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()}" class="file" target="_new"><span class="clanek">{$article->getLocalizedTitle()|strip_unsafe_html}</span></a><br />
+            <a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()}" class="file"><span class="clanek">{$article->getLocalizedTitle()|strip_unsafe_html}</span></a><br />
 		{if (!$issueUnavailable || $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN)}
 		{foreach from=$article->getGalleys() item=galley name=galleyList}
                     {if $galley->isPdfGalley()}
                             <script type="text/javascript">
                                 if(detectIE()===10 || detectIE()===11){ldelim}
-                                    document.write('<a href="{url journal=$journal->getPath() page="article" op="viewFile" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file" target="_new">{$galley->getGalleyLabel()|escape}</a>');                                    
+                                    document.write('<a href="{url journal=$journal->getPath() page="article" op="viewFile" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file">{$galley->getGalleyLabel()|escape}</a>');                                    
                                 {rdelim}
                                 else{ldelim}
-                                    document.write('<a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file" target="_new">{$galley->getGalleyLabel()|escape}</a>');
+                                    document.write('<a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file">{$galley->getGalleyLabel()|escape}</a>');
                                 {rdelim}                                    
                             </script> | 
                     {else}
                         {*<a href="{url page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($currentJournal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>*}
-                        <a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file" target="_new">{$galley->getGalleyLabel()|escape}</a> | 
+                        <a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file">{$galley->getGalleyLabel()|escape}</a> | 
                     {/if}
 		{*<a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file" target="_new">{$galley->getGalleyLabel()|escape}</a>*}
 		{/foreach} 
-		{/if}<em><a href="{url journal=$journal->getPath() page="issue" op="view" path=$issue->getBestIssueId()}" target="_blank" target="_new">{$issue->getIssueIdentification()|strip_unsafe_html|nl2br}</a> - {$section->getLocalizedTitle()|escape}</em><br />
+		{/if}<em><a href="{url journal=$journal->getPath() page="issue" op="view" path=$issue->getBestIssueId()}">{$issue->getIssueIdentification()|strip_unsafe_html|nl2br}</a> - {$section->getLocalizedTitle()|escape}</em><br />
                 
 		
 	</li>

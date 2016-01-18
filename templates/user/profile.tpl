@@ -148,7 +148,7 @@
 	<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
 	<td class="value"><textarea name="biography[{$formLocale|escape}]" id="biography" rows="5" cols="40" class="textArea">{$biography[$formLocale]|escape}</textarea></td>
 </tr>
-<tr valign="top">
+{*<tr valign="top">
 	<td class="label">
 		{fieldLabel name="profileImage" key="user.profile.form.profileImage"}
 	</td>
@@ -160,7 +160,7 @@
 			<img src="{$sitePublicFilesDir}/{$profileImage.uploadName|escape:"url"}" width="{$profileImage.width|escape}" height="{$profileImage.height|escape}" style="border: 0;" alt="{translate key="user.profile.form.profileImage"}" />
 		{/if}
 	</td>
-</tr>
+</tr>*}
 {if count($availableLocales) > 1}
 <tr valign="top">
 	<td class="label">{translate key="user.workingLanguages"}</td>

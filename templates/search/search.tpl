@@ -196,7 +196,7 @@
 			</tr>
 		{/if}
 	</table>
-
+        <div class="searchInstrukce">
 	{capture assign="syntaxInstructions"}{call_hook name="Templates::Search::SearchResults::SyntaxInstructions"}{/capture}
 		{if empty($syntaxInstructions)}
 			{translate key="search.syntaxInstructions"}
@@ -204,6 +204,7 @@
 			{* Must be properly escaped in the controller as we potentially get HTML here! *}
 			{$syntaxInstructions}
 		{/if}
+        </div>
 </div>
 
 {include file="common/footer.tpl"}

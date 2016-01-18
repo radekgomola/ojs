@@ -53,9 +53,11 @@ class EditorSubmissionDAO extends DAO {
 			'SELECT
 				a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	articles a
 				LEFT JOIN sections s ON s.section_id = a.section_id
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)

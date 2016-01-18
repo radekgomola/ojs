@@ -165,6 +165,9 @@ class AboutHandler extends Handler {
 			$allGroups =& $groupDao->getGroups(ASSOC_TYPE_JOURNAL, $journal->getId(), GROUP_CONTEXT_EDITORIAL_TEAM);
 			$teamInfo = array();
 			$groups = array();
+                        $publishEmailList = array();
+                        $allowMedailon = array();
+                        $publishUrlList = array();
 			while ($group =& $allGroups->next()) {
 				if (!$group->getAboutDisplayed()) continue;
 				$memberships = array();
@@ -176,9 +179,27 @@ class AboutHandler extends Handler {
 				}
 				if (!empty($memberships)) $groups[] =& $group;
 				$teamInfo[$group->getId()] = $memberships;
+                                if ($group->getPublishEmailList()){
+                                    $publishEmailList[$group->getId()] = true;
+                                }else{
+                                    $publishEmailList[$group->getId()] = false;
+                                }
+                                if ($group->getAllowMedailon()) {
+                                    $allowMedailon[$group->getId()] = true;
+                                } else {
+                                    $allowMedailon[$group->getId()] = false;
+                                }
+                                if ($group->getPublishUrlList()) {
+                                    $publishUrlList[$group->getId()] = true;
+                                } else {
+                                    $publishUrlList[$group->getId()] = false;
+                                }
 				unset($group);
 			}
 
+                        $templateMgr->assign('publishEmailList', $publishEmailList);
+                        $templateMgr->assign('publishUrlList', $publishUrlList);
+                        $templateMgr->assign('allowMedailon', $allowMedailon);
 			$templateMgr->assign_by_ref('groups', $groups);
 			$templateMgr->assign_by_ref('teamInfo', $teamInfo);
 			$templateMgr->display('about/editorialTeamBoard.tpl');
@@ -823,6 +844,41 @@ class AboutHandler extends Handler {
 		import ('pages.manager.StatisticsHandler');
 		return StatisticsHandler::_getPublicStatisticsNames();
 	}
+        
+        
+        /*Munipress*/
+        function others(){
+                $this->addCheck(new HandlerValidatorJournal($this));
+		$this->validate();
+		$this->setupTemplate(true);
+
+		$journal =& Request::getJournal();
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign_by_ref('publisherInstitution', $journal->getSetting('publisherInstitution'));
+		$templateMgr->assign_by_ref('publisherUrl', $journal->getSetting('publisherUrl'));
+		$templateMgr->assign_by_ref('publisherNote', $journal->getLocalizedSetting('publisherNote'));
+		$templateMgr->assign_by_ref('contributorNote', $journal->getLocalizedSetting('contributorNote'));
+		$templateMgr->assign_by_ref('contributors', $journal->getSetting('contributors'));
+		$templateMgr->assign('sponsorNote', $journal->getLocalizedSetting('sponsorNote'));
+		$templateMgr->assign_by_ref('sponsors', $journal->getSetting('sponsors'));
+                
+                $templateMgr->assign('history', $journal->getLocalizedSetting('history'));
+
+		$versionDao =& DAORegistry::getDAO('VersionDAO');
+		$version =& $versionDao->getCurrentVersion();
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('ojsVersion', $version->getVersionString());
+
+		foreach (array(AppLocale::getLocale(), $primaryLocale = AppLocale::getPrimaryLocale(), 'en_US') as $locale) {
+			$edProcessFile = "locale/$locale/edprocesslarge.png";
+			if (file_exists($edProcessFile)) break;
+		}
+		$templateMgr->assign('edProcessFile', $edProcessFile);
+
+		$templateMgr->display('about/others.tpl');
+        }
 }
 
 ?>

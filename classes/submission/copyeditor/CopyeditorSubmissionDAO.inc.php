@@ -57,10 +57,12 @@ class CopyeditorSubmissionDAO extends DAO {
 			'SELECT	a.*,
 				e.editor_id,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number, am.skip_landing_page, am.skip_galley_id    
 			FROM	articles a
 				LEFT JOIN edit_assignments e ON (a.article_id = e.article_id)
 				LEFT JOIN sections s ON (s.section_id = a.section_id)
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -246,8 +248,10 @@ class CopyeditorSubmissionDAO extends DAO {
 				SUBSTRING(COALESCE(atl.setting_value, atpl.setting_value) FROM 1 FOR 255) AS submission_clean_title,
 				aap.last_name AS author_name,
 				SUBSTRING(COALESCE(stl.setting_value, stpl.setting_value) FROM 1 FOR 255) AS section_title,
-				SUBSTRING(COALESCE(sal.setting_value, sapl.setting_value) FROM 1 FOR 255) AS section_abbrev
+				SUBSTRING(COALESCE(sal.setting_value, sapl.setting_value) FROM 1 FOR 255) AS section_abbrev,
+                                am.article_number, am.skip_landing_page, am.skip_galley_id 
 			FROM	articles a
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN published_articles pa ON (a.article_id = pa.article_id)
 				LEFT JOIN issues i ON (pa.issue_id = i.issue_id)
 				LEFT JOIN authors aa ON (aa.submission_id = a.article_id)

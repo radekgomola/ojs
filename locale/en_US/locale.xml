@@ -1280,4 +1280,7 @@ Masaryk University</message>
         <message key="submission.layout.skipLandingPage">Skip Landing Page</message>
         <message key="submission.layout.skipLandingPage.vypisSazebnic">Choose galley to go there:</message>
         <message key="submission.layout.skipLandingPage.nastaveni">Settings</message>
+        
+        <message key="login.hint.username"></message>
+        <message key="login.hint.password"></message>
 </locale>

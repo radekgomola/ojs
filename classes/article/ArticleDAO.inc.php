@@ -127,7 +127,7 @@ class ArticleDAO extends DAO {
 		$result =& $this->retrieve($sql, $params);
 
 		$returner = null;
-		if ($result->RecordCount() != 0) {
+		if ($result->RecordCount() != 0) { 
 			$returner =& $this->_returnArticleFromRow($result->GetRowAssoc(false));
 		}
 
@@ -236,7 +236,7 @@ class ArticleDAO extends DAO {
                 $article->setArticleNumber($row['article_number']);
                 $article->setSkipLandingPage($row['skip_landing_page']);
                 $article->setSkipGalleyId($row['skip_galley_id']);
-                
+                    
 		$this->getDataObjectSettings('article_settings', 'article_id', $row['article_id'], $article);
 
 		HookRegistry::call('ArticleDAO::_returnArticleFromRow', array(&$article, &$row));
@@ -282,7 +282,7 @@ class ArticleDAO extends DAO {
                 $this->update('INSERT INTO article_munipress
 				(article_id, article_number, skip_landing_page, skip_galley_id)
 				VALUES
-				(?, ?)',
+				(?, ?, ?, ?)',
 			array(	(int) $article->getId(),
 				$article->getArticleNumber(),
                                 (int) $article->getSkipLandingPage(),

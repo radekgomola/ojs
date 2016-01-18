@@ -470,6 +470,10 @@ ul.tagit input[type="text"] {
     outline: none;
 }
 
+/*
+MUNIPRESS
+*/
+
 input.lang_cz_en {
   margin: 0;
   padding: 0;
@@ -509,22 +513,78 @@ input.cz{
     margin-right: 15px;
 }
 
-#headerPanel{
+#headerPanel, .sectionsPoliciesTypesTop, #footerPanel, .submenu-about, .tocDoi, .coverImageHome, .issueArchiveTitleShort, #searchSmallChoose, #userSmallChoose, .registerShortenAccount{
     display:none;
 }
 
-#footerPanel{
-    display: none;
+.oneYearIssues {
+    float: left; 
+    width: 100%;
 }
 
-.submenu-about{
-    display: none;
+.oneIssueWithCover .issueCoverDescription {
+    margin-top: 1em;
 }
 
-.tocDoi {
-    display: none;
+.loginButton .button {
+    display: block;
 }
 
+#smallSearchForm {
+    width: 180px;
+}
+.searchSmallRozsirene a, .profilImg a{
+    text-decoration: none;
+}
 
+.searchSmallRozsirene {
+    margin-bottom: 8px; 
+}
+
+#searchSmallSubmit{
+    float: right;
+    margin-right: 10px;
+}
+
+#searchSmallMainPart input {
+    width: 130px;
+}
+input.button_lupa {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width:25px;
+  height:25px;
+  cursor: pointer;
+  text-indent: 110%;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-transform:scale(1.0); /*Webkit: Scale down image to 0.8x original size*/
+  -moz-transform:scale(1.0); /*Mozilla scale version*/
+  -o-transform:scale(1.0); /*Opera scale version*/
+  -webkit-transition-duration: 0.5s; /*Webkit: Animation duration*/
+  -moz-transition-duration: 0.5s; /*Mozilla duration version*/
+  -o-transition-duration: 0.5s; /*Opera duration version*/
+  background: url(../images/lupa_small.png) no-repeat left top;
+}
+
+input.button_lupa:hover{
+    -webkit-transform:scale(1.1); /*Webkit: Scale up image to 1.2x original size*/
+    -moz-transform:scale(1.1); /*Mozilla scale version*/
+    -o-transform:scale(1.1); /*Opera scale version*/
+}
+
+#authorString, #articleAbstract, #articleCitace, #articleSubject, #articleFullText, #articleCitations {
+    margin-bottom: 25px;
+}
+
+.header_logo {
+	float:left;
+        padding-right: 15px;
+}
+
+.profileLogin {
+    font-weight: bold;
+}
 /* @end */
 

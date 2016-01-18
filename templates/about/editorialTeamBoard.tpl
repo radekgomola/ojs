@@ -14,7 +14,6 @@
 {/strip}
 
 {call_hook name="Templates::About::EditorialTeam::Information"}
-
 {foreach from=$groups item=group}
 <div id="group">
 	<h4>{$group->getLocalizedTitle()}</h4>
@@ -35,18 +34,18 @@
 		{foreach from=$members item=member}
 			{assign var=user value=$member->getUser()}
 			<div class="member">
-                            <li>&#187; 
-                                {if $allowMedailon}
+                            <li><span class="narrow">&#187; </span>
+                                {if $allowMedailon[$groupId]}
                                     {if !$group->getFullProfile()}<a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$user->getId()}')">{else}<a href="{url op="editorialTeamBioFullProfile" path=$user->getId()}">{/if}{$user->getFullName($tvarJmena)|escape}</a>{else}<span class="editTeamName">{$user->getFullName($tvarJmena)|escape}</span>{/if}{if $user->getLocalizedAffiliation()}, {$user->getLocalizedAffiliation()|escape}{/if}{if $user->getCountry()}{assign var=countryCode value=$user->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}
                                 <div class="editTeamEmailUrl">
-                                    {if $publishEmailList  && !$user->getAllowPublishingEmail()}
+                                    {if $publishEmailList[$groupId]  && !$user->getAllowPublishingEmail()}
                                         <span class="editTeamEmail">{translate key="editorialTeam.email"}: </span> 
                                         {assign_mail_address var=address address=$user->getEmail()|escape}
                                         {assign_mailto var=mailtoAddress address=$user->getEmail()|escape}
                                         <a href="{$mailtoAddress}" target="_new">{$address}</a>
                                         <br />
                                     {/if}
-                                    {if $publishUrlList && $user->getUrl()}                                
+                                    {if $publishUrlList[$groupId] && $user->getUrl()}                                
                                         <span class="editTeamEmail">{translate key="editorialTeam.url"}: </span> 
                                         <a href="{$user->getUrl()|escape:"quotes"}" target="_new">{$user->getUrl()|escape}</a><br/>
                                     {/if} 

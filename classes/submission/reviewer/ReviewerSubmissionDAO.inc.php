@@ -56,10 +56,12 @@ class ReviewerSubmissionDAO extends DAO {
 				r2.review_revision,
 				u.first_name, u.last_name,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number, am.skip_landing_page, am.skip_galley_id    
 			FROM	articles a
 				LEFT JOIN review_assignments r ON (a.article_id = r.submission_id)
 				LEFT JOIN sections s ON (s.section_id = a.section_id)
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.round = r2.round)
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
@@ -207,8 +209,10 @@ class ReviewerSubmissionDAO extends DAO {
 				u.first_name, u.last_name,
 				COALESCE(atl.setting_value, atpl.setting_value) AS submission_title,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number, am.skip_landing_page, am.skip_galley_id 
 			FROM	articles a
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN review_assignments r ON (a.article_id = r.submission_id)
 				LEFT JOIN article_settings atpl ON (atpl.article_id = a.article_id AND atpl.setting_name = ? AND atpl.locale = a.locale)
 				LEFT JOIN article_settings atl ON (atl.article_id = a.article_id AND atl.setting_name = ? AND atl.locale = ?)

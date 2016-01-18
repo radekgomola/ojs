@@ -18,7 +18,7 @@
 	{assign var="authorFees" value=1}
 {/if}
 
-<ul>
+<ul class="listAboutSubmissions">
 	<li id="linkDisableUserReg"><a href="{url page="about" op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
 	{if $currentJournal->getLocalizedSetting('authorGuidelines') != ''}<li id="linkAuthorGuidelines"><a href="{url page="about" op="submissions" anchor="authorGuidelines"}">{translate key="about.authorGuidelines"}</a></li>{/if}
 	{if $currentJournal->getLocalizedSetting('copyrightNotice') != ''}<li id="linkCopyrightNotice"><a href="{url page="about" op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
@@ -28,12 +28,15 @@
 
 <div id="onlineSubmissions">
 	<h3>{translate key="about.onlineSubmissions"}</h3>
-	<p>
+        <p class="registerShortenAccount">
+            {translate key="about.onlineSubmissions.haveAccount" journalTitle=$siteTitle|escape}
+        </p>
+	<p class="registerHaveAccount">
 		{translate key="about.onlineSubmissions.haveAccount" journalTitle=$siteTitle|escape}<br />
 		<a href="{url page="login"}" class="action">{translate key="about.onlineSubmissions.login"}</a>
 	</p>
 	{if !$currentJournal->getSetting('disableUserReg')}
-		<p>
+		<p class="registerNeedAccount">
 			{translate key="about.onlineSubmissions.needAccount"}<br />
 			<a href="{url page="user" op="register"}" class="action">{translate key="about.onlineSubmissions.registration"}</a>
 		</p>

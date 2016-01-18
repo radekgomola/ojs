@@ -707,7 +707,7 @@ class Issue extends DataObject {
 	 * @param $long bool long format of label
 	 * @return string
 	 */
-	function getIssueIdentification($default = false, $breadcrumb = false, $long = false) {
+	function getIssueIdentification($default = false, $breadcrumb = false, $long = false, $showYearSet = true) {
 
 		if ($default) {
 			$showVolume = 1;
@@ -720,6 +720,10 @@ class Issue extends DataObject {
 			$showYear = $this->getData('showYear');
 			$showTitle = $this->getData('showTitle');
 		}
+                
+                if(!$showYearSet) {
+                    $showYear = 0;
+                }
 
 		if ($breadcrumb && ($showVolume || $showNumber || $showYear)) {
 			$showTitle = 0;

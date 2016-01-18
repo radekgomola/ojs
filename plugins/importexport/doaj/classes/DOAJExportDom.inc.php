@@ -123,16 +123,27 @@ class DOAJExportDom {
 		 * "page numbers" are; for example, some journals (eg. JMIR)
 		 * use the "e-location ID" as the "page numbers" in PubMed
 		 */
-		$pages = $article->getPages();
-		if (preg_match("/([0-9]+)\s*-\s*([0-9]+)/i", $pages, $matches)) {
+		$pages = $article->getPages();     
+                if (preg_match("/^[^\d]*(\d+)\D*(.*)$/ix", $pages, $matches)) {
 			// simple pagination (eg. "pp. 3-8")
-			XMLCustomWriter::createChildWithText($doc, $root, 'startPage', $matches[1]);
-			XMLCustomWriter::createChildWithText($doc, $root, 'endPage', $matches[2]);
-		} elseif (preg_match("/(e[0-9]+)/i", $pages, $matches)) {
-			// elocation-id (eg. "e12")
-			XMLCustomWriter::createChildWithText($doc, $root, 'startPage', $matches[1]);
-			XMLCustomWriter::createChildWithText($doc, $root, 'endPage', $matches[1]);
-		}
+                    $startPage = $matches[1];
+                    $endPage = $matches[2];
+                    XMLCustomWriter::createChildWithText($doc, $root, 'startPage', $startPage);
+                    if($endPage != ''){
+			XMLCustomWriter::createChildWithText($doc, $root, 'endPage', $endPage);
+                    } else {
+                        XMLCustomWriter::createChildWithText($doc, $root, 'endPage', $startPage);
+                    }
+		} 
+//		if (preg_match("/([0-9]+)\s*-\s*([0-9]+)/ix", $pages, $matches)) {
+//			// simple pagination (eg. "pp. 3-8")
+//			XMLCustomWriter::createChildWithText($doc, $root, 'startPage', $matches[1]);
+//			XMLCustomWriter::createChildWithText($doc, $root, 'endPage', $matches[2]);
+//		} elseif (preg_match("/(e[0-9]+)/ix", $pages, $matches)) {
+//			// elocation-id (eg. "e12")
+//			XMLCustomWriter::createChildWithText($doc, $root, 'startPage', $matches[1]);
+//			XMLCustomWriter::createChildWithText($doc, $root, 'endPage', $matches[1]);
+//		}
 
 		XMLCustomWriter::createChildWithText($doc, $root, 'doi',  $article->getPubId('doi'), false);
 

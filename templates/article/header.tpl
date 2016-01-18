@@ -120,12 +120,19 @@
                         document.write(vypis);
                     }
                 }
+                function toggle_visibility(id) {
+                    var e = document.getElementById(id);
+                    if(e.style.display == 'block')
+                       e.style.display = 'none';
+                    else
+                       e.style.display = 'block';
+                }    
             {/literal}
         </script>
 	{$additionalHeadData}
 </head>
 <body id="pkp-{$pageTitle|replace:'.':'-'}">
-
+<div id="headerPanel">&nbsp;</div>
 <div id="container">
 {translate|assign:"help" key="languages.help"}
     <span id="{if $help == "cestina"}help_cz{else}help_en{/if}"></span>
@@ -150,23 +157,8 @@
 {else}
 	{$siteTitle}
 {/if}
+    </a>
     </h1>
-{*<h1>
-{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
-	<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
-{/if}
-{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-	<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
-{elseif $displayPageHeaderTitle}
-	{$displayPageHeaderTitle}
-{elseif $alternatePageHeader}
-	{$alternatePageHeader}
-{elseif $siteTitle}
-	{$siteTitle}
-{else}
-	{$applicationName}
-{/if}*}
-</h1>
 </div>
 </div>
 
@@ -214,4 +206,4 @@
 </div>
 
 <div id="content">
-
+    <div id="hlavniObsah">

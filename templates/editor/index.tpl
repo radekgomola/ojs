@@ -24,7 +24,7 @@
 	{call_hook name="Templates::Editor::Index::Submissions"}
 </ul>
 </div>
-<div class="separator">&nbsp;</div>
+<div class="separator separator_editor">&nbsp;</div>
 
 &nbsp;<br />
 
@@ -143,7 +143,7 @@ function sortSearch(heading, direction) {
 </div>
 {else}
 
-<div class="separator">&nbsp;</div>
+<div class="separator separator_editor">&nbsp;</div>
 
 {/if}{* displayResults *}
 <div id="issues">

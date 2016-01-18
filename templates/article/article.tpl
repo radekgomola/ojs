@@ -23,7 +23,7 @@
 {/if}
 
 {/strip}
-
+<div id="articleBlok">
 {if $galley}
         
 	{if $galley->isHTMLGalley()}
@@ -93,37 +93,28 @@
         {else}
             <div id="authorString"><em>{$article->getAuthorString()|escape}</em></div>
         {/if}
-	<br />
 	{if $article->getLocalizedAbstract()}
 		<div id="articleAbstract">
 		<h4>{translate key="article.abstract"}</h4>
-		<br />
 		<div>{$article->getLocalizedAbstract()|strip_unsafe_html|nl2br}</div>
-		<br />
 		</div>
 	{/if}
         {if $article->getLocalizedCitace()}
 		<div id="articleCitace">
 		<h4>{translate key="article.citace"}</h4>
-		<br />
 		<div>{$article->getLocalizedCitace()|strip_unsafe_html|nl2br}</div>
-		<br />
 		</div>
-        {else if $citation}
+        {elseif !empty($citation) && $citation != ""}
                 <div id="articleCitace">
 		<h4>{translate key="article.citace"}</h4>
-		<br />
 		<div>{$citation}</div>
-		<br />
 		</div>
 	{/if}
 
 	{if $article->getLocalizedSubject()}
 		<div id="articleSubject">
 		<h4>{translate key="article.subject"}</h4>
-		<br />
 		<div>{$article->getLocalizedSubject()|escape}</div>
-		<br />
 		</div>
 	{/if}
 
@@ -172,7 +163,6 @@
 		{/if}
 		</div>
 	{/if}
-        <br />
 	{if $citationFactory->getCount()}
 		<div id="articleCitations">
 		<h4>{translate key="submission.citations"}</h4>
@@ -185,7 +175,6 @@
 			{/capture}
 			{include file="controllers/extrasOnDemand.tpl" id="references" moreDetailsText="references.more" lessDetailsText="references.less" extraContent=$references}
 		</div>
-		<br />
 		</div>
 	{/if}
 {/if}
@@ -220,5 +209,5 @@
 {/if}
 {call_hook name="Templates::Article::MoreInfo"}
 {include file="article/comments.tpl"}
-
+</div>
 {include file="article/footer.tpl"}

@@ -53,11 +53,13 @@ class AuthorSubmissionDAO extends DAO {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 		$result =& $this->retrieve(
-			'SELECT	a.*,
+			'SELECT	a.*, 
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM articles a
 				LEFT JOIN sections s ON (s.section_id = a.section_id)
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -174,12 +176,14 @@ class AuthorSubmissionDAO extends DAO {
 				COALESCE(atl.setting_value, atpl.setting_value) AS submission_title,
 				aa.last_name AS author_name,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+                                am.article_number, am.skip_landing_page, am.skip_galley_id
 			FROM	articles a
 				LEFT JOIN authors aa ON (aa.submission_id = a.article_id AND aa.primary_contact = 1)
 				LEFT JOIN article_settings atpl ON (atpl.article_id = a.article_id AND atpl.setting_name = ? AND atpl.locale = a.locale)
 				LEFT JOIN article_settings atl ON (atl.article_id = a.article_id AND atl.setting_name = ? AND atl.locale = ?)
 				LEFT JOIN sections s ON (s.section_id = a.section_id)
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)

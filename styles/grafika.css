@@ -12,9 +12,3 @@ img.link_img:hover{
  	-moz-transform:scale(1.1); /*Mozilla scale version*/
  	-o-transform:scale(1.1); /*Opera scale version*/
 }
-
-.header_logo {
-	float:left;
-	height: 135px;
-  padding-right: 15px;
-}

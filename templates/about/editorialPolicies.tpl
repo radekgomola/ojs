@@ -43,7 +43,11 @@
 
 <div id="sectionPolicies"><h3>{translate key="about.sectionPolicies"}</h3>
 {foreach from=$sections item=section}{if !$section->getHideAbout()}
-	<h4>{$section->getLocalizedTitle()}</h4>
+	<h4 class="sectionTitle">{$section->getLocalizedTitle()}</h4> <div class="sectionsPoliciesTypesTop">{if !$section->getEditorRestricted()}{translate key="manager.sections.open"}{/if}
+			{if !$section->getEditorRestricted() && $section->getMetaIndexed()} | {/if}{if $section->getMetaIndexed()}{translate key="manager.sections.indexed"}{/if}
+			{if $section->getMetaIndexed() && $section->getMetaReviewed()} | {/if}{if $section->getMetaReviewed()}{translate key="manager.sections.reviewed"}{/if}
+                        </div>
+                        <div>
 	{if strlen($section->getLocalizedPolicy()) > 0}
 		<p>{$section->getLocalizedPolicy()|nl2br}</p>
 	{/if}
@@ -54,7 +58,7 @@
 			{foreach from=$sectionEditorEntries item=sectionEditorEntry}
 				{assign var=sectionEditor value=$sectionEditorEntry.user}
 				{if 0 == $hasEditors++}
-				{translate key="user.role.editors"}
+                                    <strong>{translate key="user.role.editors"}</strong>
 				<ul>
 				{/if}
 				<li>{$sectionEditor->getFirstName()|escape} {$sectionEditor->getLastName()|escape}{if $sectionEditor->getLocalizedAffiliation()}, {$sectionEditor->getLocalizedAffiliation()|escape}{/if}</li>
@@ -63,14 +67,16 @@
 	{/foreach}
 	{if $hasEditors}</ul>{/if}
 
-	<table width="60%">
+	<table width="60%" class="sectionsPoliciesTypesBottom">
 		<tr>
 			<td width="33%">{if !$section->getEditorRestricted()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.sections.open"}</td>
 			<td width="33%">{if $section->getMetaIndexed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.sections.indexed"}</td>
 			<td width="34%">{if $section->getMetaReviewed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.sections.reviewed"}</td>
 		</tr>
 	</table>
+        </div>
 {/if}{/foreach}
+    
 </div>
 
 <div class="separator">&nbsp;</div>

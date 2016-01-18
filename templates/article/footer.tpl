@@ -53,9 +53,10 @@
 	{/if}
 {/if}
 
-{call_hook name="Templates::Article::Footer::PageFooter"}
+{*{call_hook name="Templates::Article::Footer::PageFooter"}*}
+{call_hook name="Templates::Common::Footer::PageFooter"}
 {if $pageFooter}
-<br /><br />
+</div>
 <div id="pageFooter">
 {$pageFooter}
 </div>
@@ -109,5 +110,6 @@
 {get_debug_info}
 {if $enableDebugStats}{include file=$pqpTemplate}{/if}
 </div> <!-- container -->
+<div id="footerPanel">&nbsp;</div>
 </body>
 </html>

@@ -12,7 +12,6 @@
 {assign var="pageTitle" value="about.editorialTeam"}
 {include file="common/header.tpl"}
 {/strip}
-
 <div id="editorialTeam">
 {if count($editors) > 0}
 	<div id="editors">
@@ -24,7 +23,7 @@
 
 	<ol class="editorialTeam">
 		{foreach from=$editors item=editor}
-			<div class="member"><li>&#187; <a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$editor->getId()}')">{$editor->getFullName()|escape}</a>{if $editor->getLocalizedAffiliation()}, {$editor->getLocalizedAffiliation()|escape}{/if}{if $editor->getCountry()}{assign var=countryCode value=$editor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li></div>
+			<div class="member"><li><span class="narrow">&#187; </span><a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$editor->getId()}')">{$editor->getFullName()|escape}</a>{if $editor->getLocalizedAffiliation()}, {$editor->getLocalizedAffiliation()|escape}{/if}{if $editor->getCountry()}{assign var=countryCode value=$editor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li></div>
 		{/foreach}
 	</ol>
 	</div>
@@ -40,7 +39,7 @@
 
 	<ol class="editorialTeam">
 		{foreach from=$sectionEditors item=sectionEditor}
-			<div class="member"><li>&#187; <a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$sectionEditor->getId()}')">{$sectionEditor->getFullName()|escape}</a>{if $sectionEditor->getLocalizedAffiliation()}, {$sectionEditor->getLocalizedAffiliation()|escape}{/if}{if $sectionEditor->getCountry()}{assign var=countryCode value=$sectionEditor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li></div>
+			<div class="member"><li><span class="narrow">&#187; </span><a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$sectionEditor->getId()}')">{$sectionEditor->getFullName()|escape}</a>{if $sectionEditor->getLocalizedAffiliation()}, {$sectionEditor->getLocalizedAffiliation()|escape}{/if}{if $sectionEditor->getCountry()}{assign var=countryCode value=$sectionEditor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li></div>
 		{/foreach}
 	</ol>
 	</div>
@@ -56,7 +55,7 @@
 
 	<ol class="editorialTeam">
 		{foreach from=$layoutEditors item=layoutEditor}
-			<div class="member"><li>&#187; <a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$layoutEditor->getId()}')">{$layoutEditor->getFullName()|escape}</a>{if $layoutEditor->getLocalizedAffiliation()}, {$layoutEditor->getLocalizedAffiliation()|escape}{/if}{if $layoutEditor->getCountry()}{assign var=countryCode value=$layoutEditor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li></div>
+			<div class="member"><li><span class="narrow">&#187; </span><a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$layoutEditor->getId()}')">{$layoutEditor->getFullName()|escape}</a>{if $layoutEditor->getLocalizedAffiliation()}, {$layoutEditor->getLocalizedAffiliation()|escape}{/if}{if $layoutEditor->getCountry()}{assign var=countryCode value=$layoutEditor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li></div>
 		{/foreach}
 	</ol>
 	</div>
@@ -72,7 +71,7 @@
 
 	<ol class="editorialTeam">
 		{foreach from=$copyEditors item=copyEditor}
-			<div class="member"><li>&#187; <a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$copyEditor->getId()}')">{$copyEditor->getFullName()|escape}</a>{if $copyEditor->getLocalizedAffiliation()}, {$copyEditor->getLocalizedAffiliation()|escape}{/if}{if $copyEditor->getCountry()}{assign var=countryCode value=$copyEditor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li></div>
+			<div class="member"><li><span class="narrow">&#187; </span><a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$copyEditor->getId()}')">{$copyEditor->getFullName()|escape}</a>{if $copyEditor->getLocalizedAffiliation()}, {$copyEditor->getLocalizedAffiliation()|escape}{/if}{if $copyEditor->getCountry()}{assign var=countryCode value=$copyEditor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li></div>
 		{/foreach}
 	</ol>
 	</div>
@@ -88,7 +87,7 @@
 
 	<ol class="editorialTeam">
 		{foreach from=$proofreaders item=proofreader}
-			<div class="member"><li>&#187; <a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$proofreader->getId()}')">{$proofreader->getFullName()|escape}</a>{if $proofreader->getLocalizedAffiliation()}, {$proofreader->getLocalizedAffiliation()|escape}{/if}{if $proofreader->getCountry()}{assign var=countryCode value=$proofreader->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li></div>
+			<div class="member"><li><span class="narrow">&#187; </span><a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$proofreader->getId()}')">{$proofreader->getFullName()|escape}</a>{if $proofreader->getLocalizedAffiliation()}, {$proofreader->getLocalizedAffiliation()|escape}{/if}{if $proofreader->getCountry()}{assign var=countryCode value=$proofreader->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li></div>
 		{/foreach}
 	</ol>
 	</div>

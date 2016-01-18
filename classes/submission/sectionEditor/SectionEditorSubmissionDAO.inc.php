@@ -69,9 +69,11 @@ class SectionEditorSubmissionDAO extends DAO {
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-				r2.review_revision
+				r2.review_revision,
+                                am.article_number, am.skip_landing_page, am.skip_galley_id    
 			FROM	articles a
 				LEFT JOIN sections s ON (s.section_id = a.section_id)
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN review_rounds r2 ON (a.article_id = r2.submission_id AND a.current_round = r2.round)
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
@@ -288,10 +290,12 @@ class SectionEditorSubmissionDAO extends DAO {
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-				r2.review_revision
+				r2.review_revision,
+                                am.article_number, am.skip_landing_page, am.skip_galley_id    
 			FROM	articles a
 				LEFT JOIN edit_assignments e ON (e.article_id = a.article_id)
 				LEFT JOIN sections s ON (s.section_id = a.section_id)
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN review_rounds r2 ON (a.article_id = r2.submission_id AND a.current_round = r2.round)
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
@@ -445,8 +449,10 @@ class SectionEditorSubmissionDAO extends DAO {
 				e.can_edit AS can_edit,
 				SUBSTRING(COALESCE(stl.setting_value, stpl.setting_value) FROM 1 FOR 255) AS section_title,
 				SUBSTRING(COALESCE(sal.setting_value, sapl.setting_value) FROM 1 FOR 255) AS section_abbrev,
-				r2.review_revision
+				r2.review_revision,
+                                am.article_number, am.skip_landing_page, am.skip_galley_id 
 			FROM	articles a
+                                LEFT JOIN article_munipress am ON a.article_id = am.article_id
 				LEFT JOIN authors aa ON (aa.submission_id = a.article_id)
 				LEFT JOIN authors aap ON (aap.submission_id = a.article_id AND aap.primary_contact = 1)
 				LEFT JOIN edit_assignments e ON (e.article_id = a.article_id)

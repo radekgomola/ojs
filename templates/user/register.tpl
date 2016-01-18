@@ -16,7 +16,7 @@
 <form id="registerForm" method="post" action="{url op="registerUser"}">
 
 <p>{translate key="user.register.completeForm"}</p>
-
+<div class="registerExisting">
 {if !$implicitAuth}
 	{if !$existingUser}
 		{url|assign:"url" page="user" op="register" existingUser=1}
@@ -39,10 +39,10 @@
 {if $source}
 	<input type="hidden" name="source" value="{$source|escape}" />
 {/if}
-
+</div>
 <table class="data" width="100%">
 {if count($formLocales) > 1 && !$existingUser}
-	<tr valign="top">
+	<tr valign="top" class="registerLanguage">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
 			{url|assign:"userRegisterUrl" page="user" op="register" escape=false}
@@ -78,25 +78,6 @@
 			<td class="label">{fieldLabel name="password2" required="true" key="user.repeatPassword"}</td>
 			<td class="value"><input type="password" name="password2" id="password2" value="{$password2|escape}" size="20" class="textField" /></td>
 		</tr>
-
-		{if $captchaEnabled}
-			<tr class="registerCaptcha">
-				{if $reCaptchaEnabled}
-				<td class="label" valign="top">{fieldLabel name="recaptcha_challenge_field" required="true" key="common.captchaField"}</td>
-				<td class="value">
-					{$reCaptchaHtml}
-				</td>
-				{else}
-				<td class="label" valign="top">{fieldLabel name="captcha" required="true" key="common.captchaField"}</td>
-				<td class="value">
-					<img src="{url page="user" op="viewCaptcha" path=$captchaId}" alt="{translate key="common.captchaField.altText"}" /><br />
-					<span class="instruct">{translate key="common.captchaField.description"}</span><br />
-					<input name="captcha" id="captcha" value="" size="20" maxlength="32" class="textField" />
-					<input type="hidden" name="captchaId" value="{$captchaId|escape:"quoted"}" />
-				</td>
-				{/if}
-			</tr>
-		{/if}{* $captchaEnabled *}
 
 		<tr valign="top" class="registerSalution">
 			<td class="label">{fieldLabel name="salutation" key="user.salutation"}</td>
@@ -139,7 +120,7 @@
 			</td>
 		</tr>
 
-		<tr valign="top" class="registerAffliation">
+		<tr valign="top" class="registerAffiliation">
 			<td class="label">{fieldLabel name="affiliation" key="user.affiliation"}</td>
 			<td class="value">
 				<textarea id="affiliation" name="affiliation[{$formLocale|escape}]" rows="5" cols="40" class="textArea">{$affiliation[$formLocale]|escape}</textarea><br/>
@@ -227,7 +208,7 @@
 		{if $currentJournal && $currentJournal->getSetting('publishingMode') == $smarty.const.PUBLISHING_MODE_SUBSCRIPTION && $enableOpenAccessNotification}<input type="checkbox" name="openAccessNotification" id="openAccessNotification" value="1"{if $openAccessNotification} checked="checked"{/if} /> <label for="openAccessNotification">{translate key="user.role.reader"}</label>: {translate key="user.register.openAccessNotificationDescription"}<br />{/if}
 		{if $allowRegAuthor || $allowRegAuthor === null}<input type="checkbox" name="registerAsAuthor" id="registerAsAuthor" value="1"{if $registerAsAuthor} checked="checked"{/if} /> <label for="registerAsAuthor">{translate key="user.role.author"}</label>: {translate key="user.register.authorDescription"}<br />{/if}
 		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="registerAsReviewer" id="registerAsReviewer" value="1"{if $registerAsReviewer} checked="checked"{/if} /> <label for="registerAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.register.reviewerDescriptionNoInterests"}{else}{translate key="user.register.reviewerDescription"}{/if}
-		<br /><div id="reviewerInterestsContainer" style="margin-left:25px;">
+		<br /><div id="reviewerInterestsContainer">
 			<label class="desc">{translate key="user.register.reviewerInterests"}</label>
 			{include file="form/interestsInput.tpl" FBV_interestsKeywords=$interestsKeywords FBV_interestsTextOnly=$interestsTextOnly}
 		</div>
@@ -235,14 +216,33 @@
 		{/if}
 	</tr>
 {/if}
-
+{if $captchaEnabled}
+			<tr class="registerCaptcha">
+				{if $reCaptchaEnabled}
+				<td class="label" valign="top">{fieldLabel name="recaptcha_challenge_field" required="true" key="common.captchaField"}</td>
+				<td class="value">
+					{$reCaptchaHtml}
+				</td>
+				{else}
+				<td class="label" valign="top">{fieldLabel name="captcha" required="true" key="common.captchaField"}</td>
+				<td class="value">
+					<img src="{url page="user" op="viewCaptcha" path=$captchaId}" alt="{translate key="common.captchaField.altText"}" /><br />
+					<span class="instruct">{translate key="common.captchaField.description"}</span><br />
+					<input name="captcha" id="captcha" value="" size="20" maxlength="32" class="textField" />
+					<input type="hidden" name="captchaId" value="{$captchaId|escape:"quoted"}" />
+				</td>
+				{/if}
+			</tr>
+		{/if}{* $captchaEnabled *}
 </table>
 
 <br />
-<p><input type="submit" value="{translate key="user.register"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="index" escape=false}'" /></p>
+<p><input type="submit" value="{translate key="user.register"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button registerCancel" onclick="document.location.href='{url page="index" escape=false}'" /></p>
 
-{if ! $implicitAuth}
+{if !$implicitAuth}
+<div class="registrationRequired">
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
+</div>
 {/if}{* !$implicitAuth *}
 
 <div id="privacyStatement">

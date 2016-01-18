@@ -12,7 +12,6 @@
 {assign var="pageTitle" value="about.people"}
 {include file="common/header.tpl"}
 {/strip}
-
 <div id="displayMembership">
 <h4>{$group->getLocalizedTitle()}</h4>
 {assign var=groupId value=$group->getId()}
@@ -32,7 +31,7 @@
                 {assign var=user value=$member->getUser()}
                 
                 <div class="member">
-                    <li>&#187; 
+                    <li><span class="narrow">&#187; </span>
                         {if $allowMedailon}
                             {if !$group->getFullProfile()}<a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$user->getId()}')">{else}<a href="{url op="editorialTeamBioFullProfile" path=$user->getId()}">{/if}{$user->getFullName($tvarJmena)|escape}</a>{else}<span class="editTeamName">{$user->getFullName($tvarJmena)|escape}</span>{/if}{if $user->getLocalizedAffiliation()}, {$user->getLocalizedAffiliation()|escape}{/if}{if $user->getCountry()}{assign var=countryCode value=$user->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if} 
                         <div class="editTeamEmailUrl">

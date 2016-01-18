@@ -613,6 +613,7 @@
 	  -->
 	<table name="article_munipress">
 		<field name="article_id" type="I8">
+                        <KEY />
 			<NOTNULL />
 		</field>
 		<field name="article_number" type="C2" size="50"/>

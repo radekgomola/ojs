@@ -486,7 +486,7 @@ class Upgrade extends Installer {
 			'article_search_object_keywords',
 			'oai_resumption_tokens', 'subscription_type_settings',
 			'announcement_type_settings', 'announcement_settings',
-			'group_settings', 'group_memberships'
+			'group_settings', 'group_memberships', 'article_munipress'
 		);
 
 		// Assemble a list of indexes to be dropped

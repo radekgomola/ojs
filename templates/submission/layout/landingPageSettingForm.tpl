@@ -17,8 +17,8 @@
 {include file="common/formErrors.tpl"}
 <input type="checkbox" name="skipLandingPageNew" value="1" {if $skipLandingPage}checked{/if}/> {translate key="submission.layout.skipLandingPage"}<br />
 <h4>{translate key="submission.layout.skipLandingPage.vypisSazebnic"}</h4>
-{foreach from=$allGalleys item=oneGalley}
-    <input type="radio" name="skipGalleyIdNew" value="{$oneGalley->getId()|escape}" {if $oneGalley->getId()==$skipGalleyId}checked{/if}/>
+{foreach from=$allGalleys item=oneGalley} 
+   <input type="radio" name="skipGalleyIdNew" value="{$oneGalley->getId()|escape}" {if $oneGalley->getId()==$skipGalleyId}checked{/if}/>
     {$oneGalley->getGalleyLabel()}<br />
     
 {/foreach}<br />

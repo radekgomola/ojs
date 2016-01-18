@@ -48,7 +48,6 @@
 	{else}
 		{assign var=hasAccess value=0}
 	{/if}
-
 <table class="tocArticle">
 <tr valign="top">
 	<td class="tocArticleCoverImage{if $showCoverPage} showCoverImage{/if}">
@@ -69,15 +68,15 @@
                         {if $skipGalley->isPdfGalley()}
                                 <script type="text/javascript">
                                     if(detectIE()===10 || detectIE()===11){ldelim}
-                                        document.write('<a href="{url page="article" op="viewFile" path=$articlePath|to_array:$skipGalley->getBestGalleyId($currentJournal)}" target="_blank" class="file">{$article->getLocalizedTitle()|strip_unsafe_html}</a>');                                    
+                                        document.write('<a href="{url page="article" op="viewFile" path=$articlePath|to_array:$skipGalley->getBestGalleyId($currentJournal)}" target="_blank">{$article->getLocalizedTitle()|strip_unsafe_html}</a>');                                    
                                     {rdelim}
                                     else{ldelim}
-                                        document.write('<a href="{url page="article" op="view" path=$articlePath|to_array:$skipGalley->getBestGalleyId($currentJournal)}" {if $skipGalley->getRemoteURL()}target="_blank" {/if}class="file">{$article->getLocalizedTitle()|strip_unsafe_html}</a>');
+                                        document.write('<a href="{url page="article" op="view" path=$articlePath|to_array:$skipGalley->getBestGalleyId($currentJournal)}" {if $skipGalley->getRemoteURL()}target="_blank" {/if}>{$article->getLocalizedTitle()|strip_unsafe_html}</a>');
                                     {rdelim}                                    
                                 </script>
                         {else}
 
-                            <a href="{url page="article" op="view" path=$articlePath|to_array:$skipGalley->getBestGalleyId($currentJournal)}" {if $skipGalley->getRemoteURL()}target="_blank" {/if}class="file">{$article->getLocalizedTitle()|strip_unsafe_html}</a>
+                            <a href="{url page="article" op="view" path=$articlePath|to_array:$skipGalley->getBestGalleyId($currentJournal)}" {if $skipGalley->getRemoteURL()}target="_blank" {/if}>{$article->getLocalizedTitle()|strip_unsafe_html}</a>
                         {/if}
                         {if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}
                                 {if $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || !$skipGalley->isPdfGalley()}
@@ -94,20 +93,20 @@
 			{/if}
                     {/if}
 		</div>
-		
 	</td>
 </tr>
-<tr>
+<tr class="tocArticleAuthorsTr">
     <td class="tocArticleAuthors">
-    <div class="tocAuthors">
+    {*<div class="tocAuthors">*}
 			{if (!$section.hideAuthor && $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_DEFAULT) || $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_SHOW}
 				{foreach from=$article->getAuthors() item=author name=authorList}
 					{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
-				{/foreach}
+				{/foreach}&nbsp;&nbsp;
 			{else}
 				&nbsp;
 			{/if}
-		</div>
+                        
+		{*</div>*}
     </td>
 	<td class="tocArticleGalleysPages{if $showCoverPage} showCoverImage{/if}">
 		<div class="tocGalleys">

@@ -1928,4 +1928,28 @@
 			<DEFAULT VALUE="0"/>
 		</field>
 	</table>
+        
+        <!--
+	  *
+	  * TABLE article_munipress
+	  *
+	  -->
+	<table name="article_munipress">
+		<field name="article_id" type="I8">
+                        <KEY />
+			<NOTNULL />
+		</field>
+		<field name="article_number" type="C2" size="50"/>
+                <field name="skip_landing_page" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+                <field name="skip_galley_id" type="I8">
+			<NOTNULL />
+		</field>
+		<descr>Journal article metadata (munipress).</descr>
+		<index name="article_munipress_article_id">
+			<col>article_id</col>
+		</index>
+	</table>
 </schema>

@@ -1491,4 +1491,7 @@ Masarykovy univerzity</message>
         <message key="submission.layout.skipLandingPage">Vynechej Landing Page</message>
         <message key="submission.layout.skipLandingPage.vypisSazebnic">Vyberte sazebnici, na kterou se bude přecházet:</message>
         <message key="submission.layout.skipLandingPage.nastaveni">Nastavení</message>
+        
+        <message key="login.hint.username"></message>
+        <message key="login.hint.password"></message>
 </locale>

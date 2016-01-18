@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/blocks/searchSmall/locale/en_US/locale.xml
+  * Localization strings.
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.block.searchSmall.displayName">Search Block (small)</message>
+	<message key="plugins.block.searchSmall.description">This plugin provides sidebar small search.</message>
+	<message key="plugins.block.searchSmall.rozsirene"><![CDATA[&#x25BC; Advanced]]></message>
+</locale>

@@ -3,7 +3,6 @@
  * search sidebar
  *
  *}
-TEST
 {*{if !$currentJournal || $currentJournal->getSetting('publishingMode') != $smarty.const.PUBLISHING_MODE_NONE}*}
 <div class="block" id="searchSmallBlock">
         {if $requestedPage == "search"}

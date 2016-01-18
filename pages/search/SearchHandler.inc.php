@@ -265,10 +265,14 @@ class SearchHandler extends Handler {
 
 		$articleIds =& $publishedArticleDao->getPublishedArticleIdsAlphabetizedByJournal(isset($journal)?$journal->getId():null);
 		$totalResults = count($articleIds);
-		$articleIds = array_slice($articleIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $rangeInfo->getCount());
+                if ($rangeInfo->getCount() == 0) {
+                    $pocet = $totalResults;
+                } else {
+                    $pocet = $rangeInfo->getCount();
+                }
+		$articleIds = array_slice($articleIds, $rangeInfo->getCount() * ($rangeInfo->getPage()-1), $pocet);
 		import('lib.pkp.classes.core.VirtualArrayIterator');
-		$results = new VirtualArrayIterator(ArticleSearch::formatResults($articleIds), $totalResults, $rangeInfo->getPage(), $rangeInfo->getCount());
-
+		$results = new VirtualArrayIterator(ArticleSearch::formatResults($articleIds), $totalResults, $rangeInfo->getPage(), $pocet);
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('results', $results);
 		$templateMgr->display('search/titleIndex.tpl');

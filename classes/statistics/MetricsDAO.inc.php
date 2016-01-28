@@ -44,7 +44,7 @@ class MetricsDAO extends DAO {
 	function &getMetrics($metricType, $columns = array(), $filters = array(), $orderBy = array(), $range = null, $nonAdditive = true) {
 		// Return by reference.
 		$nullVar = null;
-
+                
 		// Canonicalize and validate parameter format.
 		if (is_scalar($metricType)) $metricType = array($metricType);
 		if (is_scalar($columns)) $columns = array($columns);
@@ -184,7 +184,7 @@ class MetricsDAO extends DAO {
 		} else {
 			$result =& $this->retrieveLimit($sql, $params, STATISTICS_MAX_ROWS);
 		}
-
+                
 		// Return the report.
 		return $result->GetAll();
 	}

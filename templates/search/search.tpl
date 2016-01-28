@@ -101,21 +101,21 @@
 {call_hook name="Templates::Search::SearchResults::PreResults"}
 
 {if $currentJournal}
-	{assign var=numCols value=3}
+	{assign var=numCols value=2}
 {else}
-	{assign var=numCols value=4}
+	{assign var=numCols value=3}
 {/if}
 
 <div id="results">
 	<table width="100%" class="listing">
 		<tr><td colspan="{$numCols|escape}" class="headseparator">&nbsp;</td></tr>
-		<tr class="heading" valign="bottom">
+		{*<tr class="heading" valign="bottom">
 			{if !$currentJournal}<td width="20%">{translate key="journal.journal"}</td>{/if}
 			<td width="{if !$currentJournal}20%{else}40%{/if}">{translate key="issue.issue"}</td>
 			<td width="60%" colspan="2">{translate key="article.title"}</td>
 		</tr>
-		<tr><td colspan="{$numCols|escape}" class="headseparator">&nbsp;</td></tr>
-
+		<tr><td colspan="{$numCols|escape}" class="headseparator">&nbsp;</td></tr>*}
+                {assign var=numColsMin value=$numCols-1}
 		{iterate from=results item=result}
 			{assign var=publishedArticle value=$result.publishedArticle}
 			{assign var=article value=$result.article}
@@ -123,13 +123,17 @@
 			{assign var=issueAvailable value=$result.issueAvailable}
 			{assign var=journal value=$result.journal}
 			{assign var=section value=$result.section}
-			<tr valign="top">
-				{if !$currentJournal}
+                        {assign var=helpForLine value=0}
+			<tr class="searchLine">				
+				<td><a href="{url journal=$journal->getPath() page="issue" op="view" path=$issue->getBestIssueId($journal)}">{$issue->getIssueIdentification()|escape}</a></td>
+                                {if !$currentJournal}
 					<td><a href="{url journal=$journal->getPath()}">{$journal->getLocalizedTitle()|escape}</a></td>
 				{/if}
-				<td width="30%"><a href="{url journal=$journal->getPath() page="issue" op="view" path=$issue->getBestIssueId($journal)}">{$issue->getIssueIdentification()|escape}</a></td>
-				<td width="45%">{$article->getLocalizedTitle()|strip_unsafe_html}</td>
-				<td width="20%" align="right">
+                                <td></td>
+                        </tr>
+                        <tr class="searchLine">
+				<td class="searchTitle" colspan="{$numColsMin|escape}">{$article->getLocalizedTitle()|strip_unsafe_html}</td>
+                                <td class="searchAbstractGalley">
 					{if $publishedArticle->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN|| $issueAvailable}
 						{assign var=hasAccess value=1}
 					{else}
@@ -142,38 +146,37 @@
 					{/if}
 					{if !$hasAccess || $hasAbstract}
 						<a href="{url journal=$journal->getPath() page="article" op="view" path=$publishedArticle->getBestArticleId($journal)}" class="file searchAbstract">
-							{if !$hasAbstract}
-								{translate key="article.details"}
-							{else}
-								{translate key="article.abstract"}
-							{/if}
-						</a>
+							{if !$hasAbstract}{translate key="article.details"}{else}{translate key="article.abstract"}{/if}</a>
+                                                {assign var=helpForLine value=1}
 					{/if}
 					{if $hasAccess}
 						{foreach from=$publishedArticle->getLocalizedGalleys() item=galley name=galleyList}
+                                                    {if $helpForLine}|{/if}
                                                     {if $galley->isPdfGalley()}
                                                             <script type="text/javascript">
                                                                 if(detectIE()===10 || detectIE()===11){ldelim}
-                                                                    document.write('&nbsp;<a href="{url page="article" journal=$journal->getPath() op="viewFile" path=$publishedArticle->getBestArticleId($journal)|to_array:$galley->getBestGalleyId($journal)}" target="_blank" class="file">{$galley->getGalleyLabel()|escape}</a>');                                    
+                                                                    document.write('<a href="{url page="article" journal=$journal->getPath() op="viewFile" path=$publishedArticle->getBestArticleId($journal)|to_array:$galley->getBestGalleyId($journal)}" target="_blank" class="file">{$galley->getGalleyLabel()|escape}</a>');                                    
                                                                 {rdelim}
                                                                 else{ldelim}
-                                                                    document.write('&nbsp;<a href="{url journal=$journal->getPath() page="article" op="view" path=$publishedArticle->getBestArticleId($journal)|to_array:$galley->getBestGalleyId($journal)}" class="file">{$galley->getGalleyLabel()|escape}</a>');
+                                                                    document.write('<a href="{url journal=$journal->getPath() page="article" op="view" path=$publishedArticle->getBestArticleId($journal)|to_array:$galley->getBestGalleyId($journal)}" class="file">{$galley->getGalleyLabel()|escape}</a>');
                                                                 {rdelim}                                    
                                                             </script>
                                                     {else}
                                                         <a href="{url page="article" op="view" path=$publishedArticle->getBestArticleId($journal)|to_array:$galley->getBestGalleyId($journal)}" {if $galley->getRemoteURL()}target="_blank" {/if}class="file">{$galley->getGalleyLabel()|escape}</a>
                                                     {/if}
+                                                    {assign var=helpForLine value=1}
 						{/foreach}
 					{/if}
 					{call_hook name="Templates::Search::SearchResults::AdditionalArticleLinks" articleId=$publishedArticle->getId()}
 				</td>
 			</tr>
-			<tr>
-				<td colspan="{$numCols|escape}" style="padding-left: 30px;font-style: italic;">
+			<tr class="searchLine">
+				<td colspan="{$numCols|escape}" class="searchAuthors">
 					{foreach from=$article->getAuthors() item=authorItem name=authorList}
 						{$authorItem->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
 					{/foreach}
 				</td>
+                                
 			</tr>
 			{call_hook name="Templates::Search::SearchResults::AdditionalArticleInfo" articleId=$publishedArticle->getId() numCols=$numCols|escape}
 			<tr><td colspan="{$numCols|escape}" class="{if $results->eof()}end{/if}separator">&nbsp;</td></tr>

@@ -1,10 +1,9 @@
 <?php
 
 /**
- * @file plugins/generic/piwik/PiwikPlugin.inc.php
+ * @file PiwikPlugin.inc.php
  *
- * Copyright (c) 2013-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PiwikPlugin
@@ -13,8 +12,10 @@
  * @brief Piwik plugin class
  */
 
+// $Id: PiwikPlugin.inc.php,v 1.6 2008/07/01 01:16:13 asmecher Exp $
 
-import('lib.pkp.classes.plugins.GenericPlugin');
+
+import('classes.plugins.GenericPlugin');
 
 class PiwikPlugin extends GenericPlugin {
 
@@ -26,9 +27,9 @@ class PiwikPlugin extends GenericPlugin {
 	 */
 	function register($category, $path) {
 		$success = parent::register($category, $path);
-		if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) return true;
-		if ($success && $this->getEnabled()) {
-			// Insert Piwik page tag to common footer
+		if (!Config::getVar('general', 'installed')) return false;
+		if ($success && $this->getEnabled()) {                      
+			// Insert Piwik page tag to common footer  
 			HookRegistry::register('Templates::Common::Footer::PageFooter', array($this, 'insertFooter'));
 
 			// Insert Piwik page tag to article footer
@@ -139,16 +140,16 @@ class PiwikPlugin extends GenericPlugin {
 	 * Determine whether or not this plugin is enabled.
 	 */
 	function getEnabled() {
-		$journal =& Request::getJournal();
+		$journal = &Request::getJournal();
 		if (!$journal) return false;
-		return $this->getSetting($journal->getId(), 'enabled');
+		return $this->getSetting($journal->getJournalId(), 'enabled');
 	}
 
 	/**
 	 * Set the enabled/disabled state of this plugin
 	 */
 	function setEnabled($enabled) {
-		$journal =& Request::getJournal();
+		$journal = &Request::getJournal();
 		if ($journal) {
 			$this->updateSetting($journal->getJournalId(), 'enabled', $enabled ? true : false);
 			return true;
@@ -158,30 +159,25 @@ class PiwikPlugin extends GenericPlugin {
 
 	/**
 	 * Insert Piwik page tag to footer
-	 */
+	 */  
 	function insertFooter($hookName, $params) {
 		if ($this->getEnabled()) {
-			$smarty =& $params[1];
-			$output =& $params[2];
-			$journal =& Request::getJournal();
-			$journalId = $journal->getJournalId();
-			$journalPath = $journal->getPath();
-			$piwikSiteId = $this->getSetting($journalId, 'piwikSiteId');
-			$piwikUrl = $this->getSetting($journalId, 'piwikUrl');
-			if (!empty($piwikSiteId) && !empty($piwikUrl)) {
-				$output .= 	'<!-- Piwik -->'.
-						'<script type="text/javascript">'.
-						'var pkBaseURL = "'.$piwikUrl.'/";'.
-						'document.write(unescape("%3Cscript src=\'" + pkBaseURL + "piwik.js\' type=\'text/javascript\'%3E%3C/script%3E"));'.
-						'</script><script type="text/javascript">'.
-						'try {'.
-						'var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", '.$piwikSiteId.');'.
-						'piwikTracker.setDocumentTitle("'.$journalPath.'");'.
-						'piwikTracker.trackPageView();'.
-						'piwikTracker.enableLinkTracking();'.
-						'} catch( err ) {}'.
-						'</script><noscript><p><img src="'.$piwikUrl.'/piwik.php?idsite='.$piwikSiteId.'" style="border:0" alt="" /></p></noscript>'.
-						'<!-- End Piwik Tag -->';
+			$smarty = &$params[1];
+			$output = &$params[2];
+			$templateMgr = &TemplateManager::getManager();
+			$currentJournal = $templateMgr->get_template_vars('currentJournal');
+
+			if (!empty($currentJournal)) {
+				$journal = &Request::getJournal();
+				$journalId = $journal->getJournalId();
+				$piwikSiteId = $this->getSetting($journalId, 'piwikSiteId');
+				$piwikUrl = $this->getSetting($journalId, 'piwikUrl');
+
+				if (!empty($piwikSiteId) && !empty($piwikUrl)) {
+					$templateMgr->assign('piwikSiteId', $piwikSiteId);
+					$templateMgr->assign('piwikUrl', $piwikUrl);
+					$output .= $templateMgr->fetch($this->getTemplatePath() . 'pageTag.tpl'); 
+				}
 			}
 		}
 		return false;
@@ -191,9 +187,9 @@ class PiwikPlugin extends GenericPlugin {
 	 * Perform management functions
 	 */
 	function manage($verb, $args) {
-		$templateMgr =& TemplateManager::getManager();
+		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
-		$journal =& Request::getJournal();
+		$journal = &Request::getJournal();
 		$returner = true;
 
 		switch ($verb) {
@@ -208,7 +204,7 @@ class PiwikPlugin extends GenericPlugin {
 			case 'settings':
 				if ($this->getEnabled()) {
 					$this->import('PiwikSettingsForm');
-					$form = new PiwikSettingsForm($this, $journal->getJournalId());
+					$form = &new PiwikSettingsForm($this, $journal->getJournalId());
 					if (Request::getUserVar('save')) {
 						$form->readInputData();
 						if ($form->validate()) {

@@ -24,7 +24,7 @@ class GoogleAnalyticsPlugin extends GenericPlugin {
 	 */
 	function register($category, $path) {
 		$success = parent::register($category, $path);
-		if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) return true;
+		if (!Config::getVar('general', 'installed')) return false;
 		if ($success && $this->getEnabled()) {
 			// Insert field into author submission page and metadata form
 			HookRegistry::register('Templates::Author::Submit::Authors', array($this, 'metadataField'));

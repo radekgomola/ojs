@@ -161,7 +161,7 @@
 	{url|assign:"siteUrl" page="index"}
 	<p>{translate key="admin.settings.oaiRegistrationDescription" siteUrl=$siteUrl oaiUrl=$oaiUrl}</p>
 </div>
-
+-->
 {if count($availableMetricTypes) > 2}
 	<br />
 	<div id="defaultMetricSelection">
@@ -180,7 +180,7 @@
 			</tr>
 		</table>
 	</div>
-{/if}  -->
+{/if} 
 
 <p><input type="submit" value="{translate key="common.save"}" class="defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="admin" escape=false}'" /></p>
 

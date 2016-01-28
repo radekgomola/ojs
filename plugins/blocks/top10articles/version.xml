@@ -2,20 +2,19 @@
 <!DOCTYPE version SYSTEM "../../../lib/pkp/dtd/pluginVersion.dtd">
 
 <!--
-  * plugins/generic/piwik/version.xml
+  * plugins/blocks/to10articles/version.xml
   *
   * Copyright (c) 2013-2015 Simon Fraser University Library
   * Copyright (c) 2003-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Plugin version information.
-  *
   -->
 <version>
-	<application>piwik</application>
-	<type>plugins.generic</type>
-	<release>1.2.0.0</release>
-	<date>2016-01-28</date>
-        <lazy-load>1</lazy-load>
-        <class>PiwikPlugin</class>
+	<application>top10articles</application>
+	<type>plugins.blocks</type>
+	<release>1.0.0.0</release>
+	<date>2016-01-21</date>
+	<lazy-load>1</lazy-load>
+	<class>Top10articlesBlockPlugin</class>
 </version>

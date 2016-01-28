@@ -7,13 +7,13 @@
 <div class="block" id="searchSmallBlock">
         {if $requestedPage == "search"}
             {if isset($query) && ($query|escape) != ""}
-                {assign var=searchValue value=($query|escape)}
+                {assign var=searchValue value=$query}
             {elseif isset($authors) && ($authors|escape) != ""}
-                {assign var=searchValue value=($authors|escape)}
+                {assign var=searchValue value=$authors}
             {elseif isset($title) && ($title|escape) != ""}
-                {assign var=searchValue value=($title|escape)}
-            {elseif isset($abstract) && ($abstract|escape) != ""}
-                {assign var=searchValue value=($abstract|escape)}
+                {assign var=searchValue value=$title}
+            {elseif isset($abstract) && $abstract != ""}
+                {assign var=searchValue value=$abstract}
             {else}
                 {assign var=searchValue value=""}
             {/if}
@@ -25,7 +25,7 @@
                 <div id="searchSmallMainPart">
                     {capture assign="filterInput"}{call_hook name="Templates::Search::SearchResults::FilterInput" filterName="simpleQuery" filterValue="" size=15}{/capture}
                     {if empty($filterInput)}
-                            <input type="text" id="simpleQuery" name="simpleQuery" size="15" maxlength="255" value="{$searchValue}" class="textField" />
+                            <input type="text" id="simpleQuery" name="simpleQuery" size="15" maxlength="255" value="{$searchValue|escape}" class="textField" />
                     {else}
                             {$filterInput}
                     {/if}

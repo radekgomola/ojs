@@ -1,10 +1,9 @@
 <?php
 
 /**
- * @file plugins/generic/piwik/PiwikSettingsForm.inc.php
+ * @file PiwikSettingsForm.inc.php
  *
- * Copyright (c) 2013-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PiwikSettingsForm
@@ -13,8 +12,10 @@
  * @brief Form for journal managers to modify piwik plugin settings
  */
 
+// $Id: PiwikSettingsForm.inc.php,v 1.6 2008/07/01 01:16:13 asmecher Exp $
 
-import('form.Form');
+
+import('lib.pkp.classes.form.Form');
 
 class PiwikSettingsForm extends Form {
 
@@ -35,7 +36,7 @@ class PiwikSettingsForm extends Form {
 
 		parent::Form($plugin->getTemplatePath() . 'settingsForm.tpl');
 
-		$this->addCheck(new FormValidatorCustom($this, 'piwikUrl', 'required', 'plugins.generic.piwik.manager.settings.piwikUrlRequired', create_function('$piwikUrl', 'return strpos(trim(strtolower_codesafe($piwikUrl)), \'http://\') === 0 ? true : false;')));
+		$this->addCheck(new FormValidatorCustom($this, 'piwikUrl', 'required', 'plugins.generic.piwik.manager.settings.piwikUrlRequired', create_function('$piwikUrl', 'return strpos(trim(strtolower($piwikUrl)), \'https://\') === 0 ? true : false;')));
 		$this->addCheck(new FormValidator($this, 'piwikSiteId', 'required', 'plugins.generic.piwik.manager.settings.piwikSiteIdRequired'));
 	}
 
@@ -60,7 +61,7 @@ class PiwikSettingsForm extends Form {
 	}
 
 	/**
-	 * Save settings.
+	 * Save settings. 
 	 */
 	function execute() {
 		$plugin = &$this->plugin;

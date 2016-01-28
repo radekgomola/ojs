@@ -1,19 +1,20 @@
 {**
- * plugins/generic/piwik/settingsForm.tpl
+ * settingsForm.tpl
  *
- * Copyright (c) 2013-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Piwik plugin settings
  *
+ * $Id: settingsForm.tpl,v 1.3 2008/06/11 18:55:13 asmecher Exp $
  *}
+ 
 {strip}
 {assign var="pageTitle" value="plugins.generic.piwik.manager.piwikSettings"}
 {include file="common/header.tpl"}
 {/strip}
-
-{translate key="plugins.generic.piwik.manager.settings.description"}
+<div id="piwikSettings">
+    <div id="description">{translate key="plugins.generic.piwik.manager.settings.description"}</div>
 
 <div class="separator"></div>
 
@@ -45,5 +46,5 @@
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-
+</div>
 {include file="common/footer.tpl"}

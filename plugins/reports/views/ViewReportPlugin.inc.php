@@ -78,12 +78,11 @@ class ViewReportPlugin extends ReportPlugin {
 		import('classes.db.DBResultRange');
 		$dbResultRange = new DBResultRange(STATISTICS_MAX_ROWS);
 		$page = 3;
-
-		if ($request->getUserVar('metricType') === OJS_METRIC_TYPE_COUNTER) {
+//		if ($request->getUserVar('metricType') === OJS_METRIC_TYPE_COUNTER) {
 			$metricType = OJS_METRIC_TYPE_COUNTER;
-		} else {
-			$metricType = OJS_METRIC_TYPE_LEGACY_DEFAULT;
-		}
+//		} else {
+//			$metricType = OJS_METRIC_TYPE_LEGACY_DEFAULT;
+//		}
 
 		while (true) {
 			$dbResultRange->setPage($page);

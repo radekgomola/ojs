@@ -586,5 +586,26 @@ input.button_lupa:hover{
 .profileLogin {
     font-weight: bold;
 }
+
+.top10articlesList {
+    padding-left:30px;
+}
+.top10articlesList li{
+    margin-bottom:5px;
+}
+
+.searchAbstractGalley {
+    white-space: nowrap;
+}
+
+table.listing td.searchAuthors {
+    padding-left: 30px;
+    font-style: italic;
+    padding-bottom: 15px;
+}
+
+.searchLine {
+    vertical-align: top;
+}
 /* @end */
 

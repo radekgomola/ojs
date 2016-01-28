@@ -50,13 +50,14 @@
 
 {/iterate}
 {if $notFirstYear}<br /></div>{/if}
-
+<div class="archivePaging">
 {if !$issues->wasEmpty()}
 	{page_info iterator=$issues}&nbsp;&nbsp;&nbsp;&nbsp;
 	{page_links anchor="issues" name="issues" iterator=$issues}
 {else}
 	{translate key="current.noCurrentIssueDesc"}
 {/if}
+</div>
 </div>
 {include file="common/footer.tpl"}
 

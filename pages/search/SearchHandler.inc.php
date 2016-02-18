@@ -129,7 +129,7 @@ class SearchHandler extends Handler {
 	 */
 	function search($args, &$request) {
 		$this->validate();
-
+                
 		// Get and transform active filters.
 		$searchFilters = ArticleSearch::getSearchFilters($request);
 		$keywords = ArticleSearch::getKeywordsFromSearchFilters($searchFilters);
@@ -144,10 +144,16 @@ class SearchHandler extends Handler {
 			$searchFilters['fromDate'], $searchFilters['toDate'],
 			$rangeInfo
 		);
-
+                
 		// Prepare and display the search template.
 		$this->setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager();
+                $templateMgr =& TemplateManager::getManager();
+                
+                $journal =& $request->getJournal();
+                $useSimpleSearch = $journal->getSetting('useSimpleSearch');
+                
+                $templateMgr->assign('useSimpleSearch', $useSimpleSearch);
+                
 		$templateMgr->setCacheability(CACHEABILITY_NO_STORE);
 		$templateMgr->assign('jsLocaleKeys', array('search.noKeywordError'));
 		$this->_assignSearchFilters($request, $templateMgr, $searchFilters);
@@ -363,6 +369,112 @@ class SearchHandler extends Handler {
 		$journal =& $request->getJournal();
 		if (!$journal || !$journal->getSetting('restrictSiteAccess')) {
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
+		}
+	}
+        
+        /**
+	 * Show the simple search form
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function simpleSearch($args, &$request) {
+                
+		$this->validate();
+		// Get and transform active filters.
+		$searchFilters = ArticleSearch::getSimpleSearchFilters($request);
+		$keywords = ArticleSearch::getKeywordsFromSearchFilters($searchFilters);
+
+		// Get the range info.
+		$rangeInfo = $this->getRangeInfo('search');
+
+		// Retrieve results.
+		$error = '';
+		$results =& ArticleSearch::retrieveResults(
+			$searchFilters['searchJournal'], $keywords, $error, null, null,
+			$rangeInfo
+		);
+
+		// Prepare and display the search template.
+		$this->setupTemplate($request);
+                $templateMgr =& TemplateManager::getManager();
+                
+                $journal =& $request->getJournal();
+                $useSimpleSearch = $journal->getSetting('useSimpleSearch');
+                
+                $templateMgr->assign('useSimpleSearch', $useSimpleSearch);
+                
+		$templateMgr->setCacheability(CACHEABILITY_NO_STORE);
+		$templateMgr->assign('jsLocaleKeys', array('search.noKeywordError'));
+
+                $this->_assignSimpleSearchFilters($request, $templateMgr, $searchFilters);
+                
+		$templateMgr->assign_by_ref('results', $results);
+		$templateMgr->assign('error', $error);
+		$templateMgr->display('search/search.tpl');
+	}
+        
+        function _assignSimpleSearchFilters(&$request, &$templateMgr, $searchFilters) {
+		// Get the journal id (if any).
+		$journal =& $searchFilters['searchJournal'];
+		$journalId = ($journal ? $journal->getId() : null);
+		$searchFilters['searchJournal'] = $journalId;
+
+		// Assign all filters except for dates which need special treatment.
+		$templateSearchFilters = array();
+                $simpleQuery = '';
+		foreach($searchFilters as $filterName => $filterValue) {
+                    if (isset($templateSearchFilters['searchField']) && !empty($templateSearchFilters['typSimple'])){
+                        break;                        
+                    }
+                    switch($filterName){
+                        case 'query':
+                            if(isset($filterValue) && !empty($filterValue)){
+                                $templateSearchFilters['searchField'] = 'query';
+                            }
+                            break;
+                        case 'abstract':
+                            if(isset($filterValue) && !empty($filterValue)){
+                                $templateSearchFilters['searchField'] = 'abstract';
+                            }
+                            break;
+                        case 'authors':
+                            if(isset($filterValue) && !empty($filterValue)){
+                                $templateSearchFilters['searchField'] = 'authors';
+                            }
+                            break;
+                        case 'title':
+                            if(isset($filterValue) && !empty($filterValue)){
+                                $templateSearchFilters['searchField'] = 'title';
+                            }
+                            break;
+                        case 'galleryFullText':
+                            if(isset($filterValue) && !empty($filterValue)){
+                                $templateSearchFilters['searchField'] = 'galleyFullText';
+                            }
+                            break;
+                        case 'searchJournal':
+                            break;
+                        case 'siteSearch':
+                            break;
+                        default:
+                            if(isset($filterValue) && !empty($filterValue)){
+                                $templateSearchFilters['searchField'] = 'query';
+                            }
+                    }                    
+                    if(empty($simpleQuery) && !in_array($filterName, array('searchJournal', 'siteSearch'))){
+                        $simpleQuery = $filterValue;
+                    }
+		}
+                
+                $templateSearchFilters['simpleQuery'] = $simpleQuery;
+		// Assign the filters to the template.
+		$templateMgr->assign($templateSearchFilters);
+
+		// Assign journal options.
+		if ($searchFilters['siteSearch']) {
+			$journalDao =& DAORegistry::getDAO('JournalDAO');
+			$journals =& $journalDao->getJournalTitles(true);
+			$templateMgr->assign('journalOptions', array('' => AppLocale::Translate('search.allJournals')) + $journals);
 		}
 	}
 }

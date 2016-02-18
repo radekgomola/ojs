@@ -23,6 +23,7 @@ switch ($op) {
 	case 'titles':
 	case 'categories':
 	case 'category':
+        case 'simpleSearch':
 		define('HANDLER_CLASS', 'SearchHandler');
 		import('pages.search.SearchHandler');
 		break;

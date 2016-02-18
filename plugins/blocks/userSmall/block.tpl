@@ -16,7 +16,7 @@
                     </div>
                     <div class="profileLogin">{$loggedInUsername|escape}</div>
                     <div class="profilImg">
-                        <a href="#" onclick="toggle_visibility('userSmallChoose')"><span class="profilImgLink">{translate key="plugins.block.userSmall.advanced"}</span></a>
+                        <a href="#" onclick="toggle_visibility('userSmallChoose')">{translate key="plugins.block.userSmall.advanced"}</a>
                     </div>
                 </div>
                 <div id="userSmallChoose">                    

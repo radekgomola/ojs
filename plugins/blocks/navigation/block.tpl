@@ -12,14 +12,14 @@
 <div class="block" id="sidebarNavigation">
 	<span class="blockTitle">{translate key="plugins.block.navigation.journalContent"}</span>
 
-	<form id="simpleSearchForm" action="{url page="search" op="search"}">
+	<form id="simpleSearchForm" {if $useSimpleSearch}action="{url page="search" op="simpleSearch"}"{else}action="{url page="search" op="search"}"{/if}>
 		<table id="simpleSearchInput">
 			<tr>
 				<td>
 				{capture assign="filterInput"}{call_hook name="Templates::Search::SearchResults::FilterInput" filterName="simpleQuery" filterValue="" size=15}{/capture}
 				{if empty($filterInput)}
 					<label for="simpleQuery">{translate key="navigation.search"} <br />
-					<input type="text" id="simpleQuery" name="simpleQuery" size="15" maxlength="255" value="" class="textField" /></label>
+					<input type="text" id="simpleQuery" name="simpleQuery" size="15" maxlength="255" class="textField" /></label>
 				{else}
 					{$filterInput}
 				{/if}

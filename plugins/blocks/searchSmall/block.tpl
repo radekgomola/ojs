@@ -18,14 +18,14 @@
                 {assign var=searchValue value=""}
             {/if}
         {/if}
-	<form id="smallSearchForm" action="{url page="search" op="search"}">
+	<form id="smallSearchForm" {if $useSimpleSearch}action="{url page="search" op="simpleSearch"}"{else}action="{url page="search" op="search"}"{/if}>
                 <div id="searchSmallSubmit">
-                    <input type="submit" value="{translate key="common.search"}" class="button_lupa" />
+                    <input type="submit" value="{translate key="common.search.lupa"}" class="searchButton" />
                 </div>
                 <div id="searchSmallMainPart">
                     {capture assign="filterInput"}{call_hook name="Templates::Search::SearchResults::FilterInput" filterName="simpleQuery" filterValue="" size=15}{/capture}
                     {if empty($filterInput)}
-                            <input type="text" id="simpleQuery" name="simpleQuery" size="15" maxlength="255" value="{$searchValue|escape}" class="textField" />
+                            <input type="text" id="simpleQuery" name="simpleQuery" size="15" maxlength="255" class="textField" />
                     {else}
                             {$filterInput}
                     {/if}

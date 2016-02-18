@@ -325,6 +325,17 @@ class SetupHandler extends ManagerHandler {
 							array_splice($navItems[$formLocale], $delNavItem, 1);
 							$setupForm->setData('navItems', $navItems);
 						}
+					} else if ($request->getUserVar('uploadJournalPrintStyleSheet')) {
+						if ($setupForm->uploadStyleSheet('journalPrintStyleSheet')) {
+							$editData = true;
+						} else {
+							$setupForm->addError('journalPrintStyleSheet', __('manager.setup.journalPrintStyleSheetInvalid'));
+						}
+
+					} else if ($request->getUserVar('deleteJournalPrintStyleSheet')) {
+						$editData = true;
+						$setupForm->deleteImage('journalPrintStyleSheet');
+
 					}
 					break;
 			}

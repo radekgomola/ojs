@@ -13,9 +13,12 @@
   -->
  
 <locale name="cs_CZ" full_name="Čeština">
-	<message key="plugins.reports.counter.description">COUNTER plugin umožňuje zaznamenávání a vytváření zpráv o aktivitě na stránkách.</message>
-	<message key="plugins.reports.counter">COUNTER statistiky</message>
-
+    <message key="plugins.reports.counter.description"><![CDATA[COUNTER plugin umožňuje zaznamenávání a vytváření zpráv o aktivitě na stránkách. Využívá standard <a href="http://www.projectcounter.org">COUNTER</a>.]]></message>
+        <message key="plugins.reports.counter">COUNTER statistiky</message>
+        <message key="plugins.reports.counter.1a.introduction">Tyto odkazy generují výkazy COUNTER-ready založené na verzi 3.</message>
+	<message key="plugins.reports.counter.1a.name">Report COUNTER JR1 (R3)</message>
+	<message key="plugins.reports.counter.1a.xml">XML verze</message>
+	<message key="plugins.reports.counter.1a.description">Zpráva časopisu 1 (R3): Požadavek na Full-Text článku po měsících a časopisech</message>
 	<message key="plugins.reports.counter.1a.title">Zpráva časopisu 1 (R3): Požadavek na Full-Text článku po měsících a časopisech</message>
 	<message key="plugins.reports.counter.1a.title1">Zpráva časopisu 1 (R3)</message>
 	<message key="plugins.reports.counter.1a.title2">Počet úspěšných požadavků na Full-Text článků po měsících a časopisech (Rok {$year})</message>

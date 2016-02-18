@@ -549,29 +549,29 @@ input.cz{
 #searchSmallMainPart input {
     width: 130px;
 }
-input.button_lupa {
+input.searchButton {
+    font-family: FontAwesome;
   margin: 0;
   padding: 0;
   border: none;
   width:25px;
   height:25px;
   cursor: pointer;
-  text-indent: 110%;
   white-space: nowrap;
   overflow: hidden;
+  background: transparent;
+  font-size: 20px;
   -webkit-transform:scale(1.0); /*Webkit: Scale down image to 0.8x original size*/
   -moz-transform:scale(1.0); /*Mozilla scale version*/
   -o-transform:scale(1.0); /*Opera scale version*/
-  -webkit-transition-duration: 0.5s; /*Webkit: Animation duration*/
-  -moz-transition-duration: 0.5s; /*Mozilla duration version*/
-  -o-transition-duration: 0.5s; /*Opera duration version*/
-  background: url(../images/lupa_small.png) no-repeat left top;
+  -webkit-transition-duration: 0.3s; /*Webkit: Animation duration*/
+  -moz-transition-duration: 0.3s; /*Mozilla duration version*/
+  -o-transition-duration: 0.3s; /*Opera duration version*/
+  
 }
 
-input.button_lupa:hover{
-    -webkit-transform:scale(1.1); /*Webkit: Scale up image to 1.2x original size*/
-    -moz-transform:scale(1.1); /*Mozilla scale version*/
-    -o-transform:scale(1.1); /*Opera scale version*/
+input.searchButton:hover{
+    color: #888888;
 }
 
 #authorString, #articleAbstract, #articleCitace, #articleSubject, #articleFullText, #articleCitations {
@@ -606,6 +606,25 @@ table.listing td.searchAuthors {
 
 .searchLine {
     vertical-align: top;
+}
+
+.simpleQueryField{
+    width: 500px;
+}
+
+#simpleSearchFormFull input.searchButton {
+    width: 25px;
+    height: 25px;    
+    margin-left: 10px;
+}
+
+.radioButton{
+    margin-left:20px;
+    margin-right: 5px;
+}
+
+.first{
+    margin-left: 0px;
 }
 /* @end */
 

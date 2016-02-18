@@ -53,12 +53,17 @@ class NavigationBlockPlugin extends BlockPlugin {
 	 * @return string
 	 */
 	function getContents(&$templateMgr) {
+                $journal =& Request::getJournal();
+                if($journal){
+                    $useSimpleSearch = $journal->getSetting('useSimpleSearch');
+
+                    $templateMgr->assign('useSimpleSearch', $useSimpleSearch);
+                }
 		$templateMgr->assign('articleSearchByOptions', array(
 			'query' => 'search.allFields',
 			'authors' => 'search.author',
 			'title' => 'article.title',
 			'abstract' => 'search.abstract',
-			'indexTerms' => 'search.indexTerms',
 			'galleyFullText' => 'search.fullText'
 		));
 		return parent::getContents($templateMgr);

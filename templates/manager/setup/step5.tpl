@@ -642,8 +642,36 @@ function prepBlockFields() {
                         </select>
                 </td>
         </tr>
-</select>
 </table>
+</div>
+<div class="separator"></div>
+<div id="simpleSearchSetup">
+<h3>5.12 {translate key="manager.setup.simpleSearch"}</h3>
+
+<p>{translate key="manager.setup.simpleSearch.description"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label"><label for="useSimpleSearch">{translate key="manager.setup.useSimpleSearch.allow"}</label></td>
+		<td width="80%" class="value"><input type="checkbox" name="useSimpleSearch" id="useSimpleSearch" value="1" {if !$useSimpleSearch}{else} checked="checked"{/if} /></td>
+	</tr>
+</table>
+</div>
+        <div class="separator"></div>
+<div id="journalPrintCss">
+<h3>5.13 {translate key="manager.setup.journalPrintCss"}</h3>
+
+<p>{translate key="manager.setup.journalPrintCss.description"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label"><label for="useSimpleSearch">{translate key="manager.setup.journalPrintCss.styleSheet"}</label></td>
+		<td width="80%" class="value"><input type="file" name="journalPrintStyleSheet" id="journalPrintStyleSheet" class="uploadField" /> <input type="submit" name="uploadJournalPrintStyleSheet" value="{translate key="common.upload"}" class="button" /></td>manager.setup.journalPrintStyleSheetInvalid
+	</tr>
+</table>
+{if $journalPrintStyleSheet}
+{translate key="common.fileName"}: <a href="{$publicFilesDir}/{$journalPrintStyleSheet.uploadName|escape:"url"}" class="file">{$journalPrintStyleSheet.name|escape}</a> {$journalPrintStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteJournalPrintStyleSheet" value="{translate key="common.delete"}" class="button" />
+{/if}
 </div>
 <div class="separator"></div>
 <p><input type="submit" onclick="prepBlockFields()" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>

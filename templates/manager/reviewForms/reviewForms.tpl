@@ -58,7 +58,8 @@ $(document).ready(function() { setupTableDND("#dragTable", "moveReviewForm"); })
 			{/strip}
 			{if !$canEdit}<a href="{url op="copyReviewForm" path=$reviewForm->getId()}" class="action">{translate key="common.copy"}</a>&nbsp;|{/if}
 			<a href="{url op="previewReviewForm" path=$reviewForm->getId()}" class="action">{translate key="common.preview"}</a>&nbsp;|
-			{if $canEdit}<a href="{url op="deleteReviewForm" path=$reviewForm->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.reviewForms.confirmDeleteUnpublished"}')" class="action">{translate key="common.delete"}</a>&nbsp;|{/if}
+			{if $canEdit}<a href="{url op="deleteReviewForm" path=$reviewForm->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.reviewForms.confirmDeleteUnpublished"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;{/if}{call_hook name="Templates::Manager::ReviewForms::PDFGenerator" id=$reviewForm->getId()}
+                        
 			<a href="{url op="moveReviewForm" d=u id=$reviewForm->getId()}" class="action">&uarr;</a>&nbsp;<a href="{url op="moveReviewForm" d=d id=$reviewForm->getId()}" class="action">&darr;</a>
 		</td>
 	</tr>

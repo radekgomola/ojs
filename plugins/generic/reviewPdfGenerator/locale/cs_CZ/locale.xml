@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--**
+ * @file MunipressDOIFinderPlugin.inc.php
+ *
+ * Copyright (c) 20015 Munipress
+ *
+ * @class MunipressDOIFinderPlugin
+ * @ingroup plugins_generic_munipressdoifinder
+ *
+ *-->
+ 
+<locale name="cs_CZ" full_name="Czech">
+	<message key="plugins.generic.reviewpdfgenerator.displayName">PDF generátor recenzních posudků</message>
+	<message key="plugins.generic.reviewpdfgenerator.description">Umožní manažerovi časopisu generovat z vytvořených recenzních posudků PDF verze, které je možné následně zaslat e-mailem nebo nasdílet jiným způsobem (v OJS doporučuji doplněk "Prohlížeč veřejné složky časopisu).</message>
+	<message key="plugins.generic.reviewpdfgenerator.linklabel">Generovat PDF</message>
+</locale>

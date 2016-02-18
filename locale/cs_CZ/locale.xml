@@ -1494,4 +1494,13 @@ Masarykovy univerzity</message>
         
         <message key="login.hint.username"></message>
         <message key="login.hint.password"></message>
+        <message key="search.all">Vše</message>
+        <message key="search.searchIn">Vyhledávat v:</message>
+        <message key="common.search.lupa">&#xf002;</message>
+        
+        <message key="manager.setup.simpleSearch">Jednoduchý vyhledávač</message>
+        <message key="manager.setup.simpleSearch.description">Umožňuje zapnout jednoduchý vyhledávač. Není možno vytvářet kombinované vyhledávací dotazy!</message>
+        <message key="manager.setup.useSimpleSearch.allow">Povolit Jednoduchý vyhledávač</message>
+        <message key="manager.setup.journalPrintCss">Rozložení tiskové strany</message>
+        <message key="manager.setup.journalPrintCss.description"></message>
 </locale>

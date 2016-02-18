@@ -31,9 +31,46 @@
 	{assign var=journalId value=$article->getJournalId()}
 	{assign var=journal value=$journals[$journalId]}
 	{assign var=section value=$sections[$sectionId]}
+        {assign var=skipGalleyId value=$article->getSkipGalleyId()}
+        {assign var=skipLandingPage value=$article->getSkipLandingPage()}
+        {assign var=articlePath value=$article->getBestArticleId($currentJournal)}
+
+        {if $skipLandingPage && $skipGalleyId && $skipGalleyId > 0}
+            {assign var=skipGalley value=$article->getGalleyById($skipGalleyId)}
+        {else}
+            {assign var=skipGalley value=0}
+        {/if}
 	{if $issue->getPublished() && $section && $journal}
 	<li>
-            <a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()}" class="file"><span class="clanek">{$article->getLocalizedTitle()|strip_unsafe_html}</span></a><br />
+            {if $skipGalley}
+                {if $skipGalley->isPdfGalley()}
+                        <script type="text/javascript">
+                            if(detectIE()===10 || detectIE()===11){ldelim}
+                                document.write('<a href="{url page="article" op="viewFile" path=$articlePath|to_array:$skipGalley->getBestGalleyId($currentJournal)}" target="_blank">{$article->getLocalizedTitle()|strip_unsafe_html}</a>');                                    
+                            {rdelim}
+                            else{ldelim}
+                                document.write('<a href="{url page="article" op="view" path=$articlePath|to_array:$skipGalley->getBestGalleyId($currentJournal)}" {if $skipGalley->getRemoteURL()}target="_blank" {/if}>{$article->getLocalizedTitle()|strip_unsafe_html}</a>');
+                            {rdelim}                                    
+                        </script>
+                {else}
+
+                    <a href="{url page="article" op="view" path=$articlePath|to_array:$skipGalley->getBestGalleyId($currentJournal)}" {if $skipGalley->getRemoteURL()}target="_blank" {/if}>{$article->getLocalizedTitle()|strip_unsafe_html}</a>
+                {/if}
+                {if $subscriptionRequired && $showGalleyLinks && $restrictOnlyPdf}
+                        {if $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN || !$skipGalley->isPdfGalley()}
+                                <img class="accessLogo" src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_open_medium.gif" alt="{translate key="article.accessLogoOpen.altText"}" />
+                        {else}
+                                <img class="accessLogo" src="{$baseUrl}/lib/pkp/templates/images/icons/fulltext_restricted_medium.gif" alt="{translate key="article.accessLogoRestricted.altText"}" />
+                        {/if}
+                {/if}
+            {else}
+                {if !$hasAccess || $hasAbstract || $hasCitace}
+                    <a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()}" class="file"><span class="clanek">{$article->getLocalizedTitle()|strip_unsafe_html}</span></a>
+                {else}
+                        {$article->getLocalizedTitle()|strip_unsafe_html}
+                {/if}
+            {/if}
+            </a><br />
 		{if (!$issueUnavailable || $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN)}
 		{foreach from=$article->getGalleys() item=galley name=galleyList}
                     {if $galley->isPdfGalley()}

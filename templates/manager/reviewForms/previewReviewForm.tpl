@@ -30,13 +30,13 @@
 {/if}
 
 <br/>
-
+<div id="reviewFormPreview">
 <h3>{$reviewForm->getLocalizedTitle()}</h3>
 <p>{$reviewForm->getLocalizedDescription()}</p>
 
 {foreach from=$reviewFormElements name=reviewFormElements item=reviewFormElement}
-	<p>{$reviewFormElement->getLocalizedQuestion()}{if $reviewFormElement->getRequired()}*{/if}</p>
-	<p>
+	<h4>{$reviewFormElement->getLocalizedQuestion()}{if $reviewFormElement->getRequired()}*{/if}</h4>
+	<p class="reviewFormElement-{$reviewFormElement->getId()}}">
 		{if $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_SMALL_TEXT_FIELD}
 			<input type="text" size="10" maxlength="40" class="textField" />
 		{elseif $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_TEXT_FIELD}
@@ -75,5 +75,6 @@
 </form>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
+</div>
 {include file="common/footer.tpl"}
 

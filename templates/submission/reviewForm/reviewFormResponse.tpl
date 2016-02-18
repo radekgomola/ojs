@@ -29,7 +29,8 @@
 
 <form id="saveReviewFormResponse" method="post" action="{url op="saveReviewFormResponse" path=$reviewId|to_array:$reviewForm->getId()}">
 	{foreach from=$reviewFormElements name=reviewFormElements key=elementId item=reviewFormElement}
-		<p>{$reviewFormElement->getLocalizedQuestion()} {if $reviewFormElement->getRequired() == 1}*{/if}</p>
+            <div class="reviewFormElement-{$reviewFormElement->getId()}}">
+		<h4>{$reviewFormElement->getLocalizedQuestion()} {if $reviewFormElement->getRequired() == 1}*{/if}</h4>
 		<p>
 			{if $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_SMALL_TEXT_FIELD}
 				<input {if $disabled}onkeypress="return ((event.keyCode >= 37 && event.keyCode <= 40) || event.charCode == 99);" {/if}type="text" name="reviewFormResponses[{$elementId}]" id="reviewFormResponses-{$elementId}" value="{$reviewFormResponses[$elementId]|escape}" size="10" maxlength="40" class="textField" />
@@ -57,6 +58,7 @@
 				</select>
 			{/if}
 		</p>
+            </div>
 	{/foreach}
 
 	<br />

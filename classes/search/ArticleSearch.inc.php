@@ -479,6 +479,59 @@ class ArticleSearch {
 			ARTICLE_SEARCH_COVERAGE => 'coverage'
 		);
 	}
+        
+        function getSimpleSearchFilters(&$request) {
+                
+                $simpleQuery = $request->getUserVar('simpleQuery');
+                $typSimple = $request->getUserVar('searchField');
+                
+                if($typSimple == 'abstract'){
+                    $abstract = $simpleQuery;
+                }
+                else if($typSimple == 'authors'){
+                    $authors = $simpleQuery;
+                }
+                else if($typSimple == 'title'){
+                    $title = $simpleQuery;
+                }
+                else if($typSimple == 'galleyFullText'){
+                    $galleyFullText = $simpleQuery;
+                }
+               else {
+                    $query = $simpleQuery;
+                }
+                
+		$searchFilters = array(
+                        'query' => $query,
+			'searchJournal' => $request->getUserVar('searchJournal'),
+			'abstract' => $abstract,
+			'authors' => $authors,
+			'title' => $title,
+			'galleyFullText' => $galleyFullText,
+		);
+
+		// Instantiate the journal.
+		$journal =& $request->getJournal();
+		$siteSearch = !((boolean)$journal);
+		if ($siteSearch) {
+			$journalDao =& DAORegistry::getDAO('JournalDAO'); /* @var $journalDao JournalDAO */
+			if (!empty($searchFilters['searchJournal'])) {
+				$journal =& $journalDao->getById($searchFilters['searchJournal']);
+			} elseif (array_key_exists('journalTitle', $request->getUserVars())) {
+				$journals =& $journalDao->getJournals(
+					false, null, JOURNAL_FIELD_TITLE,
+					JOURNAL_FIELD_TITLE, 'is', $request->getUserVar('journalTitle')
+				);
+				if ($journals->getCount() == 1) {
+					$journal =& $journals->next();
+				}
+			}
+		}
+		$searchFilters['searchJournal'] =& $journal;
+		$searchFilters['siteSearch'] = $siteSearch;
+
+		return $searchFilters;
+	}
 }
 
 ?>

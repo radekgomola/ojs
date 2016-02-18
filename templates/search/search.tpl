@@ -11,7 +11,43 @@
 {assign var="pageTitle" value="navigation.search"}
 {include file="common/header.tpl"}
 {/strip}
-
+{if $useSimpleSearch}
+<div id="simpleSearch">
+	<script type="text/javascript">
+		$(function() {ldelim}
+			// Attach the form handler.
+			$('#searchForm').pkpHandler('$.pkp.pages.search.SearchFormHandler');
+		{rdelim});
+	</script>
+	<form id="simpleSearchFormFull" action="{url op="simpleSearch"}">
+		<table class="data">
+			<tr valign="top">
+				<td class="value" colspan="2">
+						<input type="text" id="simpleQuery" name="simpleQuery" value="{$simpleQuery|escape}" class="textField simpleQueryField" />
+                                                <input type="submit" value="{translate key="common.search.lupa"}" class="searchButton"/>
+                                </td>					
+			</tr>
+                        <tr valign="top">
+                                <td class="label"><label for="searchJournal">{translate key="search.searchIn"}</label></td>
+				<td class="value">
+						<input type="radio" name="searchField" id="query" value="query" class="radioButton first" {if $searchField == 'query'}checked {/if}/>{translate key="search.all"}
+                                                <input type="radio" name="searchField" id="abstract" value="abstract" class="radioButton" {if $searchField == 'abstract'}checked {/if}/>{translate key="search.abstract"}
+                                                <input type="radio" name="searchField" id="authors" value="authors" class="radioButton" {if $searchField == 'authors'}checked {/if}/>{translate key="search.author"}
+                                                <input type="radio" name="searchField" id="title" value="title" class="radioButton" {if $searchField == 'title'}checked {/if}/>{translate key="article.title"}
+                                                <input type="radio" name="searchField" id="galleyFullText" value="galleyFullText" class="radioButton" {if $searchField == 'galleyFullText'}checked {/if}/>{translate key="search.fullText"}
+                                                
+				</td>
+			</tr>
+			{if $siteSearch}
+				<tr valign="top">
+					<td class="label"><label for="searchJournal">{translate key="search.withinJournal"}</label></td>
+					<td class="value"><select name="searchJournal" id="searchJournal" class="selectMenu">{html_options options=$journalOptions selected=$searchJournal}</select></td>
+				</tr>
+			{/if}
+                </table>
+	</form>
+</div>
+{else}
 <div id="search">
 	<script type="text/javascript">
 		$(function() {ldelim}
@@ -96,7 +132,8 @@
 		{/if}
 	</form>
 </div>
-<br />
+{/if}
+        <br />
 
 {call_hook name="Templates::Search::SearchResults::PreResults"}
 

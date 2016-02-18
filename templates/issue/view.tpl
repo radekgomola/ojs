@@ -26,9 +26,11 @@
 	{else}
 		{url|assign:"currentUrl" page="issue" op="current" path="showToc"}
 	{/if}
-	<ul class="menu">
+	{*<ul class="menu">
 		<li><a href="{$currentUrl}">{translate key="issue.toc"}</a></li>
-	</ul>
+	</ul>*}
+        <h3 class="obsahLink"><a href="{$currentUrl}">{translate key="issue.toc"}</a></h3>
+            
 	<br />
 	{if $coverPagePath}<div id="issueCoverImage"><a href="{$currentUrl}"><img src="{$coverPagePath|escape}{$issue->getFileName($locale)|escape}"{if $coverPageAltText != ''} alt="{$coverPageAltText|escape}"{else} alt="{translate key="issue.coverPage.altText"}"{/if}{if $width} width="{$width|escape}"{/if}{if $height} height="{$height|escape}"{/if}/></a></div>{/if}
 	<br /><div id="issueCoverDescription">{$issue->getLocalizedCoverPageDescription()|strip_unsafe_html|nl2br}</div>

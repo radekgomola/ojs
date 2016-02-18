@@ -110,6 +110,12 @@ class TemplateManager extends PKPTemplateManager {
 				if ($journalStyleSheet) {
 					$this->addStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getJournalFilesPath($journal->getId()) . '/' . $journalStyleSheet['uploadName']);
 				}
+                                
+                                // Assign stylesheets for print page
+				$journalPrintStyleSheet = $journal->getSetting('journalPrintStyleSheet');
+				if ($journalPrintStyleSheet) {
+					$this->addPrintStyleSheet($this->request->getBaseUrl() . '/' . $publicFileManager->getJournalFilesPath($journal->getId()) . '/' . $journalPrintStyleSheet['uploadName']);
+				}
 
 				import('classes.payment.ojs.OJSPaymentManager');
 				$paymentManager = new OJSPaymentManager($this->request);

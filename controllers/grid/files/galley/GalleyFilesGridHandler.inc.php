@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/files/galley/GalleyFilesGridHandler.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class GalleyFilesGridHandler
@@ -96,7 +96,6 @@ class GalleyFilesGridHandler extends FileListGridHandler {
 		$representation = $this->getAuthorizedContextObject(ASSOC_TYPE_REPRESENTATION);
 		$this->setId('articleGalleyFiles-' . $representation->getId());
 		$this->setTitle('submission.galleyFiles');
-		$this->setInstructions('submission.proofReadingDescription');
 	}
 
 

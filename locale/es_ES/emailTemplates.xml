@@ -2,10 +2,10 @@
 <!DOCTYPE email_texts SYSTEM "../../lib/pkp/dtd/emailTemplateData.dtd">
 
 <!--
-  * locale/es_ES/emailTemplateData.xml
+  * locale/es_ES/emailTemplates.xml
   *
-  * Copyright (c) 2014-2015 Simon Fraser University Library
-  * Copyright (c) 2003-2015 John Willinsky
+  * Copyright (c) 2014-2016 Simon Fraser University Library
+  * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localized email templates XML file.
@@ -29,7 +29,6 @@ Cambiar mi contraseña: {$url}<br />
 		<body><![CDATA[Su contraseña en {$siteTitle} se ha cambiado sin problema. Por favor, guarde en lugar seguro su nombre de usuaria/o y contraseña, ya que son necesarios para trabajar con la revista.<br />
 <br />
 Nombre de usuaria/o: {$username}<br />
-Nueva contraseña: {$password}<br />
 <br />
 {$principalContactSignature}]]></body>
 		<description>Este correo se envía a un/a usuario/a registrado/a una vez han cambiado su contraseña siguiendo el procedimiento descrito en el correo-e PASSWORD_RESET_CONFIRM.</description>
@@ -49,7 +48,7 @@ Gracias,<br />
 		<subject>Nuevo número publicado</subject>
 		<body><![CDATA[Estimados/as lectores/as:<br />
 <br />
-{$contextName} acaba de publicar su último número en <a href="{$journalUrl}">{$journalUrl}</a>. A continuación le mostramos la tabla de contenidos, después puede visitar nuestro sitio web para consultar los artículos que sean de su interés.<br />
+{$contextName} acaba de publicar su último número en <a href="{$contextUrl}">{$contextUrl}</a>. A continuación le mostramos la tabla de contenidos, después puede visitar nuestro sitio web para consultar los artículos que sean de su interés.<br />
 <br />
 Gracias por mantener el interés en nuestro trabajo,<br />
 {$editorialContactSignature}]]></body>
@@ -78,7 +77,7 @@ Si tiene cualquier pregunta no dude en contactar con nosotros/as.<br />
 		<subject>Ahora el Número es Acceso Libre</subject>
 		<body><![CDATA[Lectores:<br />
 <br />
-	{$contextName} acaba de hacer disponible de forma acceso libre el siguiente número. Los invitamos a revisar la Tabla de Contenido aquí y después visite nuestra página Web  (<a href="{$journalUrl}">{$journalUrl}</a>) para consultar los artículos que sean de su interés.<br />
+	{$contextName} acaba de hacer disponible de forma acceso libre el siguiente número. Los invitamos a revisar la Tabla de Contenido aquí y después visite nuestra página Web  (<a href="{$contextUrl}">{$contextUrl}</a>) para consultar los artículos que sean de su interés.<br />
 <br />
 	Gracias por mantener el interés en nuestro trabajo,<br />
 	{$editorialContactSignature}]]></body>
@@ -137,11 +136,11 @@ Si tiene cualquier pregunta no dude en contactar con nosotros/as.<br />
 		<subject>Petición de Archivado para {$contextName}</subject>
 		<body><![CDATA[Estimado/a [Bibliotecaria/o Universitaria/o]<br />
 <br />
-{$contextName} &amp;lt;<a href="{$journalUrl}">{$journalUrl}</a>&amp;gt;, es una revista en la que un miembro de su Facultad/Universidad, [nombre de la persona], colabora como [cargo que desempeña]. La revista está intentando crear un archivo LOCKSS (Lots of Copies Keep Stuff Safe) con esta y otras bibliotecas universitarias.<br />
+{$contextName} &amp;lt;<a href="{$contextUrl}">{$contextUrl}</a>&amp;gt;, es una revista en la que un miembro de su Facultad/Universidad, [nombre de la persona], colabora como [cargo que desempeña]. La revista está intentando crear un archivo LOCKSS (Lots of Copies Keep Stuff Safe) con esta y otras bibliotecas universitarias.<br />
 <br />
 [Breve descripción de la revista]<br />
 <br />
-La URL para el Manifiesto Editorial LOCKSS para nuestra revista es: <a href="{$journalUrl}">{$journalUrl}</a>/gateway/lockss<br />
+La URL para el Manifiesto Editorial LOCKSS para nuestra revista es: <a href="{$contextUrl}">{$contextUrl}</a>/gateway/lockss<br />
 <br />
 Entendemos que ya está participando en LOCKSS. Si podemos proporcionarle metadatos adicionales para registrar nuestra revista con su versión de LOCKSS, estaremos encantados/as de hacerlo.<br />
 <br />
@@ -153,7 +152,7 @@ Gracias,<br />
 		<subject>Petición de archivo para {$contextName}</subject>
 		<body><![CDATA[Estimado/a [Bibliotecario/a Universitario/a]<br />
 <br />
-{$contextName} &amp;lt;<a href="{$journalUrl}">{$journalUrl}</a>&amp;gt;, es una revista en la que un miembro de su Facultad/Universidad, [nombre de la persona], colabora como [cargo que desempeña]. La revista está intentando crear un archivo LOCKSS (Lots of Copies Keep Stuff Safe) con esta y otras bibliotecas universitarias.<br />
+{$contextName} &amp;lt;<a href="{$contextUrl}">{$contextUrl}</a>&amp;gt;, es una revista en la que un miembro de su Facultad/Universidad, [nombre de la persona], colabora como [cargo que desempeña]. La revista está intentando crear un archivo LOCKSS (Lots of Copies Keep Stuff Safe) con esta y otras bibliotecas universitarias.<br />
 <br />
 [Breve descripción de la revista]<br />
 <br />
@@ -171,7 +170,7 @@ Gracias,<br />
 <br />
 Gracias por enviarnos su manuscrito &quot;{$submissionTitle}&quot; a {$contextName}. Gracias al sistema de gestión de revistas online que usamos podrá seguir su progreso a través del proceso editorial identificándose en el sitio web de la revista:<br />
 <br />
-URL del manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrito: {$submissionUrl}<br />
 Nombre de usuaria/o: {$authorUsername}<br />
 <br />
 Si tiene cualquier pregunta no dude en contactar con nosotros/as. Gracias por tener en cuenta esta revista para difundir su trabajo.<br />
@@ -211,7 +210,7 @@ Tras una revisión inicial de &quot;{$submissionTitle}&quot; se ha decidido que 
 <br />
 Se le ha asignado el envío, &quot;{$submissionTitle},&quot; a {$contextName} para que lo revise en el proceso editorial como Editor/a de Sección.<br />
 <br />
-URL del envío: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del envío: {$submissionUrl}<br />
 Usuario/a: {$editorUsername}<br />
 <br />
 Gracias,<br />
@@ -224,7 +223,7 @@ Gracias,<br />
 <br />
 Tengo el convencimiento de que sería un/a excelente revisor/a del manuscrito, &quot;{$submissionTitle},&quot; que ha sido enviado a {$contextName}. A continuación encontrará un extracto del envío, con la esperanza de que aceptará llevar a cabo esta importante tarea para nosotros.<br />
 <br />
-Por favor, identifíquese en la revista antes de {$weekLaterDate} para decirnos si hará o no la revisión, así como para tener acceso al envío y para registrar su revisión y recomendación. La dirección es <a href="{$journalUrl}">{$journalUrl}</a><br />
+Por favor, identifíquese en la revista antes de {$responseDueDate} para decirnos si hará o no la revisión, así como para tener acceso al envío y para registrar su revisión y recomendación. La dirección es <a href="{$contextUrl}">{$contextUrl}</a><br />
 <br />
 La revisión propiamente dicha debe estar lista para el {$reviewDueDate}.<br />
 <br />
@@ -250,7 +249,7 @@ Resumen<br />
 <br />
 Tengo el convencimiento de que sería un/a excelente revisor/a del manuscrito, &quot;{$submissionTitle},&quot; que ha sido enviado a {$contextName}. A continuación encontrará un extracto del envío, con la esperanza de que aceptará llevar a cabo esta importante tarea para nosotros.<br />
 <br />
-Por favor, identifíquese en la revista antes de {$weekLaterDate} para decirnos si hará o no la revisión, así como para tener acceso al envío y para registrar su revisión y recomendación. La dirección es <a href="{$journalUrl}">{$journalUrl}</a><br />
+Por favor, identifíquese en la revista antes de {$responseDueDate} para decirnos si hará o no la revisión, así como para tener acceso al envío y para registrar su revisión y recomendación. La dirección es <a href="{$contextUrl}">{$contextUrl}</a><br />
 <br />
 La revisión propiamente dicha debe estar lista para el {$reviewDueDate}.<br />
 <br />
@@ -276,7 +275,7 @@ Resumen<br />
 <br />
 Tengo el convencimiento de que sería un/a excelente revisor/a del manuscrito, &quot;{$submissionTitle},&quot; que ha sido enviado a {$contextName}. A continuación encontrará un extracto del envío, con la esperanza de que aceptará llevar a cabo esta importante tarea para nosotros. A continuación le mostramos las Normas de Revisión de esta revista y adjunto a este correo-e recibirá el envío. Debería enviarme por correo-e su revisión del envío, así como su recomendación antes del {$reviewDueDate}.<br />
 <br />
-Le ruego me conteste a este correo-e antes del {$weekLaterDate} y me comunique si puede y quiere hacer la revisión.<br />
+Le ruego me conteste a este correo-e antes del {$responseDueDate} y me comunique si puede y quiere hacer la revisión.<br />
 <br />
 Gracias por tener en cuenta esta solicitud.<br />
 <br />
@@ -521,7 +520,7 @@ Gracias por prepara las galeradas para el manuscrito &quot;{$submissionTitle},&q
 <br />
 Le rogamos que se encargue de la corrección de las galeradas de su manuscrito &quot;{$submissionTitle},&quot; para {$contextName}. Para ver las galeradas, identifíquese en la revista a través del enlace que le mostramos a continuación. Pinche en la opción VER PRUEBA para leer lo que será la versión publicada y buscar sólo errores tipográficos y de maquetación sólo. Registre estos errores en la caja de Correcciones de Pruebas, siguiendo las instrucciones proporcionadas.<br />
 <br />
-URL del manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrito: {$submissionUrl}<br />
 <br />
 Si no puede llevar a cabo esta tarea en este momento o tiene cualquier pregunta, póngase en contacto con nosotros/as. Gracias por su contribución a esta revista.<br />
 <br />
@@ -554,7 +553,7 @@ Si se ha suscrito a nuestro servicio de notificación recibirá un correo-e con 
 <br />
 Le rogaría que corrigiera las pruebas de las galeradas de su manuscrito &quot;{$submissionTitle},&quot; para {$contextName}.<br />
 <br />
-URL del manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrito: {$submissionUrl}<br />
 Nombre de usuaria/o: {$proofreaderUsername}<br />
 <br />
 Si no puede llevar a cabo esta tarea en este momento o tiene cualquier pregunta, póngase en contacto con nosotros/as. Gracias por su contribución a esta revista.<br />
@@ -586,7 +585,7 @@ Gracias por corregir las pruebas de las galeradas del manuscrito &quot;{$submiss
 <br />
 Le solicitamos que proceda a hacer las correcciones solicitadas una vez corregidas las pruebas de las galeradas del manuscrito &quot;{$submissionTitle},&quot; para {$contextName}.<br />
 <br />
-URL del manuscrito: <a href="{$submissionUrl}">{$submissionUrl}</a><br />
+URL del manuscrito: {$submissionUrl}<br />
 Nombre de usuaria/o: {$layoutEditorUsername}<br />
 <br />
 Si no puede llevar a cabo esta tarea en este momento o tiene cualquier pregunta, póngase en contacto con nosotros/as. Gracias por su contribución a esta revista.<br />

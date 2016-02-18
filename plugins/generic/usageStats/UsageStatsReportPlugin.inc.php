@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/usageStats/UsageStatsReportPlugin.inc.php
  *
- * Copyright (c) 2013-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2013-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UsageStatsReportPlugin
@@ -66,6 +66,7 @@ class UsageStatsReportPlugin extends PKPUsageStatsReportPlugin {
 			STATISTICS_DIMENSION_FILE_TYPE,
 			STATISTICS_DIMENSION_REPRESENTATION_ID,
 			STATISTICS_DIMENSION_SUBMISSION_ID,
+			STATISTICS_DIMENSION_ISSUE_ID,
 			STATISTICS_DIMENSION_CONTEXT_ID,
 			STATISTICS_DIMENSION_CITY,
 			STATISTICS_DIMENSION_REGION,
@@ -104,7 +105,8 @@ class UsageStatsReportPlugin extends PKPUsageStatsReportPlugin {
 
 		// Article file downloads.
 		$columns = array(STATISTICS_DIMENSION_ASSOC_TYPE,
-			STATISTICS_DIMENSION__ID,
+			STATISTICS_DIMENSION_ASSOC_ID,
+			STATISTICS_DIMENSION_ISSUE_ID,
 			STATISTICS_DIMENSION_SUBMISSION_ID,
 			STATISTICS_DIMENSION_MONTH,
 			STATISTICS_DIMENSION_COUNTRY);
@@ -113,18 +115,18 @@ class UsageStatsReportPlugin extends PKPUsageStatsReportPlugin {
 			'metricType' => $metricType, 'columns' => $columns, 'filter' => $filter,
 			'aggregationColumns' => $aggregationColumns));
 
-		// Monograph abstract views.
+		// Article abstract views.
 		$filter = array(STATISTICS_DIMENSION_ASSOC_TYPE => ASSOC_TYPE_SUBMISSION);
-		array_unshift($reports, array('nameLocaleKey' => 'manager.statistics.reports.defaultReport.monographAbstract',
+		array_unshift($reports, array('nameLocaleKey' => 'manager.statistics.reports.defaultReport.articleAbstract',
 			'metricType' => $metricType, 'columns' => $columns, 'filter' => $filter,
 			'aggregationColumns' => $aggregationColumns));
 
-		// Series main page views.
+		// Issue main page views.
 		$columns = array(STATISTICS_DIMENSION_ASSOC_TYPE,
 			STATISTICS_DIMENSION_MONTH,
 			STATISTICS_DIMENSION_COUNTRY);
-		$filter = array(STATISTICS_DIMENSION_ASSOC_TYPE => ASSOC_TYPE_SERIES);
-		array_unshift($reports, array('nameLocaleKey' => 'manager.statistics.reports.defaultReport.seriesIndexPageViews',
+		$filter = array(STATISTICS_DIMENSION_ASSOC_TYPE => ASSOC_TYPE_ISSUE);
+		array_unshift($reports, array('nameLocaleKey' => 'manager.statistics.reports.defaultReport.issuePageViews',
 			'metricType' => $metricType, 'columns' => $columns, 'filter' => $filter,
 			'aggregationColumns' => $aggregationColumns));
 

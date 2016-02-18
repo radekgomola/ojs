@@ -3,8 +3,8 @@
 /**
  * @file tests/data/20-CreateJournalTest.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2000-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2000-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CreateJournalTest
@@ -71,13 +71,6 @@ class CreateJournalTest extends WebTestCase {
 		$this->type('css=[id^=supportEmail-]', 'rvaca@mailinator.com');
 		$this->type('css=[id^=supportName-]', 'Ramiro Vaca');
 		$this->click('//form[@id=\'contactForm\']//button[text()=\'Save\']');
-		$this->waitForTextPresent('Your changes have been saved.');
-
-		// Management > Settings > Website
-		$this->click('link=Website');
-		$this->waitForElementPresent('css=[id^=pageHeaderTitle-]');
-		$this->type('css=[id^=pageHeaderTitle-]', 'Journal of Public Knowledge');
-		$this->click('//form[@id=\'appearanceForm\']//button[text()=\'Save\']');
 		$this->waitForTextPresent('Your changes have been saved.');
 	}
 }

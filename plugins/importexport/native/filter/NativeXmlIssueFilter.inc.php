@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/native/filter/NativeXmlIssueFilter.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2000-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2000-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class NativeXmlIssueFilter
@@ -59,6 +59,7 @@ class NativeXmlIssueFilter extends NativeImportFilter {
 	/**
 	 * Handle a singular element import.
 	 * @param $node DOMElement
+	 * @return Issue
 	 */
 	function handleElement($node) {
 		$deployment = $this->getDeployment();
@@ -112,6 +113,11 @@ class NativeXmlIssueFilter extends NativeImportFilter {
 			$issue->$setterFunction(strtotime($n->textContent));
 		} else switch ($n->tagName) {
 			// Otherwise, delegate to specific parsing code
+			case 'id':
+				// Update advice not supported yet.
+				$advice = $n->getAttribute('advice');
+				assert (!$advice || $advice == 'ignore');
+				break;
 			case 'articles':
 				$this->parseArticles($n, $issue);
 				break;
@@ -215,7 +221,6 @@ class NativeXmlIssueFilter extends NativeImportFilter {
 	 * @param $issue Issue
 	 */
 	function parseSection($node, $issue) {
-
 		$deployment = $this->getDeployment();
 		$context = $deployment->getContext();
 		$issue = $deployment->getIssue();
@@ -238,17 +243,29 @@ class NativeXmlIssueFilter extends NativeImportFilter {
 
 		for ($n = $node->firstChild; $n !== null; $n=$n->nextSibling) {
 			if (is_a($n, 'DOMElement')) {
-				list($locale, $value) = $this->parseLocalizedContent($n);
 				switch ($n->tagName) {
-					case 'abbrev': $section->setAbbrev($value, $locale); break;
-					case 'policy': $section->setPolicy($value, $locale); break;
-					case 'title': $section->setTitle($value, $locale); break;
+					case 'id':
+						// Only support "ignore" advice for now
+						$advice = $n->getAttribute('advice');
+						assert(!$advice || $advice == 'ignore');
+						break;
+					case 'abbrev':
+						list($locale, $value) = $this->parseLocalizedContent($n);
+						$section->setAbbrev($value, $locale);
+						break;
+					case 'policy':
+						list($locale, $value) = $this->parseLocalizedContent($n);
+						$section->setPolicy($value, $locale);
+						break;
+					case 'title':
+						list($locale, $value) = $this->parseLocalizedContent($n);
+						$section->setTitle($value, $locale);
+						break;
 				}
 			}
 		}
 
 		$sectionDao->insertObject($section);
-
 	}
 
 	/**

@@ -1,17 +1,20 @@
 {**
  * templates/management/settings/journal.tpl
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * The journal settings page.
  *}
+{include file="common/header.tpl" pageTitle="manager.setup"}
 
-{strip}
-{assign var="pageTitle" value="manager.setup"}
-{include file="common/header.tpl"}
-{/strip}
+{if $newVersionAvailable}
+	<div class="pkp_notification">
+		{translate|assign:"notificationContents" key="site.upgradeAvailable.manager" currentVersion=$currentVersion latestVersion=$latestVersion siteAdminName=$siteAdmin->getFullName() siteAdminEmail=$siteAdmin->getEmail()}
+		{include file="controllers/notification/inPlaceNotificationContent.tpl" notificationId="upgradeWarning-"|uniqid notificationStyleClass="notifyWarning" notificationTitle="common.warning"|translate notificationContents=$notificationContents}
+	</div>
+{/if}
 
 <script type="text/javascript">
 	// Attach the JS file tab handler.

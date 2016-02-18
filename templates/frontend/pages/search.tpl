@@ -1,8 +1,8 @@
 {**
  * templates/frontend/pages/search.tpl
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Display the page to search and view search results.
@@ -18,7 +18,7 @@
  * @uses $activeFilters array Key value pair of filters used for this query
  * @uses $inactiveFilters array Key value pair of filters NOT used for this query
  *}
-{include file="common/frontend/header.tpl" pageTitle="common.search"}
+{include file="frontend/components/header.tpl" pageTitle="common.search"}
 
 {* InstantSearch - return only results *}
 {* @todo implement this *}

@@ -3,8 +3,8 @@
 /**
  * @file plugins/pubIds/urn/URNPubIdPlugin.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class URNPubIdPlugin
@@ -102,7 +102,7 @@ class URNPubIdPlugin extends PubIdPlugin {
 			if (!is_a($pubObject, 'Issue')) {
 				assert(!is_null($article));
 				$issueDao = DAORegistry::getDAO('IssueDAO');
-				$issue = $issueDao->getIssueByArticleId($article->getId(), $journal->getId(), true);
+				$issue = $issueDao->getIssueByArticleId($article->getId(), $journal->getId());
 			}
 
 			// Retrieve the URN prefix
@@ -301,7 +301,7 @@ class URNPubIdPlugin extends PubIdPlugin {
 	 *  every URN character is replaced with a number according to the conversion table,
 	 *  every number is multiplied by it's position/index (beginning with 1),
 	 *  the numbers' sum is calculated,
-	 *  the sum is devided by the last number,
+	 *  the sum is divided by the last number,
 	 *  the last number of the quotient before the decimal point is the check number.
 	 */
 	function _calculateCheckNo($urn) {

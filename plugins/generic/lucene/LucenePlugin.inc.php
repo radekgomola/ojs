@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/lucene/LucenePlugin.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class LucenePlugin
@@ -1089,7 +1089,7 @@ class LucenePlugin extends GenericPlugin {
 
 	/**
 	 * Send an email to the site's tech admin
-	 * warning that an indexing error has occured.
+	 * warning that an indexing error has occurred.
 	 *
 	 * @param $error array An array of article ids.
 	 * @param $journal Journal A journal object.

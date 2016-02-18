@@ -1,8 +1,8 @@
 {**
  * templates/frontend/pages/about.tpl
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Display the page to view a journal's description, contact details,
@@ -27,12 +27,10 @@
  * @uses $sponsorNote string Description for sponsors section
  * @uses $sponsors array List of sponsors of this journal
  *}
-{include file="common/frontend/header.tpl" pageTitle="about.aboutTheJournal"}
+{include file="frontend/components/header.tpl" pageTitle="about.aboutTheJournal"}
 
 <div class="page page_about">
-	<h1 class="page_title">
-		{translate key="about.aboutTheJournal"}
-	</h1>
+	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.aboutTheJournal"}
 
 	{if $currentJournal->getLocalizedSetting('description')}
 	<div class="description">

@@ -4,8 +4,8 @@
 <!--
   * locale.xml
   *
-  * Copyright (c) 2014-2015 Simon Fraser University Library
-  * Copyright (c) 2003-2015 John Willinsky
+  * Copyright (c) 2014-2016 Simon Fraser University Library
+  * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the te_ST (Test Loçale) locale.
@@ -743,7 +743,6 @@
 	<message key="manager.setup.editorialReviewBoard">Éðîtórîål / Rèvîèw Bóårð</message>
 	<message key="manager.setup.useEditorialReviewBoard">Æñ èðîtórîål/rèvîèw bóårð wîll bè üþèð bý thè jóürñål.</message>
 	<message key="manager.setup.editorialReviewBoardDescription">Jóürñålþ håvè Éðîtórîål Bóårðþ tó óvèrþèè thè èðîtórîål ðîrèçtîóñ óf thè jóürñål, pårtîçîpåtè îñ thè åppóîñtmèñt óf èðîtórþ, åñð, bý vîrtüè óf bóårð mèmbèrþ' rèpütåtîóñþ, gîvè thè jóürñål þómè þtåñðîñg îñ thè fîèlð. Rèvîèw Bóårðþ plåý å þîmîlår rólè büt îñ åððîtîóñ, thèý lèåð thè pèèr rèvîèw próçèþþ. Rèvîèw Bóårð mèmbèrþ wîll ñót håvè åççèþþ tó thè jóürñål'þ åðmîñîþtråtîvè þýþtèm büt wîll bè åððèð tó thè lîþt óf thóþè åvåîlåblè tó ðó pèèr rèvîèwþ.</message>
-	<message key="manager.setup.editorialMembers">Gó tó Bóårð Mèmbèrþ åñð åðð Éðîtórîål Bóårð åñð/ór Rèvîèw Bóårð mèmbèrþ. Thîþ çåñ bè ðóñè åt åñý póîñt îñ ópèråtîñg thè jóürñål.</message>
 	<message key="manager.setup.principalContact">Prîñçîpål Çóñtåçt</message>
 	<message key="manager.setup.principalContactDescription">Thîþ póþîtîóñ, whîçh çåñ bè trèåtèð åþ å prîñçîpål èðîtórþhîp, måñågîñg èðîtórþhîp, ór åðmîñîþtråtîvè þtåff póþîtîóñ, wîll bè lîþtèð óñ thè hómèpågè óf thè jóürñål üñðèr Çóñtåçt, ålóñg wîth thè Tèçhñîçål ßüppórt Çóñtåçt.</message>
 	<message key="manager.setup.technicalSupportContact">Tèçhñîçål ßüppórt Çóñtåçt</message>
@@ -953,8 +952,6 @@ Tîtlè óf çlåþþîfîçåtîóñ þýþtèm]]></message>
 	<message key="manager.setup.itemsDescription">Ñåvîgåtîóñ bår îtèmþ çåñ bè åððèð tó thè çürrèñt þèt (Hómè, Æbóüt, Üþèr Hómè, ètç.) thåt åppèår åt thè tóp óf thè pågè.</message>
 	<message key="manager.setup.labelName">Låbèl ñåmè</message>
 	<message key="manager.setup.addNavItem">Æðð Îtèm</message>
-	<message key="manager.setup.journalPageHeader">Jóürñål Pågè Hèåðèr</message>
-	<message key="manager.setup.journalPageHeaderDescription">Æ gråphîç vèrþîóñ óf thè jóürñål'þ tîtlè åñð lógó (.gîf, .jpg, ór .pñg fîlè), póþþîblý å þmållèr vèrþîóñ óf thè óñè üþèð óñ thè hómèpågè, çåñ bè üplóåðèð tó åppèår åþ å hèåðèr óñ jóürñål pågèþ, whîçh wîll rèplåçè thè tèxt vèrþîóñ thåt óthèrwîþè åppèårþ.</message>
 	<message key="manager.setup.alternateHeader">Æltèrñåtè Hèåðèr</message>
 	<message key="manager.setup.alternateHeaderDescription">Æltèrñåtèlý, îñþtèåð óf tîtlè åñð lógó, åñ HTML vèrþîóñ óf thè hèåðèr çåñ bè îñþèrtèð îñtó thè tèxt bóx bèlów. Lèåvè tèxtbóx blåñk îf ñót rèqüîrèð.</message>
 	<message key="manager.setup.journalPageFooter">Jóürñål Pågè Fóótèr</message>
@@ -1422,7 +1419,7 @@ Låtèþt îþ ðåtè óf móþt rèçèñtlý åççèptèð rèvîèw.<br/>
 	<message key="sectionEditor.layout.confirmRenotify">Ñótîfýîñg thîþ låýóüt èðîtór ågåîñ wîll rèþtårt thèîr åþþîgñmèñt. Ærè ýóü þürè ýóü wîþh tó ðó thîþ?</message>
 	<message key="sectionEditor.proofreader.confirmRenotify">Ñótîfýîñg thîþ próófrèåðèr ågåîñ wîll rèþtårt thèîr åþþîgñmèñt. Ærè ýóü þürè ýóü wîþh tó ðó thîþ?</message>
 	<message key="sectionEditor.regrets.breadcrumb">Règrètþ</message>
-	<message key="sectionEditor.regrets.title">#{$articleId} Rèvîèwèr Règrètþ, Çåñçèllåtîóñþ &amp; Éårlîèr Róüñðþ</message>
+	<message key="sectionEditor.regrets.title">#{$submissionId} Rèvîèwèr Règrètþ, Çåñçèllåtîóñþ &amp; Éårlîèr Róüñðþ</message>
 	<message key="sectionEditor.regrets">Règrètþ</message>
 	<message key="sectionEditor.regrets.link">Vîèw Règrètþ, Çåñçèlþ, Prèvîóüþ Róüñðþ</message>
 	<message key="sectionEditor.regrets.reviewRound">Pèèr Rèvîèw, Róüñð {$round}</message>
@@ -1964,43 +1961,43 @@ Thè fîlè çåñ bè vîèwèð bý çlîçkîñg óñ thè fîlè ñåmè. Æ
 	<message key="installer.checkYes">Ýèþ</message>
 	<message key="installer.checkNo"><![CDATA[<span class="formError">ÑÒ</span>]]></message>
 	<message key="log.author.submitted">{$authorName} håþ èñtèrèð å ñèw þübmîþþîóñ, ÎÐ {$submissionId}.</message>
-	<message key="log.author.documentRevised">{$authorName} håþ rèvîþèð årtîçlè {$articleId}. Thè ñèw fîlè ÎÐ îþ {$fileId}.</message>
-	<message key="log.review.reviewerUnassigned">{$reviewerName} håþ bèèñ üñåþþîgñèð fróm rèvîèwîñg þübmîþþîóñ {$articleId} fór rèvîèw róüñð {$round}.</message>
-	<message key="log.review.reviewInitiated">Thè róüñð {$round} rèvîèw bý {$reviewerName} fór þübmîþþîóñ {$articleId} håþ bèèñ îñîtîåtèð.</message>
-	<message key="log.review.reviewReinitiated">Thè róüñð {$round} rèvîèw bý {$reviewerName} fór þübmîþþîóñ {$articleId} håþ bèèñ rèîñîtîåtèð.</message>
-	<message key="log.review.reviewCancelled">Thè róüñð {$round} rèvîèw bý {$reviewerName} fór þübmîþþîóñ {$articleId} håþ bèèñ çåñçèllèð.</message>
-	<message key="log.review.reviewCleared">Thè róüñð {$round} rèvîèw bý {$reviewerName} fór þübmîþþîóñ {$articleId} håþ bèèñ çlèårèð.</message>
-	<message key="log.review.reviewerRated">{$reviewerName} håþ bèèñ råtèð fór thè róüñð {$round} rèvîèw óf þübmîþþîóñ {$articleId}.</message>
-	<message key="log.review.reviewDueDateSet">Thè ðüè ðåtè fór thè róüñð {$round} rèvîèw óf þübmîþþîóñ {$articleId} bý {$reviewerName} håþ bèèñ þèt tó {$dueDate}.</message>
-	<message key="log.review.reviewRecommendationSet">Thè rèçómmèñðåtîóñ fór thè róüñð {$round} rèvîèw óf þübmîþþîóñ {$articleId} bý {$reviewerName} håþ bèèñ þèt.</message>
-	<message key="log.review.reviewRecommendationSetByProxy">Thè rèçómmèñðåtîóñ fór thè róüñð {$round} rèvîèw óf þübmîþþîóñ {$articleId} håþ bèèñ þèt bý thè èðîtór, {$editorName}, óñ bèhålf óf thè rèvîèwèr, {$reviewerName}.</message>
-	<message key="log.review.resubmit">Thè þübmîþþîóñ {$articleId} håþ bèèñ rèþübmîttèð fór rèvîèw.</message>
-	<message key="log.review.reviewDeclined">{$reviewerName} håþ ðèçlîñèð thè róüñð {$round} rèvîèw fór þübmîþþîóñ {$articleId}.</message>
-	<message key="log.review.reviewAccepted">{$reviewerName} håþ åççèptèð thè róüñð {$round} rèvîèw fór þübmîþþîóñ {$articleId}.</message>
-	<message key="log.review.reviewDeclinedByProxy">{$userName} håþ ðèçlîñèð thè róüñð {$round} rèvîèw fór þübmîþþîóñ {$articleId} óñ bèhålf óf {$reviewerName}.</message>
-	<message key="log.review.reviewAcceptedByProxy">{$userName} håþ åççèptèð thè róüñð {$round} rèvîèw fór þübmîþþîóñ {$articleId} óñ bèhålf óf {$reviewerName}.</message>
-	<message key="log.review.reviewFileByProxy">Thè Éðîtór, {$userName}, håþ üplóåðèð å rèvîèw fîlè fór róüñð {$round} óf þübmîþþîóñ {$articleId} óñ bèhålf óf thè rèvîèwèr, {$reviewerName}.</message>
+	<message key="log.author.documentRevised">{$authorName} håþ rèvîþèð årtîçlè {$submissionId}. Thè ñèw fîlè ÎÐ îþ {$fileId}.</message>
+	<message key="log.review.reviewerUnassigned">{$reviewerName} håþ bèèñ üñåþþîgñèð fróm rèvîèwîñg þübmîþþîóñ {$submissionId} fór rèvîèw róüñð {$round}.</message>
+	<message key="log.review.reviewInitiated">Thè róüñð {$round} rèvîèw bý {$reviewerName} fór þübmîþþîóñ {$submissionId} håþ bèèñ îñîtîåtèð.</message>
+	<message key="log.review.reviewReinitiated">Thè róüñð {$round} rèvîèw bý {$reviewerName} fór þübmîþþîóñ {$submissionId} håþ bèèñ rèîñîtîåtèð.</message>
+	<message key="log.review.reviewCancelled">Thè róüñð {$round} rèvîèw bý {$reviewerName} fór þübmîþþîóñ {$submissionId} håþ bèèñ çåñçèllèð.</message>
+	<message key="log.review.reviewCleared">Thè róüñð {$round} rèvîèw bý {$reviewerName} fór þübmîþþîóñ {$submissionId} håþ bèèñ çlèårèð.</message>
+	<message key="log.review.reviewerRated">{$reviewerName} håþ bèèñ råtèð fór thè róüñð {$round} rèvîèw óf þübmîþþîóñ {$submissionId}.</message>
+	<message key="log.review.reviewDueDateSet">Thè ðüè ðåtè fór thè róüñð {$round} rèvîèw óf þübmîþþîóñ {$submissionId} bý {$reviewerName} håþ bèèñ þèt tó {$dueDate}.</message>
+	<message key="log.review.reviewRecommendationSet">Thè rèçómmèñðåtîóñ fór thè róüñð {$round} rèvîèw óf þübmîþþîóñ {$submissionId} bý {$reviewerName} håþ bèèñ þèt.</message>
+	<message key="log.review.reviewRecommendationSetByProxy">Thè rèçómmèñðåtîóñ fór thè róüñð {$round} rèvîèw óf þübmîþþîóñ {$submissionId} håþ bèèñ þèt bý thè èðîtór, {$editorName}, óñ bèhålf óf thè rèvîèwèr, {$reviewerName}.</message>
+	<message key="log.review.resubmit">Thè þübmîþþîóñ {$submissionId} håþ bèèñ rèþübmîttèð fór rèvîèw.</message>
+	<message key="log.review.reviewDeclined">{$reviewerName} håþ ðèçlîñèð thè róüñð {$round} rèvîèw fór þübmîþþîóñ {$submissionId}.</message>
+	<message key="log.review.reviewAccepted">{$reviewerName} håþ åççèptèð thè róüñð {$round} rèvîèw fór þübmîþþîóñ {$submissionId}.</message>
+	<message key="log.review.reviewDeclinedByProxy">{$userName} håþ ðèçlîñèð thè róüñð {$round} rèvîèw fór þübmîþþîóñ {$submissionId} óñ bèhålf óf {$reviewerName}.</message>
+	<message key="log.review.reviewAcceptedByProxy">{$userName} håþ åççèptèð thè róüñð {$round} rèvîèw fór þübmîþþîóñ {$submissionId} óñ bèhålf óf {$reviewerName}.</message>
+	<message key="log.review.reviewFileByProxy">Thè Éðîtór, {$userName}, håþ üplóåðèð å rèvîèw fîlè fór róüñð {$round} óf þübmîþþîóñ {$submissionId} óñ bèhålf óf thè rèvîèwèr, {$reviewerName}.</message>
 	<message key="log.review.reviewerFile">Æ rèvîèwèr fîlè håþ bèèñ üplóåðèð.</message>
 	<message key="log.editor.decision">Æñ èðîtór ðèçîþîóñ ({$decision}) fór årtîçlè {$submissionId} wåþ rèçórðèð bý {$editorName}.</message>
-	<message key="log.copyedit.initiate">Çópýèðîtîñg óñ þübmîþþîóñ {$articleId} håþ bèèñ çómmèñçèð bý {$copyeditorName}.</message>
+	<message key="log.copyedit.initiate">Çópýèðîtîñg óñ þübmîþþîóñ {$submissionId} håþ bèèñ çómmèñçèð bý {$copyeditorName}.</message>
 	<message key="log.copyedit.copyeditFileSet">Thè ðèfåült çópýèðît fîlè håþ bèèñ çhóþèñ.</message>
-	<message key="log.copyedit.initialEditComplete">{$copyeditorName} håþ çómplètèð thè îñîtîål çópý èðît óf þübmîþþîóñ {$articleId}.</message>
-	<message key="log.copyedit.finalEditComplete">{$copyeditorName} håþ çómplètèð thè fîñål çópý èðît óf þübmîþþîóñ {$articleId}.</message>
-	<message key="log.copyedit.copyeditorAssigned">{$copyeditorName} håþ bèèñ åþþîgñèð tó çópýèðît þübmîþþîóñ {$articleId}.</message>
+	<message key="log.copyedit.initialEditComplete">{$copyeditorName} håþ çómplètèð thè îñîtîål çópý èðît óf þübmîþþîóñ {$submissionId}.</message>
+	<message key="log.copyedit.finalEditComplete">{$copyeditorName} håþ çómplètèð thè fîñål çópý èðît óf þübmîþþîóñ {$submissionId}.</message>
+	<message key="log.copyedit.copyeditorAssigned">{$copyeditorName} håþ bèèñ åþþîgñèð tó çópýèðît þübmîþþîóñ {$submissionId}.</message>
 	<message key="log.copyedit.copyeditorFile">Æ çópýèðîtór vèrþîóñ óf thè þübmîþþîóñ fîlè håþ bèèñ üplóåðèð.</message>
 	<message key="log.copyedit.authorFile">Æ vèrþîóñ óf thè þübmîþþîóñ fîlè çópýèðîtèð bý thè åüthór håþ bèèñ üplóåðèð.</message>
-	<message key="log.layout.layoutEditorAssigned">{$editorName} håþ bèèñ åþþîgñèð åþ låýóüt èðîtór fór þübmîþþîóñ {$articleId}.</message>
-	<message key="log.layout.layoutEditorUnassigned">{$editorName} håþ bèèñ üñåþþîgñèð åþ låýóüt èðîtór fór þübmîþþîóñ {$articleId}.</message>
-	<message key="log.layout.layoutEditComplete">{$editorName} håþ çómplètèð låýóüt èðîtîñg fór þübmîþþîóñ {$articleId}.</message>
+	<message key="log.layout.layoutEditorAssigned">{$editorName} håþ bèèñ åþþîgñèð åþ låýóüt èðîtór fór þübmîþþîóñ {$submissionId}.</message>
+	<message key="log.layout.layoutEditorUnassigned">{$editorName} håþ bèèñ üñåþþîgñèð åþ låýóüt èðîtór fór þübmîþþîóñ {$submissionId}.</message>
+	<message key="log.layout.layoutEditComplete">{$editorName} håþ çómplètèð låýóüt èðîtîñg fór þübmîþþîóñ {$submissionId}.</message>
 	<message key="log.editor.metadataModified">Thè mètåðåtå fór thîþ årtîçlè wåþ móðîfîèð bý {$editorName}.</message>
 	<message key="log.editor.editorFile">Æñ èðîtór vèrþîóñ óf thè þübmîþþîóñ fîlè håþ bèèñ üplóåðèð.</message>
-	<message key="log.editor.archived">Thè þübmîþþîóñ {$articleId} håþ bèèñ årçhîvèð.</message>
-	<message key="log.editor.restored">Thè þübmîþþîóñ {$articleId} håþ bèèñ rèþtórèð tó thè qüèüè.</message>
-	<message key="log.editor.editorAssigned">{$editorName} håþ bèèñ åþþîgñèð åþ èðîtór tó þübmîþþîóñ {$articleId}.</message>
-	<message key="log.editor.submissionExpedited">{$editorName} håþ èxpèðîtèð thè èðîtîñg próçèþþ fór årtîçlè {$articleId}.</message>
-	<message key="log.proofread.assign">{$assignerName} håþ åþþîgñèð {$proofreaderName} tó próófrèåð þübmîþþîóñ {$articleId}.</message>
-	<message key="log.proofread.complete">{$proofreaderName} håþ þübmîttèð {$articleId} fór þçhèðülîñg.</message>
-	<message key="log.imported">{$userName} håþ împórtèð årtîçlè {$articleId}.</message>
+	<message key="log.editor.archived">Thè þübmîþþîóñ {$submissionId} håþ bèèñ årçhîvèð.</message>
+	<message key="log.editor.restored">Thè þübmîþþîóñ {$submissionId} håþ bèèñ rèþtórèð tó thè qüèüè.</message>
+	<message key="log.editor.editorAssigned">{$editorName} håþ bèèñ åþþîgñèð åþ èðîtór tó þübmîþþîóñ {$submissionId}.</message>
+	<message key="log.editor.submissionExpedited">{$editorName} håþ èxpèðîtèð thè èðîtîñg próçèþþ fór årtîçlè {$submissionId}.</message>
+	<message key="log.proofread.assign">{$assignerName} håþ åþþîgñèð {$proofreaderName} tó próófrèåð þübmîþþîóñ {$submissionId}.</message>
+	<message key="log.proofread.complete">{$proofreaderName} håþ þübmîttèð {$submissionId} fór þçhèðülîñg.</message>
+	<message key="log.imported">{$userName} håþ împórtèð årtîçlè {$submissionId}.</message>
 	<message key="rt.readingTools">Rèåðîñg Tóólþ</message>
 	<message key="rt.admin.status">ßtåtüþ</message>
 	<message key="rt.admin.configuration">Çóñfîgüråtîóñ</message>

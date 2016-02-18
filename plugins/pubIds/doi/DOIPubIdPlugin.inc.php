@@ -3,8 +3,8 @@
 /**
  * @file plugins/pubIds/doi/DOIPubIdPlugin.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class DOIPubIdPlugin
@@ -105,7 +105,7 @@ class DOIPubIdPlugin extends PubIdPlugin {
 		if (!is_a($pubObject, 'Issue')) {
 			assert(!is_null($article));
 			$issueDao = DAORegistry::getDAO('IssueDAO'); /* @var $issueDao IssueDAO */
-			$issue = $issueDao->getIssueByArticleId($article->getId(), $journal->getId(), true);
+			$issue = $issueDao->getIssueByArticleId($article->getId(), $journal->getId());
 		}
 		if ($issue && $journalId != $issue->getJournalId()) return null;
 

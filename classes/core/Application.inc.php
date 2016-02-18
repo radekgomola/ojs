@@ -3,8 +3,8 @@
 /**
  * @file classes/core/Application.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Application
@@ -27,7 +27,6 @@ define('ASSOC_TYPE_GALLEY',		ASSOC_TYPE_REPRESENTATION);
 define('ASSOC_TYPE_JOURNAL',		0x0000100);
 define('ASSOC_TYPE_ISSUE',		0x0000103);
 define('ASSOC_TYPE_ISSUE_GALLEY',	0x0000105);
-define('ASSOC_TYPE_SUPP_FILE',		0x0000106);
 
 define('CONTEXT_JOURNAL', 1);
 
@@ -97,8 +96,6 @@ class Application extends PKPApplication {
 			'CategoryDAO' => 'classes.journal.categories.CategoryDAO',
 			'EditorSubmissionDAO' => 'classes.submission.editor.EditorSubmissionDAO',
 			'EmailTemplateDAO' => 'classes.mail.EmailTemplateDAO',
-			'FooterCategoryDAO' => 'lib.pkp.classes.context.FooterCategoryDAO',
-			'FooterLinkDAO' => 'lib.pkp.classes.context.FooterLinkDAO',
 			'GiftDAO' => 'classes.gift.GiftDAO',
 			'IndividualSubscriptionDAO' => 'classes.subscription.IndividualSubscriptionDAO',
 			'InstitutionalSubscriptionDAO' => 'classes.subscription.InstitutionalSubscriptionDAO',
@@ -118,7 +115,6 @@ class Application extends PKPApplication {
 			'ScheduledTaskDAO' => 'lib.pkp.classes.scheduledTask.ScheduledTaskDAO',
 			'SectionDAO' => 'classes.journal.SectionDAO',
 			'SectionEditorsDAO' => 'classes.journal.SectionEditorsDAO',
-			'SocialMediaDAO' => 'classes.journal.SocialMediaDAO',
 			'StageAssignmentDAO' => 'lib.pkp.classes.stageAssignment.StageAssignmentDAO',
 			'SubmissionEventLogDAO' => 'classes.log.SubmissionEventLogDAO',
 			'SubmissionFileDAO' => 'classes.article.SubmissionFileDAO',

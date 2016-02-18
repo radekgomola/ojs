@@ -1,8 +1,8 @@
 {**
  * templates/controllers/tab/issueEntry/form/publicationMetadataFormFields.tpl
  *
- * Copyright (c) 2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  *}
@@ -19,13 +19,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="publicationMetadataEntryForm" method="post"
-	{if $formParams.expeditedSubmission}
-		action="{url router=$smarty.const.ROUTE_PAGE op="expedite"}"
-	{else}
-		action="{url router=$smarty.const.ROUTE_COMPONENT op="saveForm"}"
-	{/if}
->
+<form class="pkp_form" id="publicationMetadataEntryForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveForm"}">
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="publicationMetadataFormFieldsNotification"}
 
 	<input type="hidden" name="submissionId" value="{$submissionId|escape}" />

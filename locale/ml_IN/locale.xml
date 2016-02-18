@@ -4,8 +4,8 @@
 <!--
   * locale/ml_IN/locale.xml
   *
-  * Copyright (c) 2014-2015 Simon Fraser University Library
-  * Copyright (c) 2003-2015 John Willinsky
+  * Copyright (c) 2014-2016 Simon Fraser University Library
+  * Copyright (c) 2003-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the ml_IN (മലയാളം) locale.
@@ -55,7 +55,6 @@
 	<message key="common.confirmComplete">ഈ ജോലി പൂര്‍ത്തിയായതായി അടയാളപ്പെടുത്താന്‍ നിങ്ങള്‍ ആഗ്രഹിക്കുന്നു   ? നിങ്ങള്‍ക്ക് പിന്നീട് വ്യത്യാസം വരുതാന്‍ കഴിയില്ല.</message>
 	<message key="common.payment">പണം കൊടുക്കല്‍</message>
 	<message key="common.payments">പണം  ഒടുക്കല്‍</message>
-	<message key="common.pageHeader.altText">താളിന്റെ ഹെഡര്‍</message>
 		
 	<!-- Navigation -->
 	<message key="navigation.journalHelp">ജേണല്‍ ഹെല്പ്</message>
@@ -368,7 +367,7 @@
 	<message key="sectionEditor.proofreader.confirmRenotify">ഈ പ്രൂഫ് റീഡര്‍ അവരുടെ അസൈന്‍മെന്റെ വീണ്ടും റീസ്റ്റാര്‍ട്ട് ചെയ്യുകയാണെന്ന് അറിയിക്കുക. താങ്കള്‍ക്ക് ഇത് തുടരണമെന്ന് ഉറപ്പാണ്ണോ?</message>
 
 	<message key="sectionEditor.regrets.breadcrumb">റെഗ്രേറ്റ്സ്</message>
-	<message key="sectionEditor.regrets.title"><![CDATA[#{$articleId} റിവ്യൂവര്‍ റെഗ്രേറ്റ്സ്, കാന്‍സലേഷന്‍സ് & ഏര്‍ലിയര്‍ റൗണ്ട്സ്]]></message>
+	<message key="sectionEditor.regrets.title"><![CDATA[#{$submissionId} റിവ്യൂവര്‍ റെഗ്രേറ്റ്സ്, കാന്‍സലേഷന്‍സ് & ഏര്‍ലിയര്‍ റൗണ്ട്സ്]]></message>
 	<message key="sectionEditor.regrets">റെഗ്രേറ്റ്സ്</message>
 	<message key="sectionEditor.regrets.link"><![CDATA[വ്യൂ റെഗ്രേറ്റ്സ്, കാന്‍സേല്‍സ് & പ്രിവിയസ് റൗണ്ട്സ്]]></message>
 	<message key="sectionEditor.regrets.reviewRound">പീര്‍ റിവ്യൂ, റൗണ്ട്  {$round}</message>

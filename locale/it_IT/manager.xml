@@ -4,8 +4,8 @@
 <!--
   * locale/it_IT/manager.xml
   *
-  * Copyright (c) 2014-2015 Simon Fraser University Library
-  * Copyright (c) 2000-2015 John Willinsky
+  * Copyright (c) 2014-2016 Simon Fraser University Library
+  * Copyright (c) 2000-2016 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the it_IT (Italiano) locale.
@@ -211,12 +211,6 @@ Una volta aggiunto, il SE sarà automaticamente assegnato  alla gestione della R
 	<message key="manager.setup.disciplineProvideExamples">Fornisci esempi di discipline accademiche rilevanti per questa rivista</message>
 	<message key="manager.setup.displayCurrentIssue">Mostra il sommario del fascicolo corrente (se disponibile).</message>
 	<message key="manager.setup.editorDecision">Decisione dell'editor</message>
-	<message key="manager.setup.editorialMembers">Vai ai membri del consiglio ed aggiungi uno o più membri al consiglio editoriale o a quello di review. Questo può essere fatto in qualsiasi momento del ciclo di vita della rivista.</message>
-	<message key="manager.setup.editorialProcess1">Uno o più editor gestiranno le fasi principali, senza bisogno di nessun ruolo definito.</message>
-	<message key="manager.setup.editorialProcess2">Il l'editor gestisce la coda delle proposte, quella della programmazione e l'indice dei fascicoli, mentre i Section Editor gestiscono il processo di revisione e di editing delle proposte.</message>
-	<message key="manager.setup.editorialProcess3">Il l'editor gestisce la coda delle proposte, quella della programmazione e l'indice dei fascicoli, mentre i Section Editor gestiscono il processo di revisione delle proposte.</message>
-	<message key="manager.setup.editorialReviewBoard">Editorial board</message>
-	<message key="manager.setup.editorialReviewBoardDescription">Le riviste hanno i consigli editoriali per supervisionare la direzione della rivista, partecipare alle riunioni con gli editor, e, grazie alla reputazione dei membri del consiglio, aumentare la reputazione della rivista nel proprio settore. I consigli di review hanno un ruolo simile, ed inoltre guidano il processo di peer-review. I membri del consiglio di review non avranno accesso al sistema di amministrazione di OJS, ma saranno aggiunti alla lista degli utenti in grado di effettuare la peer-review.</message>
 	<message key="manager.setup.emailBounceAddress">Indirizzo per i messaggi respinti</message>
 	<message key="manager.setup.emailBounceAddressDescription">Nel caso l'invio di un messaggio di posta elettronica non dovesse andare a buon fine, verrà inviata una notifica di errore a questo indirizzo.</message>
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Nota:</strong> per attivare questa opzione, l'amministratore del sito deve abilitare l'opzione <tt>allow_envelope_sender</tt>  nel file di configurazione di OJS. Configurazioni aggiuntive del server possono essere necessarie per supportare questa funzione (che potrebbe non essere disponibile su tutti i server), come indicato nella documentazione di OJS.]]></message>
@@ -288,8 +282,6 @@ Una volta aggiunto, il SE sarà automaticamente assegnato  alla gestione della R
 	<message key="manager.setup.journalLogo.altText">Logo della rivista</message>
 	<message key="manager.setup.journalPageFooter">Pie' di pagina</message>
 	<message key="manager.setup.journalPageFooterDescription">Questo è il pie' di pagina della rivista. Per cambiarlo o aggiornarlo, inserire del codice HTML nella box sottostante. È possibile, per esempio, inserire un'altra barra di navigazione, un contatore ecc. Questo pie' di pagina apparirà su ogni pagina della rivista.</message>
-	<message key="manager.setup.journalPageHeader">Testata della rivista</message>
-	<message key="manager.setup.journalPageHeaderDescription">È possibile caricare un'immagine con il titolo ed il logo della rivista (in formato .gif, .jpg, o .png). Questa immagine  potrebbe essere una versione più piccola di quella inserita per l'homepage, e sostituirà il testo che eventualmente compaia.</message>
 	<message key="manager.setup.journalPolicies">Fase 2. Politiche della rivista</message>
 	<message key="manager.setup.journalSetup">Setup della rivista</message>
 	<message key="manager.setup.journalSetupUpdated">Il setup della rivista è stato aggiornato.</message>

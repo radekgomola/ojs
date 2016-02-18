@@ -3,8 +3,8 @@
 /**
  * @file classes/article/ArticleGalleyDAO.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ArticleGalleyDAO
@@ -147,13 +147,19 @@ class ArticleGalleyDAO extends RepresentationDAO {
 	/**
 	 * @copydoc RepresentationDAO::getBySubmissionId()
 	 */
-	function getBySubmissionId($submissionId) {
+	function getBySubmissionId($submissionId, $contextId = null) {
+		$params = array((int) $submissionId);
+		if ($contextId) $params[] = (int) $contextId;
+
 		return new DAOResultFactory(
 			$this->retrieve(
-				'SELECT *
-				FROM submission_galleys
-				WHERE submission_id = ? ORDER BY seq',
-				(int) $submissionId
+				'SELECT g.*
+				FROM submission_galleys g ' .
+				($contextId?'INNER JOIN submissions s ON (g.submission_id = s.submission_id) ':'') .
+				'WHERE g.submission_id = ? ' .
+				($contextId?' AND s.context_id = ? ':'') .
+				'ORDER BY g.seq',
+				$params
 			),
 			$this, '_fromRow'
 		);

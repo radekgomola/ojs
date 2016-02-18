@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/native/filter/IssueNativeXmlFilter.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2000-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2000-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssueNativeXmlFilter
@@ -33,7 +33,7 @@ class IssueNativeXmlFilter extends NativeExportFilter {
 	 * @copydoc PersistableFilter::getClassName()
 	 */
 	function getClassName() {
-		return 'lib.pkp.plugins.importexport.native.filter.IssueNativeXmlFilter';
+		return 'plugins.importexport.native.filter.IssueNativeXmlFilter';
 	}
 
 
@@ -80,8 +80,12 @@ class IssueNativeXmlFilter extends NativeExportFilter {
 		// Create the root node and attributes
 		$deployment = $this->getDeployment();
 		$deployment->setIssue($issue);
+
 		$issueNode = $doc->createElementNS($deployment->getNamespace(), 'issue');
-		$issueNode->setAttribute('journal_id', $issue->getJournalId());
+		$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'id', $issue->getId()));
+		$node->setAttribute('type', 'internal');
+		$node->setAttribute('advice', 'ignore');
+
 		$issueNode->setAttribute('volume', $issue->getVolume());
 		$issueNode->setAttribute('number', $issue->getNumber());
 		$issueNode->setAttribute('year', $issue->getYear());
@@ -237,16 +241,21 @@ class IssueNativeXmlFilter extends NativeExportFilter {
 	 * @param $issue Issue
 	 */
 	function addSections($doc, $issueNode, $issue) {
-
 		$sectionDao = DAORegistry::getDAO('SectionDAO');
 		$sections = $sectionDao->getByIssueId($issue->getId());
 		$deployment = $this->getDeployment();
+		$journal = $deployment->getContext();
 
 		$sectionsNode = $doc->createElementNS($deployment->getNamespace(), 'sections');
 		foreach ($sections as $section) {
 			$sectionNode = $doc->createElementNS($deployment->getNamespace(), 'section');
-			$sectionNode->setAttribute('journal_id', $section->getJournalId());
-			$sectionNode->setAttribute('review_form_id', $section->getReviewFormId());
+
+			$sectionNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'id', $section->getId()));
+			$node->setAttribute('type', 'internal');
+			$node->setAttribute('advice', 'ignore');
+
+			if ($section->getReviewFormId()) $sectionNode->setAttribute('review_form_id', $section->getReviewFormId());
+			$sectionNode->setAttribute('ref', $section->getAbbrev($journal->getPrimaryLocale()));
 			$sectionNode->setAttribute('seq', $section->getSequence());
 			$sectionNode->setAttribute('editor_restricted', $section->getEditorRestricted());
 			$sectionNode->setAttribute('meta_indexed', $section->getMetaIndexed());
@@ -255,7 +264,7 @@ class IssueNativeXmlFilter extends NativeExportFilter {
 			$sectionNode->setAttribute('hide_title', $section->getHideTitle());
 			$sectionNode->setAttribute('hide_author', $section->getHideAuthor());
 			$sectionNode->setAttribute('hide_about', $section->getHideAbout());
-			$sectionNode->setAttribute('abstract_word_count', $section->getAbstractWordCount());
+			$sectionNode->setAttribute('abstract_word_count', (int) $section->getAbstractWordCount());
 
 			$this->createLocalizedNodes($doc, $sectionNode, 'abbrev', $section->getAbbrev(null));
 			$this->createLocalizedNodes($doc, $sectionNode, 'policy', $section->getPolicy(null));

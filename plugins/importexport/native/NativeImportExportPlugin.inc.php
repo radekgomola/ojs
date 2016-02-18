@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/native/NativeImportExportPlugin.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class NativeImportExportPlugin
@@ -75,13 +75,9 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 	 * @param $request PKPRequest
 	 */
 	function display($args, $request) {
+		parent::display($args, $request);
 		$templateMgr = TemplateManager::getManager($request);
 		$journal = $request->getJournal();
-
-		parent::display($args, $request);
-
-		$templateMgr->assign('plugin', $this);
-
 		switch (array_shift($args)) {
 			case 'index':
 			case '':
@@ -119,8 +115,8 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 					return $json->getString();
 				}
 				$temporaryFilePath = $temporaryFile->getFilePath();
-				$submissions = $this->importSubmissions(file_get_contents($temporaryFilePath), $journal, $user);
-				$templateMgr->assign('submissions', $submissions);
+				$content = $this->importSubmissions(file_get_contents($temporaryFilePath), $journal, $user);
+				$templateMgr->assign('content', $content);
 				$json = new JSONMessage(true, $templateMgr->fetch($this->getTemplatePath() . 'results.tpl'));
 				return $json->getString();
 			case 'exportSubmissions':
@@ -212,7 +208,6 @@ class NativeImportExportPlugin extends ImportExportPlugin {
 		assert(count($nativeImportFilters) == 1); // Assert only a single unserialization filter
 		$importFilter = array_shift($nativeImportFilters);
 		$importFilter->setDeployment(new NativeImportExportDeployment($context, $user));
-
 		return $importFilter->execute($importXml);
 	}
 

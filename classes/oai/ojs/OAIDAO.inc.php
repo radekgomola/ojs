@@ -3,8 +3,8 @@
 /**
  * @file classes/oai/ojs/OAIDAO.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OAIDAO
@@ -224,7 +224,7 @@ class OAIDAO extends PKPOAIDAO {
 	/**
 	 * @see lib/pkp/classes/oai/PKPOAIDAO::setOAIData()
 	 */
-	function &setOAIData(&$record, $row, $isRecord = true) {
+	function setOAIData($record, $row, $isRecord = true) {
 		$journal = $this->getJournal($row['journal_id']);
 		$section = $this->getSection($row['section_id']);
 		$articleId = $row['submission_id'];

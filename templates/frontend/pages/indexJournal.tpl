@@ -1,8 +1,8 @@
 {**
  * templates/frontend/pages/indexJournal.tpl
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Display the index page for a journal
@@ -13,12 +13,10 @@
  * @uses $additionalHomeContent string Arbitrary input from HTML text editor
  * @uses $enableAnnouncementsHomepage bool Should we display announcements here?
  * @uses $issue Issue Current issue
- * @uses $socialMediaBlocks @todo
  *}
-{include file="common/frontend/header.tpl" pageTitleTranslated=$currentJournal->getLocalizedName()}
+{include file="frontend/components/header.tpl" pageTitleTranslated=$currentJournal->getLocalizedName()}
 
 <div class="page">
-	<h2 class="page_title">{$currentJournal->getLocalizedName()}</h2>
 
 	{$journalDescription}
 
@@ -44,19 +42,6 @@
 		<h3>{$issue->getIssueIdentification()|strip_unsafe_html|nl2br}</h3>
 		{include file="frontend/objects/issue_toc.tpl"}
 	{/if}
-
-	{* Social media sharing blocks *}
-	{* @todo this hasn't been formatted or styled. May be removed *}
-	{if !empty($socialMediaBlocks)}
-		<div id="socialMediaBlocksContainer">
-		{foreach from=$socialMediaBlocks item=block name=b}
-			<div id="socialMediaBlock{$smarty.foreach.b.index}" class="socialMediaBlock pkp_helpers_clear">
-				{$block}
-			</div>
-		{/foreach}
-		</div>
-	{/if}
-
 </div><!-- .page -->
 
 {include file="common/frontend/footer.tpl"}

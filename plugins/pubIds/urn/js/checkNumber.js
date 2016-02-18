@@ -1,8 +1,8 @@
 /**
  * plugins/pubIds/urn/js/checkNumber.js
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Function for determining the check number for URNs
@@ -14,11 +14,11 @@
  *  every URN character is replaced with a number according to the conversion table,
  *  every number is multiplied by it's position/index (beginning with 1),
  *  the numbers' sum is calculated,
- *  the sum is devided by the last number,
+ *  the sum is divided by the last number,
  *  the last number of the quotient before the decimal point is the check number.
  */
 function calculateCheckNo(urnPrefix) {
-	var urnSuffix = document.getElementById('urnSuffix').value
+    var urnSuffix = document.getElementById('urnSuffix').value;
     var urn = urnPrefix+urnSuffix;
     urn = urn.toLowerCase();
     

@@ -1,27 +1,25 @@
 {**
  * templates/frontend/pages/issueArchive.tpl
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Display a list of recent issues.
  *
  * @uses $issues Array Collection of issues to display
  *}
-{if $issues->getPageCount() > 0 && $issues->getPage() > 1}
-	{assign var=pageNumber value={translate key="common.pageNumber" pageNumber=$issues->getPage()}}
-{/if}
-{include file="common/frontend/header.tpl" pageTitle="archive.archives"}
-
-<div class="page">
-
-	<h1 class="page_title">
+{capture assign="pageTitle"}
+	{if $issues->getPageCount() > 0 && $issues->getPage() > 1}
+		{translate key="archive.archivesPageNumber" pageNumber=$issues->getPage()}
+	{else}
 		{translate key="archive.archives"}
-		{if $pageNumber}
-			{translate key="common.pageNumber"}
-		{/if}
-	</h1>
+	{/if}
+{/capture}
+{include file="frontend/components/header.tpl" pageTitleTranslated=$pageTitle}
+
+<div class="page page_issue_archive">
+	{include file="frontend/components/breadcrumbs.tpl" currentTitle=$pageTitle}
 
 	{* No issues have been published *}
 	{if !$issues}

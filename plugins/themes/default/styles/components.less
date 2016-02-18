@@ -1,8 +1,8 @@
 /**
  * @file styles/components.less
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Reusable components
@@ -18,9 +18,9 @@
 	border-radius: @radius;
 	box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.1);
 	font-size: @font-sml;
-	line-height: @double - 2; // account for border
+	line-height: @triple - 2; // account for border
 	font-weight: @bold;
-	color: @text-light;
+	color: @primary;
 }
 
 // Wire button
@@ -28,16 +28,16 @@
 	display: inline-block;
 	padding: 0 1em;
 	background: #fff;
-	border: 1px solid @primary-lift;
+	border: 1px solid @primary;
 	border-radius: @radius;
 	font-size: @font-sml;
-	line-height: @double;
-	color: @primary-lift;
+	line-height: @triple - 2; // account for border
+	color: @primary;
 	text-decoration: none;
 
 	&:hover,
 	&:focus {
-		background: @primary-lift;
+		background: @primary;
 		color: #fff;
 	}
 }
@@ -66,20 +66,20 @@
 
 		> li {
 			position: relative;
-			padding-bottom: @double; // Contain errors
+			padding-bottom: @triple; // Contain errors
 
 			// Nest so we don't grab .error class attached to li
 			.error {
 				position: absolute;
 				left: 0.5em; // Sit off the rounded edge of input fields
-				bottom: 9px; // Sit on the bottom line of the input field above
-				padding: 4px 0.5em; // Keep it tight so it doesn't bleed into next field
+				bottom: 11px; // Sit on the bottom line of the input field above
+				padding: 0 0.5em; // Keep it tight so it doesn't bleed into next field
 				background: @no;
-				border-bottom-left-radius: 2px;
-				border-bottom-right-radius: 2px;
-				font-size: 12px; // Special case for tiny text
-				line-height: 16px;
-				font-weight: 700;
+				border-bottom-left-radius: @radius;
+				border-bottom-right-radius: @radius;
+				font-size: @font-sml;
+				line-height: @double;
+				font-weight: @bold;
 				color: #fff;
 			}
 		}
@@ -109,17 +109,27 @@
 	textarea {
 		padding: 0 0.5em;
 		width: 100%;
-		height: @double - 2; // account for border
+		height: @triple - 2; // account for border
 		background: #fff;
 		border: 1px solid #aaa;
 		border-radius: @radius;
 		font-size: @font-sml;
-		line-height: @double - 2; // account for border
+		line-height: @triple - 2; // account for border
 	}
 
 	textarea {
 		width: 100%;
 		height: 8em;
+	}
+
+	.pkp_form_error {
+		margin-bottom: @base;
+		border-radius: @radius;
+		padding: 0 0.5em;
+		font-weight: @bold;
+		font-size: @font-sml;
+		background: @no;
+		color: #fff;
 	}
 
 	@media(min-width: @screen-phone) {
@@ -131,6 +141,84 @@
 		input[type="phone"],
 		select {
 			max-width: 20em;
+		}
+	}
+
+	// Tag-it component
+	// @todo This just duplicates some styles from pkp-lib. We can probably
+	//  find a better way to share styles after beta, or move this to somewhere
+	//  more appropriate in the theme.
+	.tagit {
+		&:extend(.pkp_unstyled_list);
+		&:extend(.pkp_form input[type="text"]);
+		.pkp_helpers_clear();
+
+		// overwrite text field styles
+		max-width: 100%;
+		height: auto;
+
+		> li {
+			display: inline-block;
+
+			&.tagit-choice {
+				margin-right: 0.5em;
+				padding-left: 0.5em;
+				background: @bg;
+				border-radius: @radius;
+				line-height: @double;
+			}
+		}
+
+		input[type="text"] {
+			display: inline-block;
+			border: none;
+			width: inherit;
+			line-height: 30px;
+			height: 30px;
+			vertical-align: top;
+			padding: 0 0.5em;
+		}
+	}
+
+	.tagit-close {
+		padding: 0 0.5em;
+		color: @no;
+	}
+}
+
+// Auto-complete selection fields for tagit component (not nested in .pkp_form)
+.ui-autocomplete {
+	&:extend(.pkp_unstyled_list);
+	width: 20em;
+	padding: 2px;
+	border-radius: @radius;
+	background: @bg-base;
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: -@half;
+		left: 1em;
+		width: 0;
+		height: 0;
+		color: @bg-base;
+		border-bottom: @half solid;
+		border-right: @half solid transparent;
+		border-left: @half solid transparent;
+		vertical-align: middle;
+	}
+
+	> li {
+		padding: @half;
+		font-size: @font-sml;
+		line-height: @line-sml;
+		color: #fff;
+		cursor: pointer;
+
+		&:hover,
+		&:focus {
+			background: @bg;
+			color: @text;
 		}
 	}
 }
@@ -217,4 +305,47 @@
 	padding: @double;
 	background: @bg;
 	text-align: center;
+}
+
+// Breadcrumbs
+.cmp_breadcrumbs {
+	display: inline-block;
+
+
+	ol {
+		&:extend(.pkp_unstyled_list);
+		margin-bottom: @triple;
+		padding: 5px 0;
+		line-height: @double;
+		font-size: @font-sml;
+	}
+
+	li {
+		display: inline-block;
+	}
+
+	a {
+		display: inline-block;
+		text-decoration: none;
+	}
+
+	.separator {
+		color: @text-light;
+		padding: 0 0.5em;
+	}
+
+	.current {
+		color: @text-light;
+
+		h1 {
+			margin: 0;
+			font-size: @font-sml;
+			font-weight: @normal;
+		}
+	}
+}
+
+// Backlink used on error.tpl and message.tpl
+.cmp_back_link {
+	margin-top: @double;
 }

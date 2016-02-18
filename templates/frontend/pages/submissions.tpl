@@ -1,8 +1,8 @@
 {**
  * templates/frontend/pages/submissions.tpl
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Display the page to view the editorial team.
@@ -10,12 +10,10 @@
  * @uses $currentJournal Journal The current journal
  * @uses $submissionChecklist array List of requirements for submissions
  *}
-{include file="common/frontend/header.tpl" pageTitle="about.submissions"}
+{include file="frontend/components/header.tpl" pageTitle="about.submissions"}
 
 <div class="page page_submissions">
-	<h1 class="page_title">
-		{translate key="about.submissions"}
-	</h1>
+	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.submissions"}
 
 	{* Login/register prompt *}
 	{capture assign="login"}

@@ -1,8 +1,8 @@
 {**
  * templates/manager/plugins/plugins.tpl
  *
- * Copyright (c) 2013-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2013-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * List available import/export plugins.
@@ -56,7 +56,7 @@
 			{/if}
       {assign var=name value=$plugin->getName()}
 
-      {if $isSiteAdmin || $category=="blocks" || $name=="webfeedplugin" || $name=="announcementfeedplugin" || $name=="customblockmanagerplugin" || $name=="staticpagesplugin" || $name=="PublicFolderBrowserPlugin" || $name=="pdfjsviewerplugin" || $name=="stopforumspamplugin" || $name=="MunipressDOIFinderPlugin"}
+      {if $isSiteAdmin || $category=="blocks" || $name=="webfeedplugin" || $name=="announcementfeedplugin" || $name=="customblockmanagerplugin" || $name=="staticpagesplugin" || $name=="PublicFolderBrowserPlugin" || $name=="pdfjsviewerplugin" || $name=="stopforumspamplugin" || $name=="MunipressDOIFinderPlugin" || $name == "ReviewPdfGeneratorPlugin"}
 			<li><h4>{$plugin->getDisplayName()|escape}</h4>
 			<p>
 			{$plugin->getDescription()}<br />

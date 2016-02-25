@@ -3,7 +3,8 @@
 /**
  * @file PiwikPlugin.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2013-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PiwikPlugin
@@ -178,6 +179,27 @@ class PiwikPlugin extends GenericPlugin {
 					$templateMgr->assign('piwikUrl', $piwikUrl);
 					$output .= $templateMgr->fetch($this->getTemplatePath() . 'pageTag.tpl'); 
 				}
+//			$smarty =& $params[1];
+//			$output =& $params[2];
+//			$journal =& Request::getJournal();
+//			$journalId = $journal->getJournalId();
+//			$journalPath = $journal->getPath();
+//			$piwikSiteId = $this->getSetting($journalId, 'piwikSiteId');
+//			$piwikUrl = $this->getSetting($journalId, 'piwikUrl');
+//			if (!empty($piwikSiteId) && !empty($piwikUrl)) {
+//				$output .= 	'<!-- Piwik -->'.
+//						'<script type="text/javascript">'.
+//						'var pkBaseURL = "'.$piwikUrl.'/";'.
+//						'document.write(unescape("%3Cscript src=\'" + pkBaseURL + "piwik.js\' type=\'text/javascript\'%3E%3C/script%3E"));'.
+//						'</script><script type="text/javascript">'.
+//						'try {'.
+//						'var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", '.$piwikSiteId.');'.
+//						'piwikTracker.setDocumentTitle("'.$journalPath.'");'.
+//						'piwikTracker.trackPageView();'.
+//						'piwikTracker.enableLinkTracking();'.
+//						'} catch( err ) {}'.
+//						'</script><noscript><p><img src="'.$piwikUrl.'/piwik.php?idsite='.$piwikSiteId.'" style="border:0" alt="" /></p></noscript>'.
+//						'<!-- End Piwik Tag -->';
 			}
 		}
 		return false;

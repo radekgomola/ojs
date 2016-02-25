@@ -3,8 +3,8 @@
 #
 # tools/buildpkg.sh
 #
-# Copyright (c) 2013-2015 Simon Fraser University Library
-# Copyright (c) 2003-2015 John Willinsky
+# Copyright (c) 2013-2016 Simon Fraser University Library
+# Copyright (c) 2003-2016 John Willinsky
 # Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
 #
 # Script to create an OJS package for distribution.
@@ -49,6 +49,7 @@ lib/pkp/tools/mergePullRequest.sh				\
 lib/password_compat/.git					\
 lib/pkp/lib/swordappv2/.git					\
 lib/pkp/lib/swordappv2/test					\
+plugins/reports/counter/classes/COUNTER/.git			\
 plugins/generic/pdfJsViewer/.git"
 
 

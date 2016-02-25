@@ -1,8 +1,8 @@
 {**
  * templates/article/footer.tpl
  *
- * Copyright (c) 2013-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2013-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Article View -- Footer component.
@@ -40,8 +40,10 @@
 
 {if $currentJournal}
 	{if $currentJournal->getSetting('includeCopyrightStatement')}
-		<br/><br/>
-		{translate key="submission.copyrightStatement" copyrightYear=$article->getCopyrightYear()|escape copyrightHolder=$article->getLocalizedCopyrightHolder()|escape}
+                {if $article->getCopyrightYear()}
+                    <br/><br/>
+                    {translate key="submission.copyrightStatement" copyrightYear=$article->getCopyrightYear()|escape copyrightHolder=$article->getLocalizedCopyrightHolder()|escape}
+                {/if}
 	{/if}
 	{if $currentJournal->getSetting('includeLicense')}
 		<br /><br />

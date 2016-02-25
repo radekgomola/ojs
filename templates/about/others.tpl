@@ -66,11 +66,12 @@
 {/if}
 </div>
 {/if}
-
+{if $history}
 <div class="history">
     <h2>{translate key="about.history"}</h2>
     {$history}
 </div>
+{/if}
 
 <div class="aboutPublishingSystem">
     <h2>{translate key="about.aboutThisPublishingSystem"}</h2>

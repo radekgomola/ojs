@@ -1,8 +1,8 @@
 {**
  * templates/manager/setup/step5.tpl
  *
- * Copyright (c) 2013-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2013-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Step 5 of journal setup.
@@ -666,7 +666,7 @@ function prepBlockFields() {
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label"><label for="useSimpleSearch">{translate key="manager.setup.journalPrintCss.styleSheet"}</label></td>
-		<td width="80%" class="value"><input type="file" name="journalPrintStyleSheet" id="journalPrintStyleSheet" class="uploadField" /> <input type="submit" name="uploadJournalPrintStyleSheet" value="{translate key="common.upload"}" class="button" /></td>manager.setup.journalPrintStyleSheetInvalid
+		<td width="80%" class="value"><input type="file" name="journalPrintStyleSheet" id="journalPrintStyleSheet" class="uploadField" /> <input type="submit" name="uploadJournalPrintStyleSheet" value="{translate key="common.upload"}" class="button" /></td>
 	</tr>
 </table>
 {if $journalPrintStyleSheet}

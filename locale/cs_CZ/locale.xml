@@ -1506,4 +1506,5 @@ Masarykovy univerzity</message>
         <message key="manager.setup.journalPrintStyleSheetInvalid">Nastal problém při vložení CSS.</message>
         <message key="manager.setup.journalPrintCss.styleSheet">Tiskový Style sheet časopisu</message>
         <message key="user.login.registerNewAccount.before"></message>
+        <message key="manager.setup.meidalon.citation.allow">Povolit odkazy na medailony autorů</message>
 </locale>

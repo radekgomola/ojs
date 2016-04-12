@@ -177,6 +177,9 @@ class TinyMCEPlugin extends GenericPlugin {
 				$fields[] = 'membershipFeeDescription';
 				$fields[] = 'donationFeeDescription';
 				break;
+                        case 'manager/editGroup':
+                                $fields[] = 'groupDescription';
+                                break;
 			case 'user/profile':
 			case 'user/register':
 			case 'user/saveProfile':
@@ -255,7 +258,7 @@ class TinyMCEPlugin extends GenericPlugin {
 						$fields[] = 'readerInformation';
 						$fields[] = 'librarianInformation';
 						$fields[] = 'authorInformation';
-            $fields[] = 'aboutJournal';
+                                                $fields[] = 'aboutJournal';
 						break;
 				}
 				break;

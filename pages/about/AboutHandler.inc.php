@@ -150,6 +150,7 @@ class AboutHandler extends Handler {
 			$proofreaders =& $roleDao->getUsersByRoleId(ROLE_ID_PROOFREADER, $journal->getId());
 			$proofreaders =& $proofreaders->toArray();
 
+                        $templateMgr->assign('currentJournal', $journal);
 			$templateMgr->assign_by_ref('editors', $editors);
 			$templateMgr->assign_by_ref('sectionEditors', $sectionEditors);
 			$templateMgr->assign_by_ref('layoutEditors', $layoutEditors);
@@ -197,6 +198,7 @@ class AboutHandler extends Handler {
 				unset($group);
 			}
 
+                        $templateMgr->assign('currentJournal', $journal);
                         $templateMgr->assign('publishEmailList', $publishEmailList);
                         $templateMgr->assign('publishUrlList', $publishUrlList);
                         $templateMgr->assign('allowMedailon', $allowMedailon);
@@ -525,6 +527,89 @@ class AboutHandler extends Handler {
                 }
 		$templateMgr->assign_by_ref('user', $user);
 		$templateMgr->assign_by_ref('publishEmail', $publishEmail);
+		$templateMgr->display('about/editorialTeamBioFullProfile.tpl');
+	}
+        
+        /**
+	 * Display a biography for an author.
+	 * @param $args array
+	 */
+	function bioAuthor($args) {
+		$this->addCheck(new HandlerValidatorJournal($this));
+		$this->validate();
+		$this->setupTemplate(true);
+
+		$journal =& Request::getJournal();
+
+		$templateMgr =& TemplateManager::getManager();
+
+		$authorId = isset($args[0])?(int)$args[0]:0;
+
+                $authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$author = $authorDao->getAuthor($authorId);
+                
+		if (!$author) {
+                    Request::redirect(null, 'index');
+                }
+
+		$countryDao =& DAORegistry::getDAO('CountryDAO');
+                $country = null;
+		if ($author && $author->getCountry() != '') {
+			$country = $countryDao->getCountry($author->getCountry());
+			$templateMgr->assign('country', $country);
+		}
+                
+                if ($author){                   
+                            $firstName = $author->getFirstName();
+                            $middleName = $author->getMiddleName();
+                            $lastName = $author->getLastName();
+
+                            $affiliation = $author->getLocalizedAffiliation()?$author->getLocalizedAffiliation():"";
+                            $countrySearch = $author->getCountry();
+                            
+                            $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $countrySearch);
+                            
+                            // Load information associated with each article.
+                            $journals = array();
+                            $issues = array();
+                            $sections = array();
+                            $issuesUnavailable = array();
+
+                            $issueDao =& DAORegistry::getDAO('IssueDAO');
+                            $sectionDao =& DAORegistry::getDAO('SectionDAO');
+                            $journalDao =& DAORegistry::getDAO('JournalDAO');
+
+                            foreach ($publishedArticles as $article) {
+                                    $articleId = $article->getId();
+                                    $issueId = $article->getIssueId();
+                                    $sectionId = $article->getSectionId();
+                                    $journalId = $article->getJournalId();
+
+                                    if (!isset($issues[$issueId])) {
+                                            import('classes.issue.IssueAction');
+                                            $issue =& $issueDao->getIssueById($issueId);
+                                            $issues[$issueId] =& $issue;
+                                            $issuesUnavailable[$issueId] = IssueAction::subscriptionRequired($issue) && (!IssueAction::subscribedUser($journal, $issueId, $articleId) && !IssueAction::subscribedDomain($journal, $issueId, $articleId));
+                                    }
+                                    if (!isset($journals[$journalId])) {
+                                            $journals[$journalId] =& $journalDao->getById($journalId);
+                                    }
+                                    if (!isset($sections[$sectionId])) {
+                                            $sections[$sectionId] =& $sectionDao->getSection($sectionId, $journalId, true);
+                                    }
+                            }
+
+                            if (!empty($publishedArticles)) {
+                                $templateMgr->assign_by_ref('publishedArticles', $publishedArticles);
+                                $templateMgr->assign_by_ref('issues', $issues);
+                                $templateMgr->assign('issuesUnavailable', $issuesUnavailable);
+                                $templateMgr->assign_by_ref('sections', $sections);
+                                $templateMgr->assign_by_ref('journals', $journals);
+                            }
+//                        }
+                    
+                }
+		$templateMgr->assign_by_ref('user', $author);
 		$templateMgr->display('about/editorialTeamBioFullProfile.tpl');
 	}
         

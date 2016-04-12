@@ -23,6 +23,7 @@ switch($op) {
 	case 'displayMembership':
 	case 'editorialTeamBio':
         case 'editorialTeamBioFullProfile':
+        case 'bioAuthor':
 	case 'editorialPolicies':
 	case 'subscriptions':
 	case 'memberships':

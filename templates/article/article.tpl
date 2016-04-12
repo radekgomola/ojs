@@ -81,13 +81,12 @@
 	{/if}
 	{call_hook name="Templates::Article::Article::ArticleCoverImage"}
 	<div id="articleTitle"><h3>{$article->getLocalizedTitle()|strip_unsafe_html}</h3></div>
-	{if $journal->getSetting('allowMedailon')}
+	{if $journal->getSetting('allowMedailonArticles')}
             {assign var=authors value=$article->getAuthors()}
             <div id="authorString">
                 <em>
-                    {foreach from=$authors item=author}
-                        <a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$author->getId()}')">{$author->getFullName()}</a>
-                    {/foreach}
+                    {assign var=separator value=0}
+                    {foreach from=$authors item=author}{if $separator == 1}, {else}{assign var=separator value=1}{/if}<a href="{url page="about" op="bioAuthor" path=$author->getId()}">{$author->getFullName()|strip}</a>{/foreach}
                 </em>
             </div>
         {else}
@@ -99,7 +98,7 @@
 		<div>{$article->getLocalizedAbstract()|strip_unsafe_html|nl2br}</div>
 		</div>
 	{/if}
-        {if $article->getLocalizedCitace()}
+        {if !empty($article->getLocalizedCitace()) && $article->getLocalizedCitace() != ""}
 		<div id="articleCitace">
 		<h4>{translate key="article.citace"}</h4>
 		<div>{$article->getLocalizedCitace()|strip_unsafe_html|nl2br}</div>

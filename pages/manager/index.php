@@ -184,6 +184,7 @@ switch ($op) {
 	case 'setBoardEnabled':
 	case 'moveGroup':
 	case 'moveMembership':
+        case 'setEditorialTeamDescription':
 		define('HANDLER_CLASS', 'GroupHandler');
 		import('pages.manager.GroupHandler');
 		break;

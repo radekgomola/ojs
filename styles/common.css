@@ -626,5 +626,15 @@ table.listing td.searchAuthors {
 .first{
     margin-left: 0px;
 }
+
+
+table.data td.separator-border {
+	border-top: 1px dotted #ddddd0;
+        padding: 4em;
+	font-size: 0.1em;
+	line-height: 1%;
+}
+
+
 /* @end */
 

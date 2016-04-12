@@ -13,6 +13,7 @@
  * @brief Handle requests for editorial team management functions.
  */
 
+import('lib.pkp.classes.form.Form');
 import('pages.manager.ManagerHandler');
 
 class GroupHandler extends ManagerHandler {
@@ -32,13 +33,13 @@ class GroupHandler extends ManagerHandler {
 		parent::ManagerHandler();
 	}
 
-	/**
-	 * Display a list of groups for the current journal.
-	 */
-	function groups() {
+        function groups() {
 		$this->validate();
 		$this->setupTemplate();
-
+                
+                $form = new Form();
+                $supportedLocales = AppLocale::getSupportedFormLocales();
+		
 		$journal =& Request::getJournal();
 
 		$rangeInfo =& $this->getRangeInfo('groups');
@@ -47,12 +48,38 @@ class GroupHandler extends ManagerHandler {
 		$groups =& $groupDao->getGroups(ASSOC_TYPE_JOURNAL, $journal->getId(), null, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
+                $templateMgr->assign('formLocales', $supportedLocales);
+                $templateMgr->register_function('form_language_chooser', array($form, 'smartyFormLanguageChooser'));
+                
+                
 		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
 		$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
 		$templateMgr->assign_by_ref('groups', $groups);
 		$templateMgr->assign('boardEnabled', $journal->getSetting('boardEnabled'));
+                
 		$templateMgr->display('manager/groups/groups.tpl');
 	}
+	/**
+	 * Display a list of groups for the current journal.
+	 */
+//	function groups() {
+//		$this->validate();
+//		$this->setupTemplate();
+//                
+//		$journal =& Request::getJournal();
+//
+//		$rangeInfo =& $this->getRangeInfo('groups');
+//
+//		$groupDao =& DAORegistry::getDAO('GroupDAO');
+//		$groups =& $groupDao->getGroups(ASSOC_TYPE_JOURNAL, $journal->getId(), null, $rangeInfo);
+//
+//		$templateMgr =& TemplateManager::getManager();
+//		$templateMgr->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.tablednd.js');
+//		$templateMgr->addJavaScript('lib/pkp/js/functions/tablednd.js');
+//		$templateMgr->assign_by_ref('groups', $groups);
+//		$templateMgr->assign('boardEnabled', $journal->getSetting('boardEnabled'));
+//		$templateMgr->display('manager/groups/groups.tpl');
+//	}
 
 	/**
 	 * Delete a group.
@@ -371,6 +398,24 @@ class GroupHandler extends ManagerHandler {
 		$journalSettingsDao->updateSetting($journal->getId(), 'boardEnabled', $boardEnabled);
 		Request::redirect(null, null, 'groups');
 	}
+        
+        function setEditorialTeamDescription($args) {
+		$this->validate();
+                
+                $form = new Form();
+                $supportedLocales = AppLocale::getSupportedFormLocales();
+
+		$templateMgr =& TemplateManager::getManager();
+                $templateMgr->assign('formLocales', $supportedLocales);
+                $templateMgr->register_function('form_language_chooser', array($form, 'smartyFormLanguageChooser'));
+                
+                
+		$journal =& Request::getJournal();
+		$editorialTeamDescription = Request::getUserVar('editorialTeamDescription');
+		$journalSettingsDao =& DAORegistry::getDAO('JournalSettingsDAO');
+		$journalSettingsDao->updateSetting($journal->getId(), 'editorialTeamDescription', $editorialTeamDescription, 'string', true); // Localized
+		Request::redirect(null, null, 'groups');
+	}
 
 	function setupTemplate($group = null, $subclass = false) {
 		parent::setupTemplate(true);
@@ -426,6 +471,7 @@ class GroupHandler extends ManagerHandler {
 		if (!$passedValidation) Request::redirect(null, null, 'groups');
 		return true;
 	}
+
 }
 
 ?>

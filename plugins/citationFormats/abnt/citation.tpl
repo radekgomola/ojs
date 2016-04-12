@@ -18,7 +18,9 @@
 	{foreach from=$authors item=author name=authors key=i}
 		{assign var=firstName value=$author->getFirstName()}
 		{assign var=middleName value=$author->getMiddleName()}
-		{$author->getLastName()|escape|mb_upper}, {$firstName|escape}{if $middleName} {$middleName|escape}{/if}{if $i<$authorCount-1}; {/if}{/foreach}.
+                {if $journal->getSetting('allowMedailonCitations')}
+                    <a href="{url page="about" op="bioAuthor" path=$author->getId()}">{$author->getLastName()|escape|mb_upper}, {$firstName|escape}{if $middleName} {$middleName|escape}{/if}</a>{if $i<$authorCount-1}; {/if}{else}{$author->getLastName()|escape|mb_upper}, {$firstName|escape}{if $middleName} {$middleName|escape}{/if}{if $i<$authorCount-1}; {/if}{/if}{/foreach}.
+        
 {else}
 	{assign var=firstName value=$authors[0]->getFirstName()}
 	{assign var=middleName value=$authors[0]->getMiddleName()}

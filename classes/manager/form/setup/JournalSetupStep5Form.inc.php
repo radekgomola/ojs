@@ -52,7 +52,8 @@ class JournalSetupStep5Form extends JournalSetupForm {
                                 'socialTwitter' => 'string',
                                 'socialGplus' => 'string',
                                 'aboutSetupTopDown' => 'int',
-                                'allowMedailon' => 'bool',
+                                'allowMedailonArticles' => 'bool',
+                                'allowMedailonCitations' => 'bool',
                                 'showCitation' => 'bool',
                                 'showCitationHtml' => 'bool',
                                 'useSimpleSearch' => 'bool'

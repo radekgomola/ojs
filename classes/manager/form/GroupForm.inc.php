@@ -74,7 +74,9 @@ class GroupForm extends Form {
                                 'allowMedailon' => $this->group->getAllowMedailon(),
                                 'opacnyTvarJmena' => $this->group->getOpacnyTvarJmena(),
                                 'fullProfile' => $this->group->getFullProfile(),
-				'context' => $this->group->getContext()
+				'context' => $this->group->getContext(),
+                                'groupDescription' => $this->group->getGroupDescription(null), // Localized
+                                'groupSetupTopDown' => $this->group->getGroupSetupTopDown()
 			);
 		} else {
 			$this->_data = array(
@@ -84,7 +86,8 @@ class GroupForm extends Form {
                                 'allowMedailon' => 1,
                                 'opacnyTvarJmena' => 0,
                                 'fullProfile' => 0,
-				'context' => GROUP_CONTEXT_EDITORIAL_TEAM
+				'context' => GROUP_CONTEXT_EDITORIAL_TEAM,
+                                'groupSetupTopDown' => 0
 			);
 		}
 	}
@@ -93,7 +96,7 @@ class GroupForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'context', 'publishEmail', 'publishEmailList', 'allowMedailon', 'publishUrlList', 'opacnyTvarJmena', 'fullProfile'));
+		$this->readUserVars(array('title', 'context', 'publishEmail', 'publishEmailList', 'allowMedailon', 'publishUrlList', 'opacnyTvarJmena', 'fullProfile', 'groupDescription', 'groupSetupTopDown'));
 	}
 
 	/**
@@ -117,6 +120,8 @@ class GroupForm extends Form {
                 $this->group->setAllowMedailon($this->getData('allowMedailon'));
                 $this->group->setOpacnyTvarJmena($this->getData('opacnyTvarJmena'));
                 $this->group->setFullProfile($this->getData('fullProfile'));
+                $this->group->setGroupDescription($this->getData('groupDescription'), null); // Localized
+                $this->group->setGroupSetupTopDown($this->getData('groupSetupTopDown'));
 
 		// Eventually this will be a general Groups feature; for now,
 		// we're just using it to display journal team entries in About.

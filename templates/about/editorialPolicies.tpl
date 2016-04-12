@@ -31,6 +31,7 @@
 			<li><a href="{url op="editorialPolicies" anchor=custom-$key}">{$customAboutItem.title|escape}</a></li>
 		{/if}
 	{/foreach}
+        {call_hook name="Templates::About::Index::Policies"}
 </ul>
 
 {if $currentJournal->getLocalizedSetting('focusScopeDesc') != ''}

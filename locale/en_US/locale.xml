@@ -1255,11 +1255,13 @@ Masaryk University</message>
         
         <message key="manager.groups.sortLexicographically">Sort members lexicographically</message>
         <message key="manager.setup.medailon">Article authors' medallions</message>
-        <message key="manager.setup.medailon.description">Povolením této možnosti umožníte zobrazovat u jednotlivých autorů článků biografické meidalonky a webové stránky. (Vložený e-mail se zde zobrazovat nebude!)</message>
+        <message key="manager.setup.medailon.description">You could allow links to an authors' bibliographies by allowing this setting. (E-mail will not be shown!)</message>
         <message key="manager.setup.meidalon.medailon">Allow showing of medallions.</message>
-        <message key="manager.groups.publishEmailList">Povolit zobrazení e-mailu v seznamu členů.</message>
-        <message key="manager.groups.allowMedailon">Povolit zobrazení medailonů členů.</message>
-        <message key="manager.groups.publishUrlList">Povolit zobrazení url v seznamu členů.</message>
+        <message key="manager.setup.meidalon.allow">Allow links to a authors' bibliographies</message>
+        <message key="manager.groups.publishEmailList">Allow emails in a members' list.</message>
+        <message key="manager.groups.allowMedailon">Allow link to members' medailons.</message>
+        <message key="manager.groups.publishUrlList">Allow url in a members' list.</message>
+        <message key="manager.setup.meidalon.citation.allow">Allow links to a authors' bibliographies</message>
         <message key="editorialTeam.email">Email</message>
         <message key="editorialTeam.url">URL</message>
         <message key="user.allowPublishingEmail">Deny publishing an email.</message>
@@ -1268,7 +1270,7 @@ Masaryk University</message>
         
         
         <message key="editor.issues.articleNumber">Article number</message>
-        <message key="manager.setup.enableArticleNumber">Umožňuje zapnout číslování článků (objeví se v obsahu při editování). Číslování může nahradit stránkování a objevuje se v obsaahu a APA citaci.</message>
+        <message key="manager.setup.enableArticleNumber">This setting allows showing article numbers.</message>
         <message key="manager.setup.articleNumberIdentifier">Article number identifier</message>
         <message key="article.clanek.articleNumber">Article</message>
         

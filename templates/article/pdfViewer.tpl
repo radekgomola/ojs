@@ -46,7 +46,7 @@
 	</div>
 </div>
 <p>
-  <a class="action" id="pdfDownloadLink" target="_parent" href="{url op="download" path=$articleId|to_array:$galley->getBestGalleyId($currentJournal)}">{translate key="article.pdf.download"}</a>
+  <a class="action piwik_download" id="pdfDownloadLink" target="_parent" href="{url op="download" path=$articleId|to_array:$galley->getBestGalleyId($currentJournal)}">{translate key="article.pdf.download"}</a>
 	<a class="action" href="#" id="fullscreenShow">{translate key="common.fullscreen"}</a>
 	<a class="action" href="#" id="fullscreenHide">{translate key="common.fullscreenOff"}</a>
 </p>

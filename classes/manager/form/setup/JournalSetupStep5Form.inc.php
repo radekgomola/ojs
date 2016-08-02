@@ -56,7 +56,9 @@ class JournalSetupStep5Form extends JournalSetupForm {
                                 'allowMedailonCitations' => 'bool',
                                 'showCitation' => 'bool',
                                 'showCitationHtml' => 'bool',
-                                'useSimpleSearch' => 'bool'
+                                'useSimpleSearch' => 'bool',
+                                'archivDescription' => 'string',
+                                'archivSetupTopDown' => 'int'
 			)
 		);
 	}
@@ -66,7 +68,7 @@ class JournalSetupStep5Form extends JournalSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('homeHeaderTitleType', 'homeHeaderTitle', 'pageHeaderTitleType', 'pageHeaderTitle', 'readerInformation', 'authorInformation', 'librarianInformation', 'journalPageHeader', 'journalPageFooter', 'homepageImage', 'journalFavicon', 'additionalHomeContent', 'description', 'navItems', 'homeHeaderTitleImageAltText', 'homeHeaderLogoImageAltText', 'journalThumbnailAltText', 'homepageImageAltText', 'pageHeaderTitleImageAltText', 'pageHeaderLogoImageAltText','aboutJournal', 'socialFacebook', 'socialTwitter', 'socialGplus', 'aboutSetupTopDown');
+		return array('homeHeaderTitleType', 'homeHeaderTitle', 'pageHeaderTitleType', 'pageHeaderTitle', 'readerInformation', 'authorInformation', 'librarianInformation', 'journalPageHeader', 'journalPageFooter', 'homepageImage', 'journalFavicon', 'additionalHomeContent', 'description', 'navItems', 'homeHeaderTitleImageAltText', 'homeHeaderLogoImageAltText', 'journalThumbnailAltText', 'homepageImageAltText', 'pageHeaderTitleImageAltText', 'pageHeaderLogoImageAltText','aboutJournal', 'socialFacebook', 'socialTwitter', 'socialGplus', 'aboutSetupTopDown', 'archivDescription', 'archivSetupTopDown');
 
 	}
 
@@ -115,6 +117,7 @@ class JournalSetupStep5Form extends JournalSetupForm {
                         'socialTwitter' => $journal->getSetting('socialTwitter'),
                         'socialGplus' => $journal->getSetting('socialGplus'),
                         'citationPlugins' => $citationPlugins,
+                        'archivDescription' => $journal->getSetting('archivDescription'),
 		));
 
 		// Make lists of the sidebar blocks available.

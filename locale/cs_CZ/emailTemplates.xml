@@ -1079,4 +1079,160 @@ URL příspěvku: {$submissionUrl}
 {$editorialContactSignature}</body>
 		<description>Tento email je automaticky posílán k přiřazenému editorovi, pokud autor nahraje upravenou verzi jeho článku.</description>
 	</email_text>
+  <email_text key="CITATION_EDITOR_AUTHOR_QUERY">
+    <subject>Žádost o úpravu citace</subject>
+    <body>{$authorFirstName},
+
+mohl byste, prosím, ověřit správnost citace z následující reference z Vašeho článku, {$articleTitle}:
+
+{$rawCitation}
+              
+{$userFirstName}
+Redaktor, {$journalName}
+    </body>
+  </email_text>
+  <email_text key="GIFT_AVAILABLE">
+    <subject>{$giftNoteTitle}</subject>
+      <body>Vážený/á {$recipientFirstName},
+
+{$buyerFullName} by s Vámi rád sdílel dar v časopisu {$giftJournalName}:
+
+{$giftDetails}
+
+
+{$giftNote}
+
+
+V následujícím e-mailu obdržíte přihlašovací údaje a instrukce pro vyzvednutí daru.
+
+Doufáme, že Vás dar potěší.
+
+{$giftContactSignature}
+      </body>
+    </email_text>
+    <email_text key="GIFT_USER_LOGIN">
+      <subject>Vyplacení daru: přihlašovací údaje</subject>
+      <body>Vážený/á {$recipientFirstName},
+
+{$buyerFullName} by s Vámi rád sdílel dar v časopisu {$giftJournalName}:
+
+{$giftDetails}
+
+Pro vyplacení daru se prosím přihlašte na stránce časopisu: {$giftUrl}
+
+Uživatelské jméno: {$username}
+
+Doufáme, že Vás dar potěší.
+
+{$giftContactSignature}
+      </body>
+    </email_text>
+    <email_text key="GIFT_USER_REGISTER">
+      <subject>Vyplacení daru: přihlašovací údaje<</subject>
+      <body>Vážený/á {$recipientFirstName},
+
+{$buyerFullName} Pro vyplacení daru se prosím přihlašte na stránce časopisu: {$giftJournalName}:
+
+{$giftDetails}
+
+
+Pro vyplacení daru se prosím přihlašte na stránce časopisu: {$giftUrl}
+
+Uživatelské jméno: {$username}
+Heslo: {$password}
+
+Po příhlášení můžete heslo změnit.
+
+Doufáme, že Vás dar potěší.
+
+{$giftContactSignature}
+      </body>
+    </email_text>
+    <email_text key="REVIEW_REQUEST_ATTACHED_SUBSEQUENT">
+      <subject>Žádost o recenzování článku</subject>
+      <body>{$reviewerName}:
+
+Žádost se týka článku "{$articleTitle}," který je právě zvažován časopisem {$journalName}.
+
+Vzhledem k recenznímu posudku předchozí verze rukopisu, autor zaslal revidovanou verzi článku. Ocenili bychom Vaši pomoc při jejím zhodnocení.
+
+Pravidla pro recenzní řízení pro tento časopis jsou přiloženy níže a příspěvek je připojen k e-mailu. Váše recenze včetně doporučení by měla být odeslána na můj e-mail do {$reviewDueDate}.
+
+Prosím vyjádřete se v odpovědi na tento e-mail do {$weekLaterDate}, zda-li jste ochoten recenzní posudek zpracovat.
+
+Děkujeme Vám za zvážení našeho požadavku.
+
+{$editorialContactSignature}
+
+
+Pravidla recenzního řízení:
+
+{$reviewGuidelines}
+      </body>
+    </email_text>
+    <email_text key="REVIEW_REQUEST_ONECLICK_SUBSEQUENT">
+      <subject>Žádost o recenzování článku</subject>
+      <body>{$reviewerName}:
+
+Žádost se týka článku "{$articleTitle}," který je právě zvažován časopisem {$journalName}.
+
+Vzhledem k recenznímu posudku předchozí verze rukopisu, autor zaslal revidovanou verzi článku. Ocenili bychom Vaši pomoc při jejím zhodnocení.
+
+Prosím, přihlašte se na stránkách časopisu do {$weekLaterDate} a vyjádřete se, zda-li recenzní posudek zpracujete, či nikoliv. Zde si můžete také prohlédnout příspěvek, zpracovat recenzní posudek a následně vložit své doporučení.
+
+Recenzní posudek zpracujte do {$reviewDueDate}
+
+URL příspěvku: {$submissionReviewUrl}
+
+Děkujeme Vám za zvážení našeho požadavku.
+
+{$editorialContactSignature}
+
+
+
+"{$articleTitle}"
+
+{$abstractTermIfEnabled}
+{$articleAbstract}
+      </body>
+    </email_text>
+    <email_text key="REVIEW_REQUEST_SUBSEQUENT">
+      <subject>Žádost o recenzování článku</subject>
+      <body>{$reviewerName}:
+
+Žádost se týka článku "{$articleTitle}," který je právě zvažován časopisem {$journalName}.
+
+Vzhledem k recenznímu posudku předchozí verze rukopisu, autor zaslal revidovanou verzi článku. Ocenili bychom Vaši pomoc při jejím zhodnocení.
+
+Prosím, přihlašte se na stránkách časopisu do {$weekLaterDate} a vyjádřete se, zda-li recenzní posudek zpracujete, či nikoliv. Zde si můžete také prohlédnout příspěvek, zpracovat recenzní posudek a následně vložit své doporučení. Webovou stránku časopisu naleznete na adrese: {$journalUrl}
+
+Recenzní posudek zpracujte do {$reviewDueDate}
+
+Pokud ještě nemáte své uživatelské jméno a heslo pro přihlášení na stránkách časopisu, použíjte prosím tento odkaz pro resetování hesla (heslo bude společně s uživatelským jménem odesláno na Váš e-mail). {$passwordResetUrl}
+
+URL příspěvku: {$submissionReviewUrl}
+
+Děkujeme Vám za zvážení našeho požadavku.
+
+{$editorialContactSignature}
+
+
+
+"{$articleTitle}"
+
+{$abstractTermIfEnabled}
+{$articleAbstract}
+      </body>
+    </email_text>
+    <email_text key="REVISED_VERSION_NOTIFY">
+      <subject>Byla nahrána revidovaná verze článku</subject>
+      <body>{$editorialContactName}:
+
+Autor {$authorName} právě nahrál revidovanou verzi článku "{$articleTitle}".
+
+URL příspěvku: {$submissionReviewUrl}
+
+{$editorialContactSignature}
+      </body>
+    </email_text>
 </email_texts>

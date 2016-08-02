@@ -325,7 +325,7 @@
 	<message key="issue.fullIssue">Celé číslo</message>
 	<message key="issue.nonpdf.title">Stažení čísla</message>
 	<message key="issue.viewIssue">Prohlédnout číslo</message>
-	<message key="issue.viewIssueDescription">Prohlédnout, nebo stáhnout celé číslo</message>
+	<message key="issue.viewIssueDescription">Prohlédnout nebo stáhnout celé číslo</message>
 
 	<!-- Common Subscription Type Terms -->
 	<message key="subscriptionTypes.currency">Měna</message>
@@ -1507,4 +1507,12 @@ Masarykovy univerzity</message>
         <message key="manager.setup.journalPrintCss.styleSheet">Tiskový Style sheet časopisu</message>
         <message key="user.login.registerNewAccount.before"></message>
         <message key="manager.setup.meidalon.citation.allow">Povolit odkazy na medailony autorů</message>
+        <message key="citation.number">č.</message>
+        <message key="citation.pages">s.</message>
+        
+        <message key="manager.setup.archivPodrobnosti">Podrobnosti Archiv</message>
+        <message key="manager.setup.useTopArchivDescription">Použít horní blok (podrobnosti budou zobrazeny těsně pod nadpisem). </message>
+        <message key="manager.setup.useDownArchivDescription">Použít spodní blok (podrobnost budou zobrazeny až za stránkováním). </message>
+        <message key="manager.setup.archivDescription">Doplňkový text pro archiv</message>
+        
 </locale>

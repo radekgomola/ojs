@@ -680,6 +680,25 @@ function prepBlockFields() {
 </table>
 </div>
 <div class="separator"></div>
+
+<div id="setupAbout">
+<h3>5.15 {translate key="manager.setup.archivPodrobnosti"}</h3>
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label"><input type="radio" name="archivSetupTopDown[{$formLocale|escape}]" id="archivSetupTopDown-0" value="0"{if not $archivSetupTopDown[$formLocale]} checked="checked"{/if} /> {fieldLabel name="archivSetupTopDown-0" key="manager.setup.useTopArchivDescription"}</td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label"><input type="radio" name="archivSetupTopDown[{$formLocale|escape}]" id="archivSetupTopDown-1" value="1"{if $archivSetupTopDown[$formLocale]} checked="checked"{/if} /> {fieldLabel name="archivSetupTopDown-1" key="manager.setup.useDownArchivDescription"}</td>
+	</tr>
+</table>
+<div id="infoForLibs"><h4>{translate key="manager.setup.archivDescription"}</h4>
+
+<p><textarea name="archivDescription[{$formLocale|escape}]" id="archivDescription" rows="12" cols="60" class="textArea">{$archivDescription[$formLocale]|escape}</textarea></p></div>
+
+</div>
+
+<div class="separator"></div>
+
 <p><input type="submit" onclick="prepBlockFields()" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>

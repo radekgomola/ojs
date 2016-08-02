@@ -30,7 +30,7 @@
     <input type="radio" id="boardEnabledOn" {if $boardEnabled}checked="checked" {/if}name="boardEnabled" value="1"/>&nbsp;<label for="boardEnabledOn">{translate key="manager.groups.enableBoard"}</label><br/>
     <input type="submit" value="{translate key="common.record"}" class="button defaultButton"/>
 </form>
-{*<form action="{url op="setEditorialTeamDescription"}" method="post" id="editorialTeamForm">
+<form action="{url op="setEditorialTeamDescription"}" method="post" id="editorialTeamForm">
 
 {if count($formLocales) > 1}
     <table>
@@ -52,7 +52,7 @@
         </p>
     </div>
     <input type="submit" value="{translate key="common.record"}" class="button defaultButton"/>
-</form>*}
+</form>
 <br />
 <div id="groups">
 

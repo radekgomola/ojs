@@ -13,6 +13,13 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{if $currentJournal->getLocalizedSetting('archivDescription') && $currentJournal->getLocalizedSetting('archivSetupTopDown') == 0}
+<div id="archivDescription">
+  <p>
+    {$currentJournal->getLocalizedSetting('archivDescription')|nl2br}
+  </p>
+</div>
+{/if}
 <div id="issues">
 {iterate from=issues item=issue}
 	{if $issue->getYear() != $lastYear}
@@ -59,5 +66,12 @@
 {/if}
 </div>
 </div>
+{if $currentJournal->getLocalizedSetting('archivDescription') && $currentJournal->getLocalizedSetting('archivSetupTopDown') == 1}
+<div id="archivDescription">
+  <p>
+    {$currentJournal->getLocalizedSetting('archivDescription')|nl2br}
+  </p>
+</div>
+{/if}
 {include file="common/footer.tpl"}
 

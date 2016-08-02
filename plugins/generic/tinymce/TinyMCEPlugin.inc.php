@@ -259,6 +259,7 @@ class TinyMCEPlugin extends GenericPlugin {
 						$fields[] = 'librarianInformation';
 						$fields[] = 'authorInformation';
                                                 $fields[] = 'aboutJournal';
+                                                $fields[] = 'archivDescription';
 						break;
 				}
 				break;

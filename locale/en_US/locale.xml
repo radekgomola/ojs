@@ -1300,4 +1300,11 @@ Masaryk University</message>
         <message key="manager.setup.journalPrintStyleSheetInvalid">Print Style Sheet Error.</message>
         <message key="manager.setup.journalPrintCss.styleSheet">Journal print style sheet</message>
         <message key="user.login.registerNewAccount.before"></message>
+        <message key="citation.number">No.</message>
+        <message key="citation.pages">p.</message>
+        
+        <message key="manager.setup.aboutJournal">Archive additional text</message>
+  <message key="manager.setup.useTopArchivDescription">Use top block.</message>
+  <message key="manager.setup.useDownArchivDescription">Use bottom block.</message>
+  <message key="manager.setup.archivDescription">Journal description in section Archive</message>
 </locale>

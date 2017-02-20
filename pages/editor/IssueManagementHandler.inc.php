@@ -920,7 +920,9 @@ class IssueManagementHandler extends EditorHandler {
 			$publishedArticles =& $publishedArticleDao->getPublishedArticles($issueId);
 			foreach ($publishedArticles as $publishedArticle) {
 				// Set the publication date to the current date
-				$publishedArticle->setDatePublished(Core::getCurrentDate());
+                                if(!$publishedArticle->getDatePublished() || $publishedArticle->getDatePublished() == ""){
+                                    $publishedArticle->setDatePublished(Core::getCurrentDate());
+                                }
 				$publishedArticleDao->updatePublishedArticle($publishedArticle);
 
 				// Set the article status and affected metadata

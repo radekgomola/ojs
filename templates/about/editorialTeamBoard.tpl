@@ -14,7 +14,7 @@
 {/strip}
 {$currentJournal->}
 {if $currentJournal->getLocalizedSetting('editorialTeamDescription')}{* && $currentJournal->getLocalizedSetting('aboutSetupTopDown') == 0*}
-<div id="aditorialTeamBoardDescription">
+<div id="editorialTeamBoardDescription">
   <p>
     {$currentJournal->getLocalizedSetting('editorialTeamDescription')|nl2br}
   </p>

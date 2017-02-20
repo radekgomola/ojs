@@ -87,7 +87,22 @@
 			{/if}
 		</li>
 	{/foreach}
-	</ul>
+</ul>
+{*-----------------------------------------------------<br />
+        {foreach from=$categoryErrors item=error}
+            
+    			{$error.key};{$error.filename}
+			{if $type == 'LOCALE_ERROR_MISSING_KEY'}				
+				{assign var=defaultValue value=$error.reference}
+				{assign var=wordCount value=$defaultValue|explode:" "|@count}
+				{assign var=categoryCount value=$categoryCount+$wordCount}
+				<input type="hidden" name="stack[]" value="{$error.filename|escape}" />
+				<input type="hidden" name="stack[]" value="{$error.key|escape}" />
+				;{$defaultValue|escape};
+				<br />&nbsp;
+			{/if}
+	{/foreach}
+-----------------------------------------------------<br />*}
 	{if $categoryCount}
 		&nbsp;&nbsp;&nbsp;&nbsp;(Total {$categoryCount|escape} Words)
 	{/if}

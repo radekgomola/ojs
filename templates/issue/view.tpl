@@ -50,7 +50,7 @@
 			{if $hasAccess || ($subscriptionRequired && $showGalleyLinks)}
                             
 				{foreach from=$issueGalleys item=issueGalley}
-                                    {url|assign:"pdfUrl" op="viewFile" path=$issueId|to_array:$issueGalley->getBestGalleyId($currentJournal)}
+                                    {url|assign:"pdfUrl" page="issue" op="viewFile" path=$issue->getBestIssueId()|to_array:$issueGalley->getBestGalleyId($currentJournal)}
 					{if $issueGalley->isPdfGalley()}
                                             <script type="text/javascript">
                                                 if(detectIE()===10 || detectIE()===11){ldelim}

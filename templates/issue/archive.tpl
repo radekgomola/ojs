@@ -21,6 +21,7 @@
 </div>
 {/if}
 <div id="issues">
+{assign var=i value=0}
 {iterate from=issues item=issue}
 	{if $issue->getYear() != $lastYear}
 		{if !$notFirstYear}

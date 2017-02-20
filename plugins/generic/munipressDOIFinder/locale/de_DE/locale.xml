@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../locale/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2008 Mahmoud Saghaei
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING..
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id: locale.xml,v 1.5 2008/06/11 18:55:13 asmecher Exp $
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+        <message key="plugins.generic.munipressdoifinder.displayName"></message>
+	<message key="plugins.generic.munipressdoifinder.description"></message>
+	<message key="plugins.generic.munipressdoifinder.linklabel"></message>
+        <message key="plugins.generic.munipressdoifinder.linklabel.info"></message>
+        <message key="plugins.generic.munipressdoifinder.loadingmessage"></message>
+        <message key="plugins.generic.munipressdoifinder.copyrightmessage"></message>
+
+</locale>

@@ -1,0 +1,84 @@
+{$siteTitle} - Název stránky ("Èasopisy MU")
+{$url} - nefunguje všude/oznaèuje nìjakou url adresu, která je v dané stránce generovaná - mùže to být napøíklad odkaz pro resetování hesla (závisí na stránce, odkud se posílá)
+{$principalContactSignature} - podpis primárního kontaktu - nastavuje se v nastavení 1.2
+{$username} - uživatelské jméno. Neunfujge všude - pouze na stránkách, kde je generováno pøípadnì upravováno
+{$password} - viz. {$username}
+{$userFullName} - plné jméno uživatele. Použito nejèastìji pro oslovení uživatele
+{$journalName} - název èasopisu
+{$activateUrl} - url adresa pro aktivaci úètu. Funguje pouze v automaticky generovaném e-mailu, který je zasílán pro aktivaci úètu
+{$journalUrl} - url adresa èasopisu
+{$editorialContactSignature} - podpis editora, který vyvolal zaslání zprávy. 
+{$authorName} - jméno autora pøíspìvku
+{$articleTitle} - název pøíspìvku
+{$submissionUrl} - url adresa pøíspìvku
+{$authorUsername} - uživatelské jméno autora
+{$name} - konkrétnì na roli nevázané jméno - používá se u zaslaných komentáøù (musí být povoleno na landing page)
+{$commentName} - podpis/jméno èlovìka, který vložil komentáø
+{$comments} - vypíše vložený komentáø
+{$editorialContactName} - jméno editora
+{$reviewerName} - jméno recenzenta
+{$weekLaterDate} - datum do kdy musí recenzent oznámit, jestli recenzi zpracuje, èi nikoliv.
+{$reviewDueDate} - termín zpracování recenze
+{$passwordResetUrl} - url adresa zasílaná pro resetování hesla
+{$submissionReviewUrl} - url adresa smìøující na zpracování recenze
+{$abstractTermIfEnabled} 
+{$articleAbstract} - vloží abstrakt pøíspìvku
+{$reviewGuidelines} - vloží instrukce pro recenzování
+{$copyeditorName} - jméno redaktora
+{$layoutEditorName} - jméno typografa
+{$layoutEditorUsername} - uživatelské jméno typografa
+{$submissionLayoutUrl} - adresa pøíspìvku pro zpracování typografické úpravy
+{$proofreaderName} - jméno korektora
+{$proofreaderUsername} - uživatelské jméno korektora
+{$volume} - roèník
+{$number} - èíslo
+{$year} - rok
+{$subscriberName} - jméno pøedplatile
+{$subscriptionType} - název typu pøedplatného
+{$subscriptionContactSignature} - podpis urèený pro pøedplatná
+{$expiryDate} - datum expirace pøedplatného
+{$notificationContents} - vypsané generované oznámení
+{$unsubscribeLink} - url adresa pro odhlášení z informaèních e-mailù
+{$confirmLink} - potvrzení pøidání adresy mezi kontakty pro zasílání informaèních e-mailù
+{$userDetails} - detaily uživatele
+{$membership} - informace o èlenství v pøedplatném
+{$institutionName} - název instituce (pøedplatné)
+{$institutionMailingAddress} - e-mailová adresa instituce (pøedplatné)
+{$domain} - domená identifikující instituci
+{$ipRanges} - rozsah IP adres urèených pro pøedplatné 
+{$authorFirstName} - jméno autora
+{$rawCitation} - raw citace pro úpravu (funguje pouze pokud je povolen citaèní asistent, který pro èeské èlánky nefunguje pøíliš dobøe)
+{$userFirstName} - uživatelovo jméno
+{$giftNoteTitle} - nadpis daru
+{$recipientFirstName} - první jméno èlovìka, kterému je dar poslán
+{$buyerFullName} - jméno èlovìka, který dar zakoupil
+{$giftJournalName} - jméno èasopisu, kde byl dar zakoupen
+{$giftDetails} - detaily daru
+{$giftNote} - poznámka k daru
+{$giftContactSignature} - podpis èlovìka, který zaslal dar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

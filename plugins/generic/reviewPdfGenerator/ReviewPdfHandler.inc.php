@@ -82,7 +82,7 @@ class ReviewPdfHandler extends ManagerHandler {
                 // ---------------------------------------------------------
 
                 //Close and output PDF document
-                $nazev = "reviewForm-".$reviewFormId;
+                $nazev = "reviewForm-".$reviewFormId.".pdf";
                 $pdf->Output($nazev, 'D');	
 	}
 

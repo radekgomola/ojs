@@ -21,7 +21,14 @@
   <div class="teamBioBiography">
       {$user->getLocalizedBiography()|nl2br|strip_unsafe_html}
   </div>
-
+      {assign var=orcid value=$user->getData('orcid')|nl2br|strip_unsafe_html}
+{if $orcid}
+      <div >
+          ORCID: <a href="{$user->getData('orcid')|nl2br|strip_unsafe_html}">{$user->getData('orcid')|nl2br|strip_unsafe_html}</a>
+  </div>
+          <br />
+          {/if}
+          <hr />
 {if $publishedArticles|@count > 0}  
   <ul>
 {foreach from=$publishedArticles item=article}

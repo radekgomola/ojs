@@ -39,7 +39,6 @@ function updateAbstractRequired() {
 {/literal}
 
 <p>{translate key="plugins.importexport.quickSubmit.descriptionLong"}</p>
-
 <form enctype="multipart/form-data" id="submit" method="post" action="{plugin_url path="saveSubmit"}">
 
 {include file="common/formErrors.tpl"}
@@ -283,6 +282,20 @@ function updateAbstractRequired() {
 				<td width="30%" class="label">{fieldLabel name="authors-$authorIndex-biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
 				<td width="70%" class="value"><textarea name="authors[{$authorIndex|escape}][biography][{$formLocale|escape}]" class="textArea" id="authors-{$authorIndex|escape}-biography" rows="5" cols="40">{$author.biography[$formLocale]|escape}</textarea></td>
 			</tr>
+                        {if $povolenoJournalAuthor}
+                                <tr valign="top" class="journalAuthor">
+                                    <td width="20%" class="label"><label for="citeType">{translate key="metadata.journal.authors"}</label></td>
+                                    <td width="80%" class="value">
+                                        <select name="authors[{$authorIndex|escape}][journalAuthorId]" class="selectMenu" id="authors-{$authorIndex|escape}-journalAuthorId"{if empty($journalAuthors)} disabled="disabled"{/if}>
+                                            <option value="">{translate key="common.none"}</option>
+                                            {foreach from=$journalAuthors item=journalAuthor}
+
+                                            <option value="{$journalAuthor->getId()|escape}" {if $journalAuthor->getId() == $author.journalAuthorId} selected="selected"{/if}>{$journalAuthor->getFullName(true)|escape}</option>
+                                            {/foreach}
+                                        </select>
+                                    </td>
+                                </tr> 
+                            {/if}
 			{if $smarty.foreach.authors.total > 1}
 			<tr valign="top">
 				<td colspan="2">
@@ -352,6 +365,20 @@ function updateAbstractRequired() {
 				<td width="30%" class="label">{fieldLabel name="authors-0-biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
 				<td width="70%" class="value"><textarea name="authors[0][biography][{$formLocale|escape}]" class="textArea" id="authors-0-biography" rows="5" cols="40"></textarea></td>
 			</tr>
+                            {if $povolenoJournalAuthor}
+                                <tr valign="top" class="journalAuthor">
+                                    <td width="20%" class="label"><label for="citeType">{translate key="metadata.journal.authors"}</label></td>
+                                    <td width="80%" class="value">
+                                        <select name="authors[{$authorIndex|escape}][journalAuthorId]" class="selectMenu" id="authors-{$authorIndex|escape}-journalAuthorId"{if empty($journalAuthors)} disabled="disabled"{/if}>
+                                            <option value="">{translate key="common.none"}</option>
+                                            {foreach from=$journalAuthors item=journalAuthor}
+
+                                            <option value="{$journalAuthor->getId()|escape}" {if $journalAuthor->getId() == $author.journalAuthorId} selected="selected"{/if}>{$journalAuthor->getFullName(true)|escape}</option>
+                                            {/foreach}
+                                        </select>
+                                    </td>
+                                </tr> 
+                            {/if}
 			</table>
 		{/foreach}
 

@@ -44,7 +44,8 @@
 			{else}
 				{translate|assign:"confirmMessage" key="common.confirmComplete"}
 				{url|assign:"url" op="authorProofreadingComplete" articleId=$submission->getId()}
-				{icon name="mail" onclick="return confirm('$confirmMessage')" url=$url}
+                                {icon name="mail" onclick="return confirm('$confirmMessage')" url=$url}
+                                <a href="{$url}">{translate key="submission.complete.complete"}</a>
 			{/if}
 			{$authorProofreadSignoff->getDateCompleted()|date_format:$dateFormatShort|default:""}
 		</td>

@@ -38,6 +38,11 @@
 		      <link rel="stylesheet" href="{$cssUrl}" type="text/css" />
         {/if}
       {/if}
+      {foreach from=$printstylesheets item=cssUrl}
+
+            <link rel="stylesheet" href="{$cssUrl}" type="text/css" media="print"/>
+
+	{/foreach}
     {else}
       {if $cssUrl|strstr:"sitestyle.css"}
         <link rel="stylesheet" href="{$cssUrl}" type="text/css" />

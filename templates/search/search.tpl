@@ -55,6 +55,7 @@
 			$('#searchForm').pkpHandler('$.pkp.pages.search.SearchFormHandler');
 		{rdelim});
 	</script>
+        {*{url op="search"}*}
 	<form id="searchForm" action="{url op="search"}">
 		<table class="data">
 			<tr valign="top">

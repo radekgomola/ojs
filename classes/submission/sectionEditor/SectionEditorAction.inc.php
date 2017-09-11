@@ -808,6 +808,28 @@ class SectionEditorAction extends Action {
 			}
 		}
 	}
+        
+        /**
+	 * View review form response for Print.
+	 * @param $sectionEditorSubmission object
+	 * @param $reviewId int
+	 */
+	function viewReviewFormResponsePrint($sectionEditorSubmission, $reviewId) {
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
+
+		if (HookRegistry::call('SectionEditorAction::viewReviewFormResponsePrint', array(&$sectionEditorSubmission, &$reviewAssignment, &$reviewId))) return $reviewId;
+
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $sectionEditorSubmission->getId()) {
+			$reviewFormId = $reviewAssignment->getReviewFormId();
+			if ($reviewFormId != null) {
+				import('classes.submission.form.ReviewFormResponseFormPrint');
+				$reviewForm = new ReviewFormResponseFormPrint($reviewId, $reviewFormId);
+				$reviewForm->initData();
+				$reviewForm->display();
+			}
+		}
+	}
 
 	/**
 	 * Set the file to use as the default copyedit file.

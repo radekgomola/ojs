@@ -980,6 +980,7 @@ class IssueManagementHandler extends EditorHandler {
 		if ($articleSearchIndex) $articleSearchIndex->articleChangesFinished();
 
 		// Send a notification to associated users
+//                if($journalId != 60){
 		import('classes.notification.NotificationManager');
 		$notificationManager = new NotificationManager();
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -996,12 +997,14 @@ class IssueManagementHandler extends EditorHandler {
 				$journalId
 			);
 		}
-		$notificationManager->sendToMailingList($request,
-			$notificationManager->createNotification(
-				$request, UNSUBSCRIBED_USER_NOTIFICATION, NOTIFICATION_TYPE_PUBLISHED_ISSUE,
-				$journalId
-			)
-		);
+                
+                $notificationManager->sendToMailingList($request,
+                        $notificationManager->createNotification(
+                                $request, UNSUBSCRIBED_USER_NOTIFICATION, NOTIFICATION_TYPE_PUBLISHED_ISSUE,
+                                $journalId
+                        )
+                );
+//                }
 
 		$request->redirect(null, null, 'issueToc', $issue->getId());
 	}

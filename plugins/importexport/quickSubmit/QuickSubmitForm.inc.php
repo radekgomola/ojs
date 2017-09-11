@@ -108,7 +108,25 @@ class QuickSubmitForm extends Form {
 		}
 
 		$templateMgr->assign('enablePageNumber', $journal->getSetting('enablePageNumber'));
+                
+                if($journal->getId() == 67){
+                    $templateMgr->assign('povolenoJournalAuthor', true);
+                    /*Munipress journal Authors*/
+                    $roleDao =& DAORegistry::getDAO('RoleDAO');
+                    $roleId = ROLE_ID_AUTHOR;
 
+                    $sort = 'name';
+                    $sortDirection = SORT_DIRECTION_ASC;
+
+                    $searchType = null;
+                    $searchMatch = null;
+                    $search = null;
+                    $rangeInfo = null;
+
+                    $journalAuthors =& $roleDao->getUsersByRoleId($roleId, $journal->getId(), $searchType, $search, $searchMatch, $rangeInfo, $sort, $sortDirection);
+
+                    $templateMgr->assign('journalAuthors', $journalAuthors->toAssociativeArray());
+                }
 		// Provide available submission languages. (Convert the array
 		// of locale symbolic names xx_XX into an associative array
 		// of symbolic names => readable names.)
@@ -292,6 +310,7 @@ class QuickSubmitForm extends Form {
 				$author->setBiography($authors[$i]['biography'], null);
 				$author->setPrimaryContact($this->getData('primaryContact') == $i ? 1 : 0);
 				$author->setSequence($authors[$i]['seq']);
+                                $author->setData('journalAuthorId', $authors[$i]['journalAuthorId']);
 
 				if ($isExistingAuthor == false) {
 					$authorDao->insertAuthor($author);

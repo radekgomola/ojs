@@ -346,7 +346,13 @@ class AboutHandler extends Handler {
                             $country = "";
 
                             $authorDao =& DAORegistry::getDAO('AuthorDAO');
-                            $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $country);
+                            
+                            if($journal->getId() == 67){
+                                $publishedArticles = $authorDao->getPublishedArticlesForAuthorId($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $countrySearch, $user->getId());
+                            } else{                            
+                                $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $country);
+                            }
+                            
 
                             
                             // Load information associated with each article.
@@ -482,7 +488,11 @@ class AboutHandler extends Handler {
                             $country = "";
 
                             $authorDao =& DAORegistry::getDAO('AuthorDAO');
-                            $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $country);
+                            if($journal->getId() == 67){
+                                $publishedArticles = $authorDao->getPublishedArticlesForAuthorId($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $countrySearch, $user->getId());
+                            } else{    
+                                $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $country);
+                            }
 
                             
                             // Load information associated with each article.
@@ -566,8 +576,13 @@ class AboutHandler extends Handler {
 
                             $affiliation = $author->getLocalizedAffiliation()?$author->getLocalizedAffiliation():"";
                             $countrySearch = $author->getCountry();
+                            $authorId = (int)$author->getData('journalAuthorId');
                             
-                            $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $countrySearch);
+                            if($journal->getId() == 67){
+                                $publishedArticles = $authorDao->getPublishedArticlesForAuthorId($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $countrySearch, $authorId);
+                            } else{    
+                                $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $countrySearch);
+                            }
                             
                             // Load information associated with each article.
                             $journals = array();

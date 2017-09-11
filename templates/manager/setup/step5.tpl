@@ -696,7 +696,22 @@ function prepBlockFields() {
 <p><textarea name="archivDescription[{$formLocale|escape}]" id="archivDescription" rows="12" cols="60" class="textArea">{$archivDescription[$formLocale]|escape}</textarea></p></div>
 
 </div>
+<div class="separator"></div>
 
+<div id="setupLogoLinks">
+<h3>5.16 {translate key="manager.setup.headerLink"}</h3>
+<br />
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{translate key="manager.setup.headerLink.title"}</td>
+		<td width="80%" class="value"><input type="text" name="headerLinkTitle[{$formLocale|escape}]" value="{$headerLinkTitle[$formLocale]|escape}" size="40" maxlength="255" class="textField"/>
+    </td></tr><tr>
+    <td width="20%" class="label">{translate key="manager.setup.headerLink.logo"}</td>
+		<td width="80%" class="value"><input type="text" name="headerLinkLogo[{$formLocale|escape}]" value="{$headerLinkLogo[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
+    </td> </tr>
+</table>
+</div>
+<br />    
 <div class="separator"></div>
 
 <p><input type="submit" onclick="prepBlockFields()" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>

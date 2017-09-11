@@ -115,6 +115,7 @@ switch ($op) {
 	case 'selectReviewForm':
 	case 'previewReviewForm':
 	case 'viewReviewFormResponse':
+        case 'viewReviewFormResponsePrint':
 	// Proof Assignment Functions
 	case 'selectProofreader':
 	case 'notifyAuthorProofreader':

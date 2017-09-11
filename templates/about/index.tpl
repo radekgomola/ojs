@@ -25,7 +25,9 @@
 	{if not (empty($journalSettings.mailingAddress) && empty($journalSettings.contactName) && empty($journalSettings.contactAffiliation) && empty($journalSettings.contactMailingAddress) && empty($journalSettings.contactPhone) && empty($journalSettings.contactFax) && empty($journalSettings.contactEmail) && empty($journalSettings.supportName) && empty($journalSettings.supportPhone) && empty($journalSettings.supportEmail))}
 		<li><a href="{url op="contact"}">{translate key="about.contact"}</a></li>
 	{/if}
-	<li><a href="{url op="editorialTeam"}">{translate key="about.editorialTeam"}</a></li>
+        {if count($editors) > 0}
+            <li><a href="{url op="editorialTeam"}">{translate key="about.editorialTeam"}</a></li>
+        {/if}
 	{if $peopleGroups}
 		{iterate from=peopleGroups item=peopleGroup}
 			<li><a href="{url op="displayMembership" path=$peopleGroup->getId()}">{$peopleGroup->getLocalizedTitle()|escape}</a></li>

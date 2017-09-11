@@ -1253,7 +1253,8 @@ Masaryk University</message>
         <message key="manager.setup.twitter">Twitter.com</message>
         <message key="manager.setup.gplus">Plus.google.com</message>
         
-        <message key="manager.groups.sortLexicographically">Sort members lexicographically</message>
+        <message key="manager.groups.sortLexicographically">Sort members lexicographically (CZ alphabet)</message>
+        <message key="manager.groups.sortLexicographicallyEN">Sort members lexicographically (EN alphabet)</message>
         <message key="manager.setup.medailon">Article authors' medallions</message>
         <message key="manager.setup.medailon.description">You could allow links to an authors' bibliographies by allowing this setting. (E-mail will not be shown!)</message>
         <message key="manager.setup.meidalon.medailon">Allow showing of medallions.</message>
@@ -1304,7 +1305,12 @@ Masaryk University</message>
         <message key="citation.pages">p.</message>
         
         <message key="manager.setup.aboutJournal">Archive additional text</message>
-  <message key="manager.setup.useTopArchivDescription">Use top block.</message>
-  <message key="manager.setup.useDownArchivDescription">Use bottom block.</message>
-  <message key="manager.setup.archivDescription">Journal description in section Archive</message>
+        <message key="manager.setup.useTopArchivDescription">Use top block.</message>
+        <message key="manager.setup.useDownArchivDescription">Use bottom block.</message>
+        <message key="manager.setup.archivDescription">Journal description in section Archive</message>
+        <message key="metadata.journal.authors">From list</message>
+        <message key="submission.complete.complete">Complete</message>
+        <message key="manager.setup.headerLink">Header links</message>
+        <message key="manager.setup.headerLink.title">Header link - title</message>
+        <message key="manager.setup.headerLink.logo">Header link - logo</message>
 </locale>

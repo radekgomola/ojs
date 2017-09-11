@@ -1461,7 +1461,8 @@ Masarykovy univerzity</message>
         <message key="manager.setup.twitter">Twitter.com</message>
         <message key="manager.setup.gplus">Plus.google.com</message>
        
-        <message key="manager.groups.sortLexicographically">Setřiď členy lexikograficky</message>
+        <message key="manager.groups.sortLexicographically">Setřiď členy lexikograficky (CZ abeceda)</message>
+        <message key="manager.groups.sortLexicographicallyEN">Setřiď členy lexikograficky (EN abeceda)</message>
         <message key="manager.setup.medailon">Medailon autorů u článků</message>
         <message key="manager.setup.medailon.description">Povolením této možnosti umožníte zobrazovat u jednotlivých autorů článků biografické meidalonky a webové stránky. (Vložený e-mail se zde zobrazovat nebude!)</message>
         <message key="manager.setup.meidalon.allow">Povolit zobrazení medailonu.</message>
@@ -1514,5 +1515,9 @@ Masarykovy univerzity</message>
         <message key="manager.setup.useTopArchivDescription">Použít horní blok (podrobnosti budou zobrazeny těsně pod nadpisem). </message>
         <message key="manager.setup.useDownArchivDescription">Použít spodní blok (podrobnost budou zobrazeny až za stránkováním). </message>
         <message key="manager.setup.archivDescription">Doplňkový text pro archiv</message>
-        
+        <message key="metadata.journal.authors">Ze seznamu</message>
+        <message key="submission.complete.complete">Dokončit</message>
+        <message key="manager.setup.headerLink">Záklaví odkazy</message>
+        <message key="manager.setup.headerLink.title">Záklaví odkaz - titul</message>
+        <message key="manager.setup.headerLink.logo">Záklaví odkaz - logo</message>
 </locale>

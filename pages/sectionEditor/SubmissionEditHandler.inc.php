@@ -1145,6 +1145,21 @@ class SubmissionEditHandler extends SectionEditorHandler {
 
 		SectionEditorAction::viewReviewFormResponse($this->submission, $reviewId);
 	}
+        
+        /**
+	 * View review form response for Print.
+	 * @param $args array ($articleId, $reviewId)
+	 * @param $request PKPRequest
+	 */
+	function viewReviewFormResponsePrint($args, &$request) {
+		$articleId = (int) array_shift($args);
+		$reviewId = (int) array_shift($args);
+
+		$this->validate($articleId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->setupTemplate(true, $articleId, 'editing');
+
+		SectionEditorAction::viewReviewFormResponsePrint($this->submission, $reviewId);
+	}
 
 	//
 	// Editor Review

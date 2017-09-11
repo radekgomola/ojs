@@ -173,6 +173,7 @@ switch ($op) {
 	// Group Management
 	//
         case 'sortGroup':
+        case 'sortGroupEN':
 	case 'groups':
 	case 'createGroup':
 	case 'updateGroup':

@@ -10,6 +10,11 @@
  * Article reading tools -- Capture Citation for ABNT
  *
  *}
+ {if $galley}
+	{url|assign:"articleUrl" page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId()}
+{else}
+	{url|assign:"articleUrl" page="article" op="view" path=$article->getBestArticleId()}
+{/if}
 <div id="citation">
 {assign var=authors value=$article->getAuthors()}
 {assign var=authorCount value=$authors|@count}

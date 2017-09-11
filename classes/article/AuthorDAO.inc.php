@@ -77,6 +77,83 @@ class AuthorDAO extends PKPAuthorDAO {
 
 		return $publishedArticles;
 	}
+        
+        /**
+	 * Retrieve all published submissions associated with authors with
+	 * the given first name, middle name, last name, affiliation, and country.
+	 * @param $journalId int (null if no restriction desired)
+	 * @param $firstName string
+	 * @param $middleName string
+	 * @param $lastName string
+	 * @param $affiliation string
+	 * @param $country string
+	 */
+	function &getPublishedArticlesForAuthorId($journalId, $firstName, $middleName, $lastName, $affiliation, $country, $journalAuthorId) {
+		$publishedArticles = array();
+		$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
+		$params2 = array(
+                        'journalAuthorId'
+		);
+                if ($journalAuthorId !== null AND $journalAuthorId > 0) {
+                    $params2[] = (int) $journalAuthorId;
+                }
+                else{
+                    $journalAuthorId = null;
+                }
+
+                $params = array(
+			'affiliation',
+			$firstName, $middleName, $lastName,
+			$affiliation, $country
+		);
+                if ($journalId !== null) {
+                    $params2[] = (int) $journalId;
+                    $params[] = (int) $journalId;
+                }
+                if ($journalAuthorId === null) {
+                    $result =& $this->retrieve(
+                            'SELECT DISTINCT
+                                    aa.submission_id
+                            FROM	authors aa
+                                    LEFT JOIN articles a ON (aa.submission_id = a.article_id)
+                                    LEFT JOIN author_settings asl ON (asl.author_id = aa.author_id AND asl.setting_name = ?)
+                            WHERE	aa.first_name = ?
+                                    AND a.status = ' . STATUS_PUBLISHED . '
+                                    AND (aa.middle_name = ?' . (empty($middleName)?' OR aa.middle_name IS NULL':'') . ')
+                                    AND aa.last_name = ?
+                                    AND (asl.setting_value = ?' . (empty($affiliation)?' OR asl.setting_value IS NULL':'') . ')
+                                    AND (aa.country = ?' . (empty($country)?' OR aa.country IS NULL':'') . ') ' .
+                                    ($journalId!==null?(' AND a.journal_id = ?'):''),
+                            $params
+                    );
+                } else{
+                    $result =& $this->retrieve(
+                            'SELECT DISTINCT
+                                    aa.submission_id
+                            FROM	authors aa
+                                    LEFT JOIN articles a ON (aa.submission_id = a.article_id)
+                                    LEFT JOIN author_settings asl ON (asl.author_id = aa.author_id AND asl.setting_name = ?)
+                            WHERE	a.status = ' . STATUS_PUBLISHED .
+                                    ($journalAuthorId!==null?(' AND (asl.setting_value = ?)'):'') .
+                                    ($journalId!==null?(' AND a.journal_id = ?'):''),
+                            $params2
+                    );
+                }
+		while (!$result->EOF) {
+			$row =& $result->getRowAssoc(false);
+			$publishedArticle =& $publishedArticleDao->getPublishedArticleByArticleId($row['submission_id']);
+			if ($publishedArticle) {
+				$publishedArticles[] =& $publishedArticle;
+			}
+			$result->moveNext();
+			unset($publishedArticle);
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $publishedArticles;
+	}
 
 	/**
 	 * Retrieve all published authors for a journal in an associative array by
@@ -230,6 +307,7 @@ class AuthorDAO extends PKPAuthorDAO {
 	function getAdditionalFieldNames() {
 		$additionalFields = parent::getAdditionalFieldNames();
 		$additionalFields[] = 'orcid';
+                $additionalFields[] = 'journalAuthorId';
 		return $additionalFields;
 	}
 }

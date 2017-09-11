@@ -55,8 +55,8 @@
 				</div>
 			{/if}
       {assign var=name value=$plugin->getName()}
-
-      {if $isSiteAdmin || $category=="blocks" || $name=="webfeedplugin" || $name=="announcementfeedplugin" || $name=="customblockmanagerplugin" || $name=="staticpagesplugin" || $name=="PublicFolderBrowserPlugin" || $name=="pdfjsviewerplugin" || $name=="stopforumspamplugin" || $name=="MunipressDOIFinderPlugin" || $name == "ReviewPdfGeneratorPlugin"}
+      {$name}
+      {if $isSiteAdmin || $category=="blocks" || $name=="webfeedplugin" || $name=="announcementfeedplugin" || $name=="customblockmanagerplugin" || $name=="staticpagesplugin" || $name=="PublicFolderBrowserPlugin" || $name=="pdfjsviewerplugin" || $name=="stopforumspamplugin" || $name=="MunipressDOIFinderPlugin" || $name == "ReviewPdfGeneratorPlugin" || $name == "plnplugin"}
 			<li><h4>{$plugin->getDisplayName()|escape}</h4>
 			<p>
 			{$plugin->getDescription()}<br />

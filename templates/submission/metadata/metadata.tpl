@@ -16,7 +16,6 @@
 
 <div id="authors">
 <h4>{translate key="article.authors"}</h4>
-	
 <table width="100%" class="data">
 	{foreach name=authors from=$submission->getAuthors() item=author}
 	<tr valign="top">

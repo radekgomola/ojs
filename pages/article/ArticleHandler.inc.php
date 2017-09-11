@@ -190,7 +190,7 @@ class ArticleHandler extends Handler {
                             // No citation type chosen; choose a default off the top of the list.
                             $citationPlugin = $citationPlugins[array_shift(array_keys($citationPlugins))];
                     }
-                    $citation = $citationPlugin->fetchCitation($article, $issue, $journal, $articleUrl);
+                    $citation = $citationPlugin->fetchCitation($article, $issue, $journal, $galley);
                     $templateMgr->assign('citation', $citation);
                     $templateMgr->assign('showCitationHtml', $showCitationHtml);
                 }                              

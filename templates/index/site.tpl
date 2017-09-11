@@ -41,7 +41,7 @@
                         {assign var="altText" value=$journal->getLocalizedSetting('journalThumbnailAltText')}
                         <div class="homepageImage">
                             {if $externiCasopis && $odkazCasopis && $odkazCasopis != ""}
-                                <a href="{$odkazCasopis}" class="action">
+                                <a href="{$odkazCasopis}" class="action" target="_blank">
                             {else}
                                 <a href="{url journal=$journal->getPath()}" class="action">
                             {/if}
@@ -54,12 +54,12 @@
 
             {if $site->getSetting('showDescription')}
                 {if $journal->getLocalizedDescription()}
-                    <p class="description" style="text-align:justify;" id="journalDescription-{$journal->getId()|escape}">{$journal->getLocalizedDescription()|nl2br}</p>
+                    <p class="description" style="text-align:justify;" id="journalDescription-{$journal->getId()|escape}">{$journal->getLocalizedDescription()|nl2br|strip_tags}</p>
                 {/if}    
             {/if}
             <p style="padding-top:-31px; min-width:700px;">
                 {if $externiCasopis && $odkazCasopis && $odkazCasopis != ""}
-                    <a href="{$odkazCasopis}" class="action">
+                    <a href="{$odkazCasopis}" class="action" target="_blank">
                 {else}
                     <a href="{url journal=$journal->getPath()}" class="action">
                 {/if}
@@ -67,7 +67,7 @@
                 </a>
                     <span class="space"></span>  
                 {if $externiCasopis && $odkazCislo && $odkazCislo != ""}
-                    <a href="{$odkazCislo}" class="action">
+                    <a href="{$odkazCislo}" class="action" target="_blank">
                         {translate key="site.journalCurrent"}
                     </a>
                     <span class="space"></span>

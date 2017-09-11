@@ -66,6 +66,7 @@
 				{url|assign:"url" op="completeAuthorCopyedit" articleId=$submission->getId()}
 				{translate|assign:"confirmMessage" key="common.confirmComplete"}
 				{icon name="mail" onclick="return confirm('$confirmMessage')" url=$url}
+                                <a href="{$url}">{translate key="submission.complete.complete"}</a>                                
 			{/if}
 			{$copyeditAuthorSignoff->getDateCompleted()|date_format:$dateFormatShort|default:""}
 		</td>

@@ -8,6 +8,11 @@
  * Article reading tools -- Capture Citation ISO 690 format
  *
  *}
+ {if $galley}
+	{url|assign:"articleUrl" page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId()}
+{else}
+	{url|assign:"articleUrl" page="article" op="view" path=$article->getBestArticleId()}
+{/if}
 <div id="citation">
 {assign var=authors value=$article->getAuthors()}
 {assign var=authorCount value=$authors|@count}

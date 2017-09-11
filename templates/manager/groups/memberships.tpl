@@ -26,7 +26,7 @@ $(document).ready(function() { setupTableDND("#dragTable", {/literal}"{url op=mo
 </ul>
 
 <br/>
-<a href="{url op="sortGroup" path=$group->getId()}">{translate key="manager.groups.sortLexicographically"}</a>
+<a href="{url op="sortGroup" path=$group->getId()}">{translate key="manager.groups.sortLexicographically"}</a> | <a href="{url op="sortGroupEN" path=$group->getId()}">{translate key="manager.groups.sortLexicographicallyEN"}</a>
 <br />
 <br />
 <div id="membership">

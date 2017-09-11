@@ -31,10 +31,13 @@
  *}
 {if is_a($article, 'PublishedArticle') && $article->getDatePublished()}
 	<meta name="citation_date" content="{$article->getDatePublished()|date_format:"%Y/%m/%d"}"/>
+        <meta name="citation_publication_date" content="{$article->getDatePublished()|date_format:"%Y/%m/%d"}"/>
 {elseif $issue && $issue->getYear()}
 	<meta name="citation_date" content="{$issue->getYear()|escape}"/>
+        <meta name="citation_publication_date" content="{$issue->getYear()|escape}"/>
 {elseif $issue && $issue->getDatePublished()}
 	<meta name="citation_date" content="{$issue->getDatePublished()|date_format:"%Y/%m/%d"}"/>
+        <meta name="citation_publication_date" content="{$issue->getDatePublished()|date_format:"%Y/%m/%d"}"/>
 {/if}
 
 {if $issue}

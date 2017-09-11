@@ -123,8 +123,9 @@ class MunipressDOIHandler extends EditorHandler {
                     $ref_doi = $html->find($doi);
                     
                      if (preg_match("/^.*(10\.[^\s]+).*$/i", $ref_doi[0])>0){
-                        $apa_citace = "APA formát: <a href='http://dx.doi.org/".strip_tags($ref_doi[0])."' target='_blank'><span id=\"doi-ref-".$id."\" style=\"color: green\">http://dx.doi.org/".strip_tags($ref_doi[0])."</span></a>";
-                        $citace->innertext = $citace->innertext ."<br />\n". $apa_citace;
+                        //$apa_citace = "APA formát: <a href='http://dx.doi.org/".strip_tags($ref_doi[0])."' target='_blank'><span id=\"doi-ref-".$id."\" style=\"color: green\">http://dx.doi.org/".strip_tags($ref_doi[0])."</span></a>";
+                        //$citace->innertext = $citace->innertext ."<br />\n". $apa_citace;
+                        $citace->innertext = $citace->innertext ."<br />\n";
                      }
                     $vystup .= $citace."<br />\n";
                     $i++;
@@ -147,7 +148,7 @@ class MunipressDOIHandler extends EditorHandler {
             $link = $html->find('a');
             $ref = $html->find($retezec);
             $ref_doi = $html->find($doi);
-            if(preg_match("/^.*doi(?:(?:\s*[:-]?\s*)|(?:\s+))(10\.[^\s]+).*$/i", $ref[0])>0 || preg_match("/^.*(?:http:\/\/)?dx.doi.org\/(10\.[^\s]+).*$/i", $ref[0])>0) {
+            if(preg_match("/^.*doi(?:(?:\s*[:-]?\s*)|(?:\s+))(10\.[^\s]+).*$/i", $ref[0])>0 || preg_match("/^.*(?:https:\/\/)?doi.org\/(10\.[^\s]+).*$/i", $ref[0])>0) {
                 $ref[0] = str_replace("&amp;", "&", $ref[0]);
                 if(strpos($ref[0],strip_tags($ref_doi[0]))>0){
                     $returner = 3;

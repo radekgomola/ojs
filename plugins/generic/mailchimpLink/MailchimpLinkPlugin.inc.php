@@ -35,7 +35,7 @@ class MailchimpLinkPlugin extends GenericPlugin {
 			if ($this->getEnabled()) {
 				HookRegistry::register('Templates::Manager::Index::ManagementPages2',
 					array(&$this, 'callback'));
-				HookRegistry::register('LoadHandler', array(&$this, 'handleRequest'));
+//				HookRegistry::register('LoadHandler', array(&$this, 'handleRequest'));
 			}
 			$this->addLocaleData();
 			return true;
@@ -53,7 +53,7 @@ class MailchimpLinkPlugin extends GenericPlugin {
 		return false;
 	}
         
-	/**
+        /**
 	 * Determine whether or not this plugin is enabled.
 	 */
 	function getEnabled() {

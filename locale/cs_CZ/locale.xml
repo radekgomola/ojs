@@ -1517,7 +1517,13 @@ Masarykovy univerzity</message>
         <message key="manager.setup.archivDescription">Doplňkový text pro archiv</message>
         <message key="metadata.journal.authors">Ze seznamu</message>
         <message key="submission.complete.complete">Dokončit</message>
-        <message key="manager.setup.headerLink">Záklaví odkazy</message>
-        <message key="manager.setup.headerLink.title">Záklaví odkaz - titul</message>
-        <message key="manager.setup.headerLink.logo">Záklaví odkaz - logo</message>
+        <message key="manager.setup.headerLink">Záhlaví odkazy</message>
+        <message key="manager.setup.headerLink.title">Záhlaví odkaz - titul</message>
+        <message key="manager.setup.headerLink.logo">Záhlaví odkaz - logo</message>
+        <message key="manager.setup.suppSuffix">Sufix doplňkových souborů</message>
+        <message key="manager.setup.suppSuffix.description">Přidá originální název souboru jako sufix při stažení Editorem.</message>
+        <message key="manager.setup.suppSuffix.on">Zapnout</message>
+        <message key="manager.setup.suppSuffix.off">Vypnout</message>
+        <message key="submission.downloadZip">Stáhnout jako ZIP</message>
+        <message key="submission.editMetadata">Editovat metadata</message>
 </locale>

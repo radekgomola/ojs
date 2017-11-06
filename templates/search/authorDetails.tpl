@@ -34,6 +34,9 @@
 			&nbsp;<a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId($journal)}" class="file">{$galley->getGalleyLabel()|escape}</a>
 		{/foreach}
 		{/if}
+                {if $isEditor}
+                    | <a href="{url journal=$journal->getPath() page="editor" op="viewMetadata" path=$article->getBestArticleId()}" class="action">{translate key="submission.editMetadata"}</a>
+                {/if}
 	</li>
 	{/if}
 {/foreach}

@@ -177,10 +177,10 @@ class Action extends PKPAction {
 	 * @param $fileId int
 	 * @param $revision int
 	 */
-	function downloadFile($articleId, $fileId, $revision = null) {
+	function downloadFile($articleId, $fileId, $revision = null, $suffix = null) {
 		import('classes.file.ArticleFileManager');
 		$articleFileManager = new ArticleFileManager($articleId);
-		return $articleFileManager->downloadFile($fileId, $revision);
+		return $articleFileManager->downloadFile($fileId, $revision,false,$suffix);
 	}
 
 	/**

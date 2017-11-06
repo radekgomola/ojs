@@ -489,7 +489,7 @@ class AboutHandler extends Handler {
 
                             $authorDao =& DAORegistry::getDAO('AuthorDAO');
                             if($journal->getId() == 67){
-                                $publishedArticles = $authorDao->getPublishedArticlesForAuthorId($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $countrySearch, $user->getId());
+                                $publishedArticles = $authorDao->getPublishedArticlesForAuthorId($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $country, $user->getId());
                             } else{    
                                 $publishedArticles = $authorDao->getPublishedArticlesForAuthor($journal?$journal->getId():null, $firstName, $middleName, $lastName, $affiliation, $country);
                             }

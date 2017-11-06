@@ -711,6 +711,20 @@ function prepBlockFields() {
     </td> </tr>
 </table>
 </div>
+    
+<div class="separator"></div>
+
+<div id="setupAbout">
+<h3>5.17 {translate key="manager.setup.suppSuffix"}</h3>
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label"><input type="radio" name="suppSuffix" id="suppSuffix-0" value="1"{if $suppSuffix == 1} checked="checked"{/if} /> {fieldLabel name="suppSuffix-0" key="manager.setup.suppSuffix.on"}</td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label"><input type="radio" name="suppSuffix" id="suppSuffix-1" value="0"{if not $suppSuffix} checked="checked"{/if} /> {fieldLabel name="suppSuffix-1" key="manager.setup.suppSuffix.off"}</td>
+	</tr>
+</table>
+</div>
 <br />    
 <div class="separator"></div>
 

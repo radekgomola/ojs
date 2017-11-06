@@ -60,7 +60,8 @@ class JournalSetupStep5Form extends JournalSetupForm {
                                 'archivDescription' => 'string',
                                 'archivSetupTopDown' => 'int',
                                 'headerLinkTitle' => 'string',
-                                'headerLinkLogo' => 'string'
+                                'headerLinkLogo' => 'string',
+                                'suppSuffix' => 'int'
 			)
 		);
 	}

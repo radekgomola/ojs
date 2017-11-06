@@ -233,6 +233,15 @@ class SearchHandler extends Handler {
 			$countryDao =& DAORegistry::getDAO('CountryDAO');
 			$country = $countryDao->getCountry($country);
 			$templateMgr->assign('country', $country);
+                        
+                        /*
+                         * MUNIPRESS
+                         */
+                        
+                        $isEditor = Validation::isEditor($journalId);
+                        $templateMgr->assign('isEditor', $isEditor);
+                        
+                        /************/
 
 			$templateMgr->display('search/authorDetails.tpl');
 		} else {

@@ -14,7 +14,7 @@
  */
 
 /** GeoIp tool for geo location based on ip */
-include('lib' . DIRECTORY_SEPARATOR . 'geoIp' . DIRECTORY_SEPARATOR . 'geoipcity.inc');
+//include('lib' . DIRECTORY_SEPARATOR . 'geoIp' . DIRECTORY_SEPARATOR . 'geoipcity.inc');
 
 class GeoLocationTool {
 
@@ -34,7 +34,7 @@ class GeoLocationTool {
 		if (file_exists($geoLocationDbFile)) {
 			$isDbFilePresent = true;
 			$this->_geoLocationTool = geoip_open($geoLocationDbFile, GEOIP_STANDARD);
-			include('lib' . DIRECTORY_SEPARATOR . 'geoIp' . DIRECTORY_SEPARATOR . 'geoipregionvars.php');
+//			include('lib' . DIRECTORY_SEPARATOR . 'geoIp' . DIRECTORY_SEPARATOR . 'geoipregionvars.php');
 			$this->_regionName = $GEOIP_REGION_NAME;
 		} else {
 			$isDbFilePresent = false;

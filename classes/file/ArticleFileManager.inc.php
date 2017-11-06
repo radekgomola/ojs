@@ -267,13 +267,20 @@ class ArticleFileManager extends FileManager {
 	 * @param $inline print file as inline instead of attachment, optional
 	 * @return boolean
 	 */
-	function downloadFile($fileId, $revision = null, $inline = false) {
+	function downloadFile($fileId, $revision = null, $inline = false, $suffix = null) {
 		$articleFile =& $this->getFile($fileId, $revision);
 		if (isset($articleFile)) {
-			$fileType = $articleFile->getFileType();
+                        $fileType = $articleFile->getFileType();
+                        $nazev = null;
+                        if($suffix){
+                            $info = pathinfo(basename($articleFile->getFileName()));
+                            $nazev = basename($articleFile->getFileName(),".".$info[extension])."-".$articleFile->getOriginalFileName();
+                        }
 			$filePath = $this->filesDir .  $this->fileStageToPath($articleFile->getFileStage()) . '/' . $articleFile->getFileName();
+                        
+                       
 
-			return parent::downloadFile($filePath, $fileType, $inline);
+			return parent::downloadFile($filePath, $fileType, $inline, $nazev);
 
 		} else {
 			return false;

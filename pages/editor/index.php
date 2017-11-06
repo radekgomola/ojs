@@ -75,6 +75,7 @@ switch ($op) {
 	case 'restoreToQueue':
 	case 'updateSection':
 	case 'updateCommentsStatus':
+        case 'downloadSuppZip':
 	//
 	// Layout Editing
 	//

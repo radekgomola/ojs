@@ -41,7 +41,10 @@
 		<td colspan="2" class="value">
 			{foreach name="suppFiles" from=$suppFiles item=suppFile}
 				{if $suppFile->getFileId()}
-					<a href="{url op="downloadFile" path=$submission->getId()|to_array:$suppFile->getFileId()}" class="file" title="{$suppFile->getOriginalFileName()|escape}">{$suppFile->getFileName()|escape}</a>
+                                    {if $currentJournal->getSetting('suppSuffix') == 1}
+                                        <a href="{url op="downloadFile" path=$submission->getId()|to_array:$suppFile->getFileId() suffix=True}" class="file" title="{$suppFile->getOriginalFileName()|escape}">{$suppFile->getFileName()|escape}</a>{else}
+                                        <a href="{url op="downloadFile" path=$submission->getId()|to_array:$suppFile->getFileId()}" class="file" title="{$suppFile->getOriginalFileName()|escape}">{$suppFile->getFileName()|escape}</a>
+                                    {/if}
 					&nbsp;&nbsp;
 				{elseif $suppFile->getRemoteURL() != ''}
 					<a href="{$suppFile->getRemoteURL()|escape}" target="_blank">{$suppFile->getRemoteURL()|truncate:20:"..."|escape}</a>
@@ -64,6 +67,13 @@
 			{foreachelse}
 				{translate key="common.none"}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="addSuppFile" from="submission" path=$submission->getId()}" class="action">{translate key="submission.addSuppFile"}</a>
 			{/foreach}
+                        {if $suppFiles|@count}
+                            {if $currentJournal->getSetting('suppSuffix') == 1}
+                                <a href="{url op="downloadSuppZip" path=$submission->getId() suffix=True}" class="fileZip" title="{translate key="submission.downloadZip"}">{translate key="submission.downloadZip"}</a>
+                            {else}
+                                <a href="{url op="downloadSuppZip" path=$submission->getId()}" class="fileZip" title="{translate key="submission.downloadZip"}">{translate key="submission.downloadZip"}</a>
+                            {/if}
+                        {/if}
 		</td>
 	</tr>
 	<tr>

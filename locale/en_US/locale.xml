@@ -1313,4 +1313,10 @@ Masaryk University</message>
         <message key="manager.setup.headerLink">Header links</message>
         <message key="manager.setup.headerLink.title">Header link - title</message>
         <message key="manager.setup.headerLink.logo">Header link - logo</message>
+        <message key="manager.setup.suppSuffix">Supplementary files - add sufix</message>
+        <message key="manager.setup.suppSuffix.description">Add original name of supplementary file as sufix when download by Editor.</message>
+        <message key="manager.setup.suppSuffix.on">Turn on</message>
+        <message key="manager.setup.suppSuffix.off">Turn off</message>
+        <message key="submission.downloadZip">Download as ZIP</message>
+        <message key="submission.editMetadata">Edit metadata</message>
 </locale>

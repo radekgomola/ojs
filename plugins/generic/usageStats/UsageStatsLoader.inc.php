@@ -392,7 +392,7 @@ class UsageStatsLoader extends FileLoader {
 				array('file' => $filePath, 'lineNumber' => $lineNumber)), SCHEDULED_TASK_MESSAGE_TYPE_WARNING);
 			return array(false, false);
 		}
-
+                
 		// See bug #8698#.
 		if (is_array($contextPaths) && !$page && $operation == 'index') {
 			$page = 'index';
@@ -458,7 +458,7 @@ class UsageStatsLoader extends FileLoader {
 			} else {
 				return array(false, false);
 			}
-
+                        
 			// Get the internal object id (avoiding public ids).
 			switch ($assocType) {
 				case ASSOC_TYPE_SUPP_FILE:

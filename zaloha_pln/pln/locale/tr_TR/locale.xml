@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/generic/pln/locale/tr_TR/locale.xml
+  *
+  * Copyright (c) 2013-2016 Simon Fraser University Library
+  * Copyright (c) 2003-2016 John Willinsky
+  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+  *
+  * PLN plugin localization strings
+  -->
+ 
+<locale name="tr_TR" full_name="Türkçe">
+	<message key="plugins.generic.pln.settings.pln_network">PLN Ağ Bağlantısı (URL)</message>
+	<message key="plugins.generic.pln.settings.pln_network_invalid">Verilen bağlantı geçerli değil. Lütfen bağlantıyı bir kez daha kontrol edin ve yeniden deneyin.</message>
+	<message key="plugins.generic.pln.notifications.getting_servicedocument">Hizmet belgesi alınıyor.</message>
+	<message key="plugins.generic.pln.notifications.issn_setting">Hizmet şartlarını kabul edebilmeniz için derginizin bir ISSN'sinin olması gerekir. Dergi Ayarları sayfasında ISSN bilgisini girebilirsiniz. Hizmet koşullarının aşağıda görüntülenebilmesi için öncelikle derginin ISSN'si girilmelidir.</message>
+	<message key="plugins.generic.pln.notifications.tar_missing">Sisteminiz tar uygulamasını çalıştırabilmelidir.</message>
+	<message key="plugins.generic.pln.error.depositor.export.articles.error">Makaleler ihraç edilirken bir hata oluştu. Sunucu günlük dosyaları daha fazla bilgi içerebilir.</message>
+	<message key="plugins.generic.pln.error.depositor.export.issue.error">Sayı ihraç edilirken bir hata oluştu. Sunucu günlük dosyaları daha fazla bilgi içerebilir.</message>
+	<message key="plugins.generic.pln.error.handler.uuid.invalid">İstenen UUID geçerli değil veya düzgün olarak biçimlendirilmedi.</message>
+	<message key="plugins.generic.pln.error.handler.uuid.notfound">İstenen UUID ile hiçbir arşiv bulunmamaktadır.</message>
+	<message key="plugins.generic.pln.error.handler.file.notfound">Arşivlenen dosya bulunamadı. Henüz paketlenmemiş olabilir veya paket silinmiş olabilir.</message>
+	<message key="plugins.generic.pln.depositor.statusupdates">Arşiv durum güncellemeleri işleniyor.</message>
+	<message key="plugins.generic.pln.depositor.updatedcontent">İçerik güncellemesi işlendi</message>
+	<message key="plugins.generic.pln.depositor.newcontent">Yeni içerik işleniyor.</message>
+	<message key="plugins.generic.pln.depositor.packagingdeposits">Arşiv için içerik paketleniyor.</message>
+	<message key="plugins.generic.pln.depositor.transferringdeposits">Arşivler PLN'ye gönderiliyor.</message>
+	<message key="plugins.generic.plngateway.displayName">PLN Yolu</message>
+</locale>

@@ -257,7 +257,8 @@ class SearchHandler extends Handler {
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
-			$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
+//			$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
+                        $templateMgr->assign('alphaList', explode(' ', __('common.alphaListCZ')));
 			$templateMgr->assign_by_ref('authors', $authors);
 			$templateMgr->display('search/authorIndex.tpl');
 		}

@@ -26,9 +26,9 @@
                 {else}
                     <a href="{url page="about" op="bioAuthor" path=$author->getId()}">
                 {/if}
-                {$author->getLastName()|escape}, {$firstName|escape|truncate:1:"":true}.</a>{if $i==$authorCount-2}, &amp; {elseif $i<$authorCount-1}, {/if}
+                {$author->getLastName()|escape}, {$firstName|escape|truncate:1:"":true}.{if $author->getMiddleName()|escape} {$author->getMiddleName()|escape|truncate:1:"":true}.{/if}</a>{if $i==$authorCount-2}, &amp; {elseif $i<$authorCount-1}, {/if}
         {else}
-                {$author->getLastName()|escape}, {$firstName|escape|truncate:1:"":true}.{if $i==$authorCount-2}, &amp; {elseif $i<$authorCount-1}, {/if}
+                {$author->getLastName()|escape}, {$firstName|escape|truncate:1:"":true}.{if $author->getMiddleName()|escape} {$author->getMiddleName()|escape|truncate:1:"":true}.{/if}{if $i==$authorCount-2}, &amp; {elseif $i<$authorCount-1}, {/if}
         {/if}
         {/foreach}
 

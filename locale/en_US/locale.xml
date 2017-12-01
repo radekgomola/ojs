@@ -1319,4 +1319,11 @@ Masaryk University</message>
         <message key="manager.setup.suppSuffix.off">Turn off</message>
         <message key="submission.downloadZip">Download as ZIP</message>
         <message key="submission.editMetadata">Edit metadata</message>
+        
+        <message key="common.alphaListCZ">A B C Č D E F G H I J K L M N O P Q R Ř S Š T Ť U V W X Y Z Ž</message>
+        
+        <message key="submissions.proofread.autor">Author</message>
+        <message key="submissions.proofread.korektor">Proofreader</message>
+        <message key="submissions.proofread.typograf">Layout Editor</message> 
+        
 </locale>

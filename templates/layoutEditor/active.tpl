@@ -37,15 +37,43 @@
 				{translate key="submissions.initial"}
 			{else}
 				{translate key="submissions.proofread"}
+                                {assign var="authorProofreadSignoff" value=$submission->getSignoff('SIGNOFF_PROOFREADING_AUTHOR')}
+                                {assign var="proofreaderProofreadSignoff" value=$submission->getSignoff('SIGNOFF_PROOFREADING_PROOFREADER')}
+                                {assign var="layoutEditorProofreadSignoff" value=$submission->getSignoff('SIGNOFF_PROOFREADING_LAYOUT')}
+                                
+                                {if $authorProofreadSignoff->getDateNotified() && not $authorProofreadSignoff->getDateCompleted() && not $proofreaderProofreadSignoff->getDateNotified() && not $layoutEditorProofreadSignoff->getDateNotified()}
+                                    {translate key="submissions.proofread.autor"}
+                                {elseif $authorProofreadSignoff->getDateCompleted() && $proofreaderProofreadSignoff->getDateNotified() && not $layoutEditorProofreadSignoff->getDateNotified()}
+                                    {translate key="submissions.proofread.korektor"}
+                                {elseif $proofreaderProofreadSignoff->getDateCompleted() && $layoutEditorProofreadSignoff->getDateNotified() && not $layoutEditorProofreadSignoff->getDateCompleted()}   
+                                    {translate key="submissions.proofread.typograf"}
+                                {else}
+                                    <br />-
+                                {/if}
 			{/if}
 		</td>
-		{if $layoutSignoff->getDateCompleted()}
+		{*{if $layoutSignoff->getDateCompleted()}
 			{assign var="proofreaderProofreadSignoff" value=$submission->getSignoff('SIGNOFF_PROOFREADING_PROOFREADER')}
 			{url|assign:"url" op="completeProofreader" articleId=$submission->getId()}
 			<td>
 				{translate|assign:"confirmMessage" key="common.confirmComplete"}
 				{if $proofreaderProofreadSignoff->getDateCompleted()}{assign var="disabled" value="disabled"}{/if}
 				{icon name="mail" onclick="return confirm('$confirmMessage')" url=$url disabled=$disabled}
+			</td>
+		{/if}*}
+                {if $layoutSignoff->getDateCompleted()}
+			{assign var="layoutEditorProofreadSignoff" value=$submission->getSignoff('SIGNOFF_PROOFREADING_LAYOUT')}
+			{url|assign:"url" op="completeProofreader" articleId=$submission->getId()}
+			<td>
+				{translate|assign:"confirmMessage" key="common.confirmComplete"}
+
+                                {if not $layoutEditorProofreadSignoff->getDateNotified()}{assign var="disabled" value="disabled"}{else}{assign var=disabled value=""}{/if}
+				{if $layoutEditorProofreadSignoff->getDateCompleted()}{assign var="disabled" value="disabled"}{/if}
+                                {if $disabled == "disabled"}
+                                    {icon name="mail" url=$url disabled=$disabled}
+                                {else}
+                                    {icon name="mail" onclick="return confirm('$confirmMessage')" url=$url}<a href="{$url}" onclick="return confirm('$confirmMessage')">{translate key="submission.complete.complete"}</a>
+                                {/if}
 			</td>
 		{/if}
 	</tr>

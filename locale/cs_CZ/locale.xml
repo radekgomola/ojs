@@ -1526,4 +1526,10 @@ Masarykovy univerzity</message>
         <message key="manager.setup.suppSuffix.off">Vypnout</message>
         <message key="submission.downloadZip">Stáhnout jako ZIP</message>
         <message key="submission.editMetadata">Editovat metadata</message>
+        
+        <message key="common.alphaListCZ">A B C Č D E F G H I J K L M N O P Q R Ř S Š T Ť U V W X Y Z Ž</message>
+        <message key="submissions.proofread.autor">Autor</message>
+        <message key="submissions.proofread.korektor">Korektor</message>
+        <message key="submissions.proofread.typograf">Typograf</message> 
+        
 </locale>

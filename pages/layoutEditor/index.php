@@ -21,6 +21,7 @@ switch ($op) {
 	// issue 
 	//
 	case 'issueData':
+        case 'issueGalleys':
 	case 'issueToc':
 	case 'resetSectionOrder':
 	case 'updateIssueToc':

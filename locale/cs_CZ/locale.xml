@@ -1532,4 +1532,5 @@ Masarykovy univerzity</message>
         <message key="submissions.proofread.korektor">Korektor</message>
         <message key="submissions.proofread.typograf">Typograf</message> 
         
+        <message key="header.link.web"></message>
 </locale>

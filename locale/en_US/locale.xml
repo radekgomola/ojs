@@ -1326,4 +1326,6 @@ Masaryk University</message>
         <message key="submissions.proofread.korektor">Proofreader</message>
         <message key="submissions.proofread.typograf">Layout Editor</message> 
         
+        <message key="header.link.web">/en</message>
+        
 </locale>

@@ -28,7 +28,6 @@
 </ul>
 
 {include file="sectionEditor/submission/summary.tpl"}
-
 <div class="separator"></div>
 <div id="submissionEventLog">
 <h3>{translate key="submission.history.submissionEventLog"}</h3>
@@ -54,7 +53,7 @@
 		<td class="value">
 			<strong>{translate key=$logEntry->getEventTitle()}</strong>
 			<br /><br />
-			{$logEntry->getMessage()|strip_unsafe_html|nl2br}
+			{$logEntry->getTranslatedMessage()|nl2br}
 		</td>
 	</tr>
 </table>

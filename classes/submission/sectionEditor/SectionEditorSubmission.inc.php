@@ -697,7 +697,10 @@ class SectionEditorSubmission extends Article {
 
                         if (!$useLayoutEditor && !$dateLayoutEditorCompleted) return 'higlightProofreading';
 			// Check if acknowledgement is overdue for proofreading round 3
-			if ($dateLayoutEditorCompleted && $useLayoutEditor && !$dateLayoutEditorAcknowledged) return 'higlightProofreading';
+                         
+			if ($dateLayoutEditorCompleted && $useLayoutEditor && !$dateLayoutEditorAcknowledged && !$dateLayoutEditorNotified) return 'higlightProofreading';
+                        //dokonceno
+                        if ($dateLayoutEditorCompleted && $useLayoutEditor && !$dateLayoutEditorAcknowledged && $dateLayoutEditorNotified) return 'higlightProofreadingComplete';
 		} else {
 			// ---
 			// --- Highlighting conditions for submissions in review

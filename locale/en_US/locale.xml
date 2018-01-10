@@ -530,6 +530,7 @@ You may optionally provide the user with a reason for disabling their account.</
 			<li class="highlightCopyediting">An action is required in the copyediting stage</li>
 			<li class="highlightLayoutEditing">An action is required in the layout editing stage</li>
 			<li class="higlightProofreading">An action is required in the proofreading stage</li>
+                        <li class="higlightProofreadingComplete">Proofreading stage is complete</li>
                         <li class="fastTrack">Article was sent by QuickSubmit plugin</li>
 		</ul>
 	</li>

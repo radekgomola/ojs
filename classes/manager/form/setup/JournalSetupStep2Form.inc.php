@@ -42,7 +42,11 @@ class JournalSetupStep2Form extends JournalSetupForm {
 				'enableLockss' => 'bool',
 				'lockssLicense' => 'string',
 				'reviewerDatabaseLinks' => 'object',
-				'notifyAllAuthorsOnDecision' => 'bool'
+				'notifyAllAuthorsOnDecision' => 'bool',
+                            /*
+                             * MUNIPRESS
+                             */
+                                'remindEditor' => 'bool'
 			)
 		);
 

@@ -596,7 +596,8 @@ Volitelně můžete uživateli poskytnout zdůvodnění, proč byl jeho účet z
 			<li class="highlightCopyediting">Je vyžadována akce v části redigování</li>
 			<li class="highlightLayoutEditing">Je vyžadována akce v části typografických úprav</li>
 			<li class="higlightProofreading">Je vyžadována akce v části korektur</li>
-                        <li class="fastTrack">Článek byl vložen pomocí pluginu QuickSubmit</li>
+                        <li class="higlightProofreadingComplete">Článek má dokončeny všechny korektury</li>
+                        <li class="fastTracked">Článek byl vložen pomocí pluginu QuickSubmit</li>
 		</ul>
 	</li>
 </ol>]]></message>

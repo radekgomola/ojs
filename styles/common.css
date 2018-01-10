@@ -331,6 +331,11 @@ pre {
 .highlightRevisedCopyUploaded, .higlightProofreading {
 	background: #C6EBE4;
 }
+
+.higlightProofreadingComplete {
+        background: #78ffab;
+}
+
 .highlightReviewerConfirmationOverdue {
 	background: #9DD1E6;
 }

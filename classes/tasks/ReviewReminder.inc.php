@@ -95,6 +95,70 @@ class ReviewReminder extends ScheduledTask {
 
 	}
 
+        /*
+         * Munipress
+         */
+        function sendReminderEditor ($reviewAssignment, $article, $journal, $reminderType = REVIEW_REMIND_AUTO) {
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$reviewId = $reviewAssignment->getId();
+
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+		if (!isset($reviewer)) return false;
+
+		import('classes.mail.ArticleMailTemplate');
+
+		$reviewerAccessKeysEnabled = $journal->getSetting('reviewerAccessKeysEnabled');
+
+		$email = new ArticleMailTemplate($article, $reviewerAccessKeysEnabled ? $reminderType . '_ONECLICK' : $reminderType, $journal->getPrimaryLocale(), false, $journal, false, true);
+		$email->setJournal($journal);
+		$email->setReplyTo(null);
+		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
+		$email->setSubject($email->getSubject($journal->getPrimaryLocale()));
+		$email->setBody($email->getBody($journal->getPrimaryLocale()));
+
+		$urlParams = array();
+		if ($reviewerAccessKeysEnabled) {
+			import('lib.pkp.classes.security.AccessKeyManager');
+			$accessKeyManager = new AccessKeyManager();
+
+			// Key lifetime is the typical review period plus four weeks
+			$keyLifetime = ($journal->getSetting('numWeeksPerReview') + 4) * 7;
+			$urlParams['key'] = $accessKeyManager->createKey('ReviewerContext', $reviewer->getId(), $reviewId, $keyLifetime);
+		}
+		$submissionReviewUrl = Request::url($journal->getPath(), 'reviewer', 'submission', $reviewId, $urlParams);
+
+		// Format the review due date
+		$reviewDueDate = strtotime($reviewAssignment->getDateDue());
+		$dateFormatShort = Config::getVar('general', 'date_format_short');
+		if ($reviewDueDate === -1 || $reviewDueDate === false) {
+			// Default to something human-readable if no date specified
+			$reviewDueDate = '_____';
+		} else {
+			$reviewDueDate = strftime($dateFormatShort, $reviewDueDate);
+		}
+
+		$paramArray = array(
+			'reviewerName' => $reviewer->getFullName(),
+			'reviewerUsername' => $reviewer->getUsername(),
+			'journalUrl' => $journal->getUrl(),
+			'reviewerPassword' => $reviewer->getPassword(),
+			'reviewDueDate' => $reviewDueDate,
+			'weekLaterDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime('+1 week')),
+			'editorialContactSignature' => $journal->getSetting('contactName') . "\n" . $journal->getLocalizedTitle(),
+			'passwordResetUrl' => Request::url($journal->getPath(), 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
+			'submissionReviewUrl' => $submissionReviewUrl
+		);
+		$email->assignParams($paramArray);
+
+		$email->send();
+
+		$reviewAssignment->setDateReminded(Core::getCurrentDate());
+		$reviewAssignment->setReminderWasAutomatic(1);
+		$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+
+	}
+
 	/**
 	 * @see ScheduledTask::executeActions()
 	 */
@@ -123,6 +187,9 @@ class ReviewReminder extends ScheduledTask {
 					$submitReminderEnabled = $journal->getSetting('remindForSubmit');
 					$inviteReminderDays = $journal->getSetting('numDaysBeforeInviteReminder');
 					$submitReminderDays = $journal->getSetting('numDaysBeforeSubmitReminder');
+                                        
+                                        /*MUNIPRESS*/ 
+                                        $editorReminderEnabled = $journal->getSetting('remindEditor');
 				}
 			}
 
@@ -135,12 +202,14 @@ class ReviewReminder extends ScheduledTask {
 				$checkDate = strtotime($reviewAssignment->getDateNotified());
 				if (time() - $checkDate > 60 * 60 * 24 * $inviteReminderDays) {
 					$reminderType = REVIEW_REQUEST_REMIND_AUTO;
+                                        if($editorReminderEnabled == 1) $reminderTypeEditor = REVIEW_REQUEST_REMIND_AUTO_EDITOR;
 				}
 			}
 			if ($submitReminderEnabled==1 && $reviewAssignment->getDateDue() != null) {
 				$checkDate = strtotime($reviewAssignment->getDateDue());
 				if (time() - $checkDate > 60 * 60 * 24 * $submitReminderDays) {
 					$reminderType = REVIEW_REMIND_AUTO;
+                                         if($editorReminderEnabled == 1) $reminderTypeEditor = REVIEW_REMIND_AUTO_EDITOR;
 				}
 			}
 

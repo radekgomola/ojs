@@ -307,6 +307,25 @@ class JournalDAO extends DAO {
 
 		return $journals;
 	}
+        
+        /**
+	 * Retrieve the IDs and titles of all journals in an associative array.
+	 * @return array
+	 */
+	function &getJournalTitlesNoExternal($enabledOnly = false) {
+		$journals = array();
+
+		$journalIterator =& $this->getJournals($enabledOnly);
+		while ($journal =& $journalIterator->next()) {
+                    if($journal->getSetting('externiCasopis')!=1){
+			$journals[$journal->getId()] = $journal->getLocalizedTitle();
+                    }
+			unset($journal);
+		}
+		unset($journalIterator);
+
+		return $journals;
+	}
 
 	/**
 	 * Retrieve enabled journal IDs and titles in an associative array

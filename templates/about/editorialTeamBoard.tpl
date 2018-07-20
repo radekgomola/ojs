@@ -12,7 +12,7 @@
     {assign var="pageTitle" value="about.editorialTeam"}
     {include file="common/header.tpl"}
 {/strip}
-{$currentJournal->}
+
 {if $currentJournal->getLocalizedSetting('editorialTeamDescription')}{* && $currentJournal->getLocalizedSetting('aboutSetupTopDown') == 0*}
 <div id="editorialTeamBoardDescription">
   <p>

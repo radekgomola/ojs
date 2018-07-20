@@ -57,9 +57,18 @@ class AboutHandler extends Handler {
 			import('classes.payment.ojs.OJSPaymentManager');
 			$paymentManager = new OJSPaymentManager($request);
 			$templateMgr->assign('paymentConfigured', $paymentManager->isConfigured());
-
+                        
+                        $groupDao =& DAORegistry::getDAO('GroupDAO');
+                        $allGroups =& $groupDao->getGroups(ASSOC_TYPE_JOURNAL, $journal->getId(), GROUP_CONTEXT_EDITORIAL_TEAM);
+                        $counterEditorialTeam = 0;
+                        while ($group =& $allGroups->next()) {
+                            if($group->getContext() == 1) {
+                                $counterEditorialTeam++;
+                            }
+                            unset($group);
+                        }
+                        $templateMgr->assign('counterEditorialTeam', $counterEditorialTeam);
 			if ($journal->getSetting('boardEnabled')) {
-				$groupDao =& DAORegistry::getDAO('GroupDAO');
 				$groups =& $groupDao->getGroups(ASSOC_TYPE_JOURNAL, $journal->getId(), GROUP_CONTEXT_PEOPLE);
 				$templateMgr->assign_by_ref('peopleGroups', $groups);
 			}

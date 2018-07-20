@@ -980,6 +980,8 @@ class IssueManagementHandler extends EditorHandler {
 		if ($articleSearchIndex) $articleSearchIndex->articleChangesFinished();
 
 		// Send a notification to associated users
+                // 
+                // Vypínání notifikací pro časopis pro právní vědu a praxi - cpvp
 //                if($journalId != 60){
 		import('classes.notification.NotificationManager');
 		$notificationManager = new NotificationManager();

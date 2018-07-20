@@ -2,38 +2,86 @@
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * plugins/generic/usageStats/locale/cs_CZ/locale.xml
-  *
-  * Copyright (c) 2014-2016 Simon Fraser University Library
-  * Copyright (c) 2003-2016 John Willinsky
-  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
-  * Localization strings
-  -->
+* plugins/generic/usageStats/locale/cs_CZ/locale.xml
+*
+* Copyright (c) 2014-2016 Simon Fraser University Library
+* Copyright (c) 2003-2016 John Willinsky
+* Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+*
+* Localization strings
+-->
 
 <locale name="cs_CZ" full_name="Čeština">
-	<message key="plugins.generic.usageStats.settings.logging">Možnosti logu přístupů</message>
-	<message key="plugins.generic.usageStats.settings.createLogFiles">Vytvořit logovací soubory</message>
-	<message key="plugins.generic.usageStats.settings.createLogFiles.description">Aktivací této možnosti vytvoří plugin soubory s přístupovými logy v souborových složkách. Tyto soubory se používají ke získávání statistických dat. Pokud nechcete vytvořit více souborů s přístupovými logy, můžete nechat tuto možnost deaktivovanou a používat váš vlastní přístupový log serveru.</message>
-	<message key="plugins.generic.usageStats.settings.logParseRegex">Parse log files regex</message>
-	<message key="plugins.generic.usageStats.settings.logParseRegex.description">Standardní použití regex může analyzovat přístupové soubory z apache v kombinovaném formátu a také používat log soubory pluginu. Pokud mají vaše přístupové soubory odlišný formát, musíte vložit regex schopný analyzovat formát a dávat očekávané hodnoty. Viz UsageStatsLoader::_getDataFromLogEntry() pro více informací.</message>
-	<message key="plugins.generic.usageStats.settings.saved">Nastavení statistického pluginu uloženo</message>
+    <message key="plugins.generic.usageStats.settings.logging">Možnosti logu přístupů</message>
+    <message key="plugins.generic.usageStats.settings.createLogFiles">Vytvořit logovací soubory</message>
+    <message key="plugins.generic.usageStats.settings.createLogFiles.description">Aktivací této možnosti vytvoří plugin soubory s přístupovými logy v souborových složkách. Tyto soubory se používají ke získávání statistických dat. Pokud nechcete vytvořit více souborů s přístupovými logy, můžete nechat tuto možnost deaktivovanou a používat váš vlastní přístupový log serveru.</message>
+    <message key="plugins.generic.usageStats.settings.logParseRegex">Parse log files regex</message>
+    <message key="plugins.generic.usageStats.settings.logParseRegex.description">Standardní použití regex může analyzovat přístupové soubory z apache v kombinovaném formátu a také používat log soubory pluginu. Pokud mají vaše přístupové soubory odlišný formát, musíte vložit regex schopný analyzovat formát a dávat očekávané hodnoty. Viz UsageStatsLoader::_getDataFromLogEntry() pro více informací.</message>
+    <message key="plugins.generic.usageStats.settings.saved">Nastavení statistického pluginu uloženo</message>
 	
-	<message key="plugins.generic.usageStats.openFileFailed">Soubor {$file} nelze otevřít a byl odmítnut.</message>
-	<message key="plugins.generic.usageStats.invalidLogEntry">Řádek číslo {$lineNumber} v souboru {$file} není platný log a soubor byl odmítnut.</message>
-	<message key="plugins.generic.usageStats.displayName">Statistiky využití</message>
-	<message key="plugins.generic.usageStats.description">Present data objects usage statistics. Can use server access log files to extract statistics.</message>
+    <message key="plugins.generic.usageStats.settings.dataPrivacyOption.saltFilepath">Cesta k souboru pro anonymizační sůl</message>
+    <message key="plugins.generic.usageStats.settings.dataPrivacyOption.saltFilepath.invalid">Soubor pro anonymizační sůl není zapisovatelný</message>
+    <message key="plugins.generic.usageStats.settings.dataPrivacyOption.requirements">K zajištění ochrany soukromí dat, musíte zadat soubor s právy pro čtení a zápis webovým uživatelem, který bude obsahovat náhodně vygenerovanou anonymizační sůl. Pro zajištění soukromí, nesmí být tento zoubor zálohován. Sůl je náhodně generována s užitím některého z následujících nástrojů: funkce mcrypt_create_iv, která vyžaduje PHP mcrypt; funkce openssl_random_pseudo_bytes, která vyžaduje PHP openssl; soubor /dev/urandom, který pracuje na *nix systémech; nebo funkce mt_rand, která však není kryptograficky bezpečná. Pokud používáte Windows server, ujistěte se prosím, že je povolena některé z funkcí PHP mcrypt nebo openssl k zajištění generování kryptograficky bezpečné anonymizační soli.</message>
+    <message key="plugins.generic.usageStats.settings.dataPrivacyOption.description">Aktivujte tuto možnost, chcete-li používat verzi pluginu, která respektuje právní předpisy týkající se ochrany osobních údajů, to znamená, že ukládá hashované adresy IP, informuje uživatele o sledování a poskytuje uživateli možnost odhlášení. Poznámka: při použití této možnosti nebudete moci používat geografické funkce pluginu.</message>
+    <message key="plugins.generic.usageStats.settings.dataPrivacyOption.requiresSalt">Povolení ochrany osobních údajů vyžaduje soubor s anonymizační soli.</message>
+    <message key="plugins.generic.usageStats.settings.dataPrivacyOption.excludesCity">Povolení ochrany osobních údajů vylučuje využití možnosti Město jako volitelného statistického údaje.</message>
+    <message key="plugins.generic.usageStats.settings.dataPrivacyOption.excludesRegion">Povolení ochrany osobních údajů vylučuje využití možnosti Region jako volitelného statistického údaje.</message>
+    <message key="plugins.generic.usageStats.settings.dataPrivacyCheckbox">Respektovat ochranu osobních údajů</message>
+    <message key="plugins.generic.usageStats.settings.optionalColumns">Volitelné statistické údaje</message>
+    <message key="plugins.generic.usageStats.settings.archives">Archiv</message>
+    <message key="plugins.generic.usageStats.settings.compressArchives.description">Aktivujte tuto možnost pro kompresi archivovaných souborů protokolů pomocí nástroje gzip (budete muset nakonfigurovat nastavení gzip v souboru config.inc.php). Pokud máte stránky s vysokou návštěvností, je dobré možnost povolit, abyste ušetřili místo na disku.</message>
+    <message key="plugins.generic.usageStats.settings.compressArchives">Archiv komprimovaných souborů</message>
+    <message key="plugins.generic.usageStats.settings.optionalColumns.description">Povolte nebo zakažte kolekci následujících nepovinných informací. Toto ovlivní přehledy statistik, které je možné načíst, a bude mít vliv na velikost databáze. Neměňte, pokud plně nerozumíte tomu, co děláte.</message>
+    <message key="plugins.generic.usageStats.settings.optionalColumns.cityRequiresRegion">Volitelná možnost "Město" vyžaduje povolenu volitelnou možnost "Region".</message>
+
+    <message key="plugins.generic.usageStats.usageStatsLoaderName">ˇUloha otevírání souborů statistik</message>
+        
+    <message key="plugins.generic.usageStats.openFileFailed">Soubor {$file} nelze otevřít a byl odmítnut.</message>
+    <message key="plugins.generic.usageStats.invalidLogEntry">Řádek číslo {$lineNumber} v souboru {$file} není platný log a soubor byl odmítnut.</message>
+    <message key="plugins.generic.usageStats.removeUrlError">Číslo řádku {$lineNumber} ze souboru {$file} obsahuje adresu URL, ze které systém nemůže odstranit základní adresu URL.</message>
+    <message key="plugins.generic.usageStats.loadDataError">Nelze načíst data extrahovaná ze souboru {$file}. Chyba byla: {$error}. Soubor byl znovu přesunut zpět.</message>
+    <message key="plugins.generic.usageStats.displayName">Statistiky využití</message>
+    <message key="plugins.generic.usageStats.description">Obsahuje statistická data využití. Můžete použít soubory protokolů přístupů k serveru pro extrahování statistik.</message>
+    <message key="plugins.generic.usageStats.pluginDisabled">Plugin statistik využití je zakázán. Žádné zpracované protokolové soubory.</message>
+    <message key="plugins.generic.usageStats.processingPathNotEmpty">Adresář {$directory} není prázdný. Mohlo by to znamenat dřívější selhání procesu nebo souběžně probíhající proces. Tento soubor bude automaticky přepracován, pokud používáte also scheduledTasksAutoStage.xml, jinak budete muset ručně přesunout všechny osiřelé soubory do adresáře pro zpracování zpět do stavového adresáře.</message>
+    <message key="plugins.generic.usageStats.noCounterBotList">Seznam COUNTER botů nebyl nalezen, nebo je přítomen více než jeden seznam. Soubor {$file} nelze zpracovat.</message>
+    <message key="plugins.generic.usageStats.failedCounterBotList">Seznam COUNTER botů {$botlist} nemohl být otevřen. Soubor {$file} nelze zpracovat.</message>
+    <message key="plugins.reports.usageStats.report.displayName">Statistika využití OJS</message>
+    <message key="plugins.reports.usageStats.report.description">OJS standardní zpráva využití (COUNTER ready)</message>
 	
-	<message key="plugins.reports.usageStats.report.displayName">Statistika využití OJS</message>
-	<message key="plugins.reports.usageStats.report.description">OJS standardní zpráva využití (COUNTER ready)</message>
-	
-	<message key="plugins.reports.usageStats.metricType">OJS/POČÍTADLO</message>
-	<message key="plugins.reports.usageStats.metricType.full">Statistika Open Journal Systems (COUNTER ready)</message>
-	<message key="plugins.generic.usageStats.usageStatsLoaderName">Statistika nahrávání souborů</message>
-	<message key="plugins.generic.usageStats.removeUrlError">Řádek číslo {$lineNumber} v souboru {$file} obsahuje url, ze kterého nejde odstranit základní url.</message>
-	<message key="plugins.generic.usageStats.loadDataError">Data extrahovaná ze souboru {$file} nejde nahrát. Vyskytla se chyba: {$error}. Soubor byl přesunut zpět.</message>
-	<message key="plugins.generic.usageStats.noCounterBotList">Seznam COUNTER botů {$botlist} nelze otevřít, nebo existuje více seznamů. Soubor {$file} nelze zpracovat.</message>
-	<message key="plugins.generic.usageStats.failedCounterBotList">Seznam COUNTER botů {$botlist} nelze otevřít. Soubor {$file} nelze zpracovat.</message>
-	<message key="plugins.generic.usageStats.pluginDisabled">Plugin statistik čtenosti je zakázán. Proces záznamů nefunguje.</message>
-	<message key="plugins.generic.usageStats.processingPathNotEmpty">Knihovna {$directory} není prázdná. To může znamenat, že předešlý proces zkolaboval, nebo že běží současně jiný proces. Soubor bude automaticky zpracován, pokud používáte scheduledTasksAutoStage.xml, jinak budete muset sirotčí soubory ze složky procesu přesunout do složky etapy.</message>
+    <message key="plugins.reports.usageStats.optout.displayName">Informace o ochraně soukromí</message>
+    <message key="plugins.reports.usageStats.optout.description">Informace o ochraně soukromí</message>
+    <message key="plugins.generic.usageStats.optout.title">Informace o statistice využití</message>
+    <message key="plugins.generic.usageStats.optout.shortDesc"><![CDATA[Zaznamenáváme anonymní statistiky využití. Přečtěte si prosím <a href="{$privacyInfo}">informace o ochraně osobních údajů</a> pro více informací.]]></message>	
+    <message key="plugins.generic.usageStats.optout.description"><![CDATA[
+		<h3>Obecné informace o ochraně osobních údajů</ h3>
+<p>Přečtěte si prosím náše obecné <a href="{$privacyStatementUrl}">prohlášení o ochraně osobních údajů</a>.</p>
+<h3>Statistiky využití</ h3>
+<p>Abychom mohli analyzovat využití a dopad našeho časopisu a publikovaných článků, shromažďujeme přístupy k domovské stránce časopisu, k číslům, k článkům, k sazebnicím a doplňkovým souborům. V tomto procesu jsou všechna data anonymní. Žádné osobní údaje nejsou zaznamenány. IP adresy jsou anonymizovány hashováním (pomocí <em>SHA 256</em>) v kombinaci se <em>zabezpečenou 64-ti znakovou solí</em>, která je automaticky <em>náhodně generována a denně nahrazována</em>. Adresy IP proto nelze obnovit. </P>
+<p> Vedle anonymizovaných IP adres se shromažďují ještě náslůedující informace: </p>
+<ul>
+<li> Typ přístupu (tj. administrativní) </li>
+<li> Časy požadavků </li>
+<li> URL adresy požadavků</li>
+<li> Kódy stavu HTTP </li>
+<li> Prohlížeč a verze</li>
+</ul>
+<p> Shromážděné údaje se používají pouze pro statistické účely a účely hodnocení. Žádné adresy IP nejsou mapovány na ID uživatele. Je technicky nemožné vysledovat konkrétní množinu dat na konkrétní IP adresu. </P>]]></message> 
+    <message key="plugins.generic.usageStats.optout.done"><![CDATA[
+		<p>You successfully opted out of usage statistics collection. While you see this message no statictics will be collected from your usage of this site. Click the button below to revert your decision.</p>]]></message>
+    <message key="plugins.generic.usageStats.optin">Opt In</message>
+    <message key="plugins.generic.usageStats.optout">Opt Out</message>
+    <message key="plugins.generic.usageStats.optout.cookie"><![CDATA[
+		<p>If you wish you can opt-out of the data collection process. By clicking the opt-out button below, you can actively decide against participating in the statistical analysis. When clicking the opt-out button a <em>cookie</em> is being created on your system to store your decision. If the privacy settings of your browser lead to cookies being automatically deleted you will have to opt-out again the next time you access this journal. The cookie is only valid for one browser. If you use a different browser, you will have to opt out again. No individual information is stored within this cookie. This cookie lease is valid for one year after your last access.</p>
+		<p>Please bear in mind that general server logs are not affected by your decision to opt-out of the detailed evaluation process. Please refer to our general <a href="{$privacyStatementUrl}">privacy statement</a>.</p>]]></message>
+                
+    <message key="plugins.reports.usageStats.metricType">OJS/POČÍTADLO</message>
+    <message key="plugins.reports.usageStats.metricType.full">Statistika Open Journal Systems (COUNTER ready)</message>
+    <message key="plugins.generic.usageStats.usageStatsLoaderName">Statistika nahrávání souborů</message>
+    <message key="plugins.generic.usageStats.removeUrlError">Řádek číslo {$lineNumber} v souboru {$file} obsahuje url, ze kterého nejde odstranit základní url.</message>
+    <message key="plugins.generic.usageStats.loadDataError">Data extrahovaná ze souboru {$file} nejde nahrát. Vyskytla se chyba: {$error}. Soubor byl přesunut zpět.</message>
+    <message key="plugins.generic.usageStats.noCounterBotList">Seznam COUNTER botů {$botlist} nelze otevřít, nebo existuje více seznamů. Soubor {$file} nelze zpracovat.</message>
+    <message key="plugins.generic.usageStats.failedCounterBotList">Seznam COUNTER botů {$botlist} nelze otevřít. Soubor {$file} nelze zpracovat.</message>
+    <message key="plugins.generic.usageStats.pluginDisabled">Plugin statistik čtenosti je zakázán. Proces záznamů nefunguje.</message>
+    <message key="plugins.generic.usageStats.processingPathNotEmpty">Knihovna {$directory} není prázdná. To může znamenat, že předešlý proces zkolaboval, nebo že běží současně jiný proces. Soubor bude automaticky zpracován, pokud používáte scheduledTasksAutoStage.xml, jinak budete muset sirotčí soubory ze složky procesu přesunout do složky etapy.</message>
 </locale>

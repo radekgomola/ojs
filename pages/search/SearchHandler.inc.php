@@ -117,7 +117,7 @@ class SearchHandler extends Handler {
 		// Assign journal options.
 		if ($searchFilters['siteSearch']) {
 			$journalDao =& DAORegistry::getDAO('JournalDAO');
-			$journals =& $journalDao->getJournalTitles(true);
+			$journals =& $journalDao->getJournalTitlesNoExternal(true);
 			$templateMgr->assign('journalOptions', array('' => AppLocale::Translate('search.allJournals')) + $journals);
 		}
 	}
@@ -150,7 +150,9 @@ class SearchHandler extends Handler {
                 $templateMgr =& TemplateManager::getManager();
                 
                 $journal =& $request->getJournal();
-                $useSimpleSearch = $journal->getSetting('useSimpleSearch');
+                if($journal){
+                    $useSimpleSearch = $journal->getSetting('useSimpleSearch');
+                }
                 
                 $templateMgr->assign('useSimpleSearch', $useSimpleSearch);
                 

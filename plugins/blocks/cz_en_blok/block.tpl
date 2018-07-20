@@ -22,7 +22,6 @@
 
 			var redirect_url = '{url|escape:"javascript" page="user" op="setLocale" path="NEW_LOCALE" source=$smarty.server.REQUEST_URI}';
 			redirect_url = redirect_url.replace("NEW_LOCALE", new_locale);
-
 			window.location.href = redirect_url;
 		{rdelim}
 		//-->

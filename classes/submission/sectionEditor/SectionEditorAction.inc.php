@@ -2020,7 +2020,6 @@ class SectionEditorAction extends Action {
 
 		$journal =& $request->getJournal();
 		$user =& $request->getUser();
-
 		import('classes.mail.ArticleMailTemplate');
 
 		$decisionTemplateMap = array(
@@ -2068,13 +2067,15 @@ class SectionEditorAction extends Action {
 
 			return true;
 		} else {
-			if (!$request->getUserVar('continued')) {
+                        $submissionUrl = $request->url(null, 'author', 'submissionReview', $sectionEditorSubmission->getId());
+			if (!$request->getUserVar('continued')) {                               
 				$authorUser =& $userDao->getById($sectionEditorSubmission->getUserId());
 				$authorEmail = $authorUser->getEmail();
 				$email->assignParams(array(
 					'editorialContactSignature' => $user->getContactSignature(),
 					'authorName' => $authorUser->getFullName(),
-					'journalTitle' => $journal->getLocalizedTitle()
+					'journalTitle' => $journal->getLocalizedTitle(),
+                                        'authorRevisionUrl' => $submissionUrl
 				));
 				$email->addRecipient($authorEmail, $authorUser->getFullName());
 				if ($journal->getSetting('notifyAllAuthorsOnDecision')) foreach ($sectionEditorSubmission->getAuthors() as $author) {

@@ -99,9 +99,22 @@
     <td class="tocArticleAuthors">
     {*<div class="tocAuthors">*}
 			{if (!$section.hideAuthor && $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_DEFAULT) || $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_SHOW}
-				{foreach from=$article->getAuthors() item=author name=authorList}
+				{*{foreach from=$article->getAuthors() item=author name=authorList}
 					{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
-				{/foreach}&nbsp;&nbsp;
+				{/foreach}&nbsp;&nbsp;<br />*}
+                                {foreach from=$article->getAuthors() item=author name=authorList key=i}
+                                    {assign var=firstName value=$author->getFirstName()}
+                                    {if $journal->getSetting('allowTOCMedailonCitations')}
+                                            {if $author->getData('journalAuthorId') AND $author->getData('journalAuthorId') > 0}
+                                                <a href="{url page="about" op="editorialTeamBioFullProfile" path=$author->getData('journalAuthorId')}">
+                                            {else}
+                                                <a href="{url page="about" op="bioAuthor" path=$author->getId()}">
+                                            {/if}
+                                            {$author->getFullName()|escape}</a>{if !$smarty.foreach.authorList.last},{/if}
+                                    {else}
+                                            {$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
+                                    {/if}
+                                {/foreach}
 			{else}
 				&nbsp;
 			{/if}

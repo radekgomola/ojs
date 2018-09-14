@@ -306,8 +306,17 @@ class NativeImportDom {
 				$issueDao->updateCurrentIssue($journal->getId());
 			}
 			$issue->setId($issueDao->insertIssue($issue));
+                        //MUNIPRESS//
+//                        If(($issueID = $issueNode->getAttribute('issue_id')) != ''){
+//                            error_log("test = ".$issueID);
+//                            $issue->setId($issueID);
+//                        } else {
+//                            error_log("test = Jsem špatně");
+//                            $issue->setId($issueDao->insertIssue($issue));
+//                        }
 			$dependentItems[] = array('issue', $issue);
 		}
+                              
 
 		/* --- Handle cover --- */
 

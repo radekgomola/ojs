@@ -727,6 +727,20 @@ function prepBlockFields() {
 </div>
 <br />    
 <div class="separator"></div>
+<div id="setupAbout">
+<h3>5.18 {translate key="manager.setup.toc.Medailon"}</h3>
+<p>{translate key="manager.setup.toc.medailon.description"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+                <td width="20%" class="value"><label for="allowTOCMedailonCitations">{translate key="manager.setup.toc.medailon.allow"}</label></td>
+		<td width="80%" class="label"><input type="checkbox" name="allowTOCMedailonCitations" id="allowTOCMedailonCitations" value="1" {if !$allowTOCMedailonCitations}{else} checked="checked"{/if} /></td>
+		
+	</tr>
+</table>
+</div>
+<br />    
+<div class="separator"></div>
 
 <p><input type="submit" onclick="prepBlockFields()" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>
 

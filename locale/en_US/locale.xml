@@ -1259,6 +1259,11 @@ Masaryk University</message>
         <message key="manager.setup.medailon">Article authors' medallions</message>
         <message key="manager.setup.medailon.description">You could allow links to an authors' bibliographies by allowing this setting. (E-mail will not be shown!)</message>
         <message key="manager.setup.meidalon.medailon">Allow showing of medallions.</message>
+        
+        <message key="manager.setup.medailon">Add link on authors' medallions into TOC</message>
+        <message key="manager.setup.medailon.description">You could allow links to an authors' bibliographies in TOC by allowing this setting. (E-mail will not be shown!)</message>
+        <message key="manager.setup.meidalon.medailon">Allow adding link.</message>
+        
         <message key="manager.setup.meidalon.allow">Allow links to a authors' bibliographies</message>
         <message key="manager.groups.publishEmailList">Allow emails in a members' list.</message>
         <message key="manager.groups.allowMedailon">Allow link to members' medailons.</message>

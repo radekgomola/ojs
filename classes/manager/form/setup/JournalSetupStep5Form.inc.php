@@ -54,6 +54,7 @@ class JournalSetupStep5Form extends JournalSetupForm {
                                 'aboutSetupTopDown' => 'int',
                                 'allowMedailonArticles' => 'bool',
                                 'allowMedailonCitations' => 'bool',
+                                'allowTOCMedailonCitations' => 'bool',
                                 'showCitation' => 'bool',
                                 'showCitationHtml' => 'bool',
                                 'useSimpleSearch' => 'bool',

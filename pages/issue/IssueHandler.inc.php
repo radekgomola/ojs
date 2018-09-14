@@ -97,6 +97,7 @@ class IssueHandler extends Handler {
 		// consider public identifiers
 		$pubIdPlugins =& PluginRegistry::loadCategory('pubIds', true);
 		$templateMgr->assign('pubIdPlugins', $pubIdPlugins);
+                $templateMgr->assign_by_ref('journal', $journal);
 		$templateMgr->display('issue/viewPage.tpl');
 
 	}

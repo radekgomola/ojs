@@ -728,7 +728,7 @@ function prepBlockFields() {
 <br />    
 <div class="separator"></div>
 <div id="setupAbout">
-<h3>5.18 {translate key="manager.setup.toc.Medailon"}</h3>
+<h3>5.18 {translate key="manager.setup.toc.medailon"}</h3>
 <p>{translate key="manager.setup.toc.medailon.description"}</p>
 
 <table width="100%" class="data">

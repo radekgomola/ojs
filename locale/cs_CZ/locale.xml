@@ -1469,8 +1469,8 @@ Masarykovy univerzity</message>
         <message key="manager.setup.meidalon.allow">Povolit zobrazení medailonu.</message>
         
         <message key="manager.setup.toc.medailon">Přidat odkaz na medailon autorů do obsahu čísla</message>
-        <message key="manager.setup.medailon.description">Povolením této možnosti umožníte zobrazovat odkaz na biografické meidalonky autorů v obsahu čísla.</message>
-        <message key="manager.setup.meidalon.allow">Povolit přidání odkazu.</message>
+        <message key="manager.setup.toc.medailon.description">Povolením této možnosti umožníte zobrazovat odkaz na biografické meidalonky autorů v obsahu čísla.</message>
+        <message key="manager.setup.toc.medailon.allow">Povolit přidání odkazu.</message>
         
         <message key="manager.groups.publishEmailList">Povolit zobrazení e-mailu v seznamu členů.</message>
         <message key="manager.groups.allowMedailon">Povolit zobrazení medailonů členů.</message>

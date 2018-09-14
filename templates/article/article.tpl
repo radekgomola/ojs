@@ -85,8 +85,21 @@
             {assign var=authors value=$article->getAuthors()}
             <div id="authorString">
                 <em>
-                    {assign var=separator value=0}
-                    {foreach from=$authors item=author}{if $separator == 1}, {else}{assign var=separator value=1}{/if}<a href="{url page="about" op="bioAuthor" path=$author->getId()}">{$author->getFullName()|strip}</a>{/foreach}
+                    {*{assign var=separator value=0}
+                    {foreach from=$authors item=author}{if $separator == 1}, {else}{assign var=separator value=1}{/if}<a href="{url page="about" op="bioAuthor" path=$author->getId()}">{$author->getFullName()|strip}</a>{/foreach}*}
+                    {foreach from=$authors item=author name=authorList key=i}
+                        {assign var=firstName value=$author->getFirstName()}
+                        {if $journal->getSetting('allowTOCMedailonCitations')}
+                                {if $author->getData('journalAuthorId') AND $author->getData('journalAuthorId') > 0}
+                                    <a href="{url page="about" op="editorialTeamBioFullProfile" path=$author->getData('journalAuthorId')}">
+                                {else}
+                                    <a href="{url page="about" op="bioAuthor" path=$author->getId()}">
+                                {/if}
+                                {$author->getFullName()|escape}</a>{if !$smarty.foreach.authorList.last},{/if}
+                        {else}
+                                {$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
+                        {/if}
+                    {/foreach}
                 </em>
             </div>
         {else}

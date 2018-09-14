@@ -71,6 +71,7 @@ class IndexHandler extends Handler {
 					$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
 				}
 			}
+                        $templateMgr->assign_by_ref('journal', $journal);
 			$templateMgr->display('index/journal.tpl');
 		} else {
 			$site =& Request::getSite();

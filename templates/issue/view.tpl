@@ -86,8 +86,11 @@
 		<br />
     <div class="separator"></div>
 	{/if}
+        {if $publishedArticles|@count > 0}
 	<h3 class="issueToc">{translate key="issue.toc"}</h3>
+        {/if}
         <div id="test">
+            
 	{include file="issue/issue.tpl"}
         </div>
 {else}

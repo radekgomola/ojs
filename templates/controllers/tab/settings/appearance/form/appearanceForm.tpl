@@ -1,15 +1,19 @@
 {**
  * controllers/tab/settings/appearance/form/appearanceForm.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Website appearance management form.
  *
  *}
+
+{help file="settings.md" section="website" class="pkp_help_tab"}
+
 {include file="core:controllers/tab/settings/appearance/form/setup.tpl"}
 <form id="appearanceForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="appearance"}">
+	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="appearanceFormNotification"}
 	{include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
@@ -28,6 +32,9 @@
 
 	{* Homepage Image *}
 	{include file="core:controllers/tab/settings/appearance/form/homepageImage.tpl"}
+
+	{* Favicon *}
+	{include file="core:controllers/tab/settings/appearance/form/favicon.tpl"}
 
 	{* Additional Homepage Content *}
 	{include file="core:controllers/tab/settings/appearance/form/additionalHomepageContent.tpl"}

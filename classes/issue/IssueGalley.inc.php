@@ -8,8 +8,8 @@
 /**
  * @file classes/issue/IssueGalley.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssueGalley
@@ -22,13 +22,9 @@
 import('classes.issue.IssueFile');
 
 class IssueGalley extends IssueFile {
+	/** @var IssueFile */
+	var $_issueFile;
 
-	/**
-	 * Constructor.
-	 */
-	function IssueGalley() {
-		parent::IssueFile();
-	}
 
 	/**
 	 * Check if galley is a PDF galley.
@@ -54,7 +50,7 @@ class IssueGalley extends IssueFile {
 	 * @return int
 	 */
 	function getViews() {
-		$application = PKPApplication::getApplication();
+		$application = Application::getApplication();
 		return $application->getPrimaryMetricByAssoc(ASSOC_TYPE_ISSUE_GALLEY, $this->getId());
 	}
 
@@ -136,25 +132,6 @@ class IssueGalley extends IssueFile {
 	}
 
 	/**
-	 * Get a public ID for this galley.
-	 * @param $pubIdType string One of the NLM pub-id-type values or
-	 * 'other::something' if not part of the official NLM list
-	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-	 * @param $preview boolean If true, generate a non-persisted preview only.
-	 */
-	function getPubId($pubIdType, $preview = false) {
-		// If we already have an assigned ID, use it.
-		$storedId = $this->getStoredPubId($pubIdType);
-
-		// Ensure that blanks are treated as nulls.
-		if ($storedId === '') {
-			$storedId = null;
-		}
-
-		return $storedId;
-	}
-
-	/**
 	 * Get stored public ID of the galley.
 	 * @param $pubIdType string One of the NLM pub-id-type values or
 	 * 'other::something' if not part of the official NLM list
@@ -177,19 +154,28 @@ class IssueGalley extends IssueFile {
 	}
 
 	/**
-	 * Return the "best" article ID -- If a public article ID is set,
-	 * use it; otherwise use the internal article Id. (Checks the journal
-	 * settings to ensure that the public ID feature is enabled.)
-	 * @param $journal Object the journal this galley is in
+	 * Return the "best" issue galley ID -- If a public isue galley ID is set,
+	 * use it; otherwise use the internal article Id.
 	 * @return string
 	 */
-	function getBestGalleyId(&$journal) {
-		if ($journal->getSetting('enablePublicGalleyId')) {
-			$publicGalleyId = $this->getPubId('publisher-id');
-			if (!empty($publicGalleyId)) return $publicGalleyId;
-		}
+	function getBestGalleyId() {
+		$publicGalleyId = $this->getStoredPubId('publisher-id');
+		if (!empty($publicGalleyId)) return $publicGalleyId;
 		return $this->getId();
 	}
+
+	/**
+	 * Get the file corresponding to this galley.
+	 * @return IssueFile
+	 */
+	function getFile() {
+		if (!isset($this->_issueFile)) {
+			$issueFileDao = DAORegistry::getDAO('IssueFileDAO');
+			$this->_issueFile = $issueFileDao->getById($this->getFileId());
+		}
+		return $this->_issueFile;
+	}
+
 }
 
-?>
+

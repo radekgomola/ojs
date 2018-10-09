@@ -3,8 +3,8 @@
 /**
  * @file pages/management/ToolsHandler.inc.php
  *
- * Copyright (c) 2013-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2013-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ToolsHandler
@@ -45,7 +45,7 @@ class ToolsHandler extends PKPToolsHandler {
 				$issueDao = DAORegistry::getDAO('IssueDAO');
 				$issue = $issueDao->getById($assocId);
 				if ($issue) {
-					$objectTitle = $issue->getLocalizedTitle();
+					$objectTitle = $issue->getIssueIdentification();
 				}
 				break;
 		}
@@ -54,4 +54,4 @@ class ToolsHandler extends PKPToolsHandler {
 	}
 }
 
-?>
+

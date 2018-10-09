@@ -3,12 +3,12 @@
 /**
  * @file classes/subscription/Subscription.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Subscription
- * @ingroup subscription 
+ * @ingroup subscription
  * @see SubscriptionDAO
  *
  * @brief Basic class describing a subscription.
@@ -30,10 +30,6 @@ define('SUBSCRIPTION_YEAR_OFFSET_FUTURE',	'+10');
 
 
 class Subscription extends DataObject {
-
-	function Subscription() {
-		parent::DataObject();
-	}
 
 	//
 	// Get/set methods
@@ -73,7 +69,7 @@ class Subscription extends DataObject {
 
 	/**
 	 * Get the user's full name of the subscription.
-	 * @return string 
+	 * @return string
 	 */
 	function getUserFullName() {
 		$userDao = DAORegistry::getDAO('UserDAO');
@@ -82,7 +78,7 @@ class Subscription extends DataObject {
 
 	/**
 	 * Get the user's email of the subscription.
-	 * @return string 
+	 * @return string
 	 */
 	function getUserEmail() {
 		$userDao = DAORegistry::getDAO('UserDAO');
@@ -120,7 +116,7 @@ class Subscription extends DataObject {
 	 */
 	function getSubscriptionTypeSummaryString() {
 		$subscriptionTypeDao = DAORegistry::getDAO('SubscriptionTypeDAO');
-		$subscriptionType =& $subscriptionTypeDao->getSubscriptionType($this->getData('typeId'));
+		$subscriptionType =& $subscriptionTypeDao->getById($this->getData('typeId'));
 		return $subscriptionType->getSummaryString();
 	}
 
@@ -139,7 +135,8 @@ class Subscription extends DataObject {
 	 */
 	function isNonExpiring() {
 		$subscriptionTypeDao = DAORegistry::getDAO('SubscriptionTypeDAO');
-		return $subscriptionTypeDao->getSubscriptionTypeNonExpiring($this->getData('typeId')) ? true : false;
+		$subscriptionType = $subscriptionTypeDao->getById($this->getTypeId());
+		return $subscriptionType->getNonExpiring();
 	}
 
 	/**
@@ -160,7 +157,7 @@ class Subscription extends DataObject {
 
 	/**
 	 * Get subscription end date.
-	 * @return date (YYYY-MM-DD) 
+	 * @return date (YYYY-MM-DD)
 	 */
 	function getDateEnd() {
 		return $this->getData('dateEnd');
@@ -271,14 +268,6 @@ class Subscription extends DataObject {
 			return false;
 		}
 	}
-
-	/**
-	 * Check whether subscription is valid
-	 */
-	function isValid($check = SUBSCRIPTION_DATE_BOTH, $checkDate = null) {
-		// must be implemented by sub-classes
-		assert(false);
-	}
 }
 
-?>
+

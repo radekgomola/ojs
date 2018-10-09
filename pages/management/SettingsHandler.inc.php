@@ -3,8 +3,8 @@
 /**
  * @file pages/management/SettingsHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SettingsHandler
@@ -20,12 +20,17 @@ class SettingsHandler extends ManagementHandler {
 	/**
 	 * Constructor.
 	 */
-	function SettingsHandler() {
-		parent::Handler();
+	function __construct() {
+		parent::__construct();
+		$this->addRoleAssignment(
+			array(ROLE_ID_SITE_ADMIN),
+			array(
+				'access',
+			)
+		);
 		$this->addRoleAssignment(
 			ROLE_ID_MANAGER,
 			array(
-				'index',
 				'settings',
 				'publication',
 				'distribution',
@@ -38,17 +43,6 @@ class SettingsHandler extends ManagementHandler {
 	// Public handler methods
 	//
 	/**
-	 * Display settings index page.
-	 * @param $request PKPRequest
-	 * @param $args array
-	 */
-	function index($args, $request) {
-		$templateMgr = TemplateManager::getManager($request);
-		$this->setupTemplate($request);
-		$templateMgr->display('management/settings/index.tpl');
-	}
-
-	/**
 	 * Route to other settings operations.
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -57,9 +51,8 @@ class SettingsHandler extends ManagementHandler {
 		$path = array_shift($args);
 		switch($path) {
 			case 'index':
-				$this->index($args, $request);
-				break;
-			case 'journal':
+			case '':
+			case 'context':
 				$this->journal($args, $request);
 				break;
 			case 'website':
@@ -155,4 +148,4 @@ class SettingsHandler extends ManagementHandler {
 	}
 }
 
-?>
+

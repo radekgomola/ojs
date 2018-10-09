@@ -3,8 +3,8 @@
 /**
  * @file classes/handler/Handler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Handler
@@ -16,12 +16,6 @@
 import('lib.pkp.classes.handler.PKPHandler');
 
 class Handler extends PKPHandler {
-	/**
-	 * Constructor
-	 */
-	function Handler() {
-		parent::PKPHandler();
-	}
 
 	/**
 	 * Returns a "best-guess" journal, based in the request data, if
@@ -39,7 +33,7 @@ class Handler extends PKPHandler {
 		if ($requestedPath === 'index' || $requestedPath === '') {
 			// No journal requested. Check how many journals the site has.
 			$journalDao = DAORegistry::getDAO('JournalDAO'); /* @var $journalDao JournalDAO */
-			$journals = $journalDao->getAll();
+			$journals = $journalDao->getAll(true);
 			$journalsCount = $journals->getCount();
 			$journal = null;
 			if ($journalsCount === 1) {
@@ -53,6 +47,9 @@ class Handler extends PKPHandler {
 		} else {
 			// Return the requested journal.
 			$journal = $router->getContext($request);
+
+			// If the specified journal does not exist, respond with a 404.
+			if (!$journal) $request->getDispatcher()->handle404();
 		}
 		if (is_a($journal, 'Journal')) {
 			return $journal;
@@ -61,4 +58,4 @@ class Handler extends PKPHandler {
 	}
 }
 
-?>
+

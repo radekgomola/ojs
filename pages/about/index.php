@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @defgroup pages_about About Pages
+ * @defgroup pages_about About page
  */
 
 /**
  * @file pages/about/index.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_about
@@ -16,20 +16,14 @@
  *
  */
 
-switch($op) {
-	case 'index':
+switch ($op) {
 	case 'subscriptions':
-	case 'editorialTeam':
-	case 'submissions':
-	case 'memberships':
-	case 'history':
-		define('HANDLER_CLASS', 'AboutContextHandler');
-		import('pages.about.AboutContextHandler');
+		define('HANDLER_CLASS', 'AboutHandler');
+		import('pages.about.AboutHandler');
 		break;
-	case 'aboutThisPublishingSystem':
-		define('HANDLER_CLASS', 'AboutSiteHandler');
-		import('lib.pkp.pages.about.AboutSiteHandler');
-		break;
+	default:
+		// Fall back on pkp-lib implementation
+		require_once('lib/pkp/pages/about/index.php');
 }
 
-?>
+

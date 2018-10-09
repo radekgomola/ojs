@@ -3,8 +3,8 @@
 /**
  * @file classes/subscription/IndividualSubscription.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IndividualSubscription
@@ -18,10 +18,6 @@ import('classes.subscription.Subscription');
 
 class IndividualSubscription extends Subscription {
 
-	function IndividualSubscription() {
-		parent::Subscription();
-	}
-
 	/**
 	 * Check whether subscription is valid
 	 */
@@ -31,4 +27,4 @@ class IndividualSubscription extends Subscription {
 	}
 }
 
-?>
+

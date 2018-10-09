@@ -3,8 +3,8 @@
 /**
  * @file pages/index/IndexHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IndexHandler
@@ -16,12 +16,6 @@
 import('classes.handler.Handler');
 
 class IndexHandler extends Handler {
-	/**
-	 * Constructor
-	 */
-	function IndexHandler() {
-		parent::Handler();
-	}
 
 	/**
 	 * If no journal is selected, display list of journals.
@@ -45,22 +39,21 @@ class IndexHandler extends Handler {
 			}
 		}
 
+		$this->setupTemplate($request);
 		$router = $request->getRouter();
 		$templateMgr = TemplateManager::getManager($request);
-		$journalDao = DAORegistry::getDAO('JournalDAO');
-		$this->setupTemplate($request);
-
 		if ($journal) {
 			// Assign header and content for home page
-			$templateMgr->assign('additionalHomeContent', $journal->getLocalizedSetting('additionalHomeContent'));
-			$templateMgr->assign('homepageImage', $journal->getLocalizedSetting('homepageImage'));
-			$templateMgr->assign('homepageImageAltText', $journal->getLocalizedSetting('homepageImageAltText'));
-			$templateMgr->assign('journalDescription', $journal->getLocalizedSetting('description'));
+			$templateMgr->assign(array(
+				'additionalHomeContent' => $journal->getLocalizedSetting('additionalHomeContent'),
+				'homepageImage' => $journal->getLocalizedSetting('homepageImage'),
+				'homepageImageAltText' => $journal->getLocalizedSetting('homepageImageAltText'),
+				'journalDescription' => $journal->getLocalizedSetting('description'),
+			));
 
-			$displayCurrentIssue = $journal->getSetting('displayCurrentIssue');
 			$issueDao = DAORegistry::getDAO('IssueDAO');
 			$issue = $issueDao->getCurrent($journal->getId(), true);
-			if ($displayCurrentIssue && isset($issue)) {
+			if (isset($issue) && $journal->getSetting('publishingMode') != PUBLISHING_MODE_NONE) {
 				import('pages.issue.IssueHandler');
 				// The current issue TOC/cover page should be displayed below the custom home page.
 				IssueHandler::_setupIssueTemplate($request, $issue);
@@ -73,29 +66,26 @@ class IndexHandler extends Handler {
 					$numAnnouncementsHomepage = $journal->getSetting('numAnnouncementsHomepage');
 					$announcementDao = DAORegistry::getDAO('AnnouncementDAO');
 					$announcements =& $announcementDao->getNumAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_JOURNAL, $journal->getId(), $numAnnouncementsHomepage);
-					$templateMgr->assign('announcements', $announcements);
+					$templateMgr->assign('announcements', $announcements->toArray());
 					$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
+					$templateMgr->assign('numAnnouncementsHomepage', $numAnnouncementsHomepage);
 				}
 			}
 
 			$templateMgr->display('frontend/pages/indexJournal.tpl');
 		} else {
+			$journalDao = DAORegistry::getDAO('JournalDAO');
 			$site = $request->getSite();
 
 			if ($site->getRedirect() && ($journal = $journalDao->getById($site->getRedirect())) != null) {
 				$request->redirect($journal->getPath());
 			}
 
-			$templateMgr->assign('intro', $site->getLocalizedIntro());
+			$templateMgr->assign('pageTitleTranslated', $site->getLocalizedTitle());
+			$templateMgr->assign('about', $site->getLocalizedAbout());
 			$templateMgr->assign('journalFilesPath', $request->getBaseUrl() . '/' . Config::getVar('files', 'public_files_dir') . '/journals/');
 
-			// If we're using paging, fetch the parameters
-			$usePaging = $site->getSetting('usePaging');
-			if ($usePaging) $rangeInfo = $this->getRangeInfo($request, 'journals');
-			else $rangeInfo = null;
-			$templateMgr->assign('usePaging', $usePaging);
-
-			$journals = $journalDao->getAll(true, $rangeInfo);
+			$journals = $journalDao->getAll(true);
 			$templateMgr->assign('journals', $journals);
 			$templateMgr->assign('site', $site);
 
@@ -105,4 +95,4 @@ class IndexHandler extends Handler {
 	}
 }
 
-?>
+

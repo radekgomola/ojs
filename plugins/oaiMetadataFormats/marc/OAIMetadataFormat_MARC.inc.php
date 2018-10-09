@@ -3,8 +3,8 @@
 /**
  * @file plugins/oaiMetadataFormats/marc/OAIMetadataFormat_MARC.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OAIMetadataFormat_MARC
@@ -18,7 +18,7 @@ class OAIMetadataFormat_MARC extends OAIMetadataFormat {
 	/**
 	 * @see OAIMetadataFormat#toXml
 	 */
-	function toXml(&$record, $format = null) {
+	function toXml($record, $format = null) {
 		$article = $record->getData('article');
 		$journal = $record->getData('journal');
 
@@ -31,19 +31,19 @@ class OAIMetadataFormat_MARC extends OAIMetadataFormat {
 		));
 
 		$subjects = array_merge_recursive(
-			$this->stripAssocArray((array) $article->getDiscipline(null)),
-			$this->stripAssocArray((array) $article->getSubject(null)),
-			$this->stripAssocArray((array) $article->getSubjectClass(null))
+			stripAssocArray((array) $article->getDiscipline(null)),
+			stripAssocArray((array) $article->getSubject(null))
 		);
 
 		$templateMgr->assign(array(
 			'subject' => isset($subjects[$journal->getPrimaryLocale()])?$subjects[$journal->getPrimaryLocale()]:'',
-			'abstract' => String::html2text($article->getAbstract($article->getLocale())),
+			'abstract' => PKPString::html2text($article->getAbstract($article->getLocale())),
 			'language' => AppLocale::get3LetterIsoFromLocale($article->getLocale())
 		));
 
-		return $templateMgr->fetch(dirname(__FILE__) . '/record.tpl');
+		$plugin = PluginRegistry::getPlugin('oaiMetadataFormats', 'OAIFormatPlugin_MARC');
+		return $templateMgr->fetch($plugin->getTemplateResource('record.tpl'));
 	}
 }
 
-?>
+

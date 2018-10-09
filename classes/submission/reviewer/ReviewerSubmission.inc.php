@@ -3,8 +3,8 @@
 /**
  * @file classes/submission/reviewer/ReviewerSubmission.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewerSubmission
@@ -27,12 +27,6 @@ class ReviewerSubmission extends Article {
 	/** @var array the editor decisions of this submission */
 	var $editorDecisions;
 
-	/**
-	 * Constructor.
-	 */
-	function ReviewerSubmission() {
-		parent::Article();
-	}
 
 	/**
 	 * Get/Set Methods.
@@ -264,40 +258,8 @@ class ReviewerSubmission extends Article {
 	}
 
 	/**
-	 * Get the replaced value.
-	 * @return boolean
-	 */
-	function getReplaced() {
-		return $this->getData('replaced');
-	}
-
-	/**
-	 * Set the reviewer's replaced value.
-	 * @param $replaced boolean
-	 */
-	function setReplaced($replaced) {
-		return $this->setData('replaced', $replaced);
-	}
-
-	/**
-	 * Get the cancelled value.
-	 * @return boolean
-	 */
-	function getCancelled() {
-		return $this->getData('cancelled');
-	}
-
-	/**
-	 * Set the reviewer's cancelled value.
-	 * @param $replaced boolean
-	 */
-	function setCancelled($cancelled) {
-		return $this->setData('cancelled', $cancelled);
-	}
-
-	/**
 	 * Get quality.
-	 * @return int
+	 * @return int|null
 	 */
 	function getQuality() {
 		return $this->getData('quality');
@@ -305,7 +267,7 @@ class ReviewerSubmission extends Article {
 
 	/**
 	 * Set quality.
-	 * @param $quality int
+	 * @param $quality int|null
 	 */
 	function setQuality($quality) {
 		return $this->setData('quality', $quality);
@@ -396,4 +358,4 @@ class ReviewerSubmission extends Article {
 	}
 }
 
-?>
+

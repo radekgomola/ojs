@@ -3,8 +3,8 @@
 /**
  * @file controllers/modals/submissionMetadata/IssueEntryHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssueEntryHandler
@@ -21,12 +21,6 @@ class IssueEntryHandler extends PublicationEntryHandler {
 	/** the selected galley id **/
 	var $_selectedGalleyId;
 
-	/**
-	 * Constructor.
-	 */
-	function IssueEntryHandler() {
-		parent::PublicationEntryHandler();
-	}
 
 	//
 	// Public handler methods
@@ -50,8 +44,7 @@ class IssueEntryHandler extends PublicationEntryHandler {
 
 		$templateMgr->assign('galleys', $articleGalleys->toArray());
 
-		$application = Application::getApplication();
-		$request = $application->getRequest();
+		$request = Application::getRequest();
 		$router = $request->getRouter();
 		$dispatcher = $router->getDispatcher();
 
@@ -85,4 +78,4 @@ class IssueEntryHandler extends PublicationEntryHandler {
 	}
 }
 
-?>
+

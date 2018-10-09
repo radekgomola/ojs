@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/settings/plugins/SettingsPluginGridHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SettingsPluginGridHandler
@@ -19,10 +19,10 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	/**
 	 * Constructor
 	 */
-	function SettingsPluginGridHandler() {
+	function __construct() {
 		$roles = array(ROLE_ID_SITE_ADMIN, ROLE_ID_MANAGER);
 		$this->addRoleAssignment($roles, array('manage'));
-		parent::PluginGridHandler($roles);
+		parent::__construct($roles);
 	}
 
 
@@ -30,9 +30,9 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	// Extended methods from PluginGridHandler
 	//
 	/**
-	 * @copydoc PluginGridHandler::loadData()
+	 * @copydoc PluginGridHandler::loadCategoryData()
 	 */
-	function loadCategoryData($request, $categoryDataElement, $filter) {
+	function loadCategoryData($request, &$categoryDataElement, $filter = null) {
 		$plugins = parent::loadCategoryData($request, $categoryDataElement, $filter);
 		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
 
@@ -56,26 +56,24 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 	}
 
 	//
-	// Overriden template methods.
+	// Overridden template methods.
 	//
 	/**
 	 * @copydoc CategoryGridHandler::getCategoryRowInstance()
 	 */
 	protected function getRowInstance() {
-		$userRoles = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES);
-
-		import('controllers.grid.plugins.PluginGridRow');
-		return new PluginGridRow($userRoles, CONTEXT_JOURNAL);
+		import('lib.pkp.controllers.grid.plugins.PluginGridRow');
+		return new PluginGridRow($this->getAuthorizedContextObject(ASSOC_TYPE_USER_ROLES));
 	}
 
 	/**
 	 * @copydoc GridHandler::authorize()
 	 */
-	function authorize($request, $args, $roleAssignments) {
+	function authorize($request, &$args, $roleAssignments) {
 		$categoryName = $request->getUserVar('category');
 		$pluginName = $request->getUserVar('plugin');
 		if ($categoryName && $pluginName) {
-			import('classes.security.authorization.OjsPluginAccessPolicy');
+			import('lib.pkp.classes.security.authorization.PluginAccessPolicy');
 			switch ($request->getRequestedOp()) {
 				case 'enable':
 				case 'disable':
@@ -86,10 +84,13 @@ class SettingsPluginGridHandler extends PluginGridHandler {
 					$accessMode = ACCESS_MODE_ADMIN;
 					break;
 			}
-			$this->addPolicy(new OjsPluginAccessPolicy($request, $args, $roleAssignments, $accessMode));
+			$this->addPolicy(new PluginAccessPolicy($request, $args, $roleAssignments, $accessMode));
+		} else {
+			import('lib.pkp.classes.security.authorization.ContextAccessPolicy');
+			$this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
 		}
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 }
 
-?>
+

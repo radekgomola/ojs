@@ -1,8 +1,8 @@
 {**
  * templates/frontend/components/searchForm_simple.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Simple display of a search form with just text input and search button
@@ -11,6 +11,7 @@
  *}
 {if !$currentJournal || $currentJournal->getSetting('publishingMode') != $smarty.const.PUBLISHING_MODE_NONE}
 	<form class="pkp_search" action="{url page="search" op="search"}" method="post" role="search">
+		{csrf}
 		<input name="query" value="{$searchQuery|escape}" type="text" aria-label="{translate|escape key="common.searchQuery"}">
 		<button type="submit">
 			{translate key="common.search"}

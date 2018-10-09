@@ -3,8 +3,8 @@
 /**
  * @file tests/data/50-IssuesTest.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssuesTest
@@ -23,9 +23,9 @@ class IssuesTest extends WebTestCase {
 		$this->open(self::$baseUrl);
 
 		// Management > Issues
-		$this->waitForElementPresent($selector='link=Dashboard');
+		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Dashboard\')');
 		$this->clickAndWait($selector);
-		$this->waitForElementPresent($selector='link=Issues');
+		$this->waitForElementPresent($selector='link=Future Issues');
 		$this->click($selector);
 
 		// Create issue
@@ -43,7 +43,7 @@ class IssuesTest extends WebTestCase {
 		// Publish first issue
 		$this->waitForElementPresent($selector='//a[text()=\'Publish Issue\']');
 		$this->click($selector);
-		$this->waitForElementPresent($selector='//a[text()=\'OK\']');
+		$this->waitForElementPresent($selector='css=[id^=submitFormButton-]');
 		$this->click($selector);
 		$this->waitJQuery();
 	}

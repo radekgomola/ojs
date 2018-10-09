@@ -2,7 +2,7 @@
 <!--
   * plugins/importexport/users/sample.xml
   *
-  * Copyright (c) 2014-2016 Simon Fraser University Library
+  * Copyright (c) 2014-2018 Simon Fraser University
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Sample users XML import.
@@ -13,7 +13,6 @@
 		xsi:schemaLocation="http://pkp.sfu.ca pkp-users.xsd">
 		<user_group>
 			<role_id>16</role_id>
-			<path>manager</path>
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -24,7 +23,6 @@
 		</user_group>
 		<user_group>
 			<role_id>16</role_id>
-			<path>manager</path>
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -35,7 +33,6 @@
 		</user_group>
 		<user_group>
 			<role_id>16</role_id>
-			<path>manager</path>
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -46,7 +43,6 @@
 		</user_group>
 		<user_group>
 			<role_id>513</role_id>
-			<path>seriesEditor</path>
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -57,7 +53,6 @@
 		</user_group>
 		<user_group>
 			<role_id>4097</role_id>
-			<path />
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -68,7 +63,6 @@
 		</user_group>
 		<user_group>
 			<role_id>4097</role_id>
-			<path />
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -79,7 +73,6 @@
 		</user_group>
 		<user_group>
 			<role_id>4097</role_id>
-			<path />
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -90,7 +83,6 @@
 		</user_group>
 		<user_group>
 			<role_id>4097</role_id>
-			<path />
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -101,7 +93,6 @@
 		</user_group>
 		<user_group>
 			<role_id>4097</role_id>
-			<path />
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -112,7 +103,6 @@
 		</user_group>
 		<user_group>
 			<role_id>4097</role_id>
-			<path />
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -123,7 +113,6 @@
 		</user_group>
 		<user_group>
 			<role_id>4097</role_id>
-			<path />
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -134,7 +123,6 @@
 		</user_group>
 		<user_group>
 			<role_id>65536</role_id>
-			<path>author</path>
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -145,7 +133,6 @@
 		</user_group>
 		<user_group>
 			<role_id>65536</role_id>
-			<path>author</path>
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -156,7 +143,6 @@
 		</user_group>
 		<user_group>
 			<role_id>65536</role_id>
-			<path>author</path>
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -167,7 +153,6 @@
 		</user_group>
 		<user_group>
 			<role_id>65536</role_id>
-			<path>author</path>
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -178,7 +163,6 @@
 		</user_group>
 		<user_group>
 			<role_id>4096</role_id>
-			<path>reviewer</path>
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -189,7 +173,6 @@
 		</user_group>
 		<user_group>
 			<role_id>4096</role_id>
-			<path>reviewer</path>
 			<context_id>1</context_id>
 			<is_default>true</is_default>
 			<show_title>true</show_title>
@@ -201,8 +184,8 @@
 	</user_groups>
 	<users>
 		<user>
-			<firstname>John</firstname>
-			<lastname>Author</lastname>
+			<givenname locale="en_US">John</givenname>
+			<familyname locale="en_US">Author</familyname>
 			<email>john@author.com</email>
 			<username>author</username>
 			<password is_disabled="false" must_change="false"
@@ -215,8 +198,8 @@
 			<user_group_ref>Author</user_group_ref>
 		</user>
 		<user>
-			<firstname>John</firstname>
-			<lastname>Editor</lastname>
+			<givenname locale="en_US">John</givenname>
+			<familyname locale="en_US">Editor</familyname>
 			<email>john@editor.com</email>
 			<username>editor</username>
 			<password is_disabled="false" must_change="false"
@@ -229,8 +212,8 @@
 			<user_group_ref>Press editor</user_group_ref>
 		</user>
 		<user>
-			<firstname>admin</firstname>
-			<lastname>Smith</lastname>
+			<givenname locale="en_US">admin</givenname>
+			<familyname locale="en_US">Smith</familyname>
 			<country>CA</country>
 			<email>john@admin-site.com</email>
 			<url>http://www.admin-site.com</url>
@@ -241,7 +224,6 @@
 			</password>
 			<salutation>Mr</salutation>
 			<initials>JMN</initials>
-			<gender>M</gender>
 			<date_registered>2013-11-05 12:42:05</date_registered>
 			<date_last_login>2014-01-06 08:58:08</date_last_login>
 			<date_validated>2013-11-06 00:00:00</date_validated>
@@ -252,8 +234,8 @@
 			<review_interests>Math, Chemistry, life science</review_interests>
 		</user>
 		<user>
-			<firstname>John</firstname>
-			<lastname>Reviewer</lastname>
+			<givenname locale="en_US">John</givenname>
+			<familyname locale="en_US">Reviewer</familyname>
 			<email>john@reviewer.com</email>
 			<username>reviewer</username>
 			<password is_disabled="false" must_change="false"

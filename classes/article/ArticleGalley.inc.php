@@ -3,8 +3,8 @@
 /**
  * @file classes/article/ArticleGalley.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ArticleGalley
@@ -17,63 +17,25 @@
 import('lib.pkp.classes.submission.Representation');
 
 class ArticleGalley extends Representation {
+	/** @var SubmissionFile */
+	var $_submissionFile;
 
-	/**
-	 * Constructor.
-	 */
-	function ArticleGalley() {
-		parent::Representation();
-	}
-
-	/**
-	 * Check if galley is an HTML galley.
-	 * @return boolean
-	 */
-	function isHTMLGalley() {
-		return $this->getGalleyType() == 'htmlarticlegalleyplugin';
-	}
-
-	/**
-	 * Check if galley is a PDF galley.
-	 * @return boolean
-	 */
-	function isPdfGalley() {
-		return $this->getGalleyType() == 'pdfarticlegalleyplugin';
-	}
-
-	/**
-	 * Check if the specified file is a dependent file.
-	 * @param $fileId int
-	 * @return boolean
-	 */
-	function isDependentFile($fileId) {
-		return false;
-	}
 
 	//
 	// Get/set methods
 	//
-
 	/**
 	 * Get views count.
 	 * @return int
 	 */
 	function getViews() {
-		$application = PKPApplication::getApplication();
-		return $application->getPrimaryMetricByAssoc(ASSOC_TYPE_GALLEY, $this->getId());
-	}
-
-	/**
-	 * Get the localized value of the galley label.
-	 * @return $string
-	 */
-	function getGalleyLabel() {
-		$label = $this->getLabel();
-		if ($this->getLocale() != AppLocale::getLocale()) {
-			$locales = AppLocale::getAllLocales();
-			$label .= ' (' . $locales[$this->getLocale()] . ')';
+		$application = Application::getApplication();
+		$fileId = $this->getFileId();
+		if ($fileId) {
+			return $application->getPrimaryMetricByAssoc(ASSOC_TYPE_SUBMISSION_FILE, $fileId);
+		} else {
+			return 0;
 		}
-		return $label;
 	}
 
 	/**
@@ -90,6 +52,91 @@ class ArticleGalley extends Representation {
 	 */
 	function setLabel($label) {
 		return $this->setData('label', $label);
+	}
+
+	/**
+	 * Get locale.
+	 * @return string
+	 */
+	function getLocale() {
+		return $this->getData('locale');
+	}
+
+	/**
+	 * Set locale.
+	 * @param $locale string
+	 */
+	function setLocale($locale) {
+		return $this->setData('locale', $locale);
+	}
+
+	/**
+	 * Return the "best" article ID -- If a public article ID is set,
+	 * use it; otherwise use the internal article Id.
+	 * @return string
+	 */
+	function getBestGalleyId() {
+		$publicGalleyId = $this->getStoredPubId('publisher-id');
+		if (!empty($publicGalleyId)) return $publicGalleyId;
+		return $this->getId();
+	}
+
+	/**
+	 * Set file ID.
+	 * @param $fileId int
+	 */
+	function setFileId($fileId) {
+		$this->setData('fileId', $fileId);
+	}
+
+	/**
+	 * Get file id
+	 * @return int
+	 */
+	function getFileId() {
+		return $this->getData('fileId');
+	}
+
+	/**
+	 * Get the submission file corresponding to this galley.
+	 * @return SubmissionFile
+	 */
+	function getFile() {
+		if (!isset($this->_submissionFile)) {
+			$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+			$this->_submissionFile = $submissionFileDao->getLatestRevision($this->getFileId());
+		}
+		return $this->_submissionFile;
+	}
+
+	/**
+	 * Get the file type corresponding to this galley.
+	 * @return string MIME type
+	 */
+	function getFileType() {
+		$galleyFile = $this->getFile();
+		return isset($galleyFile) ? $galleyFile->getFileType() : null;
+	}
+
+	/**
+	 * Determine whether the galley is a PDF.
+	 * @return boolean
+	 */
+	function isPdfGalley() {
+		return $this->getFileType() == 'application/pdf';
+	}
+
+	/**
+	 * Get the localized galley label.
+	 * @return string
+	 */
+	function getGalleyLabel() {
+		$label = $this->getLabel();
+		if ($this->getLocale() != AppLocale::getLocale()) {
+			$locales = AppLocale::getAllLocales();
+			$label .= ' (' . $locales[$this->getLocale()] . ')';
+		}
+		return $label;
 	}
 
 	/**
@@ -113,111 +160,6 @@ class ArticleGalley extends Representation {
 	function getLocalizedName() {
 		return $this->getLabel();
 	}
-
-	/**
-	 * Get locale.
-	 * @return string
-	 */
-	function getLocale() {
-		return $this->getData('locale');
-	}
-
-	/**
-	 * Set locale.
-	 * @param $locale string
-	 */
-	function setLocale($locale) {
-		return $this->setData('locale', $locale);
-	}
-
-	/**
-	 * Return the "best" article ID -- If a public article ID is set,
-	 * use it; otherwise use the internal article Id. (Checks the journal
-	 * settings to ensure that the public ID feature is enabled.)
-	 * @param $journal Object the journal this galley is in
-	 * @return string
-	 */
-	function getBestGalleyId($journal) {
-		if ($journal->getSetting('enablePublicGalleyId')) {
-			$publicGalleyId = $this->getStoredPubId('publisher-id');
-			if (!empty($publicGalleyId)) return $publicGalleyId;
-		}
-		return $this->getId();
-	}
-
-	/**
-	 * Set remote URL of the galley.
-	 * @param $remoteURL string
-	 */
-	function setRemoteURL($remoteURL) {
-		return $this->setData('remoteURL', $remoteURL);
-	}
-
-	/**
-	 * Get remote URL of the galley.
-	 * @return string
-	 */
-	function getRemoteURL() {
-		return $this->getData('remoteURL');
-	}
-
-	/**
-	 * Set the type of this galley, which maps to an articleGalley plugin.
-	 * @param string $galleyType
-	 */
-	function setGalleyType($galleyType) {
-		return $this->setData('galleyType', $galleyType);
-	}
-
-	/**
-	 * Returns the type of this galley.
-	 * @return string
-	 */
-	function getGalleyType() {
-		return $this->getData('galleyType');
-	}
-
-	/**
-	 * Convenience method for fetching the latest revisions of the files for this galley.
-	 * @param $fileExtensionMatch string optional limit to specific file type.
-	 * @return array SubmissionFile
-	 */
-	function getLatestGalleyFiles($fileExtensionMatch = null) {
-		import('lib.pkp.classes.submission.SubmissionFile'); // SUBMISSION_FILE_... constants
-		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$submissionFiles = $submissionFileDao->getLatestRevisionsByAssocId(
-			ASSOC_TYPE_GALLEY, $this->getId(),
-			$this->getSubmissionId(), SUBMISSION_FILE_PROOF
-		);
-
-		if ($fileExtensionMatch === null) {
-			return $submissionFiles;
-		} else {
-			$filteredFiles = array();
-			foreach ($submissionFiles as $id => $file) {
-				if (preg_match('/\.' . preg_quote($fileExtensionMatch) . '[^\.]*$/', $file->getOriginalFileName())) {
-					$filteredFiles[$id] = $file;
-				}
-			}
-
-			return $filteredFiles;
-		}
-	}
-
-	/**
-	 * Attempt to retrieve the first file assigned to this galley.
-	 * @param $fileType string optional limit to specific file type.
-	 * @param $allFiles whether or not to include non-viewable files.
-	 * @return SubmissionFile or null
-	 */
-	function getFirstGalleyFile($fileType = null, $allFiles = false) {
-		$submissionFiles = $this->getLatestGalleyFiles($fileType);
-		if (is_array($submissionFiles) && sizeof($submissionFiles) > 0) {
-			return array_shift($submissionFiles);
-		}
-
-		return null;
-	}
 }
 
-?>
+

@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/openAIRE/OpenAIREDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OpenAIREDAO
@@ -17,13 +17,6 @@ import('classes.oai.ojs.OAIDAO');
 
 
 class OpenAIREDAO extends OAIDAO {
-
- 	/**
-	 * Constructor.
-	 */
-	function OpenAIREDAO() {
-		parent::OAIDAO();
-	}
 
 	/**
 	 * Set parent OAI object.
@@ -106,4 +99,4 @@ class OpenAIREDAO extends OAIDAO {
 	}
 }
 
-?>
+

@@ -3,8 +3,8 @@
 /**
  * @file classes/sword/OJSSwordDeposit.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OJSSwordDeposit
@@ -41,7 +41,7 @@ class OJSSwordDeposit {
 	 * Create a SWORD deposit object for an OJS article.
 	 * @param $article Article
 	 */
-	function OJSSwordDeposit($article) {
+	function __construct($article) {
 		// Create a directory for deposit contents
 		$this->outPath = tempnam('/tmp', 'sword');
 		unlink($this->outPath);
@@ -63,7 +63,7 @@ class OJSSwordDeposit {
 		$this->section = $sectionDao->getById($article->getSectionId());
 
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-		$publishedArticle = $publishedArticleDao->getPublishedArticleByArticleId($article->getId());
+		$publishedArticle = $publishedArticleDao->getByArticleId($article->getId());
 
 		$issueDao = DAORegistry::getDAO('IssueDAO');
 		if ($publishedArticle) {
@@ -83,12 +83,12 @@ class OJSSwordDeposit {
 
 		// The article can be published or not. Support either.
 		if (is_a($this->article, 'PublishedArticle')) {
-			$doi = $this->article->getPubId('doi');
+			$doi = $this->article->getStoredPubId('doi');
 			if ($doi !== null) $this->package->setIdentifier($doi);
 		}
 
 		foreach ($this->article->getAuthors() as $author) {
-			$creator = $author->getFullName(true);
+			$creator = $author->getFullName(false, true);
 			$affiliation = $author->getAffiliation($this->journal->getPrimaryLocale());
 			if (!empty($affiliation)) $creator .= "; $affiliation";
 			$this->package->addCreator($creator);
@@ -96,8 +96,10 @@ class OJSSwordDeposit {
 
 		// The article can be published or not. Support either.
 		if (is_a($this->article, 'PublishedArticle')) {
-			$plugin = PluginRegistry::loadPlugin('citationFormats', 'bibtex');
-			$this->package->setCitation(html_entity_decode(strip_tags($plugin->fetchCitation($this->article, $this->issue, $this->journal)), ENT_QUOTES, 'UTF-8'));
+			$plugin = PluginRegistry::getPlugin('generic', 'citationstylelanguageplugin');
+			$request = Application::getRequest();
+			$citation = $plugin->getCitation($request, $this->article, 'bibtex');
+			$this->package->setCitation(html_entity_decode(strip_tags($citation), ENT_QUOTES, 'UTF-8'));
 		}
 	}
 
@@ -195,4 +197,4 @@ class OJSSwordDeposit {
 	}
 }
 
-?>
+

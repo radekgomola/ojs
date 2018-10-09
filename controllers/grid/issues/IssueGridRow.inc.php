@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/issues/IssueGridRow.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssueGridRow
@@ -16,22 +16,15 @@
 import('lib.pkp.classes.controllers.grid.GridRow');
 
 class IssueGridRow extends GridRow {
-	/**
-	 * Constructor
-	 */
-	function IssueGridRow() {
-		parent::GridRow();
-	}
 
 	//
 	// Overridden template methods
 	//
 	/*
-	 * Configure the grid row
-	 * @param $request PKPRequest
+	 * @copydoc GridRow::initialize
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $template = null) {
+		parent::initialize($request, $template);
 
 		// Is this a new row or an existing row?
 		$issueId = $this->getId();
@@ -69,10 +62,12 @@ class IssueGridRow extends GridRow {
 
 			import('lib.pkp.classes.linkAction.request.RemoteActionConfirmationModal');
 			if ($issue->getDatePublished()) {
+				import('lib.pkp.classes.linkAction.request.AjaxModal');
 				$this->addAction(
 					new LinkAction(
 						'unpublish',
 						new RemoteActionConfirmationModal(
+							$request->getSession(),
 							__('editor.issues.confirmUnpublish'),
 							__('editor.issues.unpublishIssue'),
 							$router->url($request, null, null, 'unpublishIssue', null, array('issueId' => $issueId)),
@@ -86,14 +81,31 @@ class IssueGridRow extends GridRow {
 				$this->addAction(
 					new LinkAction(
 						'publish',
-						new RemoteActionConfirmationModal(
-							__('editor.issues.confirmPublish'),
-							__('editor.issues.publishIssue'),
-							$router->url($request, null, null, 'publishIssue', null, array('issueId' => $issueId)),
-							'modal_confirm'
-						),
+						new AjaxModal(
+							$router->url(
+								$request, null, null, 'publishIssue', null, array('issueId' => $issueId)),
+								__('editor.issues.publishIssue'),
+								'modal_confirm'
+							),
 						__('editor.issues.publishIssue'),
 						'advance'
+					)
+				);
+			}
+
+			if ($issue->getDatePublished() && !$issue->getCurrent()) {
+				$this->addAction(
+					new LinkAction(
+						'setCurrentIssue',
+						new RemoteActionConfirmationModal(
+							$request->getSession(),
+							__('editor.issues.confirmSetCurrentIssue'),
+							__('editor.issues.currentIssue'),
+							$router->url($request, null, null, 'setCurrentIssue', null, array('issueId' => $issueId)),
+							'modal_delete'
+						),
+						__('editor.issues.currentIssue'),
+						'delete'
 					)
 				);
 			}
@@ -102,6 +114,7 @@ class IssueGridRow extends GridRow {
 				new LinkAction(
 					'delete',
 					new RemoteActionConfirmationModal(
+						$request->getSession(),
 						__('common.confirmDelete'),
 						__('grid.action.delete'),
 						$router->url($request, null, null, 'deleteIssue', null, array('issueId' => $issueId)),
@@ -115,4 +128,4 @@ class IssueGridRow extends GridRow {
 	}
 }
 
-?>
+

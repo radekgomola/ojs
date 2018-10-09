@@ -4,8 +4,8 @@
 <!--
   * ojs_schema.xml
   *
-  * Copyright (c) 2014-2016 Simon Fraser University Library
-  * Copyright (c) 2003-2016 John Willinsky
+  * Copyright (c) 2014-2018 Simon Fraser University
+  * Copyright (c) 2003-2018 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * OJS database schema in XML.
@@ -32,7 +32,7 @@
 			<DEFAULT VALUE="0"/>
 			<descr>Used to order lists of journals</descr>
 		</field>
-		<field name="primary_locale" type="C2" size="5">
+		<field name="primary_locale" type="C2" size="14">
 			<NOTNULL/>
 		</field>
 		<field name="enabled" type="I1">
@@ -56,7 +56,7 @@
 		<field name="journal_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="locale" type="C2" size="5">
+		<field name="locale" type="C2" size="14">
 			<NOTNULL/>
 			<DEFAULT VALUE=""/>
 		</field>
@@ -122,10 +122,6 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<field name="hide_about" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
 		<field name="abstract_word_count" type="I8" />
 		<descr>Journal sections.</descr>
 		<index name="sections_journal_id">
@@ -142,7 +138,7 @@
 		<field name="section_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="locale" type="C2" size="5">
+		<field name="locale" type="C2" size="14">
 			<NOTNULL />
 			<DEFAULT VALUE=""/>
 		</field>
@@ -231,7 +227,7 @@
 		<field name="issue_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="locale" type="C2" size="5">
+		<field name="locale" type="C2" size="14">
 			<NOTNULL />
 			<DEFAULT VALUE=""/>
 		</field>
@@ -264,7 +260,7 @@
 			<KEY />
 			<AUTOINCREMENT/>
 		</field>
-		<field name="locale" type="C2" size="5"/>
+		<field name="locale" type="C2" size="14"/>
 		<field name="issue_id" type="I8">
 			<NOTNULL/>
 		</field>
@@ -291,7 +287,7 @@
 		<field name="galley_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="locale" type="C2" size="5">
+		<field name="locale" type="C2" size="14">
 			<NOTNULL />
 			<DEFAULT VALUE=""/>
 		</field>
@@ -443,7 +439,7 @@
 			<KEY />
 			<AUTOINCREMENT />
 		</field>
-		<field name="locale" type="C2" size="5" />
+		<field name="locale" type="C2" size="14" />
 		<field name="context_id" type="I8">
 			<NOTNULL />
 		</field>
@@ -451,7 +447,6 @@
 		<field name="language" type="C2" size="10">
 			<DEFAULT VALUE="en"/>
 		</field>
-		<field name="comments_to_ed" type="X"/>
 		<field name="citations" type="X"/>
 		<field name="date_submitted" type="T"/>
 		<field name="last_modified" type="T"/>
@@ -464,36 +459,15 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
-		<field name="current_round" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
-		</field>
-
-		<!--
-		 - The following fields are DEPRECATED and should not be used;
-		 - They are only maintained so that they are not accidentally
-		 - dropped by the schema sync before upgrade scripts are run.
-		 -->
-
-		<field name="submission_file_id" type="I8"/>
-		<field name="revised_file_id" type="I8"/>
-		<field name="review_file_id" type="I8"/>
-		<field name="editor_file_id" type="I8"/>
-
-		<!-- End deprecation list -->
 
 		<field name="pages" type="C2" size="255"/>
-		<field name="fast_tracked" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
 		<field name="hide_author" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
 		<field name="stage_id" type="I8">
 			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
+			<DEFAULT VALUE="1"/><!-- WORKFLOW_STAGE_ID_SUBMISSION -->
 		</field>
 		<descr>Submissions</descr>
 		<index name="submissions_journal_id">
@@ -513,7 +487,7 @@
 		<field name="submission_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="locale" type="C2" size="5">
+		<field name="locale" type="C2" size="14">
 			<NOTNULL />
 			<DEFAULT VALUE=""/>
 		</field>
@@ -582,22 +556,20 @@
 			<KEY />
 			<AUTOINCREMENT/>
 		</field>
-		<field name="locale" type="C2" size="5"/>
+		<field name="locale" type="C2" size="14"/>
 		<field name="submission_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="label" type="C2" size="32"/>
+		<field name="label" type="C2" size="255"/>
+		<field name="file_id" type="I8"/>
 		<field name="seq" type="F">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<field name="remote_url" type="C2" size="255" />
+		<field name="remote_url" type="C2" size="2047"/>
 		<field name="is_approved" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
-		</field>
-		<field name="galley_type" type="C2" size="255">
-			<NOTNULL/>
 		</field>
 		<descr>Submission galleys</descr>
 		<index name="submission_galleys_submission_id">
@@ -614,7 +586,7 @@
 		<field name="galley_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="locale" type="C2" size="5">
+		<field name="locale" type="C2" size="14">
 			<NOTNULL />
 			<DEFAULT VALUE=""/>
 		</field>
@@ -634,26 +606,6 @@
 			<col>galley_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
-			<UNIQUE/>
-		</index>
-	</table>
-
-	<!--
-	  *
-	  * TABLE submission_html_galley_images
-	  *
-	  -->
-	<table name="submission_html_galley_images">
-		<field name="galley_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="file_id" type="I8">
-			<NOTNULL />
-		</field>
-		<descr>Images associated with an submission HTML galley.</descr>
-		<index name="submission_html_galley_images_pkey">
-			<col>galley_id</col>
-			<col>file_id</col>
 			<UNIQUE/>
 		</index>
 	</table>
@@ -746,7 +698,7 @@
 		<field name="version_key" type="C2" size="40">
 			<NOTNULL/>
 		</field>
-		<field name="locale" type="C2" size="5">
+		<field name="locale" type="C2" size="14">
 			<DEFAULT VALUE="en_US"/>
 		</field>
 		<field name="title" type="C2" size="120">
@@ -892,7 +844,7 @@
 		<field name="type_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="locale" type="C2" size="5">
+		<field name="locale" type="C2" size="14">
 			<NOTNULL />
 			<DEFAULT VALUE=""/>
 		</field>
@@ -1045,7 +997,7 @@
 		<field name="payment_type" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="journal_id" type="I8">
+		<field name="context_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="user_id" type="I8" />

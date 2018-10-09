@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/settings/sections/SectionGridRow.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SectionGridRow
@@ -16,22 +16,15 @@
 import('lib.pkp.classes.controllers.grid.GridRow');
 
 class SectionGridRow extends GridRow {
-	/**
-	 * Constructor
-	 */
-	function SectionGridRow() {
-		parent::GridRow();
-	}
 
 	//
 	// Overridden template methods
 	//
-	/*
-	 * Configure the grid row
-	 * @param $request PKPRequest
+	/**
+	 * @copydoc GridRow::initialize()
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $template = null) {
+		parent::initialize($request, $template);
 
 		// Is this a new row or an existing row?
 		$sectionId = $this->getId();
@@ -57,6 +50,7 @@ class SectionGridRow extends GridRow {
 				new LinkAction(
 					'deleteSection',
 					new RemoteActionConfirmationModal(
+						$request->getSession(),
 						__('manager.sections.confirmDelete'),
 						__('grid.action.delete'),
 						$router->url($request, null, null, 'deleteSection', null, array('sectionId' => $sectionId)), 'modal_delete'
@@ -69,4 +63,4 @@ class SectionGridRow extends GridRow {
 	}
 }
 
-?>
+

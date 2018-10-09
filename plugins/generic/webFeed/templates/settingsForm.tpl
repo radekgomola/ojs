@@ -1,8 +1,8 @@
 {**
  * plugins/generic/webFeed/templates/settingsForm.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Web feeds plugin settings
@@ -21,6 +21,7 @@
 </script>
 
 <form class="pkp_form" id="webFeedSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="manage" category="generic" plugin=$pluginName verb="settings" save=true}">
+	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="webFeedSettingsFormNotification"}
 
 	{fbvFormArea id="webFeedSettingsFormArea"}
@@ -38,7 +39,6 @@
 	{/fbvFormArea}
 
 	{fbvFormButtons}
+	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 </form>
-
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 </div>

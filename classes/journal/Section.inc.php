@@ -3,8 +3,8 @@
 /**
  * @file classes/journal/Section.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Section
@@ -17,13 +17,6 @@
 import('lib.pkp.classes.context.PKPSection');
 
 class Section extends PKPSection {
-
-	/**
-	 * Constructor.
-	 */
-	function Section() {
-		parent::PKPSection();
-	}
 
 	/**
 	 * Get localized abbreviation of journal section.
@@ -195,22 +188,6 @@ class Section extends PKPSection {
 	}
 
 	/**
-	 * Return boolean indicating if title should be hidden in About.
-	 * @return boolean
-	 */
-	function getHideAbout() {
-		return $this->getData('hideAbout');
-	}
-
-	/**
-	 * Set if title should be hidden in About.
-	 * @param $hideAbout boolean
-	 */
-	function setHideAbout($hideAbout) {
-		return $this->setData('hideAbout', $hideAbout);
-	}
-
-	/**
 	 * Get localized section policy.
 	 * @return string
 	 */
@@ -237,4 +214,4 @@ class Section extends PKPSection {
 	}
 }
 
-?>
+

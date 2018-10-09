@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/native/filter/IssueNativeXmlFilter.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssueNativeXmlFilter
@@ -20,9 +20,9 @@ class IssueNativeXmlFilter extends NativeExportFilter {
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function IssueNativeXmlFilter($filterGroup) {
+	function __construct($filterGroup) {
 		$this->setDisplayName('Native XML issue export');
-		parent::NativeExportFilter($filterGroup);
+		parent::__construct($filterGroup);
 	}
 
 
@@ -48,6 +48,8 @@ class IssueNativeXmlFilter extends NativeExportFilter {
 	function &process(&$issues) {
 		// Create the XML document
 		$doc = new DOMDocument('1.0');
+		$doc->preserveWhiteSpace = false;
+		$doc->formatOutput = true;
 		$deployment = $this->getDeployment();
 
 		if (count($issues)==1) {
@@ -82,32 +84,72 @@ class IssueNativeXmlFilter extends NativeExportFilter {
 		$deployment->setIssue($issue);
 
 		$issueNode = $doc->createElementNS($deployment->getNamespace(), 'issue');
-		$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'id', $issue->getId()));
-		$node->setAttribute('type', 'internal');
-		$node->setAttribute('advice', 'ignore');
+		$this->addIdentifiers($doc, $issueNode, $issue);
 
-		$issueNode->setAttribute('volume', $issue->getVolume());
-		$issueNode->setAttribute('number', $issue->getNumber());
-		$issueNode->setAttribute('year', $issue->getYear());
 		$issueNode->setAttribute('published', $issue->getPublished());
 		$issueNode->setAttribute('current', $issue->getCurrent());
 		$issueNode->setAttribute('access_status', $issue->getAccessStatus());
-		$issueNode->setAttribute('show_volume', $issue->getShowVolume());
-		$issueNode->setAttribute('show_number', $issue->getShowNumber());
-		$issueNode->setAttribute('show_year', $issue->getShowYear());
-		$issueNode->setAttribute('show_title', $issue->getShowTitle());
 
 		$this->createLocalizedNodes($doc, $issueNode, 'description', $issue->getDescription(null));
-		$this->createLocalizedNodes($doc, $issueNode, 'title', $issue->getTitle(null));
+		import('plugins.importexport.native.filter.NativeFilterHelper');
+		$nativeFilterHelper = new NativeFilterHelper();
+		$issueNode->appendChild($nativeFilterHelper->createIssueIdentificationNode($this, $doc, $issue));
 
 		$this->addDates($doc, $issueNode, $issue);
 		$this->addSections($doc, $issueNode, $issue);
-		$this->addStyleFile($doc, $issueNode, $issue);
-		$this->addCoverImage($doc, $issueNode, $issue);
+		$this->addCoverImages($doc, $issueNode, $issue);
 		$this->addIssueGalleys($doc, $issueNode, $issue);
 		$this->addArticles($doc, $issueNode, $issue);
 
 		return $issueNode;
+	}
+
+	/**
+	 * Create and add identifier nodes to a submission node.
+	 * @param $doc DOMDocument
+	 * @param $issueNode DOMElement
+	 * @param $issue Issue
+	 */
+	function addIdentifiers($doc, $issueNode, $issue) {
+		$deployment = $this->getDeployment();
+
+		// Add internal ID
+		$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'id', $issue->getId()));
+		$node->setAttribute('type', 'internal');
+		$node->setAttribute('advice', 'ignore');
+
+		// Add public ID
+		if ($pubId = $issue->getStoredPubId('publisher-id')) {
+			$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'id', htmlspecialchars($pubId, ENT_COMPAT, 'UTF-8')));
+			$node->setAttribute('type', 'public');
+			$node->setAttribute('advice', 'update');
+		}
+
+		// Add pub IDs by plugin
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true, $deployment->getContext()->getId());
+		foreach ((array) $pubIdPlugins as $pubIdPlugin) {
+			$this->addPubIdentifier($doc, $issueNode, $issue, $pubIdPlugin);
+		}
+	}
+
+	/**
+	 * Add a single pub ID element for a given plugin to the document.
+	 * @param $doc DOMDocument
+	 * @param $issueNode DOMElement
+	 * @param $issue Issue
+	 * @param $pubIdPlugin PubIdPlugin
+	 * @return DOMElement|null
+	 */
+	function addPubIdentifier($doc, $issueNode, $issue, $pubIdPlugin) {
+		$pubId = $issue->getStoredPubId($pubIdPlugin->getPubIdType());
+		if ($pubId) {
+			$deployment = $this->getDeployment();
+			$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'id', htmlspecialchars($pubId, ENT_COMPAT, 'UTF-8')));
+			$node->setAttribute('type', $pubIdPlugin->getPubIdType());
+			$node->setAttribute('advice', 'update');
+			return $node;
+		}
+		return null;
 	}
 
 	/**
@@ -120,16 +162,16 @@ class IssueNativeXmlFilter extends NativeExportFilter {
 		$deployment = $this->getDeployment();
 
 		if ($issue->getDatePublished())
-			$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'date_published', strftime('%F', strtotime($issue->getDatePublished()))));
+			$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'date_published', strftime('%Y-%m-%d', strtotime($issue->getDatePublished()))));
 
 		if ($issue->getDateNotified())
-			$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'date_notified', strftime('%F', strtotime($issue->getDateNotified()))));
+			$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'date_notified', strftime('%Y-%m-%d', strtotime($issue->getDateNotified()))));
 
 		if ($issue->getLastModified())
-			$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'last_modified', strftime('%F', strtotime($issue->getLastModified()))));
+			$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'last_modified', strftime('%Y-%m-%d', strtotime($issue->getLastModified()))));
 
 		if ($issue->getOpenAccessDate())
-			$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'open_access_date', strftime('%F', strtotime($issue->getOpenAccessDate()))));
+			$issueNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'open_access_date', strftime('%Y-%m-%d', strtotime($issue->getOpenAccessDate()))));
 	}
 
 	/**
@@ -176,61 +218,32 @@ class IssueNativeXmlFilter extends NativeExportFilter {
 	}
 
 	/**
-	 * Add the issue cover image to its DOM element.
+	 * Add the issue cover images to its DOM element.
 	 * @param $doc DOMDocument
 	 * @param $issueNode DOMElement
 	 * @param $issue Issue
 	 */
-	function addCoverImage($doc, $issueNode, $issue) {
-
-		$originalFileName = $issue->getOriginalFileName(null);
-		if (is_array($originalFileName) && count($originalFileName) > 0) {
+	function addCoverImages($doc, $issueNode, $issue) {
+		$coverImages = $issue->getCoverImage(null);
+		if (!empty($coverImages)) {
 			$deployment = $this->getDeployment();
-			$issueCoverNode = $doc->createElementNS($deployment->getNamespace(), 'issue_cover');
-			$this->createLocalizedNodes($doc, $issueCoverNode, 'file_name', $issue->getFileName(null));
-			$this->createLocalizedNodes($doc, $issueCoverNode, 'original_file_name', $issue->getOriginalFileName(null));
-			$this->createLocalizedNodes($doc, $issueCoverNode, 'hide_cover_page_archives', $issue->getHideCoverPageArchives(null));
-			$this->createLocalizedNodes($doc, $issueCoverNode, 'hide_cover_page_cover', $issue->getHideCoverPageCover(null));
-			$this->createLocalizedNodes($doc, $issueCoverNode, 'show_cover_page', $issue->getShowCoverPage(null));
-			$this->createLocalizedNodes($doc, $issueCoverNode, 'cover_page_description', $issue->getCoverPageDescription(null));
-			$this->createLocalizedNodes($doc, $issueCoverNode, 'cover_page_alt_text', $issue->getCoverPageAltText(null));
+			$issueCoversNode = $doc->createElementNS($deployment->getNamespace(), 'issue_covers');
+			foreach ($coverImages as $locale => $coverImage) {
+				$coverNode = $doc->createElementNS($deployment->getNamespace(), 'cover');
+				$coverNode->setAttribute('locale', $locale);
+				$coverNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'cover_image', htmlspecialchars($coverImage, ENT_COMPAT, 'UTF-8')));
+				$coverNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'cover_image_alt_text', htmlspecialchars($issue->getCoverImageAltText($locale), ENT_COMPAT, 'UTF-8')));
 
-			import('classes.file.PublicFileManager');
-			$publicFileManager = new PublicFileManager();
+				import('classes.file.PublicFileManager');
+				$publicFileManager = new PublicFileManager();
+				$filePath = $publicFileManager->getContextFilesPath(ASSOC_TYPE_JOURNAL, $issue->getJournalId()) . '/' . $coverImage;
+				$embedNode = $doc->createElementNS($deployment->getNamespace(), 'embed', base64_encode(file_get_contents($filePath)));
+				$embedNode->setAttribute('encoding', 'base64');
+				$coverNode->appendChild($embedNode);
 
-			$filePath = $publicFileManager->getContextFilesPath(ASSOC_TYPE_JOURNAL, $issue->getJournalId()) . '/' . $issue->getLocalizedFileName();
-			$embedNode = $doc->createElementNS($deployment->getNamespace(), 'embed', base64_encode(file_get_contents($filePath)));
-			$embedNode->setAttribute('encoding', 'base64');
-			$issueCoverNode->appendChild($embedNode);
-
-			$issueNode->appendChild($issueCoverNode);
-		}
-	}
-
-	/**
-	 * Add the issue cover image to its DOM element.
-	 * @param $doc DOMDocument
-	 * @param $issueNode DOMElement
-	 * @param $issue Issue
-	 */
-	function addStyleFile($doc, $issueNode, $issue) {
-
-		$originalStyleFileName = $issue->getOriginalStyleFileName();
-		if ($originalStyleFileName) {
-			$deployment = $this->getDeployment();
-			$issueStyleNode = $doc->createElementNS($deployment->getNamespace(), 'issue_style');
-			$issueStyleNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'style_file_name', $issue->getStyleFileName()));
-			$issueStyleNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'original_style_file_name', $issue->getOriginalStyleFileName()));
-
-			import('classes.file.PublicFileManager');
-			$publicFileManager = new PublicFileManager();
-
-			$filePath = $publicFileManager->getContextFilesPath(ASSOC_TYPE_JOURNAL, $issue->getJournalId()) . '/' . $issue->getStyleFileName();
-			$embedNode = $doc->createElementNS($deployment->getNamespace(), 'embed', base64_encode(file_get_contents($filePath)));
-			$embedNode->setAttribute('encoding', 'base64');
-			$issueStyleNode->appendChild($embedNode);
-
-			$issueNode->appendChild($issueStyleNode);
+				$issueCoversNode->appendChild($coverNode);
+			}
+			$issueNode->appendChild($issueCoversNode);
 		}
 	}
 
@@ -263,7 +276,6 @@ class IssueNativeXmlFilter extends NativeExportFilter {
 			$sectionNode->setAttribute('abstracts_not_required', $section->getAbstractsNotRequired());
 			$sectionNode->setAttribute('hide_title', $section->getHideTitle());
 			$sectionNode->setAttribute('hide_author', $section->getHideAuthor());
-			$sectionNode->setAttribute('hide_about', $section->getHideAbout());
 			$sectionNode->setAttribute('abstract_word_count', (int) $section->getAbstractWordCount());
 
 			$this->createLocalizedNodes($doc, $sectionNode, 'abbrev', $section->getAbbrev(null));
@@ -275,6 +287,7 @@ class IssueNativeXmlFilter extends NativeExportFilter {
 
 		$issueNode->appendChild($sectionsNode);
 	}
+
 }
 
-?>
+

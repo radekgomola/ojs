@@ -1,8 +1,8 @@
 /**
  * @file styles/objects/issue_toc.less
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Styles applying to an issue table of contents view
@@ -18,12 +18,18 @@
 		line-height: @double - 2; // Adjust for border
 	}
 
+	.cover {
+		display: block;
+		margin-bottom: @double;
+
+		img {
+			display: block;
+			max-height: 250px;
+			width: auto;
+		}
+	}
+
 	.description {
-		margin-bottom: @triple * 2;
-		font-size: @font-bump;
-		font-style: italic;
-		line-height: @line-lead;
-		color: @text-light;
 
 		> *:first-child {
 			margin-top: 0;
@@ -31,6 +37,22 @@
 
 		> *:last-child {
 			margin-bottom: 0;
+		}
+	}
+
+	.pub_id {
+		margin: @double 0;
+
+		.type {
+			font-weight: @bold;
+		}
+	}
+
+	.published {
+		margin: @double 0;
+
+		.label {
+			font-weight: @bold;
 		}
 	}
 
@@ -51,23 +73,47 @@
 		}
 	}
 
-	.articles > li {
-		margin-bottom: @triple;
+	.sections:not(:first-child) {
+		margin-top: @triple * 2;
+	}
+
+	.section:last-child .articles > li:last-child {
+		margin-bottom: 0;
 	}
 
 	@media(min-width: @screen-tablet) {
 
+		.heading {
+			.pkp_helpers_clear;
+		}
+
+		.cover {
+			float: left;
+			width: 25%;
+			height: auto;
+			max-height: none;
+			margin-right: @double;
+		}
+
 		.galleys,
-		.sections {
+		.section {
 			position: relative;
 			margin: @triple -@double;
 			padding: @triple;
-			border-top: @bg-border;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 45px;
+				left: 0;
+				width: 100%;
+				border-top: @bg-border;
+			}
 
 			h2 {
-				position: absolute;
-				top: -15px;
-				left: @triple / 2;
+				display: inline-block;
+				position: relative;
+				left: -15px;
 				margin-top: 0;
 				padding: 0 (@triple / 2);
 				background: @lift;
@@ -81,8 +127,17 @@
 	@media(min-width: @screen-desktop) {
 
 		.galleys,
-		.sections {
+		.section {
 			margin: @triple -@triple;
+		}
+
+		.cover {
+			margin-right: @triple;
+			margin-bottom: @triple;
+
+			img {
+				max-height: none;
+			}
 		}
 	}
 }

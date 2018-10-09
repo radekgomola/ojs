@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/issueGalleys/IssueGalleyGridCellProvider.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssueGalleyGridCellProvider
@@ -16,12 +16,6 @@
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
 class IssueGalleyGridCellProvider extends GridCellProvider {
-	/**
-	 * Constructor
-	 */
-	function IssueGalleyGridCellProvider() {
-		parent::GridCellProvider();
-	}
 
 	/**
 	 * Extracts variables for a given column from a data element
@@ -35,16 +29,16 @@ class IssueGalleyGridCellProvider extends GridCellProvider {
 		$columnId = $column->getId();
 		assert (is_a($issueGalley, 'IssueGalley'));
 		assert(!empty($columnId));
-		
+
 		switch ($columnId) {
 			case 'label': return array('label' => $issueGalley->getLabel());
 			case 'locale':
 				$allLocales = AppLocale::getAllLocales();
 				return array('label' => $allLocales[$issueGalley->getLocale()]);
-			case 'publicGalleyId': return array('label' => $issueGalley->getPubId('publisher-id'));
+			case 'publicGalleyId': return array('label' => $issueGalley->getStoredPubId('publisher-id'));
 			default: assert(false); break;
 		}
 	}
 }
 
-?>
+

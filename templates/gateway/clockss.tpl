@@ -1,8 +1,8 @@
 {**
  * templates/gateway/clockss.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Adapted from lockss.tpl by Martin Paul Eve
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
@@ -31,7 +31,7 @@
 
 <ul>
 {iterate from=issues item=issue}
-	<li><a href="{url page="issue" op="view" path=$issue->getBestIssueId($journal)}">{$issue->getIssueIdentification()|strip_unsafe_html|nl2br}</a></li>
+	<li><a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">{$issue->getIssueIdentification()|strip_unsafe_html|nl2br}</a></li>
 {/iterate}
 </ul>
 
@@ -115,7 +115,7 @@
 <div style="text-align: center; width: 250px; margin: 0 auto">
 	<a href="http://clockss.org/"><img src="http://board.clockss.org/images/clockss_logo_114x110.jpg" style="border: 0;" alt="CLOCKSS" /></a>
 	<br />
-	clockss system has permission to collect, preserve, and serve this Archival Unit.
+	clockss system has permission to ingest, preserve, and serve this Archival Unit.
 		
 	<br /><br />
 	

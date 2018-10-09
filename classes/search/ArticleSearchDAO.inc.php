@@ -3,8 +3,8 @@
 /**
  * @file classes/search/ArticleSearchDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ArticleSearchDAO
@@ -18,12 +18,6 @@ import('classes.search.ArticleSearch');
 import('lib.pkp.classes.search.SubmissionSearchDAO');
 
 class ArticleSearchDAO extends SubmissionSearchDAO {
-	/**
-	 * Constructor
-	 */
-	function ArticleSearchDAO() {
-		parent::SubmissionSearchDAO();
-	}
 
 	/**
 	 * Retrieve the top results for a phrases with the given
@@ -116,4 +110,4 @@ class ArticleSearchDAO extends SubmissionSearchDAO {
 	}
 }
 
-?>
+

@@ -8,8 +8,8 @@
 /**
  * @file controllers/grid/issues/IssueGridHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssueGridHandler
@@ -25,18 +25,19 @@ class IssueGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function IssueGridHandler() {
-		parent::GridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER),
 			array(
 				'fetchGrid', 'fetchRow',
 				'addIssue', 'editIssue', 'editIssueData', 'updateIssue',
-				'uploadFile',
-				'editCover', 'updateCover',
+				'uploadFile', 'deleteCoverImage',
 				'issueToc',
 				'issueGalleys',
-				'deleteIssue', 'publishIssue', 'unpublishIssue',
+				'deleteIssue', 'publishIssue', 'unpublishIssue', 'setCurrentIssue',
+				'identifiers', 'updateIdentifiers', 'clearPubId', 'clearIssueObjectsPubIds',
+				'access', 'updateAccess',
 			)
 		);
 	}
@@ -62,12 +63,14 @@ class IssueGridHandler extends GridHandler {
 	}
 
 	/**
-	 * @see PKPHandler::initialize()
+	 * @copydoc GridHandler::initialize()
 	 */
-	function initialize($request, $args) {
+	function initialize($request, $args = null) {
 		parent::initialize($request, $args);
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR);
+		// Load submission-specific translations
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		// Grid columns.
 		import('controllers.grid.issues.IssueGridCellProvider');
@@ -130,7 +133,7 @@ class IssueGridHandler extends GridHandler {
 	}
 
 	/**
-	 * An action to edit a issue
+	 * An action to edit an issue
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSONMessage JSON object
@@ -143,7 +146,7 @@ class IssueGridHandler extends GridHandler {
 	}
 
 	/**
-	 * An action to edit a issue's identifying data
+	 * An action to edit an issue's identifying data
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSONMessage JSON object
@@ -153,12 +156,12 @@ class IssueGridHandler extends GridHandler {
 
 		import('controllers.grid.issues.form.IssueForm');
 		$issueForm = new IssueForm($issue);
-		$issueForm->initData($request);
+		$issueForm->initData();
 		return new JSONMessage(true, $issueForm->fetch($request));
 	}
 
 	/**
-	 * An action to upload an issue file. Used for both covers and stylesheets.
+	 * An action to upload an issue file. Used for issue cover images.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSONMessage JSON object
@@ -181,7 +184,46 @@ class IssueGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Update a issue
+	 * Delete an uploaded cover image.
+	 * @param $args array
+	 *   `coverImage` string Filename of the cover image to be deleted.
+	 *   `issueId` int Id of the issue this cover image is attached to
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function deleteCoverImage($args, $request) {
+		assert(!empty($args['coverImage']) && !empty($args['issueId']));
+
+		// Check if the passed filename matches the filename for this issue's
+		// cover page.
+		$issueDao = DAORegistry::getDAO('IssueDAO');
+		$issue = $issueDao->getById((int) $args['issueId']);
+		$locale = AppLocale::getLocale();
+		if ($args['coverImage'] != $issue->getCoverImage($locale)) {
+			return new JSONMessage(false, __('editor.issues.removeCoverImageFileNameMismatch'));
+		}
+
+		$file = $args['coverImage'];
+
+		// Remove cover image and alt text from issue settings
+		$issue->setCoverImage('', $locale);
+		$issue->setCoverImageAltText('', $locale);
+		$issueDao->updateObject($issue);
+
+		// Remove the file
+		$publicFileManager = new PublicFileManager();
+		if ($publicFileManager->removeJournalFile($issue->getJournalId(), $file)) {
+			$json = new JSONMessage(true);
+			$json->setEvent('fileDeleted');
+			return $json;
+		} else {
+			return new JSONMessage(false, __('editor.issues.removeCoverImageFileNotFound'));
+		}
+	}
+
+
+	/**
+	 * Update an issue
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSONMessage JSON object
@@ -193,47 +235,51 @@ class IssueGridHandler extends GridHandler {
 		$issueForm = new IssueForm($issue);
 		$issueForm->readInputData();
 
-		if ($issueForm->validate($request)) {
-			$issueId = $issueForm->execute($request);
-			return DAO::getDataChangedEvent($issueId);
+		if ($issueForm->validate()) {
+			$issueForm->execute();
+			$notificationManager = new NotificationManager();
+			$notificationManager->createTrivialNotification($request->getUser()->getId());
+			return DAO::getDataChangedEvent();
 		} else {
 			return new JSONMessage(true, $issueForm->fetch($request));
 		}
 	}
 
 	/**
-	 * An action to edit a issue's cover
+	 * An action to edit an issue's access settings
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSONMessage JSON object
 	 */
-	function editCover($args, $request) {
+	function access($args, $request) {
 		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
 
-		import('controllers.grid.issues.form.CoverForm');
-		$coverForm = new CoverForm($issue);
-		$coverForm->initData($request);
-		return new JSONMessage(true, $coverForm->fetch($request));
+		import('controllers.grid.issues.form.IssueAccessForm');
+		$issueAccessForm = new IssueAccessForm($issue);
+		$issueAccessForm->initData();
+		return new JSONMessage(true, $issueAccessForm->fetch($request));
 	}
 
 	/**
-	 * Update an issue cover
+	 * Update an issue's access settings
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSONMessage JSON object
 	 */
-	function updateCover($args, $request) {
+	function updateAccess($args, $request) {
 		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
 
-		import('controllers.grid.issues.form.CoverForm');
-		$coverForm = new CoverForm($issue);
-		$coverForm->readInputData();
+		import('controllers.grid.issues.form.IssueAccessForm');
+		$issueAccessForm = new IssueAccessForm($issue);
+		$issueAccessForm->readInputData();
 
-		if ($coverForm->validate($request)) {
-			$coverForm->execute($request);
-			return DAO::getDataChangedEvent($issue->getId());
+		if ($issueAccessForm->validate()) {
+			$issueAccessForm->execute();
+			$notificationManager = new NotificationManager();
+			$notificationManager->createTrivialNotification($request->getUser()->getId());
+			return DAO::getDataChangedEvent();
 		} else {
-			return new JSONMessage(false);
+			return new JSONMessage(true, $issueAccessForm->fetch($request));
 		}
 	}
 
@@ -244,14 +290,15 @@ class IssueGridHandler extends GridHandler {
 	 */
 	function deleteIssue($args, $request) {
 		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
-		$issueId = $issue->getId();
+		if (!$issue || !$request->checkCSRF()) return new JSONMessage(false);
+
 		$journal = $request->getJournal();
 		$isBackIssue = $issue->getPublished() > 0 ? true: false;
 
 		// remove all published articles and return original articles to editing queue
 		$articleDao = DAORegistry::getDAO('ArticleDAO');
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-		$publishedArticles = $publishedArticleDao->getPublishedArticles($issueId);
+		$publishedArticles = $publishedArticleDao->getPublishedArticles($issue->getId());
 		if (isset($publishedArticles) && !empty($publishedArticles)) {
 			// Insert article tombstone if the issue is published
 			import('classes.article.ArticleTombstoneManager');
@@ -276,7 +323,72 @@ class IssueGridHandler extends GridHandler {
 			}
 		}
 
-		return DAO::getDataChangedEvent($issueId);
+		return DAO::getDataChangedEvent($issue->getId());
+	}
+
+	/**
+	 * An action to edit issue pub ids
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function identifiers($args, $request) {
+		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
+		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+		$form = new PublicIdentifiersForm($issue);
+		$form->initData();
+		return new JSONMessage(true, $form->fetch($request));
+	}
+
+	/**
+	 * Update issue pub ids
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function updateIdentifiers($args, $request) {
+		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
+		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+		$form = new PublicIdentifiersForm($issue);
+		$form->readInputData();
+		if ($form->validate()) {
+			$form->execute();
+			return DAO::getDataChangedEvent($issue->getId());
+		} else {
+			return new JSONMessage(true, $form->fetch($request));
+		}
+	}
+
+	/**
+	 * Clear issue pub id
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function clearPubId($args, $request) {
+		if (!$request->checkCSRF()) return new JSONMessage(false);
+
+		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
+		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+		$form = new PublicIdentifiersForm($issue);
+		$form->clearPubId($request->getUserVar('pubIdPlugIn'));
+		return new JSONMessage(true);
+	}
+
+	/**
+	 * Clear issue objects pub ids
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function clearIssueObjectsPubIds($args, $request) {
+		if (!$request->checkCSRF()) return new JSONMessage(false);
+
+		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
+		import('controllers.tab.pubIds.form.PublicIdentifiersForm');
+		$form = new PublicIdentifiersForm($issue);
+		$form->clearIssueObjectsPubIds($request->getUserVar('pubIdPlugIn'));
+		return new JSONMessage(true);
 	}
 
 	/**
@@ -319,17 +431,28 @@ class IssueGridHandler extends GridHandler {
 	 */
 	function publishIssue($args, $request) {
 		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
-		$issueId = $issue->getId();
-
 		$journal = $request->getJournal();
 		$journalId = $journal->getId();
 
 		$articleSearchIndex = null;
 		if (!$issue->getPublished()) {
+			$confirmationText = __('editor.issues.confirmPublish');
+			import('controllers.grid.pubIds.form.AssignPublicIdentifiersForm');
+			$formTemplate = $this->getAssignPublicIdentifiersFormTemplate();
+			$assignPublicIdentifiersForm = new AssignPublicIdentifiersForm($formTemplate, $issue, true, $confirmationText);
+			if (!$request->getUserVar('confirmed')) {
+				// Display assign pub ids modal
+				$assignPublicIdentifiersForm->initData();
+				return new JSONMessage(true, $assignPublicIdentifiersForm->fetch($request));
+			}
+			// Asign pub ids
+			$assignPublicIdentifiersForm->readInputData();
+			$assignPublicIdentifiersForm->execute();
+
 			// Set the status of any attendant queued articles to STATUS_PUBLISHED.
 			$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
 			$articleDao = DAORegistry::getDAO('ArticleDAO');
-			$publishedArticles = $publishedArticleDao->getPublishedArticles($issueId);
+			$publishedArticles = $publishedArticleDao->getPublishedArticles($issue->getId());
 			foreach ($publishedArticles as $publishedArticle) {
 				$article = $articleDao->getById($publishedArticle->getId());
 				if ($article && $article->getStatus() == STATUS_QUEUED) {
@@ -354,9 +477,7 @@ class IssueGridHandler extends GridHandler {
 
 		// If subscriptions with delayed open access are enabled then
 		// update open access date according to open access delay policy
-		if ($journal->getSetting('publishingMode') == PUBLISHING_MODE_SUBSCRIPTION && $journal->getSetting('enableDelayedOpenAccess')) {
-
-			$delayDuration = $journal->getSetting('delayedOpenAccessDuration');
+		if ($journal->getSetting('publishingMode') == PUBLISHING_MODE_SUBSCRIPTION && ($delayDuration = $journal->getSetting('delayedOpenAccessDuration'))) {
 			$delayYears = (int)floor($delayDuration/12);
 			$delayMonths = (int)fmod($delayDuration,12);
 
@@ -371,36 +492,33 @@ class IssueGridHandler extends GridHandler {
 			$issue->setOpenAccessDate(date('Y-m-d H:i:s',mktime(0,0,0,$delayOpenAccessMonth,$curDay,$delayOpenAccessYear)));
 		}
 
+		HookRegistry::call('IssueGridHandler::publishIssue', array(&$issue));
+
 		$issueDao = DAORegistry::getDAO('IssueDAO');
 		$issueDao->updateCurrent($journalId,$issue);
 
 		if ($articleSearchIndex) $articleSearchIndex->articleChangesFinished();
 
-		// Send a notification to associated users
-		import('classes.notification.NotificationManager');
-		$notificationManager = new NotificationManager();
-		$notificationUsers = array();
-		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-		$allUsers = $userGroupDao->getUsersByContextId($journalId);
-		while ($user = $allUsers->next()) {
-			$notificationUsers[] = array('id' => $user->getId());
+		// Send a notification to associated users if selected and journal is publishing content online with OJS
+		if ($request->getUserVar('sendIssueNotification') && $journal->getSetting('publishingMode') != PUBLISHING_MODE_NONE) {
+			import('classes.notification.NotificationManager');
+			$notificationManager = new NotificationManager();
+			$notificationUsers = array();
+			$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
+			$allUsers = $userGroupDao->getUsersByContextId($journalId);
+			while ($user = $allUsers->next()) {
+				$notificationUsers[] = array('id' => $user->getId());
+			}
+			foreach ($notificationUsers as $userRole) {
+				$notificationManager->createNotification(
+					$request, $userRole['id'], NOTIFICATION_TYPE_PUBLISHED_ISSUE,
+					$journalId
+				);
+			}
 		}
-		foreach ($notificationUsers as $userRole) {
-			$notificationManager->createNotification(
-				$request, $userRole['id'], NOTIFICATION_TYPE_PUBLISHED_ISSUE,
-				$journalId
-			);
-		}
-		$notificationManager->sendToMailingList($request,
-			$notificationManager->createNotification(
-				$request, UNSUBSCRIBED_USER_NOTIFICATION, NOTIFICATION_TYPE_PUBLISHED_ISSUE,
-				$journalId
-			)
-		);
 
-		$dispatcher = $request->getDispatcher();
-		$json = new JSONMessage();
-		$json->setEvent('containerReloadRequested', array('tabsUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'manageIssues', 'index')));
+		$json = DAO::getDataChangedEvent();
+		$json->setGlobalEvent('issuePublished', array('id' => $issue->getId()));
 		return $json;
 	}
 
@@ -413,9 +531,13 @@ class IssueGridHandler extends GridHandler {
 		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
 		$journal = $request->getJournal();
 
+		if (!$request->checkCSRF()) return new JSONMessage(false);
+
 		$issue->setCurrent(0);
 		$issue->setPublished(0);
 		$issue->setDatePublished(null);
+
+		HookRegistry::call('IssueGridHandler::unpublishIssue', array(&$issue));
 
 		$issueDao = DAORegistry::getDAO('IssueDAO');
 		$issueDao->updateObject($issue);
@@ -424,16 +546,51 @@ class IssueGridHandler extends GridHandler {
 		import('classes.article.ArticleTombstoneManager');
 		$articleTombstoneManager = new ArticleTombstoneManager();
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
+		$articleDao = DAORegistry::getDAO('ArticleDAO');
 		$publishedArticles = $publishedArticleDao->getPublishedArticles($issue->getId());
 		foreach ($publishedArticles as $article) {
 			$articleTombstoneManager->insertArticleTombstone($article, $journal);
+			$article->setStatus(STATUS_QUEUED);
+			$article->stampStatusModified();
+			$articleDao->updateObject($article);
 		}
 
 		$dispatcher = $request->getDispatcher();
 		$json = new JSONMessage();
-		$json->setEvent('containerReloadRequested', array('tabsUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'manageIssues', 'index')));
+		$json->setEvent('containerReloadRequested', array('tabsUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'manageIssues', 'issuesTabs', null)));
+		$json->setGlobalEvent('issueUnpublished', array('id' => $issue->getId()));
 		return $json;
+	}
+
+	/**
+	 * Set Issue as current
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function setCurrentIssue($args, $request) {
+		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
+		$journal = $request->getJournal();
+
+		if (!$request->checkCSRF()) return new JSONMessage(false);
+
+		$issue->setCurrent(1);
+
+		$issueDao = DAORegistry::getDAO('IssueDAO');
+		$issueDao->updateCurrent($journal->getId(), $issue);
+
+		$dispatcher = $request->getDispatcher();
+		$json = new JSONMessage();
+		$json->setEvent('containerReloadRequested', array('tabsUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'manageIssues', 'issuesTabs', null)));
+		return $json;
+	}
+
+	/**
+	 * Get the template for the assign public identifiers form.
+	 * @return string
+	 */
+	function getAssignPublicIdentifiersFormTemplate() {
+		return 'controllers/grid/pubIds/form/assignPublicIdentifiersForm.tpl';
 	}
 }
 
-?>
+

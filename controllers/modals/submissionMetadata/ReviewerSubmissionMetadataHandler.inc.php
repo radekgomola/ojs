@@ -3,8 +3,8 @@
 /**
  * @file controllers/modals/submissionMetadata/ReviewerSubmissionMetadataHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewerSubmissionMetadataHandler
@@ -16,12 +16,6 @@
 import('lib.pkp.classes.controllers.modals.submissionMetadata.PKPReviewerSubmissionMetadataHandler');
 
 class ReviewerSubmissionMetadataHandler extends PKPReviewerSubmissionMetadataHandler {
-	/**
-	 * Constructor.
-	 */
-	function ReviewerSubmissionMetadataHandler() {
-		parent::PKPReviewerSubmissionMetadataHandler();
-	}
 
 	//
 	// Implement template methods from PKPHandler.
@@ -46,4 +40,4 @@ class ReviewerSubmissionMetadataHandler extends PKPReviewerSubmissionMetadataHan
 	}
 }
 
-?>
+

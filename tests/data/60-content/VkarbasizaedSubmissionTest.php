@@ -3,8 +3,8 @@
 /**
  * @file tests/data/60-content/VkarbasizaedSubmissionTest.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class VkarbasizaedSubmissionTest
@@ -22,11 +22,10 @@ class VkarbasizaedSubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'vkarbasizaed',
-			'firstName' => 'Vajiheh',
-			'lastName' => 'Karbasizaed',
+			'givenName' => 'Vajiheh',
+			'familyName' => 'Karbasizaed',
 			'affiliation' => 'University of Tehran',
 			'country' => 'Iran, Islamic Republic of',
-			'roles' => array('Author'),
 		));
 
 		$title = 'Antimicrobial, heavy metal resistance and plasmid profile of coliforms isolated from nosocomial infections in a hospital in Isfahan, Iran';
@@ -37,12 +36,11 @@ class VkarbasizaedSubmissionTest extends ContentBaseTestCase {
 
 		$this->logOut();
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
-		$this->assignParticipant('Section editor', 'Stephanie Berardo');
 		$this->sendToReview();
 		$this->waitForElementPresent('//a[contains(text(), \'Review\')]/*[contains(text(), \'Initiated\')]');
-		$this->assignReviewer('jjanssen', 'Julie Janssen');
-		$this->assignReviewer('phudson', 'Paul Hudson');
-		$this->recordEditorialDecision('Send to Copyediting');
+		$this->assignReviewer('Julie Janssen');
+		$this->assignReviewer('Paul Hudson');
+		$this->recordEditorialDecision('Accept Submission');
 		$this->waitForElementPresent('//a[contains(text(), \'Copyediting\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignParticipant('Copyeditor', 'Maria Fritz');
 		$this->recordEditorialDecision('Send To Production');
@@ -51,17 +49,11 @@ class VkarbasizaedSubmissionTest extends ContentBaseTestCase {
 		$this->assignParticipant('Proofreader', 'Catherine Turner');
 
 		// Create a galley
-		$this->waitForElementPresent($selector='css=[id^=component-grid-articlegalleys-articlegalleygrid-addFormat-button-]');
+		$this->waitForElementPresent($selector='css=[id^=component-grid-articlegalleys-articlegalleygrid-addGalley-button-]');
 		$this->click($selector);
 		$this->waitForElementPresent('css=[id^=label-]');
 		$this->type('css=[id^=label-]', 'PDF');
-		$this->select('id=galleyType', 'PDF.JS PDF Viewer');
 		$this->click('//button[text()=\'Save\']');
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel');
-
-		// Upload a galley file
-		$this->waitForElementPresent($selector='//table[contains(@id,\'component-grid-articlegalleys-articlegalleygrid-\')]//span[contains(.,\'PDF\')]/../a[contains(@id,\'-name-addFile-button-\')]');
-		$this->click($selector);
 		$this->uploadWizardFile('PDF');
 
 		$this->logOut();

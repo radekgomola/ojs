@@ -1,19 +1,24 @@
 /**
  * @file styles/components.less
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Reusable components
  */
+
+// Simple clearfix wrapper
+.row {
+	.pkp_helpers_clear;
+}
 
 // Button
 .cmp_button {
 	display: inline-block;
 	padding: 0 1em;
 	background: #eee;
-	border: 1px solid #aaa;
+	border: @form-border;
 	border-top-color: #bbb;
 	border-radius: @radius;
 	box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.1);
@@ -21,6 +26,12 @@
 	line-height: @triple - 2; // account for border
 	font-weight: @bold;
 	color: @primary;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		box-shadow: inset 0 1em 1em rgba(0, 0, 0, 0.1);
+	}
 }
 
 // Wire button
@@ -42,11 +53,96 @@
 	}
 }
 
+// Add an icon to the button
+.cmp_button_icon( @icon ) {
+	position: relative;
+	padding-right: @triple + (@triple / 2);
+	border-right: none;
+
+	&:after {
+		.fa();
+		content: @icon;
+		position: absolute;
+		top: -1px; // border;
+		right: 0;
+		width: @triple;
+		height: @triple;
+		border-top-right-radius: @radius;
+		border-bottom-right-radius: @radius;
+		line-height: @triple;
+		text-align: center;
+		background: @primary;
+		box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.2);
+		color: #fff;
+	}
+
+	&:hover:after,
+	&:focus:after {
+		box-shadow: inset 0 1em 1em rgba(0, 0, 0, 0.2);
+		background: @primary-lift;
+	}
+}
+
+.cmp_button_icon_left( @icon ) {
+	padding-right: 1em;
+	padding-left: @triple + (@triple / 2);
+	border-right: @form-border;
+	border-left: none;
+
+	&:after {
+		right: auto;
+		left: 0;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		border-top-left-radius: @radius;
+		border-bottom-left-radius: @radius;
+	}
+}
+
+// Text button with an icon
+.cmp_button_text( @icon ) {
+	display: inline-block;
+	position: relative;
+	padding-right: @triple;
+	font-size: @font-sml;
+	font-weight: @bold;
+	line-height: @triple;
+	color: @primary;
+	text-decoration: none;
+
+	&:after {
+		.fa();
+		content: @icon;
+		position: absolute;
+		top: 2px;
+		right: 0;
+		width: @triple;
+		height: @triple;
+		line-height: @triple;
+		text-align: center;
+	}
+
+	&:hover,
+	&:focus {
+		color: @primary-lift;
+	}
+}
+
+// List of articles
+.cmp_article_list {
+	&:extend(.pkp_unstyled_list);
+
+	> li {
+		.pkp_helpers_clear();
+		margin-bottom: @triple;
+	}
+}
+
 // Forms
 // These don't yet follow the component pattern on the frontend, but should
 // eventually once the login/registration templates are incorporated into the
 // frontend template structure.
-.pkp_form {
+.cmp_form {
 
 	fieldset {
 		margin: 0 0 @double;
@@ -62,9 +158,8 @@
 	}
 
 	.fields {
-		&:extend(.pkp_unstyled_list);
 
-		> li {
+		> div {
 			position: relative;
 			padding-bottom: @triple; // Contain errors
 
@@ -87,6 +182,7 @@
 
 	label {
 		display: block;
+		cursor: pointer;
 	}
 
 	.label {
@@ -111,7 +207,7 @@
 		width: 100%;
 		height: @triple - 2; // account for border
 		background: #fff;
-		border: 1px solid #aaa;
+		border: @form-border;
 		border-radius: @radius;
 		font-size: @font-sml;
 		line-height: @triple - 2; // account for border
@@ -132,6 +228,33 @@
 		color: #fff;
 	}
 
+	label > input[type="checkbox"],
+	label > input[type="radio"] {
+		margin-right: 0.25em;
+	}
+
+	.buttons {
+		.pkp_helpers_clear;
+
+		button {
+			&:extend(.cmp_button);
+		}
+
+		a {
+			font-size: @font-sml;
+			line-height: @triple;
+			margin-left: 1em;
+		}
+	}
+
+	.description {
+		margin-top: 0;
+		font-size: @font-tiny;
+		line-height: 1.5em;
+		color: @text-light;
+
+	}
+
 	@media(min-width: @screen-phone) {
 
 		input[type="text"],
@@ -150,7 +273,7 @@
 	//  more appropriate in the theme.
 	.tagit {
 		&:extend(.pkp_unstyled_list);
-		&:extend(.pkp_form input[type="text"]);
+		&:extend(.cmp_form input[type="text"]);
 		.pkp_helpers_clear();
 
 		// overwrite text field styles
@@ -163,7 +286,7 @@
 			&.tagit-choice {
 				margin-right: 0.5em;
 				padding-left: 0.5em;
-				background: @bg;
+				background: @bg-shade;
 				border-radius: @radius;
 				line-height: @double;
 			}
@@ -223,44 +346,33 @@
 	}
 }
 
-// Access legend
-.cmp_access_legend {
-	margin: (@double * 2) 0;
-	padding: 0;
-	list-style: none;
+// Pagination
+.cmp_pagination {
+	.pkp_helpers_clear;
+	text-align: right;
 
-	&:last-child {
-		margin-bottom: 0;
-	}
-
-	li {
-		display: inline-block;
-		margin-right: 2em;
-		font-size: @font-sml;
-		line-height: @double;
-		color: @text-light;
+	.prev {
+		float: left;
+		margin-right: 0.5em;
+		text-decoration: none;
 
 		&:before {
-			&:extend( .fa );
+			.fa;
+			content: @fa-var-long-arrow-left;
 			margin-right: 0.5em;
-			color: @text;
 		}
 	}
 
-	.restricted:before {
-		content: @fa-var-lock;
-		color: @offset;
-	}
-}
+	.next {
+		margin-left: 0.5em;
+		text-decoration: none;
 
-// Pagination component
-// eg: 1-2 of 10 items
-.cmp_pagination {
-	margin-top: @double;
-	font-size: @font-sml;
-	line-height: @double;
-	color: @text-light;
-	text-align: right;
+		&:after {
+			.fa;
+			content: @fa-var-long-arrow-right;
+			margin-left: 0.5em;
+		}
+	}
 }
 
 // Edit link to jump from frontend section to backend editing location
@@ -269,12 +381,13 @@
 	display: inline-block;
 	margin-left: 1em;
 	font-size: @font-sml;
+	font-weight: @normal;
 	line-height: 1; // Try not to disrupt parent line height
 	vertical-align: middle;
 	text-decoration: none;
 
 	&:before {
-		&:extend(.fa);
+		.fa();
 		content: @fa-var-pencil;
 	}
 }
@@ -298,13 +411,23 @@
 }
 
 // Notification
-// @todo needs work and styles for error/warning/notice instances
 .cmp_notification {
 	display: block;
 	width: 100%;
 	padding: @double;
-	background: @bg;
-	text-align: center;
+	margin-bottom: @quadruple;
+	background: @bg-shade;
+	border-left: @half solid @primary;
+	font-size: @font-base;
+	line-height: @line-base;
+
+	.success {
+		border-color: @yes;
+	}
+
+	.no {
+		border-color: @no;
+	}
 }
 
 // Breadcrumbs
@@ -339,6 +462,7 @@
 
 		h1 {
 			margin: 0;
+			font-family: @font;
 			font-size: @font-sml;
 			font-weight: @normal;
 		}
@@ -348,4 +472,76 @@
 // Backlink used on error.tpl and message.tpl
 .cmp_back_link {
 	margin-top: @double;
+}
+
+// Announcements
+.cmp_announcements {
+	&:extend(.pkp_unstyled_list);
+	margin-left: -@base;
+	margin-right: -@base;
+
+	> li {
+		padding: @triple @base;
+		border-bottom: @bg-border;
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	@media(min-width: @screen-phone) {
+		margin-left: -@double;
+		margin-right: -@double;
+
+		> li {
+			padding-left: @double;
+			padding-right: @double;
+		}
+	}
+
+	@media(min-width: @screen-desktop) {
+		margin-left: -@triple;
+		margin-right: -@triple;
+
+		> li {
+			padding-left: @triple;
+			padding-right: @triple;
+		}
+
+	}
+}
+
+// Skip-to navigation links
+.cmp_skip_to_content a {
+	&:extend(.pkp_screen_reader);
+	display: block;
+	padding: 1em;
+	z-index: 99999;
+	background: @bg;
+	transform: translateX(-50%);
+
+	&:focus {
+		clip: auto;
+		top: 0;
+		left: 50%;
+	}
+}
+
+// Tables
+.cmp_table {
+	width: 100%;
+	border: @bg-border;
+	border-bottom: none;
+	border-collapse: collapse;
+
+	th,
+	td {
+		padding: 0.5em;
+		text-align: left;
+		border-bottom: @bg-border;
+	}
+
+	th {
+		font-weight: @bold;
+	}
 }

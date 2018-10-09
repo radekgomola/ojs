@@ -1,8 +1,8 @@
 {**
  * plugins/generic/webFeed/templates/rss.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * RSS feed template
@@ -59,7 +59,7 @@
 			<rdf:Seq>
 			{foreach name=sections from=$publishedArticles item=section key=sectionId}
 				{foreach from=$section.articles item=article}
-					<rdf:li rdf:resource="{url page="article" op="view" path=$article->getBestArticleId($currentJournal)}"/>
+					<rdf:li rdf:resource="{url page="article" op="view" path=$article->getBestArticleId()}"/>
 				{/foreach}{* articles *}
 			{/foreach}{* sections *}
 			</rdf:Seq>
@@ -68,11 +68,11 @@
 
 {foreach name=sections from=$publishedArticles item=section key=sectionId}
 	{foreach from=$section.articles item=article}
-		<item rdf:about="{url page="article" op="view" path=$article->getBestArticleId($currentJournal)}">
+		<item rdf:about="{url page="article" op="view" path=$article->getBestArticleId()}">
 
 			{* required elements *}
 			<title>{$article->getLocalizedTitle()|strip|escape:"html"}</title>
-			<link>{url page="article" op="view" path=$article->getBestArticleId($currentJournal)}</link>
+			<link>{url page="article" op="view" path=$article->getBestArticleId()}</link>
 
 			{* optional elements *}
 			{if $article->getLocalizedAbstract()}
@@ -80,7 +80,7 @@
 			{/if}
 
 			{foreach from=$article->getAuthors() item=author name=authorList}
-				<dc:creator>{$author->getFullName()|strip|escape:"html"}</dc:creator>
+				<dc:creator>{$author->getFullName(false)|strip|escape:"html"}</dc:creator>
 			{/foreach}
 
 			<dc:rights>
@@ -97,8 +97,8 @@
 				<dc:date>{$article->getDatePublished()|date_format:"%Y-%m-%d"}</dc:date>
 				<prism:publicationDate>{$article->getDatePublished()|date_format:"%Y-%m-%d"}</prism:publicationDate>
 			{/if}
-			{if $issue->getVolume()}<prism:volume>{$issue->getVolume()|escape}</prism:volume>{/if}
-			{if $issue->getNumber()}<prism:number>{$issue->getNumber()|escape}</prism:number>{/if}
+			{if $issue->getVolume() && $issue->getShowVolume()}<prism:volume>{$issue->getVolume()|escape}</prism:volume>{/if}
+			{if $issue->getNumber() && $issue->getShowNumber()}<prism:number>{$issue->getNumber()|escape}</prism:number>{/if}
 
 			{if $article->getPages()}
 				{if $article->getStartingPage()}
@@ -109,8 +109,8 @@
 				{/if}
 			{/if}
 
-			{if $article->getPubId('doi')}
-				<prism:doi>{$article->getPubId('doi')|escape}</prism:doi>
+			{if $article->getStoredPubId('doi')}
+				<prism:doi>{$article->getStoredPubId('doi')|escape}</prism:doi>
 			{/if}
 		</item>
 	{/foreach}{* articles *}

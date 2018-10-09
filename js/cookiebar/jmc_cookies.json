@@ -1,0 +1,20 @@
+[{
+    "name": "MUOJSSID",               
+    "expires": "", 
+    "marketing": false,              
+    "description": {
+        "cs": "Cookie udržujicí přihlášení daného uživatele",
+        "en": "Cookie for user's login"
+    }
+}, 
+{
+    "name": "MUOJSSID",               
+    "expires": "1M", 
+    "marketing": false,              
+    "description": {
+        "cs": "Cookie udržujicí přihlášení daného uživatele, při zaškrtnutí Zapamatovat přihlášení",
+        "en": "Cookie for user's login with remember"
+    }
+
+
+}]

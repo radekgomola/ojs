@@ -3,8 +3,8 @@
 /**
  * @file classes/statistics/MetricsDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MetricsDAO
@@ -22,7 +22,9 @@ class MetricsDAO extends PKPMetricsDAO {
 	 */
 	function &getMetrics($metricType, $columns = array(), $filters = array(), $orderBy = array(), $range = null, $nonAdditive = true) {
 		// Translate the issue dimension to a generic one used in pkp library.
-		foreach (array(&$columns, &$filters, &$orderBy) as &$parameter) { // Reference needed.
+		// Do not move this into foreach: https://github.com/pkp/pkp-lib/issues/1615
+		$worker = array(&$columns, &$filters, &$orderBy);
+		foreach ($worker as &$parameter) { // Reference needed.
 			if ($parameter === $filters && array_key_exists(STATISTICS_DIMENSION_ISSUE_ID, $parameter)) {
 				$parameter[STATISTICS_DIMENSION_ASSOC_OBJECT_TYPE] = ASSOC_TYPE_ISSUE;
 			}
@@ -90,11 +92,11 @@ class MetricsDAO extends PKPMetricsDAO {
 
 		// Submissions in OJS are associated with an Issue.
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-		$publishedArticle = $publishedArticleDao->getPublishedArticleByArticleId($submissionId, $contextId, true);
+		$publishedArticle = $publishedArticleDao->getByArticleId($submissionId, $contextId, true);
 		if ($publishedArticle) {
 			$returnArray = array(ASSOC_TYPE_ISSUE, $publishedArticle->getIssueId());
 		}
 		return $returnArray;
 	}
 }
-?>
+

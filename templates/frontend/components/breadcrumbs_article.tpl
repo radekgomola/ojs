@@ -1,8 +1,8 @@
 {**
  * templates/frontend/components/breadcrumbs_article.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Display a breadcrumb nav item showing the current page. This basic
@@ -30,7 +30,7 @@
 			<span class="separator">{translate key="navigation.breadcrumbSeparator"}</span>
 		</li>
 		<li>
-			<a href="{url page="issue" op="view" path=$issue->getBestIssueId($currentJournal)}">
+			<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">
 				{$issue->getIssueIdentification()}
 			</a>
 			<span class="separator">{translate key="navigation.breadcrumbSeparator"}</span>

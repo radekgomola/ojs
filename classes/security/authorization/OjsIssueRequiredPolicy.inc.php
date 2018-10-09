@@ -2,8 +2,8 @@
 /**
  * @file classes/security/authorization/OjsIssueRequiredPolicy.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OjsIssueRequiredPolicy
@@ -24,8 +24,8 @@ class OjsIssueRequiredPolicy extends DataObjectRequiredPolicy {
 	 * @param $args array request parameters
 	 * @param $operations array
 	 */
-	function OjsIssueRequiredPolicy($request, &$args, $operations = null) {
-		parent::DataObjectRequiredPolicy($request, $args, 'issueId', 'user.authorization.invalidIssue', $operations);
+	function __construct($request, &$args, $operations = null) {
+		parent::__construct($request, $args, 'issueId', 'user.authorization.invalidIssue', $operations);
 		$this->journal = $request->getJournal();
 	}
 
@@ -36,16 +36,12 @@ class OjsIssueRequiredPolicy extends DataObjectRequiredPolicy {
 	 * @see DataObjectRequiredPolicy::dataObjectEffect()
 	 */
 	function dataObjectEffect() {
-		$issueId = (int)$this->getDataObjectId();
+		$issueId = $this->getDataObjectId();
 		if (!$issueId) return AUTHORIZATION_DENY;
 
 		// Make sure the issue belongs to the journal.
 		$issueDao = DAORegistry::getDAO('IssueDAO');
-		if ($this->journal->getSetting('enablePublicIssueId')) {
-			$issue = $issueDao->getByBestId($issueId,  $this->journal->getId());
-		} else {
-			$issue = $issueDao->getById((int) $issueId, null, true);
-		}
+		$issue = $issueDao->getByBestId($issueId,  $this->journal->getId());
 
 		if (!is_a($issue, 'Issue')) return AUTHORIZATION_DENY;
 
@@ -57,7 +53,7 @@ class OjsIssueRequiredPolicy extends DataObjectRequiredPolicy {
 			array(
 				ROLE_ID_SITE_ADMIN,
 				ROLE_ID_MANAGER,
-				ROLE_ID_SECTION_EDITOR,
+				ROLE_ID_SUB_EDITOR,
 				ROLE_ID_ASSISTANT,
 			)
 		))==0) {
@@ -68,6 +64,31 @@ class OjsIssueRequiredPolicy extends DataObjectRequiredPolicy {
 		$this->addAuthorizedContextObject(ASSOC_TYPE_ISSUE, $issue);
 		return AUTHORIZATION_PERMIT;
 	}
+
+	/**
+	 * @copydoc DataObjectRequiredPolicy::getDataObjectId()
+	 * Considers a not numeric public URL identifier
+	 */
+	function getDataObjectId() {
+		// Identify the data object id.
+		$router = $this->_request->getRouter();
+		switch(true) {
+			case is_a($router, 'PKPPageRouter'):
+				if ( ctype_digit((string) $this->_request->getUserVar($this->_parameterName)) ) {
+					// We may expect a object id in the user vars
+					return (int) $this->_request->getUserVar($this->_parameterName);
+				} else if (isset($this->_args[0])) {
+					// Or the object id can be expected as the first path in the argument list
+					return $this->_args[0];
+				}
+				break;
+
+			default:
+				return parent::getDataObjectId();
+		}
+
+		return false;
+	}
 }
 
-?>
+

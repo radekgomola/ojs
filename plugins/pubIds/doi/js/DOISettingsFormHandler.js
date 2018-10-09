@@ -4,8 +4,8 @@
 /**
  * @file plugins/pubIds/doi/js/DOISettingsFormHandler.js
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class DOISettingsFormHandler.js
@@ -14,10 +14,12 @@
  * @brief Handle the DOI Settings form.
  */
 (function($) {
+
 	/** @type {Object} */
 	$.pkp.plugins.pubIds.doi =
 			$.pkp.plugins.pubIds.doi ||
 			{ js: { } };
+
 
 
 	/**
@@ -37,6 +39,8 @@
 				this.callbackWrapper(this.updatePatternFormElementStatus_));
 		//ping our handler to set the form's initial state.
 		this.callbackWrapper(this.updatePatternFormElementStatus_());
+
+		this.bind('formSubmitted', this.callbackWrapper(this.maybeReloadPage_));
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.plugins.pubIds.doi.js.DOISettingsFormHandler,
@@ -47,20 +51,15 @@
 	 * Callback to replace the element's content.
 	 *
 	 * @private
-	 *
-	 * @param {HTMLElement} sourceElement The element that triggered
-	 *  the event.
-	 * @param {Event} event The triggered event.
-	 * @param {Object} ui The tabs ui data.
 	 */
 	$.pkp.plugins.pubIds.doi.js.DOISettingsFormHandler.prototype.
 			updatePatternFormElementStatus_ =
-			function(sourceElement, event, ui) {
-		var $element = this.getHtmlElement(), pattern, $journalContentChoices;
+			function() {
+		var $element = this.getHtmlElement(), pattern, $contentChoices;
 		if ($('[id^="doiSuffix"]').filter(':checked').val() == 'pattern') {
-			$journalContentChoices = $element.find(':checkbox');
+			$contentChoices = $element.find(':checkbox');
 			pattern = new RegExp('enable(.*)Doi');
-			$journalContentChoices.each(function() {
+			$contentChoices.each(function() {
 				var patternCheckResult = pattern.exec($(this).attr('name')),
 						$correspondingTextField = $element.find('[id*="' +
 						patternCheckResult[1] + 'SuffixPattern"]').
@@ -78,6 +77,20 @@
 		} else {
 			$element.find('[id*="SuffixPattern"]').filter(':text').
 					attr('disabled', 'disabled');
+		}
+	};
+
+
+	/**
+	* Reload the page if we're on an import/export page. The DOI settings can be accessed from several
+	* import/export screens. When the DOI settings change, this can impact the import/export settings, so
+	* we just reload the whole page.
+	*
+	* @private
+	*/
+	$.pkp.plugins.pubIds.doi.js.DOISettingsFormHandler.prototype.maybeReloadPage_ = function() {
+		if ($('body').hasClass('pkp_op_importexport')) {
+			window.location.reload();
 		}
 	};
 

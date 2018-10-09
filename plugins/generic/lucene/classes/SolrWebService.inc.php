@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/lucene/classes/SolrWebService.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SolrWebService
@@ -71,6 +71,8 @@ class SolrWebService extends XmlWebService {
 	/** @var array An issue cache. */
 	var $_issueCache;
 
+	/** @var boolean Whether the proxy settings in the config.inc.php should be considered for the web service request. */
+	var $_useProxySettings = false;
 
 	/**
 	 * Constructor
@@ -81,9 +83,10 @@ class SolrWebService extends XmlWebService {
 	 * @param $password string The corresponding password.
 	 * @param $instId string The unique ID of this OJS installation to partition
 	 *  a shared index.
+	 *  @param $useProxy boolean Whether the proxy settings from config.inc.php should be considered.
 	 */
-	function SolrWebService($searchHandler, $username, $password, $instId) {
-		parent::XmlWebService();
+	function __construct($searchHandler, $username, $password, $instId, $useProxy = false) {
+		parent::__construct();
 
 		// Configure the web service.
 		$this->setAuthUsername($username);
@@ -102,6 +105,7 @@ class SolrWebService extends XmlWebService {
 		// Set the installation ID.
 		assert(is_string($instId) && !empty($instId));
 		$this->_instId = $instId;
+		$this->_useProxySettings = $useProxy;
 	}
 
 
@@ -974,7 +978,7 @@ class SolrWebService extends XmlWebService {
 	 *  See _serviceMessage for more details about the error.
 	 */
 	function &_makeRequest($url, $params = array(), $method = 'GET') {
-		$webServiceRequest = new WebServiceRequest($url, $params, $method);
+		$webServiceRequest = new WebServiceRequest($url, $params, $method, $this->_useProxySettings);
 		if ($method == 'POST') {
 			$webServiceRequest->setHeader('Content-Type', 'text/xml; charset=utf-8');
 		}
@@ -993,7 +997,7 @@ class SolrWebService extends XmlWebService {
 		if ($status !== WEBSERVICE_RESPONSE_OK) {
 			// We show a generic error message to the end user
 			// to avoid information leakage and log the exact error.
-			$application = PKPApplication::getApplication();
+			$application = Application::getApplication();
 			error_log($application->getName() . ' - Lucene plugin:' . PHP_EOL . "The Lucene web service returned a status code $status and the message" . PHP_EOL . $response->saveXML());
 			$this->_serviceMessage = __('plugins.generic.lucene.message.webServiceError');
 			return $nullValue;
@@ -1285,7 +1289,7 @@ class SolrWebService extends XmlWebService {
 		foreach($articles as $article) {
 			if (!is_a($article, 'PublishedArticle')) {
 				// Try to upgrade the article to a published article.
-				$publishedArticle =& $publishedArticleDao->getPublishedArticleByArticleId($article->getId());
+				$publishedArticle =& $publishedArticleDao->getByArticleId($article->getId());
 				if (is_a($publishedArticle, 'PublishedArticle')) {
 					unset($article);
 					$article =& $publishedArticle;
@@ -1362,7 +1366,7 @@ class SolrWebService extends XmlWebService {
 		}
 
 		// We need the request to retrieve locales and build URLs.
-		$request = PKPApplication::getRequest();
+		$request = Application::getRequest();
 
 		// Get all supported locales.
 		$site = $request->getSite();
@@ -1413,16 +1417,13 @@ class SolrWebService extends XmlWebService {
 		}
 
 		// Add subjects and subject classes.
-		$subjectClasses = $article->getSubjectClass(null);
 		$subjects = $article->getSubject(null);
-		if (!empty($subjectClasses) || !empty($subjects)) {
+		if (!empty($subjects)) {
 			$subjectList =& XMLCustomWriter::createElement($articleDoc, 'subjectList');
-			if (!is_array($subjectClasses)) $subjectClasses = array();
 			if (!is_array($subjects)) $subjects = array();
-			$locales = array_unique(array_merge(array_keys($subjectClasses), array_keys($subjects)));
+			$locales = array_keys($subjects);
 			foreach($locales as $locale) {
 				$subject = '';
-				if (isset($subjectClasses[$locale])) $subject .= $subjectClasses[$locale];
 				if (isset($subjects[$locale])) {
 					if (!empty($subject)) $subject .= ' ';
 					$subject .= $subjects[$locale];
@@ -1445,28 +1446,13 @@ class SolrWebService extends XmlWebService {
 		}
 
 		// Add coverage.
-		$coverageGeo = $article->getCoverageGeo(null);
-		$coverageChron = $article->getCoverageChron(null);
-		$coverageSample = $article->getCoverageSample(null);
-		if (!empty($coverageGeo) || !empty($coverageChron) || !empty($coverageSample)) {
+		$coverage = (array) $article->getCoverage(null);
+		if (!empty($coverage)) {
 			$coverageList =& XMLCustomWriter::createElement($articleDoc, 'coverageList');
-			if (!is_array($coverageGeo)) $coverageGeo = array();
-			if (!is_array($coverageChron)) $coverageChron = array();
-			if (!is_array($coverageSample)) $coverageSample = array();
-			$locales = array_unique(array_merge(array_keys($coverageGeo), array_keys($coverageChron), array_keys($coverageSample)));
-			foreach($locales as $locale) {
-				$coverage = '';
-				if (isset($coverageGeo[$locale])) $coverage .= $coverageGeo[$locale];
-				if (isset($coverageChron[$locale])) {
-					if (!empty($coverage)) $coverage .= '; ';
-					$coverage .= $coverageChron[$locale];
-				}
-				if (isset($coverageSample[$locale])) {
-					if (!empty($coverage)) $coverage .= '; ';
-					$coverage .= $coverageSample[$locale];
-				}
-				$coverageNode =& XMLCustomWriter::createChildWithText($articleDoc, $coverageList, 'coverage', $coverage);
+			foreach($coverage as $locale => $coverageLocalized) {
+				$coverageNode =& XMLCustomWriter::createChildWithText($articleDoc, $coverageList, 'coverage', $coverageLocalized);
 				XMLCustomWriter::setAttribute($coverageNode, 'locale', $locale);
+				unset($coverageNode);
 			}
 			XMLCustomWriter::appendChild($articleNode, $coverageList);
 		}
@@ -1724,9 +1710,9 @@ class SolrWebService extends XmlWebService {
 		if (is_null($queryKeywords)) {
 			// Query keywords.
 			$queryKeywords = array(
-				String::strtoupper(__('search.operator.not')) => 'NOT',
-				String::strtoupper(__('search.operator.and')) => 'AND',
-				String::strtoupper(__('search.operator.or')) => 'OR'
+				PKPString::strtoupper(__('search.operator.not')) => 'NOT',
+				PKPString::strtoupper(__('search.operator.and')) => 'AND',
+				PKPString::strtoupper(__('search.operator.or')) => 'OR'
 			);
 		}
 
@@ -1738,7 +1724,7 @@ class SolrWebService extends XmlWebService {
 
 		// Translate the search phrase.
 		foreach($translationTable as $translateFrom => $translateTo) {
-			$searchPhrase = String::regexp_replace("/(^|\s)$translateFrom(\s|$)/i", "\\1$translateTo\\2", $searchPhrase);
+			$searchPhrase = PKPString::regexp_replace("/(^|\s)$translateFrom(\s|$)/i", "\\1$translateTo\\2", $searchPhrase);
 		}
 
 		return $searchPhrase;
@@ -1864,12 +1850,12 @@ class SolrWebService extends XmlWebService {
 		// Check whether the suggestion really concerns the
 		// last word of the user input.
 		if (!(isset($startOffset) && isset($endOffset)
-			&& String::strlen($userInput) == $endOffset)) return array();
+			&& PKPString::strlen($userInput) == $endOffset)) return array();
 
 		// Replace the last word in the user input
 		// with the suggestions maintaining case.
 		foreach($suggestions as &$suggestion) {
-			$suggestion = $userInput . String::substr($suggestion, $endOffset - $startOffset);
+			$suggestion = $userInput . PKPString::substr($suggestion, $endOffset - $startOffset);
 		}
 		return $suggestions;
 	}
@@ -1895,7 +1881,7 @@ class SolrWebService extends XmlWebService {
 		// facet results. This may be an invalid query
 		// but edismax will deal gracefully with syntax
 		// errors.
-		$userInput = String::substr($userInput, 0, -String::strlen($facetPrefix));
+		$userInput = PKPString::substr($userInput, 0, -PKPString::strlen($facetPrefix));
 		switch ($fieldName) {
 			case 'query':
 				// The 'query' filter goes against all fields.
@@ -1927,7 +1913,7 @@ class SolrWebService extends XmlWebService {
 		} else {
 			$params['facet.field'] = $fieldName . '_spell';
 		}
-		$facetPrefixLc = String::strtolower($facetPrefix);
+		$facetPrefixLc = PKPString::strtolower($facetPrefix);
 		$params['facet.prefix'] = $facetPrefixLc;
 
 		// Make the request.
@@ -1947,7 +1933,7 @@ class SolrWebService extends XmlWebService {
 		foreach($termSuggestions as $termSuggestion) {
 			// Restore case if possible.
 			if (strpos($termSuggestion, $facetPrefixLc) === 0) {
-				$termSuggestion = $facetPrefix . String::substr($termSuggestion, String::strlen($facetPrefix));
+				$termSuggestion = $facetPrefix . PKPString::substr($termSuggestion, PKPString::strlen($facetPrefix));
 			}
 			$suggestions[] = $userInput . $termSuggestion;
 		}
@@ -1982,7 +1968,7 @@ class SolrWebService extends XmlWebService {
 		$issueAction = new IssueAction();
 		$subscriptionRequired = $issueAction->subscriptionRequired($issue, $journal);
 		if ($subscriptionRequired) {
-			$isSubscribedDomain = $issueAction->subscribedDomain($journal, $issue->getId(), $article->getId());
+			$isSubscribedDomain = $issueAction->subscribedDomain(Application::getRequest(), $journal, $issue->getId(), $article->getId());
 			if (!$isSubscribedDomain) return false;
 		}
 
@@ -1991,4 +1977,4 @@ class SolrWebService extends XmlWebService {
 	}
 }
 
-?>
+

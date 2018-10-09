@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/lucene/LucenePlugin.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class LucenePlugin
@@ -41,14 +41,6 @@ class LucenePlugin extends GenericPlugin {
 
 	/** @var array */
 	var $_facets;
-
-
-	/**
-	 * Constructor
-	 */
-	function LucenePlugin() {
-		parent::GenericPlugin();
-	}
 
 
 	//
@@ -104,16 +96,13 @@ class LucenePlugin extends GenericPlugin {
 	// Implement template methods from Plugin.
 	//
 	/**
-	 * @see Plugin::register()
+	 * @copydoc Plugin::register()
 	 */
-	function register($category, $path) {
-		$success = parent::register($category, $path);
+	function register($category, $path, $mainContextId = null) {
+		$success = parent::register($category, $path, $mainContextId);
 		if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) return $success;
 
-		if ($success && $this->getEnabled()) {
-			// This plug-in requires PHP 5.0.
-			if (!checkPhpVersion('5.0.0')) return false;
-
+		if ($success && $this->getEnabled($mainContextId)) {
 			// Register callbacks (application-level).
 			HookRegistry::register('PluginRegistry::loadCategory', array($this, 'callbackLoadCategory'));
 			HookRegistry::register('LoadHandler', array($this, 'callbackLoadHandler'));
@@ -162,8 +151,10 @@ class LucenePlugin extends GenericPlugin {
 			$username = $this->getSetting(0, 'username');
 			$password = $this->getSetting(0, 'password');
 			$instId = $this->getSetting(0, 'instId');
+			$useProxySettings = $this->getSetting(0, 'useProxySettings');
+			if (!$useProxySettings) $useProxySettings = false;
 
-			$this->_solrWebService = new SolrWebService($searchHandler, $username, $password, $instId);
+			$this->_solrWebService = new SolrWebService($searchHandler, $username, $password, $instId, $useProxySettings);
 		}
 		return $success;
 	}
@@ -210,39 +201,20 @@ class LucenePlugin extends GenericPlugin {
 		return true;
 	}
 
-	/**
-	 * @see Plugin::getTemplatePath()
-	 */
-	function getTemplatePath() {
-		return parent::getTemplatePath() . 'templates/';
-	}
-
 	//
 	// Implement template methods from GenericPlugin.
 	//
-	/**
-	 * @see GenericPlugin::getManagementVerbs()
-	 */
-	function getManagementVerbs() {
-		$verbs = parent::getManagementVerbs();
-		if ($this->getEnabled()) {
-			$verbs[] = array('settings', __('plugins.generic.lucene.settings'));
-		}
-		return $verbs;
-	}
-
  	/**
-	 * @see Plugin::manage()
+	 * @copydoc Plugin::manage()
 	 */
-	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
-		if (!parent::manage($verb, $args, $message, $messageParams)) return false;
-		$request = $this->getRequest();
+	function manage($args, $request) {
+		if (!parent::manage($args, $request)) return false;
 
-		switch ($verb) {
+		switch (array_shift($args)) {
 			case 'settings':
 				// Prepare the template manager.
 				$templateMgr = TemplateManager::getManager($request);
-				$templateMgr->register_function('plugin_url', array($this, 'smartyPluginUrl'));
+				$templateMgr->registerPlugin('function', 'plugin_url', array($this, 'smartyPluginUrl'));
 
 				// Instantiate an embedded server instance.
 				$this->import('classes.EmbeddedServer');
@@ -377,7 +349,7 @@ class LucenePlugin extends GenericPlugin {
 		if (!in_array($op, $publicOps)) return;
 
 		// Get the journal object from the context (optimized).
-		$request = $this->getRequest();
+		$request = Application::getRequest();
 		$router = $request->getRouter();
 		$journal = $router->getContext($request); /* @var $journal Journal */
 		if ($op == 'usageMetricBoost' && $journal != null) return;
@@ -681,7 +653,7 @@ class LucenePlugin extends GenericPlugin {
 	// Form hook implementations.
 	//
 	/**
-	 * @see Form::Form()
+	 * @see Form::__construct()
 	 */
 	function callbackSectionFormConstructor($hookName, $params) {
 		// Check whether we got a valid ranking boost option.
@@ -733,7 +705,9 @@ class LucenePlugin extends GenericPlugin {
 	}
 
 	/**
-	 * @see Form::execute()
+	 * Callback for execution upon section form save
+	 * @param $hookName string
+	 * @param $params array
 	 */
 	function callbackSectionFormExecute($hookName, $params) {
 		// Convert the ranking boost option back into a ranking boost factor.
@@ -765,11 +739,11 @@ class LucenePlugin extends GenericPlugin {
 		if ($template != 'search/search.tpl') return false;
 
 		// Get the request.
-		$request = PKPApplication::getRequest();
+		$request = Application::getRequest();
 
 		// Assign our private stylesheet.
 		$templateMgr = $params[0];
-		$templateMgr->addStylesheet($request->getBaseUrl() . '/' . $this->getPluginPath() . '/templates/lucene.css');
+		$templateMgr->addStylesheet('lucene', $request->getBaseUrl() . '/' . $this->getPluginPath() . '/templates/lucene.css');
 
 		// Instant search.
 		if ($this->getSetting(0, 'instantSearch')) {
@@ -793,7 +767,7 @@ class LucenePlugin extends GenericPlugin {
 		$smarty =& $params[1];
 		$output =& $params[2];
 		$smarty->assign($params[0]);
-		$output .= $smarty->fetch($this->getTemplatePath() . 'filterInput.tpl');
+		$output .= $smarty->fetch($this->getTemplateResource('filterInput.tpl'));
 		return false;
 	}
 
@@ -810,7 +784,7 @@ class LucenePlugin extends GenericPlugin {
 			'spellingSuggestionUrlParams',
 			array($this->_spellingSuggestionField => $this->_spellingSuggestion)
 		);
-		$output .= $smarty->fetch($this->getTemplatePath() . 'preResults.tpl');
+		$output .= $smarty->fetch($this->getTemplateResource('preResults.tpl'));
 		return false;
 	}
 
@@ -861,7 +835,7 @@ class LucenePlugin extends GenericPlugin {
 
 		// Render the template.
 		$output =& $params[2];
-		$output .= $smarty->fetch($this->getTemplatePath() . 'additionalSectionMetadata.tpl');
+		$output .= $smarty->fetch($this->getTemplateResource('additionalSectionMetadata.tpl'));
 		return false;
 	}
 
@@ -881,7 +855,7 @@ class LucenePlugin extends GenericPlugin {
 		// Check error conditions:
 		// - the "ranking/sorting-by-metric" feature is not enabled
 		// - a "main metric" is not configured
-		$application = PKPApplication::getApplication();
+		$application = Application::getApplication();
 		$metricType = $application->getDefaultMetricType();
 		if (!($this->getSetting(0, 'rankingByMetric') || $this->getSetting(0, 'sortingByMetric')) ||
 				empty($metricType)) return;
@@ -901,7 +875,9 @@ class LucenePlugin extends GenericPlugin {
 		if (empty($metricReport)) return;
 
 		// Pluck the metric values and find the maximum.
-		$max = max(array_map(create_function('$reportRow', 'return $reportRow["metric"];'), $metricReport));
+		$max = max(array_map(function($reportRow) {
+			return $reportRow['metric'];
+		}, $metricReport));
 		if ($max <= 0) return;
 
 		// Get the Lucene plugin installation ID.
@@ -1114,7 +1090,7 @@ class LucenePlugin extends GenericPlugin {
 		}
 
 		// Assign parameters.
-		$request = PKPApplication::getRequest();
+		$request = Application::getRequest();
 		$site = $request->getSite();
 		$mail->assignParams(
 			array('siteName' => $site->getLocalizedTitle(), 'error' => $error)
@@ -1178,4 +1154,4 @@ class LucenePlugin extends GenericPlugin {
 		$solr->reloadExternalFiles();
 	}
 }
-?>
+

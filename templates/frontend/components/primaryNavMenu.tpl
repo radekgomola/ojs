@@ -1,8 +1,8 @@
 {**
  * templates/frontend/components/primaryNavMenu.tpl
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Primary navigation menu list for OJS
@@ -32,26 +32,35 @@
 			</li>
 		{/if}
 
-		<li class="has_submenu">
+		<li>
 			<a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
 				{translate key="navigation.about"}
 			</a>
 			<ul>
 				<li>
 					<a href="{url router=$smarty.const.ROUTE_PAGE page="about"}">
-						{translate key="about.aboutTheJournal"}
+						{translate key="about.aboutContext"}
 					</a>
 				</li>
-				<li>
-					<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="editorialTeam"}">
-						{translate key="about.editorialTeam"}
-					</a>
-				</li>
+				{if $currentJournal->getLocalizedSetting('editorialTeam')}
+					<li>
+						<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="editorialTeam"}">
+							{translate key="about.editorialTeam"}
+						</a>
+					</li>
+				{/if}
 				<li>
 					<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="submissions"}">
 						{translate key="about.submissions"}
 					</a>
 				</li>
+				{if $currentJournal->getSetting('mailingAddress') || $currentJournal->getSetting('contactName')}
+					<li>
+						<a href="{url router=$smarty.const.ROUTE_PAGE page="about" op="contact"}">
+							{translate key="about.contact"}
+						</a>
+					</li>
+				{/if}
 			</ul>
 		</li>
 	{/if}

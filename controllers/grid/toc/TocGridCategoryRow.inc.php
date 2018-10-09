@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/toc/TocGridCategoryRow.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class TocGridCategoryRow
@@ -16,12 +16,6 @@
 import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
 class TocGridCategoryRow extends GridCategoryRow {
-	/**
-	 * Constructor
-	 */
-	function TocGridCategoryRow() {
-		parent::GridCategoryRow();
-	}
 
 	//
 	// Overridden methods from GridCategoryRow
@@ -36,4 +30,4 @@ class TocGridCategoryRow extends GridCategoryRow {
 	}
 }
 
-?>
+

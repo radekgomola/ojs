@@ -7,8 +7,8 @@
 /**
  * @file plugins/generic/webFeed/index.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup plugins_generic_webFeed
@@ -19,5 +19,3 @@
 require_once('WebFeedPlugin.inc.php');
 
 return new WebFeedPlugin(); 
-
-?> 

@@ -9,8 +9,8 @@
 /**
  * @file classes/article/Article.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Article
@@ -28,13 +28,6 @@ define ('AUTHOR_TOC_SHOW', 2);
 import('lib.pkp.classes.submission.Submission');
 
 class Article extends Submission {
-	/**
-	 * Constructor.
-	 */
-	function Article() {
-		parent::Submission();
-	}
-
 
 	//
 	// Get/set methods
@@ -57,7 +50,7 @@ class Article extends Submission {
 			case PERMISSIONS_FIELD_COPYRIGHT_HOLDER:
 				switch($context->getSetting('copyrightHolderType')) {
 					case 'author':
-						$fieldValue = array($context->getPrimaryLocale() => $this->getAuthorString());
+						$fieldValue = array($context->getPrimaryLocale() => $this->getAuthorString(false));
 						break;
 					case 'other':
 						$fieldValue = $context->getSetting('copyrightHolderOther');
@@ -74,7 +67,7 @@ class Article extends Submission {
 
 				// Override based on context settings
 				$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
-				$publishedArticle = $publishedArticleDao->getPublishedArticleByArticleId($this->getId());
+				$publishedArticle = $publishedArticleDao->getByArticleId($this->getId());
 				if ($publishedArticle) {
 					switch($context->getSetting('copyrightYearBasis')) {
 						case 'submission':
@@ -85,7 +78,7 @@ class Article extends Submission {
 							if ($publishedArticle->getIssueId()) {
 								// override to the issue's year if published as issue-based
 								$issueDao =& DAORegistry::getDAO('IssueDAO');
-								$issue = $issueDao->getIssueByArticleId($this->getId());
+								$issue = $issueDao->getByArticleId($this->getId());
 								if ($issue && $issue->getDatePublished()) {
 									$fieldValue = date('Y', strtotime($issue->getDatePublished()));
 								}
@@ -106,22 +99,12 @@ class Article extends Submission {
 
 	/**
 	 * Return the "best" article ID -- If a public article ID is set,
-	 * use it; otherwise use the internal article Id. (Checks the journal
-	 * settings to ensure that the public ID feature is enabled.)
-	 * @param $journal Object the journal this article is in
+	 * use it; otherwise use the internal article Id.
 	 * @return string
 	 */
-	function getBestArticleId($journal = null) {
-		// Retrieve the journal, if necessary.
-		if (!isset($journal)) {
-			$journalDao = DAORegistry::getDAO('JournalDAO');
-			$journal = $journalDao->getById($this->getJournalId());
-		}
-
-		if ($journal->getSetting('enablePublicArticleId')) {
-			$publicArticleId = $this->getPubId('publisher-id');
-			if (!empty($publicArticleId)) return $publicArticleId;
-		}
+	function getBestArticleId() {
+		$publicArticleId = $this->getStoredPubId('publisher-id');
+		if (!empty($publicArticleId)) return $publicArticleId;
 		return $this->getId();
 	}
 
@@ -206,54 +189,99 @@ class Article extends Submission {
 	}
 
 	/**
-	 * Get current review round.
-	 * @return int
+	 * Get the localized cover page server-side file name
+	 * @return string
 	 */
-	function getCurrentRound() {
-		return $this->getData('currentRound');
+	function getLocalizedCoverImage() {
+		return $this->getLocalizedData('coverImage');
 	}
 
 	/**
-	 * Set current review round.
-	 * @param $currentRound int
+	 * get cover page server-side file name
+	 * @param $locale string
+	 * @return string
 	 */
-	function setCurrentRound($currentRound) {
-		return $this->setData('currentRound', $currentRound);
+	function getCoverImage($locale) {
+		return $this->getData('coverImage', $locale);
 	}
 
 	/**
-	 * get expedited
-	 * @return boolean
+	 * set cover page server-side file name
+	 * @param $coverImage string
+	 * @param $locale string
 	 */
-	function getFastTracked() {
-		return $this->getData('fastTracked');
+	function setCoverImage($coverImage, $locale) {
+		$this->setData('coverImage', $coverImage, $locale);
 	}
 
 	/**
-	 * set fastTracked
-	 * @param $fastTracked boolean
+	 * Get the localized cover page alternate text
+	 * @return string
 	 */
-	function setFastTracked($fastTracked) {
-		return $this->setData('fastTracked',$fastTracked);
+	function getLocalizedCoverImageAltText() {
+		return $this->getLocalizedData('coverImageAltText');
 	}
 
 	/**
-	 * Get starting page of an article.
-	 * @return int
+	 * get cover page alternate text
+	 * @param $locale string
+	 * @return string
 	 */
-	function getStartingPage() {
-		preg_match('/^[^\d]*(\d+)\D*(.*)$/', $this->getPages(), $pages);
-		return $pages[1];
+	function getCoverImageAltText($locale) {
+		return $this->getData('coverImageAltText', $locale);
 	}
 
 	/**
-	 * Get ending page of an article.
-	 * @return int
+	 * set cover page alternate text
+	 * @param $coverImageAltText string
+	 * @param $locale string
 	 */
-	function getEndingPage() {
-		preg_match('/^[^\d]*(\d+)\D*(.*)$/', $this->getPages(), $pages);
-		return $pages[2];
+	function setCoverImageAltText($coverImageAltText, $locale) {
+		$this->setData('coverImageAltText', $coverImageAltText, $locale);
+	}
+
+	/**
+	 * Get a full URL to the localized cover image
+	 *
+	 * @return string
+	 */
+	function getLocalizedCoverImageUrl() {
+		$coverImage = $this->getLocalizedCoverImage();
+		if (!$coverImage) {
+			return '';
+		}
+
+		$request = Application::getRequest();
+
+		import('classes.file.PublicFileManager');
+		$publicFileManager = new PublicFileManager();
+
+		return $request->getBaseUrl() . '/' . $publicFileManager->getJournalFilesPath($this->getContextId()) . '/' . $coverImage;
+	}
+
+	/**
+	 * Get full URLs all cover images
+	 *
+	 * @return array
+	 */
+	function getCoverImageUrls() {
+		$coverImages = $this->getCoverImage(null);
+		if (empty($coverImages)) {
+			return array();
+		}
+
+		$request = Application::getRequest();
+		import('classes.file.PublicFileManager');
+		$publicFileManager = new PublicFileManager();
+
+		$urls = array();
+
+		foreach ($coverImages as $locale => $coverImage) {
+			$urls[$locale] = sprintf('%s/%s/%s', $request->getBaseUrl(), $publicFileManager->getJournalFilesPath($this->getJournalId()), $coverImage);
+		}
+
+		return $urls;
 	}
 }
 
-?>
+

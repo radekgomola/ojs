@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/issueGalleys/IssueGalleyGridHandler.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssueGalleyGridHandler
@@ -20,8 +20,8 @@ class IssueGalleyGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function IssueGalleyGridHandler() {
-		parent::GridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER),
 			array(
@@ -64,10 +64,10 @@ class IssueGalleyGridHandler extends GridHandler {
 	/**
 	 * @copydoc GridHandler::setDataElementSequence()
 	 */
-	function setDataElementSequence($request, $rowId, &$issueGalley, $newSequence) {
+	function setDataElementSequence($request, $rowId, $gridDataElement, $newSequence) {
 		$issueGalleyDao = DAORegistry::getDAO('IssueGalleyDAO'); /* @var $issueGalleyDao IssueGalleyDAO */
-		$issueGalley->setSequence($newSequence);
-		$issueGalleyDao->updateObject($issueGalley);
+		$gridDataElement->setSequence($newSequence);
+		$issueGalleyDao->updateObject($gridDataElement);
 	}
 
 	/**
@@ -91,9 +91,9 @@ class IssueGalleyGridHandler extends GridHandler {
 	}
 
 	/**
-	 * @copydoc PKPHandler::initialize()
+	 * @copydoc GridHandler::initialize()
 	 */
-	function initialize($request, $args) {
+	function initialize($request, $args = null) {
 		parent::initialize($request, $args);
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION);
@@ -147,17 +147,16 @@ class IssueGalleyGridHandler extends GridHandler {
 		}
 
 		// Public ID, if enabled
-		if ($journal->getSetting('enablePublicGalleyId')) {
-			$this->addColumn(
-				new GridColumn(
-					'publicGalleyId',
-					'submission.layout.publicGalleyId',
-					null,
-					null,
-					$issueGalleyGridCellProvider
-				)
-			);
-		}
+		$this->addColumn(
+			new GridColumn(
+				'publicGalleyId',
+				'submission.layout.publicGalleyId',
+				null,
+				null,
+				$issueGalleyGridCellProvider
+			)
+		);
+
 	}
 
 	/**
@@ -233,7 +232,7 @@ class IssueGalleyGridHandler extends GridHandler {
 		$issueGalley = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE_GALLEY);
 		import('classes.file.IssueFileManager');
 		$issueFileManager = new IssueFileManager($issue->getId());
-		return $issueFileManager->downloadFile($issueGalley->getFileId());
+		return $issueFileManager->downloadById($issueGalley->getFileId());
 	}
 
 	/**
@@ -250,12 +249,11 @@ class IssueGalleyGridHandler extends GridHandler {
 		$issueGalleyForm = new IssueGalleyForm($request, $issue, $issueGalley);
 		$issueGalleyForm->readInputData();
 
-		if ($issueGalleyForm->validate($request)) {
-			$issueId = $issueGalleyForm->execute($request);
+		if ($issueGalleyForm->validate()) {
+			$issueId = $issueGalleyForm->execute();
 			return DAO::getDataChangedEvent($issueId);
-		} else {
-			return new JSONMessage(false);
 		}
+		return new JSONMessage(false);
 	}
 
 	/**
@@ -266,9 +264,11 @@ class IssueGalleyGridHandler extends GridHandler {
 	function delete($args, $request) {
 		$issueGalleyDao = DAORegistry::getDAO('IssueGalleyDAO');
 		$issueGalley = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE_GALLEY);
-		$issueGalley->getId();
-		$issueGalleyDao->deleteObject($issueGalley);
-		return DAO::getDataChangedEvent();
+		if ($issueGalley && $request->checkCSRF()) {
+			$issueGalleyDao->deleteObject($issueGalley);
+			return DAO::getDataChangedEvent();
+		}
+		return new JSONMessage(false);
 	}
 
 	/**
@@ -281,4 +281,4 @@ class IssueGalleyGridHandler extends GridHandler {
 	}
 }
 
-?>
+

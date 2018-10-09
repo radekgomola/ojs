@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/native/NativeImportExportDeployment.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class NativeImportExportDeployment
@@ -25,8 +25,8 @@ class NativeImportExportDeployment extends PKPNativeImportExportDeployment {
 	 * @param $context Context
 	 * @param $user User
 	 */
-	function NativeImportExportDeployment($context, $user) {
-		parent::PKPNativeImportExportDeployment($context, $user);
+	function __construct($context, $user) {
+		parent::__construct($context, $user);
 	}
 
 	//
@@ -78,6 +78,42 @@ class NativeImportExportDeployment extends PKPNativeImportExportDeployment {
 	function getIssue() {
 		return $this->_issue;
 	}
+
+	/**
+	 * Remove the processed objects.
+	 * @param $assocType integer ASSOC_TYPE_...
+	 */
+	function removeImportedObjects($assocType) {
+		switch ($assocType) {
+			case ASSOC_TYPE_ISSUE:
+				$processedIssuesIds = $this->getProcessedObjectsIds(ASSOC_TYPE_ISSUE);
+				if (!empty($processedIssuesIds)) {
+					$issueDao = DAORegistry::getDAO('IssueDAO');
+					foreach ($processedIssuesIds as $issueId) {
+						if ($issueId) {
+							$issue = $issueDao->getById($issueId);
+							$issueDao->deleteObject($issue);
+						}
+					}
+				}
+				break;
+			case ASSOC_TYPE_SECTION:
+				$processedSectionIds = $this->getProcessedObjectsIds(ASSOC_TYPE_SECTION);
+				if (!empty($processedSectionIds)) {
+					$sectionDao = DAORegistry::getDAO('SectionDAO');
+					foreach ($processedSectionIds as $sectionId) {
+						if ($sectionId) {
+							$section = $sectionDao->getById($sectionId);
+							$sectionDao->deleteObject($section);
+						}
+					}
+				}
+				break;
+			default:
+				parent::removeImportedObjects($assocType);
+		}
+	}
+
 }
 
-?>
+

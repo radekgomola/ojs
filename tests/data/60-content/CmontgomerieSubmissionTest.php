@@ -3,8 +3,8 @@
 /**
  * @file tests/data/60-content/CmontgomerieSubmissionTest.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CmontgomerieSubmissionTest
@@ -22,11 +22,10 @@ class CmontgomerieSubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'cmontgomerie',
-			'firstName' => 'Craig',
-			'lastName' => 'Montgomerie',
+			'givenName' => 'Craig',
+			'familyName' => 'Montgomerie',
 			'affiliation' => 'University of Alberta',
 			'country' => 'Canada',
-			'roles' => array('Author'),
 		));
 
 		$this->createSubmission(array(
@@ -43,8 +42,8 @@ class CmontgomerieSubmissionTest extends ContentBaseTestCase {
 			),
 			'additionalAuthors' => array(
 				array(
-					'firstName' => 'Mark',
-					'lastName' => 'Irvine',
+					'givenName' => 'Mark',
+					'familyName' => 'Irvine',
 					'country' => 'Canada',
 					'affiliation' => 'University of Victoria',
 					'email' => 'mirvine@mailinator.com',

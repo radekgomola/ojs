@@ -7,8 +7,8 @@
 ;
 ; config.TEMPLATE.inc.php
 ;
-; Copyright (c) 2014-2016 Simon Fraser University Library
-; Copyright (c) 2003-2016 John Willinsky
+; Copyright (c) 2014-2018 Simon Fraser University
+; Copyright (c) 2003-2018 John Willinsky
 ; Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
 ;
 ; OJS Configuration settings.
@@ -30,12 +30,6 @@ installed = Off
 
 ; The canonical URL to the OJS installation (excluding the trailing slash)
 base_url = "http://pkp.sfu.ca/ojs"
-
-; Path to the registry directory (containing various settings files)
-; Although the files in this directory generally do not contain any
-; sensitive information, the directory can be moved to a location that
-; is not web-accessible if desired
-registry_dir = registry
 
 ; Session cookie name
 session_cookie_name = OJSSID
@@ -121,6 +115,12 @@ enable_minified = Off
 ; alert purposes only.
 enable_beacon = On
 
+; Set this to "On" if you would like to only have a single, site-wide Privacy
+; Statement, rather than a separate Privacy Statement for each journal. Setting
+; this to "Off" will allow you to enter a site-wide Privacy Statement as well
+; as separate Privacy Statements for each journal.
+sitewide_privacy_statement = Off
+
 
 ;;;;;;;;;;;;;;;;;;;;;
 ; Database Settings ;
@@ -197,11 +197,6 @@ connection_charset = Off
 ; Must be set to "Off" if not supported by the database server
 database_charset = Off
 
-; Enable character normalization to utf-8 (recommended)
-; If disabled, strings will be passed through in their native encoding
-; Note that client_charset and database collation must be set
-; to "utf-8" for this to work, as characters are stored in utf-8
-charset_normalization = Off
 
 ;;;;;;;;;;;;;;;;;
 ; File Settings ;
@@ -222,6 +217,10 @@ public_files_dir = public
 
 ; Permissions mask for created files and directories
 umask = 0022
+
+; The minimum percentage similarity between filenames that should be considered
+; a possible revision
+filename_revision_match = 70
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -257,6 +256,9 @@ encryption = sha1
 
 ; The unique salt to use for generating password reset hashes
 salt = "YouMustSetASecretKeyHere!!"
+
+; The unique secret used for encoding and decoding API keys
+api_key_secret = ""
 
 ; The number of seconds before a password reset hash expires (defaults to 7200 / 2 hours)
 reset_seconds = 7200
@@ -418,12 +420,6 @@ recaptcha_private_key = your_private_key
 
 ; Whether or not to use Captcha on user registration
 captcha_on_register = on
-
-; Whether or not to use Captcha on user comments
-captcha_on_comments = on
-
-; Whether or not to use Captcha on notification mailing list registration
-captcha_on_mailinglist = on
 
 
 ;;;;;;;;;;;;;;;;;;;;;

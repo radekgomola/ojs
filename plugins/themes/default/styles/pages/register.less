@@ -1,40 +1,82 @@
 /**
  * @file plugins/themes/default/styles/pages/register.less
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @brief Styles applying to the lightweight page for viewing PDFs
+ * @brief Styles applying to the registration page
  * @link templates/frontend/pages/userRegister.tpl
  */
 .page_register {
-
-	.fields {
-
-		.username {
-
-			label {
-				display: inline-block;
-			}
-
-			.suggest_username {
-				&:extend(.cmp_button);
-			}
-		}
-	}
 
 	.required_label {
 		font-size: @font-sml;
 		line-height: @line-sml;
 		color: @text-light;
+		margin-bottom: @double;
 	}
 
-	.buttons {
-		.pkp_helpers_clear;
+	.consent {
+		margin-bottom: 0;
+	}
 
-		button {
-			&:extend(.cmp_button all);
+	.fields .reviewer_interests {
+		max-height: 0;
+		padding-bottom: 0;
+		overflow: hidden;
+		opacity: 0;
+		transition: all 0.3s;
+
+		&.is_visible {
+			max-height: 400px;
+			overflow: visible;
+			padding-bottom: @triple;
+			opacity: 1;
+		}
+	}
+
+	.context_optin {
+
+		.contexts {
+			&:extend(.pkp_unstyled_list);
+
+			> li {
+				margin-bottom: 1em;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		.roles {
+			padding: @half 0;
+			margin-bottom: 0;
+
+			legend {
+				&:extend(.pkp_screen_reader);
+			}
+
+			label {
+				display: inline-block;
+				margin-right: 1em;
+				font-size: @font-sml;
+				line-height: @line-sml;
+			}
+		}
+
+		.context_privacy {
+			position: absolute;
+			left: -9999px;
+			padding: @half 0;
+			font-size: @font-sml;
+			line-height: @line-sml;
+		}
+
+		.context_privacy_visible {
+			position: relative;
+			left: auto;
 		}
 	}
 
@@ -63,26 +105,6 @@
 			a {
 				color: #fff;
 			}
-		}
-	}
-
-	// Styles for user group panel, which is still tied to a template
-	// shared by the backend
-	.pkp_controllers_extrasOnDemand {
-		margin-top: @base;
-	}
-
-	.checkbox_and_radiobutton {
-		&:extend(.pkp_unstyled_list);
-	}
-
-	#interests {
-		margin-top: @double;
-
-		.sub_label {
-			font-size: @font-sml;
-			font-style: italic;
-			line-height: @double;
 		}
 	}
 

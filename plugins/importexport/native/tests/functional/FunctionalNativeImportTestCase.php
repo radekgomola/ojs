@@ -3,8 +3,8 @@
 /**
  * @file plugins/importexport/native/tests/functional/FunctionalNativeImportTest.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class FunctionalNativeImportTest
@@ -38,7 +38,7 @@ class FunctionalNativeImportTest extends FunctionalImportExportBaseTestCase {
 			'submissions', 'submission_files', 'submission_galleys', 'submission_galley_settings', 'submission_search_object_keywords',
 			'submission_search_objects', 'submission_settings',
 			'authors', 'custom_issue_orders', 'custom_section_orders', 'event_log', 'event_log_settings',
-			'issue_settings', 'issues', 'published_submissions', 'sessions', 'signoffs', 'temporary_files', 'users'
+			'issue_settings', 'issues', 'published_submissions', 'sessions', 'temporary_files', 'users'
 		);
 	}
 
@@ -47,8 +47,7 @@ class FunctionalNativeImportTest extends FunctionalImportExportBaseTestCase {
 	 */
 	protected function setUp() {
 		parent::setUp();
-		$application = PKPApplication::getApplication();
-		$request = $application->getRequest();
+		$request = Application::getRequest();
 		if (is_null($request->getRouter())) {
 			$router = new PKPRouter();
 			$request->setRouter($router);
@@ -84,7 +83,7 @@ class FunctionalNativeImportTest extends FunctionalImportExportBaseTestCase {
 		self::assertRegExp('/##plugins.importexport.native.import.error.duplicatePubId##/', $result);
 
 		// Delete inserted article files from the filesystem.
-		$request = $application->getRequest();
+		$request = Application::getRequest();
 		$context = $request->getContext();
 		import('lib.pkp.classes.file.SubmissionFileManager');
 		$submissionFileManager = new SubmissionFileManager($context->getId(), $articleId);
@@ -98,4 +97,4 @@ class FunctionalNativeImportTest extends FunctionalImportExportBaseTestCase {
 		self::assertRegExp('/##plugins.importexport.native.import.error.unknownPubId##/', $result);
 	}
 }
-?>
+

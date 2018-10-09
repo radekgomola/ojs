@@ -3,8 +3,8 @@
 /**
  * @file classes/issue/IssueGalleyDAO.inc.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2003-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssueGalleyDAO
@@ -17,13 +17,6 @@
 import('classes.issue.IssueGalley');
 
 class IssueGalleyDAO extends DAO {
-
-	/**
-	 * Constructor.
-	 */
-	function IssueGalleyDAO() {
-		parent::DAO();
-	}
 
 	/**
 	 * Retrieve a galley by ID.
@@ -117,7 +110,7 @@ class IssueGalleyDAO extends DAO {
 			WHERE	gs.setting_name = ? AND
 				gs.setting_value = ? AND
 				g.issue_id = ?',
-			array('pub-id::'.$pubIdType, $pubId, (int) $issueId)
+			array('pub-id::'.$pubIdType, (string) $pubId, (int) $issueId)
 		);
 
 		$returner = null;
@@ -390,4 +383,4 @@ class IssueGalleyDAO extends DAO {
 	}
 }
 
-?>
+

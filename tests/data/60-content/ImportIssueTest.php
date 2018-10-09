@@ -3,8 +3,8 @@
 /**
  * @file tests/data/60-content/ImportIssueTest.php
  *
- * Copyright (c) 2014-2016 Simon Fraser University Library
- * Copyright (c) 2000-2016 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ImportIssueTest
@@ -29,6 +29,7 @@ class ImportIssueTest extends ContentBaseTestCase {
 		$this->click($selector);
 
 		$this->uploadFile(dirname(__FILE__) . '/issue.xml');
+		$this->waitForElementPresent($selector='//input[@name=\'temporaryFileId\' and string-length(@value)>0]');
 		$this->click('//form[@id=\'importXmlForm\']//button[starts-with(@id,\'submitFormButton-\')]');
 
 		// Ensure that the import was listed as completed.

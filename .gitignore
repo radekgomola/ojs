@@ -1,8 +1,13 @@
-config.inc.php
+/config.inc.php
 ./build
 temp
 /files
+/plugins/paymethod/paypal/vendor/
 .htaccess
 .project
 .buildpath
 .settings
+.DS_Store
+node_modules
+js/build.js
+styles/build.css

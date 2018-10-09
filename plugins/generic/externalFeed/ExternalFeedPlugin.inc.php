@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/externalFeed/ExternalFeedPlugin.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ExternalFeedPlugin
@@ -17,23 +17,20 @@ import('lib.pkp.classes.plugins.GenericPlugin');
 
 class ExternalFeedPlugin extends GenericPlugin {
 	/**
-	 * Called as a plugin is registered to the registry
-	 * @param $category String Name of category plugin was registered to
-	 * @return boolean True iff plugin initialized successfully; if false,
-	 * 	the plugin will not be registered.
+	 * @copydoc Plugin::register()
 	 */
-	function register($category, $path) {
-		$success = parent::register($category, $path);
+	function register($category, $path, $mainContextId = null) {
+		$success = parent::register($category, $path, $mainContextId);
 
-		if ($success && $this->getEnabled()) {
+		if ($success && $this->getEnabled($mainContextId)) {
 			$this->import('ExternalFeedDAO');
 
 			$externalFeedDao = new ExternalFeedDAO($this->getName());
 			DAORegistry::registerDAO('ExternalFeedDAO', $externalFeedDao);
 
-			$request = $this->getRequest();
+			$request = Application::getRequest();
 			$templateMgr = TemplateManager::getManager($request);
-			$templateMgr->addStyleSheet($request->getBaseUrl() . '/' . $this->getStyleSheetFile());
+			$templateMgr->addStyleSheet('externalFeed', $request->getBaseUrl() . '/' . $this->getStyleSheetFile());
 
 			// Journal home page display
 			HookRegistry::register('TemplateManager::display', array($this, 'displayHomepage'));
@@ -73,7 +70,7 @@ class ExternalFeedPlugin extends GenericPlugin {
 	 * Get the filename of the CSS stylesheet for this plugin.
 	 */
 	function getStyleSheetFile() {
-		$request = $this->getRequest();
+		$request = Application::getRequest();
 		$journal = $request->getJournal();
 		$journalId = $journal?$journal->getId():0;
 		$styleSheet = $this->getSetting($journalId, 'externalFeedStyleSheet');
@@ -90,7 +87,7 @@ class ExternalFeedPlugin extends GenericPlugin {
 	/**
 	 * Extend the {url ...} smarty to support externalFeed plugin.
 	 */
-	function smartyPluginUrl($params, &$smarty) {
+	function smartyPluginUrl($params, $smarty) {
 		$path = array($this->getCategory(), $this->getName());
 		if (is_array($params['path'])) {
 			$params['path'] = array_merge($path, $params['path']);
@@ -128,24 +125,12 @@ class ExternalFeedPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * Display verbs for the management interface.
-	 */
-	function getManagementVerbs() {
-		$verbs = parent::getManagementVerbs();
-		if ($this->getEnabled()) {
-			$verbs[] = array('feeds', __('plugins.generic.externalFeed.manager.feeds'));
-			$verbs[] = array('settings', __('plugins.generic.externalFeed.manager.settings'));
-		}
-		return $verbs;
-	}
-
-	/**
 	 * Display external feed content on journal homepage.
 	 * @param $hookName string
 	 * @param $args array
 	 */
 	function displayHomepage($hookName, $args) {
-		$request = $this->getRequest();
+		$request = Application::getRequest();
 		$journal = $request->getJournal();
 		$journalId = $journal?$journal->getId():0;
 
@@ -197,10 +182,10 @@ class ExternalFeedPlugin extends GenericPlugin {
 						$output .= '</tr>';
 						$output .= '<tr class="details">';
 						$output .= '<td class="posted">';
-						$output .= AppLocale::Translate('plugins.generic.externalFeed.posted') . ': ' . date('Y-m-d', strtotime($item->get_date()));
+						$output .= __('plugins.generic.externalFeed.posted') . ': ' . date('Y-m-d', strtotime($item->get_date()));
 						$output .= '</td>';
 						$output .= '<td class="more">';
-						$output .= '<a href="' . $item->get_permalink() . '" target="_blank">' . AppLocale::Translate('plugins.generic.externalFeed.more') . '</a>';
+						$output .= '<a href="' . $item->get_permalink() . '" target="_blank">' . __('plugins.generic.externalFeed.more') . '</a>';
 						$output .= '</td>';
 						$output .= '</tr>';
 
@@ -214,7 +199,7 @@ class ExternalFeedPlugin extends GenericPlugin {
 				$output .= '</div>';
 
 				$templateManager =& $args[0];
-				$additionalHomeContent = $templateManager->get_template_vars('additionalHomeContent');
+				$additionalHomeContent = $templateManager->getTemplateVars('additionalHomeContent');
 				$templateManager->assign('additionalHomeContent', $additionalHomeContent . "\n\n" . $output);
 			}
 		}
@@ -237,9 +222,8 @@ class ExternalFeedPlugin extends GenericPlugin {
  	/**
 	 * @see Plugin::manage()
 	 */
-	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
-		if (!parent::manage($verb, $args, $message, $messageParams)) return false;
-		$request =& $this->getRequest();
+	function manage($args, $request) {
+		if (!parent::manage($args, $request)) return false;
 
 		AppLocale::requireComponents(
 			LOCALE_COMPONENT_APP_COMMON,
@@ -247,11 +231,11 @@ class ExternalFeedPlugin extends GenericPlugin {
 			LOCALE_COMPONENT_PKP_USER
 		);
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->register_function('plugin_url', array($this, 'smartyPluginUrl'));
+		$templateMgr->registerPlugin('function', 'plugin_url', array($this, 'smartyPluginUrl'));
 		$journal = $request->getJournal();
 		$journalId = $journal->getId();
 
-		switch ($verb) {
+		switch (array_shift($args)) {
 			case 'delete':
 				if (!empty($args)) {
 					$externalFeedId = !isset($args) || empty($args) ? null : (int) $args[0];
@@ -272,17 +256,17 @@ class ExternalFeedPlugin extends GenericPlugin {
 				if (($externalFeedId != null && $externalFeedDao->getExternalFeedJournalId($externalFeedId) == $journalId)) {
 					$feed =& $externalFeedDao->getExternalFeed($externalFeedId);
 
-					$direction = $this->getRequest()->getUserVar('dir');
+					$direction = $request->getUserVar('dir');
 
 					if ($direction != null) {
 						// moving with up or down arrow
 						$isDown = ($direction=='d');
-						$feed->setSeq($feed->getSeq()+($isDown?1.5:-1.5));
+						$feed->setSequence($feed->getSequence()+($isDown?1.5:-1.5));
 						$externalFeedDao->updateExternalFeed($feed);
 						$externalFeedDao->resequenceExternalFeeds($feed->getJournalId());
 					}
 				}
-				$this->getRequest()->redirect(null, 'manager', 'plugin', array('generic', $this->getName(), 'feeds'));
+				$request->redirect(null, 'manager', 'plugin', array('generic', $this->getName(), 'feeds'));
 				return true;
 			case 'create':
 			case 'edit':
@@ -311,11 +295,11 @@ class ExternalFeedPlugin extends GenericPlugin {
 					$templateMgr->assign('journalSettings', $journalSettings);
 					$externalFeedForm->display();
 				} else {
-					$this->getRequest()->redirect(null, 'manager', 'plugin', array('generic', $this->getName(), 'feeds'));
+					$request->redirect(null, 'manager', 'plugin', array('generic', $this->getName(), 'feeds'));
 				}
 				return true;
 			case 'update':
-				$externalFeedId = $this->getRequest()->getUserVar('feedId') == null ? null : (int) $this->getRequest()->getUserVar('feedId');
+				$externalFeedId = $request->getUserVar('feedId') == null ? null : (int) $request->getUserVar('feedId');
 				$externalFeedDao = DAORegistry::getDAO('ExternalFeedDAO');
 
 				if (($externalFeedId != null && $externalFeedDao->getExternalFeedJournalId($externalFeedId) == $journalId) || $externalFeedId == null) {
@@ -327,10 +311,10 @@ class ExternalFeedPlugin extends GenericPlugin {
 					if ($externalFeedForm->validate()) {
 						$externalFeedForm->execute();
 
-						if ($this->getRequest()->getUserVar('createAnother')) {
-							$this->getRequest()->redirect(null, 'manager', 'plugin', array('generic', $this->getName(), 'create'));
+						if ($request->getUserVar('createAnother')) {
+							$request->redirect(null, 'manager', 'plugin', array('generic', $this->getName(), 'create'));
 						} else {
-							$this->getRequest()->redirect(null, 'manager', 'plugin', array('generic', $this->getName(), 'feeds'));
+							$request->redirect(null, 'manager', 'plugin', array('generic', $this->getName(), 'feeds'));
 						}
 					} else {
 						if ($externalFeedId == null) {
@@ -346,17 +330,17 @@ class ExternalFeedPlugin extends GenericPlugin {
 						$externalFeedForm->display();
 					}
 				} else {
-					$this->getRequest()->redirect(null, 'manager', 'plugin', array('generic', $this->getName(), 'feeds'));
+					$request->redirect(null, 'manager', 'plugin', array('generic', $this->getName(), 'feeds'));
 				}
 				return true;
 			case 'settings':
 				$this->import('ExternalFeedSettingsForm');
 				$form = new ExternalFeedSettingsForm($this, $journal->getId());
-				if ($this->getRequest()->getUserVar('save')) {
-					$this->getRequest()->redirect(null, 'manager', 'plugin', array('generic', $this->getName(), 'feeds'));
-				} elseif ($this->getRequest()->getUserVar('uploadStyleSheet')) {
+				if ($request->getUserVar('save')) {
+					$request->redirect(null, 'manager', 'plugin', array('generic', $this->getName(), 'feeds'));
+				} elseif ($request->getUserVar('uploadStyleSheet')) {
 					$form->uploadStyleSheet();
-				} elseif ($this->getRequest()->getUserVar('deleteStyleSheet')) {
+				} elseif ($request->getUserVar('deleteStyleSheet')) {
 					$form->deleteStyleSheet();
 				}
 				$form->initData();
@@ -365,15 +349,15 @@ class ExternalFeedPlugin extends GenericPlugin {
 			case 'feeds':
 			default:
 				$this->import('ExternalFeed');
-				$rangeInfo =& Handler::getRangeInfo($this->getRequest(), 'feeds');
+				$rangeInfo = Handler::getRangeInfo($request, 'feeds');
 				$externalFeedDao = DAORegistry::getDAO('ExternalFeedDAO');
 				$feeds =& $externalFeedDao->getExternalFeedsByJournalId($journalId, $rangeInfo);
 				$templateMgr->assign('feeds', $feeds);
 
-				$templateMgr->display($this->getTemplatePath() . 'externalFeeds.tpl');
+				$templateMgr->display($this->getTemplateResource('externalFeeds.tpl'));
 				return true;
 		}
 	}
 }
 
-?>
+

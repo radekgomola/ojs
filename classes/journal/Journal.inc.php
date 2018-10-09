@@ -9,8 +9,8 @@
 /**
  * @file classes/journal/Journal.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Journal
@@ -28,44 +28,27 @@ define('PUBLISHING_MODE_NONE', 2);
 import('lib.pkp.classes.context.Context');
 
 class Journal extends Context {
-	/**
-	 * Constructor.
-	 */
-	function Journal() {
-		parent::Context();
-	}
 
 	/**
 	 * Get "localized" journal page title (if applicable).
-	 * param $home boolean get homepage title
 	 * @return string
 	 */
-	function getLocalizedPageHeaderTitle($home = false) {
-		$prefix = $home ? 'home' : 'page';
-		$typeArray = $this->getSetting($prefix . 'HeaderTitleType');
-		$imageArray = $this->getSetting($prefix . 'HeaderTitleImage');
-		$titleArray = $this->getSetting($prefix . 'HeaderTitle');
-
+	function getLocalizedPageHeaderTitle() {
+		$titleArray = $this->getSetting('name');
 		$title = null;
 
 		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
-			if (isset($typeArray[$locale]) && $typeArray[$locale]) {
-				if (isset($imageArray[$locale])) $title = $imageArray[$locale];
-			}
-			if (empty($title) && isset($titleArray[$locale])) $title = $titleArray[$locale];
-			if (!empty($title)) return $title;
+			if (isset($titleArray[$locale])) return $titleArray[$locale];
 		}
 		return null;
 	}
 
 	/**
 	 * Get "localized" journal page logo (if applicable).
-	 * param $home boolean get homepage logo
 	 * @return string
 	 */
-	function getLocalizedPageHeaderLogo($home = false) {
-		$prefix = $home ? 'home' : 'page';
-		$logoArray = $this->getSetting($prefix . 'HeaderLogoImage');
+	function getLocalizedPageHeaderLogo() {
+		$logoArray = $this->getSetting('pageHeaderLogoImage');
 		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($logoArray[$locale])) return $logoArray[$locale];
 		}
@@ -77,7 +60,7 @@ class Journal extends Context {
 	 * @return string
 	 */
 	function getLocalizedFavicon() {
-		$faviconArray = $this->getSetting('journalFavicon');
+		$faviconArray = $this->getSetting('favicon');
 		foreach (array(AppLocale::getLocale(), AppLocale::getPrimaryLocale()) as $locale) {
 			if (isset($faviconArray[$locale])) return $faviconArray[$locale];
 		}
@@ -105,10 +88,9 @@ class Journal extends Context {
 	}
 
 	/**
-	 * Get the DAO for this context object.
-	 * @return DAO
+	 * @copydoc DataObject::getDAO()
 	 */
-	static function getDAO() {
+	function getDAO() {
 		return DAORegistry::getDAO('JournalDAO');
 	}
 
@@ -161,7 +143,7 @@ class Journal extends Context {
 				$defaultMetricType = $availableMetrics[0];
 			} else {
 				// Use the site-wide default metric.
-				$application = PKPApplication::getApplication();
+				$application = Application::getApplication();
 				$defaultMetricType = $application->getDefaultMetricType();
 			}
 		} else {
@@ -188,9 +170,9 @@ class Journal extends Context {
 	function getMetrics($metricType = null, $columns = array(), $filter = array(), $orderBy = array(), $range = null) {
 		// Add a journal filter and run the report.
 		$filter[STATISTICS_DIMENSION_CONTEXT_ID] = $this->getId();
-		$application = PKPApplication::getApplication();
+		$application = Application::getApplication();
 		return $application->getMetrics($metricType, $columns, $filter, $orderBy, $range);
 	}
 }
 
-?>
+

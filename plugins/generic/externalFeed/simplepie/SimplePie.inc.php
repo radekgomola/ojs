@@ -731,7 +731,7 @@ class SimplePie
 	 * @param string $cache_location This is where you want the cache to be stored.
 	 * @param int $cache_duration This is the number of seconds that you want to store the cache file for.
 	 */
-	function SimplePie($feed_url = null, $cache_location = null, $cache_duration = null)
+	function __construct($feed_url = null, $cache_location = null, $cache_duration = null)
 	{
 		// Other objects, instances created here so we can set options on them
 		$this->sanitize = new SimplePie_Sanitize;
@@ -1830,7 +1830,7 @@ class SimplePie
 	}
 
 	/**
-	 * Return the error message for the occured error
+	 * Return the error message for the occurred error
 	 *
 	 * @access public
 	 * @return string Error message
@@ -7677,6 +7677,13 @@ class SimplePie_File
 					curl_setopt($fp, CURLOPT_ENCODING, '');
 				}
 				curl_setopt($fp, CURLOPT_URL, $url);
+				if ($httpProxyHost = Config::getVar('proxy', 'http_host')) {
+					curl_setopt($fp, CURLOPT_PROXY, $httpProxyHost);
+					curl_setopt($fp, CURLOPT_PROXYPORT, Config::getVar('proxy', 'http_port', '80'));
+					if ($username = Config::getVar('proxy', 'username')) {
+						curl_setopt($fp, CURLOPT_PROXYUSERPWD, $username . ':' . Config::getVar('proxy', 'password'));
+					}
+				}
 				curl_setopt($fp, CURLOPT_HEADER, 1);
 				curl_setopt($fp, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($fp, CURLOPT_TIMEOUT, $timeout);
@@ -7924,7 +7931,7 @@ class SimplePie_HTTP_Parser
 	var $data = '';
 
 	/**
-	 * Input data length (to avoid calling strlen() everytime this is needed)
+	 * Input data length (to avoid calling strlen() every time this is needed)
 	 *
 	 * @access private
 	 * @var int
@@ -13780,7 +13787,7 @@ class SimplePie_XML_Declaration_Parser
 	var $data = '';
 
 	/**
-	 * Input data length (to avoid calling strlen() everytime this is needed)
+	 * Input data length (to avoid calling strlen() every time this is needed)
 	 *
 	 * @access private
 	 * @var int
@@ -14999,4 +15006,4 @@ class SimplePie_Sanitize
 	}
 }
 
-?>
+

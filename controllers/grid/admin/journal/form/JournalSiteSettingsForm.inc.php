@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/admin/journal/form/JournalSiteSettingsForm.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class JournalSiteSettingsForm
@@ -20,8 +20,8 @@ class JournalSiteSettingsForm extends ContextSiteSettingsForm {
 	 * Constructor.
 	 * @param $contextId omit for a new journal
 	 */
-	function JournalSiteSettingsForm($contextId = null) {
-		parent::ContextSiteSettingsForm($contextId);
+	function __construct($contextId = null) {
+		parent::__construct($contextId);
 	}
 
 	/**
@@ -39,9 +39,9 @@ class JournalSiteSettingsForm extends ContextSiteSettingsForm {
 
 	/**
 	 * Save journal settings.
-	 * @param $request PKPRequest
 	 */
-	function execute($request) {
+	function execute() {
+		$request = Application::getRequest();
 		$site = $request->getSite();
 		$journalDao = DAORegistry::getDAO('JournalDAO');
 
@@ -105,7 +105,7 @@ class JournalSiteSettingsForm extends ContextSiteSettingsForm {
 				'primaryLocale' => $site->getPrimaryLocale(),
 				'contextName' => $names[$site->getPrimaryLocale()],
 				'ldelim' => '{', // Used to add variables to settings without translating now
-				'delim' => '}',
+				'rdelim' => '}',
 			));
 
 			// Create a default "Articles" section
@@ -120,8 +120,13 @@ class JournalSiteSettingsForm extends ContextSiteSettingsForm {
 			$section->setEditorRestricted(false);
 			$section->setHideTitle(false);
 			$sectionDao->insertObject($section);
+
+			$journal->updateSetting('supportedLocales', $site->getSupportedLocales());
+
+			// load default navigationMenus.
+			$this->_loadDefaultNavigationMenus($journalId);
+
 		}
-		$journal->updateSetting('supportedLocales', $site->getSupportedLocales());
 		$journal->updateSetting('name', $this->getData('name'), 'string', true);
 		$journal->updateSetting('description', $this->getData('description'), 'string', true);
 
@@ -136,4 +141,4 @@ class JournalSiteSettingsForm extends ContextSiteSettingsForm {
 	}
 }
 
-?>
+

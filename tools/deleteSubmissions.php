@@ -3,8 +3,8 @@
 /**
  * @file tools/deleteSubmissions.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class deleteSubmissions
@@ -23,8 +23,8 @@ class SubmissionDeletionTool extends CommandLineTool {
 	 * Constructor.
 	 * @param $argv array command-line arguments
 	 */
-	function SubmissionDeletionTool($argv = array()) {
-		parent::CommandLineTool($argv);
+	function __construct($argv = array()) {
+		parent::__construct($argv);
 
 		if (!sizeof($this->argv)) {
 			$this->usage();
@@ -39,7 +39,7 @@ class SubmissionDeletionTool extends CommandLineTool {
 	 */
 	function usage() {
 		echo "Permanently removes submission(s) and associated information.  USE WITH CARE.\n"
-			. "Usage: {$this->scriptName} submssion_id [...]\n";
+			. "Usage: {$this->scriptName} submission_id [...]\n";
 	}
 
 	/**
@@ -60,4 +60,4 @@ class SubmissionDeletionTool extends CommandLineTool {
 
 $tool = new SubmissionDeletionTool(isset($argv) ? $argv : array());
 $tool->execute();
-?>
+

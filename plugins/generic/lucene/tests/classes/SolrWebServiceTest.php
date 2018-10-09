@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/lucene/tests/classes/SolrWebServiceTest.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2000-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SolrWebServiceTest
@@ -58,7 +58,7 @@ class SolrWebServiceTest extends PKPTestCase {
 		parent::setUp();
 
 		// We need a router for URL generation.
-		$application = PKPApplication::getApplication();
+		$application = Application::getApplication();
 		$_SERVER['REQUEST_METHOD'] = 'GET';
 		$request = $application->getRequest();
 		if (!is_a($request->getRouter(), 'PKPRouter')) {
@@ -585,17 +585,9 @@ class SolrWebServiceTest extends PKPTestCase {
 		$article->setDiscipline('Sozialwissenschaften', 'de_DE');
 		$article->setDiscipline('Social Sciences', 'en_US');
 		$article->setSubject('Thema', 'de_DE');
-		$article->setSubjectClass('Ein Themengebiet', 'de_DE');
 		$article->setSubject('subject', 'en_US');
-		$article->setSubjectClass('Uma classe de temas', 'pt_BR');
 		$article->setType('Typ', 'de_DE');
 		$article->setType('type', 'en_US');
-		$article->setCoverageGeo('Kaltes Kap', 'de_DE');
-		$article->setCoverageGeo('Cabo Frio', 'pt_BR');
-		$article->setCoverageChron('Sommer 2012', 'de_DE');
-		$article->setCoverageChron('Summer 2012', 'en_US');
-		$article->setCoverageSample('Alles', 'de_DE');
-		$article->setCoverageSample('everything', 'en_US');
 		$article->setDatePublished('2012-03-15 16:45:00');
 		$article->setLocale('de_DE');
 		return $article;
@@ -683,4 +675,4 @@ class SolrWebServiceTest extends PKPTestCase {
 		$returner[] = 'indexingState';
 	}
 }
-?>
+

@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/webFeed/WebFeedBlockPlugin.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class WebFeedBlockPlugin
@@ -16,12 +16,15 @@
 import('lib.pkp.classes.plugins.BlockPlugin');
 
 class WebFeedBlockPlugin extends BlockPlugin {
-	/** @var string Name of parent plugin */
-	var $parentPluginName;
+	/** @var WebFeedPlugin Parent plugin */
+	protected $_parentPlugin;
 
-	function WebFeedBlockPlugin($parentPluginName) {
-		parent::BlockPlugin();
-		$this->parentPluginName = $parentPluginName;
+	/**
+	 * @param $parentPlugin WebFeedPlugin
+	 */
+	public function __construct($parentPlugin) {
+		parent::__construct();
+		$this->_parentPlugin = $parentPlugin;
 	}
 
 	/**
@@ -29,14 +32,14 @@ class WebFeedBlockPlugin extends BlockPlugin {
 	 * its category.
 	 * @return String name of plugin
 	 */
-	function getName() {
+	public function getName() {
 		return 'WebFeedBlockPlugin';
 	}
 
 	/**
 	 * Hide this plugin from the management interface (it's subsidiary)
 	 */
-	function getHideManagement() {
+	public function getHideManagement() {
 		return true;
 	}
 
@@ -44,14 +47,14 @@ class WebFeedBlockPlugin extends BlockPlugin {
 	 * Get the display name of this plugin.
 	 * @return String
 	 */
-	function getDisplayName() {
+	public function getDisplayName() {
 		return __('plugins.generic.webfeed.displayName');
 	}
 
 	/**
 	 * Get a description of the plugin.
 	 */
-	function getDescription() {
+	public function getDescription() {
 		return __('plugins.generic.webfeed.description');
 	}
 
@@ -59,35 +62,23 @@ class WebFeedBlockPlugin extends BlockPlugin {
 	 * Get the supported contexts (e.g. BLOCK_CONTEXT_...) for this block.
 	 * @return array
 	 */
-	function getSupportedContexts() {
-		return array(BLOCK_CONTEXT_LEFT_SIDEBAR, BLOCK_CONTEXT_RIGHT_SIDEBAR);
-	}
-
-	/**
-	 * Get the web feed plugin
-	 * @return object
-	 */
-	function &getWebFeedPlugin() {
-		$plugin =& PluginRegistry::getPlugin('generic', $this->parentPluginName);
-		return $plugin;
+	public function getSupportedContexts() {
+		return array(BLOCK_CONTEXT_SIDEBAR);
 	}
 
 	/**
 	 * Override the builtin to get the correct plugin path.
 	 * @return string
 	 */
-	function getPluginPath() {
-		$plugin =& $this->getWebFeedPlugin();
-		return $plugin->getPluginPath();
+	public function getPluginPath() {
+		return $this->_parentPlugin->getPluginPath();
 	}
 
 	/**
-	 * Override the builtin to get the correct template path.
-	 * @return string
+	 * @copydoc PKPPlugin::getTemplatePath
 	 */
-	function getTemplatePath() {
-		$plugin =& $this->getWebFeedPlugin();
-		return $plugin->getTemplatePath() . 'templates/';
+	public function getTemplatePath($inCore = false) {
+		return $this->_parentPlugin->getTemplatePath($inCore) . '/templates';
 	}
 
 	/**
@@ -96,21 +87,12 @@ class WebFeedBlockPlugin extends BlockPlugin {
 	 * @param $request PKPRequest
 	 * @return $string
 	 */
-	function getContents(&$templateMgr, $request = null) {
+	public function getContents($templateMgr, $request = null) {
 		$journal = $request->getJournal();
-		if (!$journal) return '';
-
-		$plugin =& $this->getWebFeedPlugin();
-		$displayPage = $plugin->getSetting($journal->getId(), 'displayPage');
 		$issueDao = DAORegistry::getDAO('IssueDAO');
-		$currentIssue = $issueDao->getCurrent($journal->getId(), true);
-
-		if ($currentIssue) {
+		if ($issueDao->getCurrent($journal->getId(), true)) {
 			return parent::getContents($templateMgr, $request);
-		} else {
-			return '';
 		}
+		return '';
 	}
 }
-
-?>

@@ -3,8 +3,8 @@
 /**
  * @file controllers/tab/issueEntry/form/IssueEntryPublicationMetadataForm.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssueEntryPublicationMetadataForm
@@ -41,8 +41,8 @@ class IssueEntryPublicationMetadataForm extends Form {
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function IssueEntryPublicationMetadataForm($submissionId, $userId, $stageId = null, $formParams = null) {
-		parent::Form('controllers/tab/issueEntry/form/publicationMetadataFormFields.tpl');
+	function __construct($submissionId, $userId, $stageId = null, $formParams = null) {
+		parent::__construct('controllers/tab/issueEntry/form/publicationMetadataFormFields.tpl');
 		$submissionDao = Application::getSubmissionDAO();
 		$this->_submission = $submissionDao->getById($submissionId);
 
@@ -50,12 +50,7 @@ class IssueEntryPublicationMetadataForm extends Form {
 		$this->_formParams = $formParams;
 		$this->_userId = $userId;
 		$this->addCheck(new FormValidatorPost($this));
-		if (isset($formParams['expeditedSubmission']) && $formParams['expeditedSubmission']) {
-			// make choosing an issue mandatory for expedited submissions.
-			$request = Application::getRequest();
-			$context = $request->getContext();
-			$this->addCheck(new FormValidatorCustom($this, 'issueId', 'required', 'author.submit.form.issueRequired', array(DAORegistry::getDAO('IssueDAO'), 'issueIdExists'), array($context->getId())));
-		}
+		$this->addCheck(new FormValidatorCSRF($this));
 
 		$this->addCheck(new FormValidatorURL($this, 'licenseURL', 'optional', 'form.url.invalid'));
 	}
@@ -70,16 +65,14 @@ class IssueEntryPublicationMetadataForm extends Form {
 		$context = $request->getContext();
 
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('submissionId', $this->getSubmission()->getId());
-		$templateMgr->assign('stageId', $this->getStageId());
-		$templateMgr->assign('formParams', $this->getFormParams());
-		$templateMgr->assign('context', $context);
+		$templateMgr->assign(array(
+			'submissionId' => $this->getSubmission()->getId(),
+			'stageId' => $this->getStageId(),
+			'formParams' => $this->getFormParams(),
+			'context' => $context,
+		));
 
 		$journalSettingsDao = DAORegistry::getDAO('JournalSettingsDAO');
-		$enablePublicArticleId = $journalSettingsDao->getSetting($context->getId(),'enablePublicArticleId');
-		$templateMgr->assign('enablePublicArticleId', $enablePublicArticleId);
-		$enablePageNumber = $journalSettingsDao->getSetting($context->getId(), 'enablePageNumber');
-		$templateMgr->assign('enablePageNumber', $enablePageNumber);
 		$templateMgr->assign('issueOptions', $this->getIssueOptions($context));
 
 		$publishedArticle = $this->getPublishedArticle();
@@ -97,15 +90,15 @@ class IssueEntryPublicationMetadataForm extends Form {
 		}
 
 		// include payment information
-		// Set up required Payment Related Information
-		import('classes.payment.ojs.OJSPaymentManager');
-		$paymentManager = new OJSPaymentManager($request);
+		$paymentManager = Application::getPaymentManager($context);
 		$completedPaymentDao = DAORegistry::getDAO('OJSCompletedPaymentDAO');
 		$publicationFeeEnabled = $paymentManager->publicationEnabled();
 		$templateMgr->assign('publicationFeeEnabled',  $publicationFeeEnabled);
 		if ($publicationFeeEnabled) {
-			$templateMgr->assign('publicationPayment', $completedPaymentDao->getPublicationCompletedPayment($context->getId(), $this->getSubission()->getId()));
+			$templateMgr->assign('publicationPayment', $completedPaymentDao->getByAssoc(null, PAYMENT_TYPE_PUBLICATION, $this->getSubmission()->getId()));
 		}
+
+		$templateMgr->assign('submission', $this->getSubmission());
 
 		return parent::fetch($request);
 	}
@@ -154,7 +147,7 @@ class IssueEntryPublicationMetadataForm extends Form {
 
 		$submission = $this->getSubmission();
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-		$this->_publishedArticle = $publishedArticleDao->getPublishedArticleByArticleId($submission->getId(), null, false);
+		$this->_publishedArticle = $publishedArticleDao->getByArticleId($submission->getId(), null, false);
 
 		$copyrightHolder = $submission->getCopyrightHolder(null);
 		$copyrightYear = $submission->getCopyrightYear();
@@ -210,7 +203,7 @@ class IssueEntryPublicationMetadataForm extends Form {
 		$this->readUserVars(array(
 			'waivePublicationFee', 'markAsPaid', 'issueId',
 			'datePublished', 'accessStatus', 'pages',
-			'publicArticleId', 'copyrightYear', 'copyrightHolder',
+			'copyrightYear', 'copyrightHolder',
 			'licenseURL', 'attachPermissions',
 		));
 	}
@@ -219,9 +212,10 @@ class IssueEntryPublicationMetadataForm extends Form {
 	 * Save the metadata and store the catalog data for this published
 	 * monograph.
 	 */
-	function execute($request) {
-		parent::execute($request);
+	function execute() {
+		parent::execute();
 
+		$request = Application::getRequest();
 		$submission = $this->getSubmission();
 		$context = $request->getContext();
 
@@ -229,8 +223,7 @@ class IssueEntryPublicationMetadataForm extends Form {
 		if ($waivePublicationFee) {
 
 			$markAsPaid = $request->getUserVar('markAsPaid');
-			import('classes.payment.ojs.OJSPaymentManager');
-			$paymentManager = new OJSPaymentManager($request);
+			$paymentManager = Application::getPaymentManager($context);
 
 			$user = $request->getUser();
 
@@ -239,10 +232,10 @@ class IssueEntryPublicationMetadataForm extends Form {
 			$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
 			$submitterAssignments = $stageAssignmentDao->getBySubmissionAndRoleId($submission->getId(), ROLE_ID_AUTHOR);
 			$submitterAssignment = $submitterAssignments->next();
-			assert($submitterAssignment); // At least one author should be assigned
+			assert(isset($submitterAssignment)); // At least one author should be assigned
 
-			$queuedPayment =& $paymentManager->createQueuedPayment(
-				$context->getId(),
+			$queuedPayment = $paymentManager->createQueuedPayment(
+				$request,
 				PAYMENT_TYPE_PUBLICATION,
 				$markAsPaid ? $submitterAssignment->getUserId() : $user->getId(),
 				$submission->getId(),
@@ -262,7 +255,7 @@ class IssueEntryPublicationMetadataForm extends Form {
 
 			$sectionDao = DAORegistry::getDAO('SectionDAO');
 			$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-			$publishedArticle = $publishedArticleDao->getPublishedArticleByArticleId($submission->getId(), null, false); /* @var $publishedArticle PublishedArticle */
+			$publishedArticle = $publishedArticleDao->getByArticleId($submission->getId(), null, false); /* @var $publishedArticle PublishedArticle */
 
 			if ($publishedArticle) {
 				if (!$issue || !$issue->getPublished()) {
@@ -286,16 +279,13 @@ class IssueEntryPublicationMetadataForm extends Form {
 			if (!is_null($this->getData('pages'))) {
 				$submission->setPages($this->getData('pages'));
 			}
-			if (!is_null($this->getData('publicArticleId'))) {
-				$articleDao->changePubId($submission->getId(), 'publisher-id', $this->getData('publicArticleId'));
-			}
 
 			if ($issue) {
 
 				// Schedule against an issue.
 				if ($publishedArticle) {
+					if ($issueId != $publishedArticle->getIssueId()) $publishedArticle->setSequence(REALLY_BIG_NUMBER);
 					$publishedArticle->setIssueId($issueId);
-					$publishedArticle->setSeq(REALLY_BIG_NUMBER);
 					$publishedArticle->setDatePublished($this->getData('datePublished'));
 					$publishedArticle->setAccessStatus($accessStatus);
 					$publishedArticleDao->updatePublishedArticle($publishedArticle);
@@ -307,10 +297,10 @@ class IssueEntryPublicationMetadataForm extends Form {
 					$publishedArticle->setId($submission->getId());
 					$publishedArticle->setIssueId($issueId);
 					$publishedArticle->setDatePublished(Core::getCurrentDate());
-					$publishedArticle->setSeq(REALLY_BIG_NUMBER);
+					$publishedArticle->setSequence(REALLY_BIG_NUMBER);
 					$publishedArticle->setAccessStatus($accessStatus);
 
-					$publishedArticleDao->insertPublishedArticle($publishedArticle);
+					$publishedArticleDao->insertObject($publishedArticle);
 
 					// If we're using custom section ordering, and if this is the first
 					// article published in a section, make sure we enter a custom ordering
@@ -369,4 +359,4 @@ class IssueEntryPublicationMetadataForm extends Form {
 	}
 }
 
-?>
+

@@ -3,8 +3,8 @@
 /**
  * @file classes/core/Application.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Application
@@ -17,7 +17,7 @@
 
 import('lib.pkp.classes.core.PKPApplication');
 
-define('PHP_REQUIRED_VERSION', '5.2.0');
+define('PHP_REQUIRED_VERSION', '5.6.0');
 define('REQUIRES_XSL', false);
 
 define('ASSOC_TYPE_ARTICLE',		ASSOC_TYPE_SUBMISSION);
@@ -27,7 +27,6 @@ define('ASSOC_TYPE_GALLEY',		ASSOC_TYPE_REPRESENTATION);
 define('ASSOC_TYPE_JOURNAL',		0x0000100);
 define('ASSOC_TYPE_ISSUE',		0x0000103);
 define('ASSOC_TYPE_ISSUE_GALLEY',	0x0000105);
-define('ASSOC_TYPE_SUPP_FILE',		0x0000106);
 
 define('CONTEXT_JOURNAL', 1);
 
@@ -35,8 +34,15 @@ class Application extends PKPApplication {
 	/**
 	 * Constructor
 	 */
-	function Application() {
-		parent::PKPApplication();
+	public function __construct() {
+		parent::__construct();
+
+		// Register custom autoloader function for OJS namespace
+		spl_autoload_register(function($class) {
+			$prefix = 'OJS\\';
+			$rootPath = BASE_SYS_DIR . "/classes";
+			customAutoload($rootPath, $prefix, $class);
+		});
 	}
 
 	/**
@@ -89,17 +95,10 @@ class Application extends PKPApplication {
 	 */
 	function getDAOMap() {
 		return array_merge(parent::getDAOMap(), array(
-			'SubmissionCommentDAO' => 'lib.pkp.classes.submission.SubmissionCommentDAO',
 			'ArticleDAO' => 'classes.article.ArticleDAO',
 			'ArticleGalleyDAO' => 'classes.article.ArticleGalleyDAO',
 			'ArticleSearchDAO' => 'classes.search.ArticleSearchDAO',
 			'AuthorDAO' => 'classes.article.AuthorDAO',
-			'CategoryDAO' => 'classes.journal.categories.CategoryDAO',
-			'EditorSubmissionDAO' => 'classes.submission.editor.EditorSubmissionDAO',
-			'EmailTemplateDAO' => 'classes.mail.EmailTemplateDAO',
-			'FooterCategoryDAO' => 'lib.pkp.classes.context.FooterCategoryDAO',
-			'FooterLinkDAO' => 'lib.pkp.classes.context.FooterLinkDAO',
-			'GiftDAO' => 'classes.gift.GiftDAO',
 			'IndividualSubscriptionDAO' => 'classes.subscription.IndividualSubscriptionDAO',
 			'InstitutionalSubscriptionDAO' => 'classes.subscription.InstitutionalSubscriptionDAO',
 			'IssueDAO' => 'classes.issue.IssueDAO',
@@ -111,20 +110,12 @@ class Application extends PKPApplication {
 			'OAIDAO' => 'classes.oai.ojs.OAIDAO',
 			'OJSCompletedPaymentDAO' => 'classes.payment.ojs.OJSCompletedPaymentDAO',
 			'PublishedArticleDAO' => 'classes.article.PublishedArticleDAO',
-			'QueuedPaymentDAO' => 'lib.pkp.classes.payment.QueuedPaymentDAO',
-			'ReviewAssignmentDAO' => 'lib.pkp.classes.submission.reviewAssignment.ReviewAssignmentDAO',
 			'ReviewerSubmissionDAO' => 'classes.submission.reviewer.ReviewerSubmissionDAO',
-			'RoleDAO' => 'classes.security.RoleDAO',
-			'ScheduledTaskDAO' => 'lib.pkp.classes.scheduledTask.ScheduledTaskDAO',
 			'SectionDAO' => 'classes.journal.SectionDAO',
-			'SectionEditorsDAO' => 'classes.journal.SectionEditorsDAO',
-			'SocialMediaDAO' => 'classes.journal.SocialMediaDAO',
-			'StageAssignmentDAO' => 'lib.pkp.classes.stageAssignment.StageAssignmentDAO',
 			'SubmissionEventLogDAO' => 'classes.log.SubmissionEventLogDAO',
 			'SubmissionFileDAO' => 'classes.article.SubmissionFileDAO',
 			'SubscriptionDAO' => 'classes.subscription.SubscriptionDAO',
 			'SubscriptionTypeDAO' => 'classes.subscription.SubscriptionTypeDAO',
-			'UserGroupAssignmentDAO' => 'lib.pkp.classes.security.UserGroupAssignmentDAO',
 			'UserDAO' => 'classes.user.UserDAO',
 			'UserSettingsDAO' => 'classes.user.UserSettingsDAO'
 		));
@@ -141,20 +132,11 @@ class Application extends PKPApplication {
 			// This is necessary as several other plug-in categories
 			// depend on meta-data. This is a very rudimentary type of
 			// dependency management for plug-ins.
-			'viewableFiles',
 			'metadata',
 			'auth',
 			'blocks',
-			// NB: 'citationFormats' is an obsolete category for backwards
-			// compatibility only. This will be replaced by 'citationOutput',
-			// see #5156.
-			'citationFormats',
-			'citationLookup',
-			'citationOutput',
-			'citationParser',
 			'gateways',
 			'generic',
-			'implicitAuth',
 			'importexport',
 			'oaiMetadataFormats',
 			'paymethod',
@@ -170,6 +152,14 @@ class Application extends PKPApplication {
 	 */
 	static function getContextDAO() {
 		return DAORegistry::getDAO('JournalDAO');
+	}
+
+	/**
+	 * Get the context settings DAO.
+	 * @return SettingsDAO
+	 */
+	static function getContextSettingsDAO() {
+		return DAORegistry::getDAO('JournalSettingsDAO');
 	}
 
 	/**
@@ -206,6 +196,7 @@ class Application extends PKPApplication {
 			$driver = $pluginSettingsDao->getDriver();
 			switch ($driver) {
 				case 'mysql':
+				case 'mysqli':
 					$checkResult = $pluginSettingsDao->retrieve('SHOW COLUMNS FROM plugin_settings LIKE ?', array('context_id'));
 					if ($checkResult->NumRows() == 0) {
 						return 'journal_id';
@@ -221,14 +212,6 @@ class Application extends PKPApplication {
 			}
 		}
 		return 'context_id';
-	}
-
-	/**
-	 * Get the DAO for ROLE_ID_SUB_EDITOR roles.
-	 * @return DAO
-	 */
-	static function getSubEditorsDAO() {
-		return DAORegistry::getDAO('SectionEditorsDAO');
 	}
 
 	/**
@@ -259,6 +242,27 @@ class Application extends PKPApplication {
 	static function getFileDirectories() {
 		return array('context' => '/journals/', 'submission' => '/articles/');
 	}
+
+	/**
+	 * @copydoc PKPApplication::getRoleNames()
+	 */
+	static function getRoleNames($contextOnly = false, $roleIds = null) {
+		$roleNames = parent::getRoleNames($contextOnly, $roleIds);
+		if (!$roleIds || !in_array(ROLE_ID_SUBSCRIPTION_MANAGER, $roleIds)) {
+			$roleNames[ROLE_ID_SUBSCRIPTION_MANAGER] = 'user.role.subscriptionManager';
+		}
+		return $roleNames;
+	}
+
+	/**
+	 * Get the payment manager.
+	 * @param $context Context
+	 * @return OJSPaymentManager
+	 */
+	static function getPaymentManager($context) {
+		import('classes.payment.ojs.OJSPaymentManager');
+		return new OJSPaymentManager($context);
+	}
 }
 
-?>
+

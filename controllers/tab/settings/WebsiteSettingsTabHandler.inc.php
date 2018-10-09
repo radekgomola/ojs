@@ -3,8 +3,8 @@
 /**
  * @file controllers/tab/settings/WebsiteSettingsTabHandler.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class WebsiteSettingsTabHandler
@@ -20,7 +20,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	/**
 	 * Constructor
 	 */
-	function WebsiteSettingsTabHandler() {
+	function __construct() {
 		$this->addRoleAssignment(ROLE_ID_MANAGER,
 			array(
 				'showFileUploadForm',
@@ -31,7 +31,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 				'reloadLocalizedDefaultSettings'
 			)
 		);
-		parent::ManagerSettingsTabHandler();
+		parent::__construct();
 		$this->setPageTabs(array(
 			'appearance' => 'controllers.tab.settings.appearance.form.AppearanceForm',
 			'information' => 'lib.pkp.controllers.tab.settings.information.form.InformationForm',
@@ -39,7 +39,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 			'languages' => 'controllers/tab/settings/languages/languages.tpl',
 			'plugins' => 'controllers/tab/settings/plugins/plugins.tpl',
 			'announcements' => 'lib.pkp.controllers.tab.settings.announcements.form.AnnouncementSettingsForm',
-			'navigation' => 'controllers/tab/settings/navigation/navigation.tpl',
+			'navigationMenus' => 'lib.pkp.controllers.tab.settings.navigationMenus.form.NavigationMenuSettingsForm'
 		));
 	}
 
@@ -67,7 +67,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	 */
 	function showFileUploadForm($args, $request) {
 		$fileUploadForm = $this->_getFileUploadForm($request);
-		$fileUploadForm->initData($request);
+		$fileUploadForm->initData();
 
 		return new JSONMessage(true, $fileUploadForm->fetch($request));
 	}
@@ -105,7 +105,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 		$fileUploadForm->readInputData();
 
 		if ($fileUploadForm->validate()) {
-			if ($fileUploadForm->execute($request)) {
+			if ($fileUploadForm->execute()) {
 				// Generate a JSON message with an event
 				$settingName = $request->getUserVar('fileSettingName');
 				return DAO::getDataChangedEvent($settingName);
@@ -124,9 +124,9 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 		$settingName = $request->getUserVar('fileSettingName');
 
 		$tabForm = $this->getTabForm();
-		$tabForm->initData($request);
+		$tabForm->initData();
 
-		if ($tabForm->deleteFile($settingName, $request)) {
+		if ($request->checkCSRF() && $tabForm->deleteFile($settingName, $request)) {
 			return DAO::getDataChangedEvent($settingName);
 		} else {
 			return new JSONMessage(false);
@@ -146,7 +146,7 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 
 		// Try to fetch the file.
 		$tabForm = $this->getTabForm();
-		$tabForm->initData($request);
+		$tabForm->initData();
 
 		$renderedElement = $tabForm->renderFileView($settingName, $request);
 
@@ -174,17 +174,8 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 		}
 
 		$journal = $request->getJournal();
-		$journalSettingsDao = DAORegistry::getDAO('JournalSettingsDAO');
-		$journalSettingsDao->reloadLocalizedDefaultSettings(
-			$journal->getId(), 'registry/journalSettings.xml',
-			array(
-				'indexUrl' => $request->getIndexUrl(),
-				'journalPath' => $journal->getData('path'),
-				'primaryLocale' => $journal->getPrimaryLocale(),
-				'journalName' => $journal->getName($journal->getPrimaryLocale())
-			),
-			$locale
-		);
+		$settingsDao = Application::getContextSettingsDAO();
+		$settingsDao->reloadLocalizedDefaultContextSettings($request, $locale);
 
 		// also reload the user group localizable data
 		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
@@ -225,4 +216,4 @@ class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 	}
 }
 
-?>
+

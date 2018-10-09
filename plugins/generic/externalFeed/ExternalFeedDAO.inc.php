@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/externalFeed/ExternalFeedDAO.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ExternalFeedDAO
@@ -22,9 +22,9 @@ class ExternalFeedDAO extends DAO {
 	/**
 	 * Constructor
 	 */
-	function ExternalFeedDAO($parentPluginName) {
+	function __construct($parentPluginName) {
 		$this->parentPluginName = $parentPluginName;
-		parent::DAO();
+		parent::__construct();
 	}
 
 	/**
@@ -71,7 +71,7 @@ class ExternalFeedDAO extends DAO {
 		$externalFeed->setId($row['feed_id']);
 		$externalFeed->setJournalId($row['journal_id']);
 		$externalFeed->setUrl($row['url']);
-		$externalFeed->setSeq($row['seq']);
+		$externalFeed->setSequence($row['seq']);
 		$externalFeed->setDisplayHomepage($row['display_homepage']);
 		$externalFeed->setDisplayBlock($row['display_block']);
 		$externalFeed->setLimitItems($row['limit_items']);
@@ -107,7 +107,7 @@ class ExternalFeedDAO extends DAO {
 			array(
 				$externalFeed->getJournalId(),
 				$externalFeed->getUrl(),
-				$externalFeed->getSeq(),
+				$externalFeed->getSequence(),
 				$externalFeed->getDisplayHomepage(),
 				$externalFeed->getDisplayBlock(),
 				$externalFeed->getLimitItems(),
@@ -159,7 +159,7 @@ class ExternalFeedDAO extends DAO {
 			array(
 				$externalFeed->getJournalId(),
 				$externalFeed->getUrl(),
-				$externalFeed->getSeq(),
+				$externalFeed->getSequence(),
 				$externalFeed->getDisplayHomepage(),
 				$externalFeed->getDisplayBlock(),
 				$externalFeed->getLimitItems(),
@@ -256,4 +256,4 @@ class ExternalFeedDAO extends DAO {
 	}
 }
 
-?>
+

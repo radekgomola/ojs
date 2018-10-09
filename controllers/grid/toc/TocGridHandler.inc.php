@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/toc/TocGridHandler.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2000-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class TocGridHandler
@@ -23,11 +23,11 @@ class TocGridHandler extends CategoryGridHandler {
 	/**
 	 * Constructor
 	 */
-	function TocGridHandler() {
-		parent::CategoryGridHandler();
+	function __construct() {
+		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER),
-			array('fetchGrid', 'fetchCategory', 'fetchRow', 'saveSequence', 'removeArticle')
+			array('fetchGrid', 'fetchCategory', 'fetchRow', 'saveSequence', 'removeArticle', 'setAccessStatus')
 		);
 		$this->publishedArticlesBySectionId = array();
 	}
@@ -40,8 +40,8 @@ class TocGridHandler extends CategoryGridHandler {
 	 * @copydoc PKPHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.PkpContextAccessPolicy');
-		$this->addPolicy(new PkpContextAccessPolicy($request, $roleAssignments));
+		import('lib.pkp.classes.security.authorization.ContextAccessPolicy');
+		$this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
 
 		import('classes.security.authorization.OjsIssueRequiredPolicy');
 		$this->addPolicy(new OjsIssueRequiredPolicy($request, $args));
@@ -50,10 +50,10 @@ class TocGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * @copydoc PKPHandler::initialize()
+	 * @copydoc CategoryGridHandler::initialize()
 	 */
-	function initialize($request) {
-		parent::initialize($request);
+	function initialize($request, $args = null) {
+		parent::initialize($request, $args);
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APP_SUBMISSION);
 
@@ -73,6 +73,21 @@ class TocGridHandler extends CategoryGridHandler {
 				$tocGridCellProvider
 			)
 		);
+
+		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
+		if ($request->getJournal()->getSetting('publishingMode') == PUBLISHING_MODE_SUBSCRIPTION && $issue->getAccessStatus() == ISSUE_ACCESS_SUBSCRIPTION) {
+			// Article access status
+			$this->addColumn(
+				new GridColumn(
+					'access',
+					'reader.openAccess',
+					null,
+					'controllers/grid/common/cell/selectStatusCell.tpl',
+					$tocGridCellProvider,
+					array('width' => 20, 'alignment' => COLUMN_ALIGNMENT_CENTER)
+				)
+			);
+		}
 	}
 
 	/**
@@ -119,7 +134,7 @@ class TocGridHandler extends CategoryGridHandler {
 	/**
 	 * @copydoc CategoryGridHandler::loadCategoryData()
 	 */
-	function loadCategoryData($request, $section) {
+	function loadCategoryData($request, &$section, $filter = null) {
 		return $this->publishedArticlesBySectionId[$section->getId()];
 	}
 
@@ -131,15 +146,15 @@ class TocGridHandler extends CategoryGridHandler {
 
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
 		$sectionDao = DAORegistry::getDAO('SectionDAO');
-		$publishedArticles = $publishedArticleDao->getPublishedArticles($issue->getId());
-
+		$publishedArticlesInSections = $publishedArticleDao->getPublishedArticlesInSections($issue->getId());
 		$sections = array();
-		foreach ($publishedArticles as $article) {
-			$sectionId = $article->getSectionId();
+		foreach ($publishedArticlesInSections as $sectionId => $articles) {
 			if (!isset($sections[$sectionId])) {
 				$sections[$sectionId] = $sectionDao->getById($sectionId);
 			}
-			$this->publishedArticlesBySectionId[$sectionId][$article->getId()] = $article;
+			foreach($articles['articles'] as $article) {
+				$this->publishedArticlesBySectionId[$sectionId][$article->getId()] = $article;
+			}
 		}
 		return $sections;
 	}
@@ -161,31 +176,31 @@ class TocGridHandler extends CategoryGridHandler {
 	/**
 	 * @copydoc GridHandler::setDataElementSequence()
 	 */
-	function setDataElementSequence($request, $sectionId, $section, $newSequence) {
+	function setDataElementSequence($request, $sectionId, $gridDataElement, $newSequence) {
 		$sectionDao = DAORegistry::getDAO('SectionDAO');
 		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
 		if (!$sectionDao->customSectionOrderingExists($issue->getId())) {
 			$sectionDao->setDefaultCustomSectionOrders($issue->getId());
 		}
-		$sectionDao->moveCustomSectionOrder($issue->getId(), $sectionId, $newSequence);
+		$sectionDao->updateCustomSectionOrder($issue->getId(), $sectionId, $newSequence);
 	}
 
 	/**
-	 * @copydoc GridHandler::getDataElementSequence()
+	 * @copydoc CategoryGridHandler::getDataElementInCategorySequence()
 	 */
-	function getDataElementInCategorySequence($categoryId, $publishedArticle) {
-		return $publishedArticle->getSeq();
+	function getDataElementInCategorySequence($categoryId, &$publishedArticle) {
+		return $publishedArticle->getSequence();
 	}
 
 	/**
 	 * @copydoc GridHandler::setDataElementSequence()
 	 */
-	function setDataElementInCategorySequence($sectionId, $publishedArticle, $newSequence) {
+	function setDataElementInCategorySequence($sectionId, &$publishedArticle, $newSequence) {
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
 		if ($sectionId != $publishedArticle->getSectionId()) {
 			$publishedArticle->setSectionId($sectionId);
 		}
-		$publishedArticle->setSeq($newSequence);
+		$publishedArticle->setSequence($newSequence);
 		$publishedArticleDao->updatePublishedArticle($publishedArticle);
 	}
 
@@ -204,10 +219,10 @@ class TocGridHandler extends CategoryGridHandler {
 		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
 		$issueDao = DAORegistry::getDAO('IssueDAO');
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-		$article = $publishedArticleDao->getPublishedArticleByArticleId($articleId);
+		$article = $publishedArticleDao->getByArticleId($articleId);
 		import('classes.article.ArticleTombstoneManager');
 		$articleTombstoneManager = new ArticleTombstoneManager();
-		if ($article && $article->getIssueId() == $issue->getId()) {
+		if ($article && $article->getIssueId() == $issue->getId() && $request->checkCSRF()) {
 			if ($issue->getPublished()) {
 				$articleTombstoneManager->insertArticleTombstone($article, $journal);
 			}
@@ -228,6 +243,30 @@ class TocGridHandler extends CategoryGridHandler {
 		// If we've fallen through, it must be a badly-specified article
 		return new JSONMessage(false);
 	}
+
+	/**
+	 * Set access status on an article.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSONMessage JSON object
+	 */
+	function setAccessStatus($args, $request) {
+		$journal = $request->getJournal();
+		$articleId = (int) $request->getUserVar('articleId');
+		$issue = $this->getAuthorizedContextObject(ASSOC_TYPE_ISSUE);
+		$issueDao = DAORegistry::getDAO('IssueDAO');
+		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
+		$article = $publishedArticleDao->getByArticleId($articleId);
+		if ($article && $article->getIssueId() == $issue->getId() && $request->checkCSRF()) {
+			$article->setAccessStatus($request->getUserVar('status'));
+			$article->stampStatusModified();
+			$publishedArticleDao->updatePublishedArticle($article);
+			return DAO::getDataChangedEvent();
+		}
+
+		// If we've fallen through, it must be a badly-specified article
+		return new JSONMessage(false);
+	}
 }
 
-?>
+

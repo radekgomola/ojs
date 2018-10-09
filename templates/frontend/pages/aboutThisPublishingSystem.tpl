@@ -1,8 +1,8 @@
 {**
  * templates/frontend/pages/aboutThisPublishingSystem.tpl
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Display the page to view details about the OJS software.
@@ -11,12 +11,10 @@
  * @uses $appVersion string Current version of OJS
  * @uses $pubProcessFile string Path to image of OJS publishing process
  *}
-{include file="common/frontend/header.tpl" pageTitle="about.aboutThisPublishingSystem"}
+{include file="frontend/components/header.tpl" pageTitle="about.aboutThisPublishingSystem"}
 
 <div class="page page_about_publishing_system">
-	<h1 class="page_title">
-		{translate key="about.aboutThisPublishingSystem"}
-	</h1>
+	{include file="frontend/components/breadcrumbs.tpl" currentTitleKey="about.aboutThisPublishingSystem"}
 
 	<p>
 		{if $currentJournal}
@@ -30,4 +28,4 @@
 
 </div><!-- .page -->
 
-{include file="common/frontend/footer.tpl"}
+{include file="frontend/components/footer.tpl"}

@@ -3,8 +3,8 @@
 /**
  * @file plugins/gateways/resolver/ResolverPlugin.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ResolverPlugin
@@ -17,13 +17,10 @@ import('lib.pkp.classes.plugins.GatewayPlugin');
 
 class ResolverPlugin extends GatewayPlugin {
 	/**
-	 * Called as a plugin is registered to the registry
-	 * @param $category String Name of category plugin was registered to
-	 * @return boolean True iff plugin initialized successfully; if false,
-	 * 	the plugin will not be registered.
+	 * @copydoc Plugin::register()
 	 */
-	function register($category, $path) {
-		$success = parent::register($category, $path);
+	function register($category, $path, $mainContextId = null) {
+		$success = parent::register($category, $path, $mainContextId);
 		$this->addLocaleData();
 		return $success;
 	}
@@ -100,29 +97,30 @@ class ResolverPlugin extends GatewayPlugin {
 				unset($issues);
 
 				$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-				$articles =& $publishedArticleDao->getPublishedArticles($issue->getId());
+				$articles = $publishedArticleDao->getPublishedArticles($issue->getId());
 				foreach ($articles as $article) {
 					// Look for the correct page in the list of articles.
 					$matches = null;
-					if (String::regexp_match_get('/^[Pp][Pp]?[.]?[ ]?(\d+)$/', $article->getPages(), $matches)) {
+					if (PKPString::regexp_match_get('/^[Pp][Pp]?[.]?[ ]?(\d+)$/', $article->getPages(), $matches)) {
 						$matchedPage = $matches[1];
 						if ($page == $matchedPage) $request->redirect(null, 'article', 'view', $article->getBestArticleId());
 					}
-					if (String::regexp_match_get('/^[Pp][Pp]?[.]?[ ]?(\d+)[ ]?-[ ]?([Pp][Pp]?[.]?[ ]?)?(\d+)$/', $article->getPages(), $matches)) {
+					if (PKPString::regexp_match_get('/^[Pp][Pp]?[.]?[ ]?(\d+)[ ]?-[ ]?([Pp][Pp]?[.]?[ ]?)?(\d+)$/', $article->getPages(), $matches)) {
 						$matchedPageFrom = $matches[1];
 						$matchedPageTo = $matches[3];
 						if ($page >= $matchedPageFrom && ($page < $matchedPageTo || ($page == $matchedPageTo && $matchedPageFrom = $matchedPageTo))) $request->redirect(null, 'article', 'view', $article->getBestArticleId());
 					}
 					unset($article);
 				}
+				break;
 		}
 
 		// Failure.
-		header("HTTP/1.0 500 Internal Server Error");
+		header('HTTP/1.0 404 Not Found');
 		$templateMgr = TemplateManager::getManager($request);
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 		$templateMgr->assign('message', 'plugins.gateways.resolver.errors.errorMessage');
-		$templateMgr->display('common/message.tpl');
+		$templateMgr->display('frontend/pages/message.tpl');
 		exit;
 	}
 
@@ -134,7 +132,7 @@ class ResolverPlugin extends GatewayPlugin {
 		$journalDao = DAORegistry::getDAO('JournalDAO');
 		$issueDao = DAORegistry::getDAO('IssueDAO');
 		$journals = $journalDao->getAll(true);
-		$request = $this->getRequest();
+		$request = Application::getRequest();
 		header('content-type: text/plain');
 		header('content-disposition: attachment; filename=holdings.txt');
 		echo "title\tissn\te_issn\tstart_date\tend_date\tembargo_months\tembargo_days\tjournal_url\tvol_start\tvol_end\tiss_start\tiss_end\n";
@@ -171,32 +169,6 @@ class ResolverPlugin extends GatewayPlugin {
 
 		}
 	}
-
-	function getManagementVerbs() {
-		$verbs = parent::getManagementVerbs();
-		if (Validation::isSiteAdmin() && $this->getEnabled()) {
-			$verbs[] = array(
-				'exportHoldings',
-				__('plugins.gateways.resolver.exportHoldings')
-			);
-		}
-		return $verbs;
-	}
-
- 	/**
-	 * @see Plugin::manage()
-	 */
-	function manage($verb, $args, &$message, &$messageParams, &$pluginModalContent = null) {
-		switch ($verb) {
-			case 'exportHoldings':
-				if (Validation::isSiteAdmin() && $this->getEnabled()) {
-					$this->exportHoldings();
-					return true;
-				}
-				break;
-		}
-		return parent::manage($verb, $args, $message, $messageParams, $pluginModalContent);
-	}
 }
 
-?>
+

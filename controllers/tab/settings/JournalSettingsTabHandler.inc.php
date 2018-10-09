@@ -3,8 +3,8 @@
 /**
  * @file controllers/tab/settings/JournalSettingsTabHandler.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class JournalSettingsTabHandler
@@ -19,16 +19,12 @@ class JournalSettingsTabHandler extends ManagerSettingsTabHandler {
 	/**
 	 * Constructor
 	 */
-	function JournalSettingsTabHandler() {
-		parent::ManagerSettingsTabHandler();
+	function __construct() {
+		parent::__construct();
 		$this->setPageTabs(array(
 			'masthead' => 'controllers.tab.settings.masthead.form.MastheadForm',
 			'contact' => 'lib.pkp.controllers.tab.settings.contact.form.ContactForm',
-			'policies' => 'controllers.tab.settings.policies.form.OJSPoliciesForm',
-			'citations' => 'controllers.tab.settings.citations.form.CitationsForm',
 			'sections' => 'controllers/tab/settings/journal/sections.tpl',
-			'guidelines' => 'lib.pkp.controllers.tab.settings.guidelines.form.GuidelinesForm',
-			'affiliationAndSupport' => 'lib.pkp.controllers.tab.settings.affiliation.form.AffiliationForm',
 		));
 	}
 
@@ -36,14 +32,14 @@ class JournalSettingsTabHandler extends ManagerSettingsTabHandler {
 	// Overridden methods from Handler
 	//
 	/**
-	 * @copydoc PKPHandler::initialize()
+	 * @copydoc ManagerSettingsTabHandler::initialize()
 	 */
-	function initialize($request, $args = null) {
-		parent::initialize($request, $args);
+	function initialize($request) {
+		parent::initialize($request);
 
 		// Load grid-specific translations
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_USER);
 	}
 }
 
-?>
+

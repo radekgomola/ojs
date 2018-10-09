@@ -3,8 +3,8 @@
 /**
  * @file tests/data/60-content/RrossiSubmissionTest.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2000-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class RrossiSubmissionTest
@@ -22,11 +22,10 @@ class RrossiSubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'rrossi',
-			'firstName' => 'Rosanna',
-			'lastName' => 'Rossi',
+			'givenName' => 'Rosanna',
+			'familyName' => 'Rossi',
 			'affiliation' => 'Barcelona University',
 			'country' => 'Spain',
-			'roles' => array('Author'),
 		));
 
 		$title = 'Influence of long-term nutrition with different dietary fats on fatty acid composition of heavy pigs backfat';
@@ -41,7 +40,6 @@ class RrossiSubmissionTest extends ContentBaseTestCase {
 
 		$this->logOut();
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
-		$this->assignParticipant('Section editor', 'Stephanie Berardo');
 		$this->logOut();
 	}
 }

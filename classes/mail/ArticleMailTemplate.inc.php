@@ -3,8 +3,8 @@
 /**
  * @file classes/mail/ArticleMailTemplate.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ArticleMailTemplate
@@ -28,42 +28,17 @@ class ArticleMailTemplate extends SubmissionMailTemplate {
 	 * @param $includeSignature boolean optional
 	 * @see SubmissionMailTemplate::SubmissionMailTemplate()
 	 */
-	function ArticleMailTemplate($article, $emailKey = null, $locale = null, $journal = null, $includeSignature = true) {
-		parent::SubmissionMailTemplate($article, $emailKey, $locale, $journal, $includeSignature);
+	function __construct($article, $emailKey = null, $locale = null, $journal = null, $includeSignature = true) {
+		parent::__construct($article, $emailKey, $locale, $journal, $includeSignature);
 	}
 
+	/**
+	 * @copydoc SubmissionMailTemplate::assignParams()
+	 */
 	function assignParams($paramArray = array()) {
 		$paramArray['sectionName'] = strip_tags($this->submission->getSectionTitle());
 		parent::assignParams($paramArray);
 	}
-
-	/**
-	 *  Send this email to all assigned section editors in the given stage
-	 * @param $articleId int
-	 * @param $stageId int
-	 */
-	function toAssignedSectionEditors($articleId, $stageId) {
-		return $this->toAssignedSubEditors($articleId, $stageId);
-	}
-
-	/**
-	 *  CC this email to all assigned section editors in the given stage
-	 * @param $articleId int
-	 * @param $stageId int
-	 * @return array of Users
-	 */
-	function ccAssignedSectionEditors($articleId, $stageId) {
-		return $this->ccAssignedSubEditors($articleId, $stageId);
-	}
-
-	/**
-	 *  BCC this email to all assigned section editors in the given stage
-	 * @param $articleId int
-	 * @param $stageId int
-	 */
-	function bccAssignedSectionEditors($articleId, $stageId) {
-		return $this->bccAssignedSubEditors($articleId, $stageId);
-	}
 }
 
-?>
+

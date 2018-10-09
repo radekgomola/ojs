@@ -3,8 +3,8 @@
 /**
  * @file classes/log/SubmissionEmailLogEntry.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionEmailLogEntry
@@ -17,12 +17,6 @@
 import('lib.pkp.classes.log.PKPSubmissionEmailLogEntry');
 
 class SubmissionEmailLogEntry extends PKPSubmissionEmailLogEntry {
-	/**
-	 * Constructor.
-	 */
-	function SubmissionEmailLogEntry() {
-		parent::PKPSubmissionEmailLogEntry();
-	}
 
 	function setArticleId($articleId) {
 		return $this->setAssocId($articleId);
@@ -34,4 +28,4 @@ class SubmissionEmailLogEntry extends PKPSubmissionEmailLogEntry {
 
 }
 
-?>
+

@@ -3,8 +3,8 @@
 /**
  * @file plugins/metadata/dc11/filter/Dc11SchemaArticleAdapter.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2000-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Dc11SchemaArticleAdapter
@@ -25,8 +25,8 @@ class Dc11SchemaArticleAdapter extends MetadataDataObjectAdapter {
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function Dc11SchemaArticleAdapter($filterGroup) {
-		parent::MetadataDataObjectAdapter($filterGroup);
+	function __construct($filterGroup) {
+		parent::__construct($filterGroup);
 	}
 
 
@@ -46,11 +46,10 @@ class Dc11SchemaArticleAdapter extends MetadataDataObjectAdapter {
 	//
 	/**
 	 * @see MetadataDataObjectAdapter::injectMetadataIntoDataObject()
-	 * @param $dc11Description MetadataDescription
-	 * @param $article Article
-	 * @param $authorClassName string the application specific author class name
+	 * @param $metadataDescription MetadataDescription
+	 * @param $targetDataObject Article
 	 */
-	function &injectMetadataIntoDataObject(&$dc11Description, &$article, $authorClassName) {
+	function &injectMetadataIntoDataObject(&$metadataDescription, &$targetDataObject) {
 		// Not implemented
 		assert(false);
 	}
@@ -63,7 +62,7 @@ class Dc11SchemaArticleAdapter extends MetadataDataObjectAdapter {
 	function &extractMetadataFromDataObject(&$article) {
 		assert(is_a($article, 'Article'));
 
-		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
+		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION);
 
 		// Retrieve data that belongs to the article.
 		// FIXME: Retrieve this data from the respective entity DAOs rather than
@@ -76,7 +75,7 @@ class Dc11SchemaArticleAdapter extends MetadataDataObjectAdapter {
 		$section = $oaiDao->getSection($article->getSectionId());
 		if (is_a($article, 'PublishedArticle')) { /* @var $article PublishedArticle */
 			$issue = $oaiDao->getIssue($article->getIssueId());
-		}
+		} else $issue = null;
 
 		$dc11Description = $this->instantiateMetadataDescription();
 
@@ -86,14 +85,14 @@ class Dc11SchemaArticleAdapter extends MetadataDataObjectAdapter {
 		// Creator
 		$authors = $article->getAuthors();
 		foreach($authors as $author) {
-			$dc11Description->addStatement('dc:creator', $author->getFullName(true));
+			$dc11Description->addStatement('dc:creator', $author->getFullName(false, true));
 		}
 
 		// Subject
 		$subjects = array_merge_recursive(
-				(array) $article->getDiscipline(null),
-				(array) $article->getSubject(null),
-				(array) $article->getSubjectClass(null));
+			(array) $article->getDiscipline(null),
+			(array) $article->getSubject(null)
+		);
 		$this->_addLocalizedElements($dc11Description, 'dc:subject', $subjects);
 
 		// Description
@@ -156,7 +155,7 @@ class Dc11SchemaArticleAdapter extends MetadataDataObjectAdapter {
 		if (!empty($pages)) $pages = '; ' . $pages;
 		foreach ($sources as $locale => $source) {
 			if (is_a($article, 'PublishedArticle')) {
-				$sources[$locale] .= '; ' . $issue->getIssueIdentification();
+				$sources[$locale] .= '; ' . $issue->getIssueIdentification(array(), $locale);
 			}
 			$sources[$locale] .=  $pages;
 		}
@@ -194,7 +193,7 @@ class Dc11SchemaArticleAdapter extends MetadataDataObjectAdapter {
 		// Relation
 		// full text URLs
 		foreach ($galleys as $galley) {
-			$relation = Request::url($journal->getPath(), 'article', 'view', array($article->getBestArticleId($journal), $galley->getBestGalleyId($journal)));
+			$relation = Request::url($journal->getPath(), 'article', 'view', array($article->getBestArticleId(), $galley->getBestGalleyId()));
 			$dc11Description->addStatement('dc:relation', $relation);
 			unset($relation);
 		}
@@ -202,16 +201,16 @@ class Dc11SchemaArticleAdapter extends MetadataDataObjectAdapter {
 		// Public identifiers
 		$pubIdPlugins = (array) PluginRegistry::loadCategory('pubIds', true, $journal->getId());
 		foreach ($pubIdPlugins as $pubIdPlugin) {
-			if ($pubIssueId = $pubIdPlugin->getPubId($issue)) {
+			if ($issue && $pubIssueId = $issue->getStoredPubId($pubIdPlugin->getPubIdType())) {
 				$dc11Description->addStatement('dc:source', $pubIssueId, METADATA_DESCRIPTION_UNKNOWN_LOCALE);
 				unset($pubIssueId);
 			}
-			if ($pubArticleId = $pubIdPlugin->getPubId($article)) {
+			if ($pubArticleId = $article->getStoredPubId($pubIdPlugin->getPubIdType())) {
 				$dc11Description->addStatement('dc:identifier', $pubArticleId);
 				unset($pubArticleId);
 			}
 			foreach ($galleys as $galley) {
-				if ($pubGalleyId = $pubIdPlugin->getPubId($galley)) {
+				if ($pubGalleyId = $galley->getStoredPubId($pubIdPlugin->getPubIdType())) {
 					$dc11Description->addStatement('dc:relation', $pubGalleyId);
 					unset($pubGalleyId);
 				}
@@ -219,14 +218,15 @@ class Dc11SchemaArticleAdapter extends MetadataDataObjectAdapter {
 		}
 
 		// Coverage
-		$coverage = array_merge_recursive(
-				(array) $article->getCoverageGeo(null),
-				(array) $article->getCoverageChron(null),
-				(array) $article->getCoverageSample(null));
-		$this->_addLocalizedElements($dc11Description, 'dc:coverage', $coverage);
+		$this->_addLocalizedElements($dc11Description, 'dc:coverage', (array) $article->getCoverage(null));
 
-		// Rights
-		$this->_addLocalizedElements($dc11Description, 'dc:rights', $journal->getSetting('copyrightNotice'));
+		// Rights: Add both copyright statement and license
+		$copyrightHolder = $article->getLocalizedCopyrightHolder();
+		$copyrightYear = $article->getCopyrightYear();
+		if (!empty($copyrightHolder) && !empty($copyrightYear)) {
+			$dc11Description->addStatement('dc:rights', __('submission.copyrightStatement', array('copyrightHolder' => $copyrightHolder, 'copyrightYear' => $copyrightYear)));
+		}
+		if ($licenseUrl = $article->getLicenseURL()) $dc11Description->addStatement('dc:rights', $licenseUrl);
 
 		Hookregistry::call('Dc11SchemaArticleAdapter::extractMetadataFromDataObject', array($this, $article, $journal, $issue, &$dc11Description));
 
@@ -256,10 +256,12 @@ class Dc11SchemaArticleAdapter extends MetadataDataObjectAdapter {
 		foreach(stripAssocArray((array) $localizedValues) as $locale => $values) {
 			if (is_scalar($values)) $values = array($values);
 			foreach($values as $value) {
-				$description->addStatement($propertyName, $value, $locale);
+				if (!empty($value)) {
+					$description->addStatement($propertyName, $value, $locale);
+				}
 				unset($value);
 			}
 		}
 	}
 }
-?>
+

@@ -7,8 +7,8 @@
 /**
  * @file plugins/oaiMetadataFormats/dc/tests/OAIMetadataFormat_DCTest.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2000-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OAIMetadataFormat_DCTest
@@ -59,14 +59,14 @@ class OAIMetadataFormat_DCTest extends PKPTestCase {
 		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO'); /* @var $pluginSettingsDao PluginSettingsDAO */
 		$pluginSettingsDao->updateSetting($journalId, 'doipubidplugin', 'enabled', 1);
 		$pluginSettingsDao->updateSetting($journalId, 'doipubidplugin', 'enableIssueDoi', 1);
-		$pluginSettingsDao->updateSetting($journalId, 'doipubidplugin', 'enableArticleDoi', 1);
-		$pluginSettingsDao->updateSetting($journalId, 'doipubidplugin', 'enableGalleyDoi', 1);
+		$pluginSettingsDao->updateSetting($journalId, 'doipubidplugin', 'enableSubmissionDoi', 1);
+		$pluginSettingsDao->updateSetting($journalId, 'doipubidplugin', 'enableRepresentationyDoi', 1);
 
 		// Author
 		import('classes.article.Author');
 		$author = new Author();
-		$author->setFirstName('author-firstname');
-		$author->setLastName('author-lastname');
+		$author->setGivenName('author-firstname', 'en_US');
+		$author->setFamilyName('author-lastname', 'en_US');
 		$author->setAffiliation('author-affiliation', 'en_US');
 		$author->setEmail('someone@example.com');
 
@@ -85,14 +85,10 @@ class OAIMetadataFormat_DCTest extends PKPTestCase {
 		$article->setTitle('article-title-de', 'de_DE');
 		$article->setDiscipline('article-discipline', 'en_US');
 		$article->setSubject('article-subject', 'en_US');
-		$article->setSubjectClass('article-subject-class', 'en_US');
 		$article->setAbstract('article-abstract', 'en_US');
 		$article->setSponsor('article-sponsor', 'en_US');
 		$article->setStoredPubId('doi', 'article-doi');
 		$article->setLanguage('en_US');
-		$article->setCoverageGeo('article-coverage-geo', 'en_US');
-		$article->setCoverageChron('article-coverage-chron', 'en_US');
-		$article->setCoverageSample('article-coverage-sample', 'en_US');
 
 		// Galleys
 		import('classes.article.ArticleGalley');
@@ -135,7 +131,7 @@ class OAIMetadataFormat_DCTest extends PKPTestCase {
 		// Router
 		import('lib.pkp.classes.core.PKPRouter');
 		$router = $this->getMock('PKPRouter', array('url'));
-		$application = PKPApplication::getApplication();
+		$application = Application::getApplication();
 		$router->setApplication($application);
 		$router->expects($this->any())
 		       ->method('url')
@@ -187,9 +183,9 @@ class OAIMetadataFormat_DCTest extends PKPTestCase {
 
 		// Create a mocked PublishedArticleDAO that returns our test article.
 		import('classes.article.PublishedArticleDAO');
-		$articleDao = $this->getMock('PublishedArticleDAO', array('getPublishedArticleByArticleId'));
+		$articleDao = $this->getMock('PublishedArticleDAO', array('getByArticleId'));
 		$articleDao->expects($this->any())
-		            ->method('getPublishedArticleByArticleId')
+		            ->method('getByArticleId')
 		            ->will($this->returnValue($article));
 		DAORegistry::registerDAO('PublishedArticleDAO', $articleDao);
 
@@ -234,9 +230,6 @@ class OAIMetadataFormat_DCTest extends PKPTestCase {
 			case 'publisherInstitution':
 				return array('journal-publisher');
 
-			case 'enablePublicGalleyId':
-				return false;
-
 			case 'onlineIssn':
 				return 'onlineIssn';
 
@@ -259,4 +252,4 @@ class OAIMetadataFormat_DCTest extends PKPTestCase {
        	return $handler.'-'.$op.'-'.implode('-', $path);
 	}
 }
-?>
+

@@ -3,8 +3,8 @@
 /**
  * @file classes/template/TemplateManager.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class TemplateManager
@@ -21,12 +21,11 @@ import('lib.pkp.classes.template.PKPTemplateManager');
 
 class TemplateManager extends PKPTemplateManager {
 	/**
-	 * Constructor.
 	 * Initialize template engine and assign basic template variables.
 	 * @param $request PKPRequest
 	 */
-	function TemplateManager($request) {
-		parent::PKPTemplateManager($request);
+	function initialize($request) {
+		parent::initialize($request);
 
 		if (!defined('SESSION_DISABLE_INIT')) {
 			/**
@@ -44,72 +43,100 @@ class TemplateManager extends PKPTemplateManager {
 			$this->assign('publicFilesDir', $siteFilesDir); // May be overridden by journal
 
 			$siteStyleFilename = $publicFileManager->getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
-			if (file_exists($siteStyleFilename)) $this->addStyleSheet($request->getBaseUrl() . '/' . $siteStyleFilename, STYLE_SEQUENCE_LAST);
+			if (file_exists($siteStyleFilename)) {
+				$this->addStyleSheet(
+					'siteStylesheet',
+					$request->getBaseUrl() . '/' . $siteStyleFilename,
+					array(
+						'priority' => STYLE_SEQUENCE_LATE
+					)
+				);
+			}
 
-			$this->assign('siteCategoriesEnabled', $site->getSetting('categoriesEnabled'));
+			// Pass app-specific details to template
+			$this->assign(array(
+				'brandImage' => 'templates/images/ojs_brand.png',
+				'packageKey' => 'common.openJournalSystems',
+			));
 
+			// Get a count of unread tasks.
+			if ($user = $request->getUser()) {
+				$notificationDao = DAORegistry::getDAO('NotificationDAO');
+				// Exclude certain tasks, defined in the notifications grid handler
+				import('lib.pkp.controllers.grid.notifications.TaskNotificationsGridHandler');
+				$this->assign('unreadNotificationCount', $notificationDao->getNotificationCount(false, $user->getId(), null, NOTIFICATION_LEVEL_TASK));
+			}
 			if (isset($context)) {
 
-				$this->assign('currentJournal', $context);
-				$this->assign('siteTitle', $context->getLocalizedName());
-				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . $publicFileManager->getJournalFilesPath($context->getId()));
+				$this->assign(array(
+					'currentJournal' => $context,
+					'siteTitle' => $context->getLocalizedName(),
+					'publicFilesDir' => $request->getBaseUrl() . '/' . $publicFileManager->getJournalFilesPath($context->getId()),
+					'primaryLocale' => $context->getPrimaryLocale(),
+					'supportedLocales' => $context->getSupportedLocaleNames(),
+					'displayPageHeaderTitle' => $context->getLocalizedPageHeaderTitle(),
+					'displayPageHeaderLogo' => $context->getLocalizedPageHeaderLogo(),
+					'displayPageHeaderLogoAltText' => $context->getLocalizedSetting('pageHeaderLogoImageAltText'),
+					'numPageLinks' => $context->getSetting('numPageLinks'),
+					'itemsPerPage' => $context->getSetting('itemsPerPage'),
+					'enableAnnouncements' => $context->getSetting('enableAnnouncements'),
+					'contextSettings' => $context->getSettingsDAO()->getSettings($context->getId()),
+					'disableUserReg' => $context->getSetting('disableUserReg'),
+				));
 
-				$this->assign('primaryLocale', $context->getPrimaryLocale());
-				$this->assign('alternateLocales', $context->getSetting('alternateLocales'));
-
-				// Assign page header
-				$this->assign('displayPageHeaderTitle', $context->getLocalizedPageHeaderTitle());
-				$this->assign('displayPageHeaderLogo', $context->getLocalizedPageHeaderLogo());
-				$this->assign('displayPageHeaderTitleAltText', $context->getLocalizedSetting('pageHeaderTitleImageAltText'));
-				$this->assign('displayPageHeaderLogoAltText', $context->getLocalizedSetting('pageHeaderLogoImageAltText'));
-				$this->assign('displayFavicon', $context->getLocalizedFavicon());
-				$this->assign('faviconDir', $request->getBaseUrl() . '/' . $publicFileManager->getJournalFilesPath($context->getId()));
-				$this->assign('alternatePageHeader', $context->getLocalizedSetting('journalPageHeader'));
-				$this->assign('metaSearchDescription', $context->getLocalizedSetting('searchDescription'));
-				$this->assign('metaSearchKeywords', $context->getLocalizedSetting('searchKeywords'));
-				$this->assign('metaCustomHeaders', $context->getLocalizedSetting('customHeaders'));
-				$this->assign('numPageLinks', $context->getSetting('numPageLinks'));
-				$this->assign('itemsPerPage', $context->getSetting('itemsPerPage'));
-				$this->assign('enableAnnouncements', $context->getSetting('enableAnnouncements'));
-				$this->assign('contextSettings', $context->getSettingsDAO()->getSettings($context->getId()));
+				// Assign meta tags
+				$favicon = $context->getLocalizedFavicon();
+				if (!empty($favicon)) {
+					$faviconDir = $request->getBaseUrl() . '/' . $publicFileManager->getJournalFilesPath($context->getId());
+					$this->addHeader('favicon', '<link rel="icon" href="' . $faviconDir . '/' . $favicon['uploadName'] . '">');
+				}
 
 				// Assign stylesheets and footer
-				$contextStyleSheet = $context->getSetting('journalStyleSheet');
+				$contextStyleSheet = $context->getSetting('styleSheet');
 				if ($contextStyleSheet) {
-					$this->addStyleSheet($request->getBaseUrl() . '/' . $publicFileManager->getJournalFilesPath($context->getId()) . '/' . $contextStyleSheet['uploadName'], STYLE_SEQUENCE_LAST);
+					$this->addStyleSheet(
+						'contextStylesheet',
+						$request->getBaseUrl() . '/' . $publicFileManager->getJournalFilesPath($context->getId()) . '/' . $contextStyleSheet['uploadName'],
+						array(
+							'priority' => STYLE_SEQUENCE_LATE
+						)
+					);
 				}
 
 				// Get a link to the settings page for the current context.
 				// This allows us to reduce template duplication by using this
 				// variable in templates/common/header.tpl, instead of
 				// reproducing a lot of OMP/OJS-specific logic there.
-				$router = $request->getRouter();
 				$dispatcher = $request->getDispatcher();
-				$this->assign( 'contextSettingsUrl', $dispatcher->url($request, ROUTE_PAGE, null, 'management', 'settings', 'journal') );
+				$this->assign( 'contextSettingsUrl', $dispatcher->url($request, ROUTE_PAGE, null, 'management', 'settings', 'context') );
 
-				import('classes.payment.ojs.OJSPaymentManager');
-				$paymentManager = new OJSPaymentManager($request);
-				$this->assign('journalPaymentsEnabled', $paymentManager->isConfigured());
-
-				// Include footer links if they have been defined.
-				$footerCategoryDao = DAORegistry::getDAO('FooterCategoryDAO');
-				$footerCategories = $footerCategoryDao->getNotEmptyByContextId($context->getId());
-				$this->assign('footerCategories', $footerCategories->toArray());
-
-				$footerLinkDao = DAORegistry::getDAO('FooterLinkDAO');
-				$this->assign('maxLinks', $footerLinkDao->getLargestCategoryTotalbyContextId($context->getId()));
-				$this->assign('pageFooter', $context->getLocalizedSetting('journalPageFooter'));
+				$paymentManager = Application::getPaymentManager($context);
+				$this->assign('pageFooter', $context->getLocalizedSetting('pageFooter'));
 			} else {
-				// Add the site-wide logo, if set for this locale or the primary locale
-				$displayPageHeaderTitle = $site->getLocalizedPageHeaderTitle();
-				$this->assign('displayPageHeaderTitle', $displayPageHeaderTitle);
-				if (isset($displayPageHeaderTitle['altText'])) $this->assign('displayPageHeaderTitleAltText', $displayPageHeaderTitle['altText']);
+				// Check if registration is open for any contexts
+				$contextDao = Application::getContextDAO();
+				$contexts = $contextDao->getAll(true)->toArray();
+				$contextsForRegistration = array();
+				foreach($contexts as $context) {
+					if (!$context->getSetting('disableUserReg')) {
+						$contextsForRegistration[] = $context;
+					}
+				}
 
-				$this->assign('siteTitle', $site->getLocalizedTitle());
-				$this->assign('primaryLocale', $site->getPrimaryLocale());
+				$this->assign(array(
+					'contexts' => $contextsForRegistration,
+					'disableUserReg' => empty($contextsForRegistration),
+					'displayPageHeaderTitle' => $site->getLocalizedPageHeaderTitle(),
+					'displayPageHeaderLogo' => $site->getLocalizedSetting('pageHeaderTitleImage'),
+					'siteTitle' => $site->getLocalizedTitle(),
+					'primaryLocale' => $site->getPrimaryLocale(),
+					'supportedLocales' => $site->getSupportedLocaleNames(),
+					'pageFooter' => $site->getLocalizedSetting('pageFooter'),
+				));
+
 			}
 		}
 	}
 }
 
-?>
+

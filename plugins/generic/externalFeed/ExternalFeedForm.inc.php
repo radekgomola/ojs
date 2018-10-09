@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/externalFeed/ExternalFeedForm.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ExternalFeedForm
@@ -32,12 +32,12 @@ class ExternalFeedForm extends Form {
 	 * @param $journalId int
 	 * @param $feedId int
 	 */
-	function ExternalFeedForm(&$plugin, $feedId, $journalId) {
+	function __construct(&$plugin, $feedId, $journalId) {
 		$this->plugin =& $plugin;
 		$this->feedId = isset($feedId) ? $feedId : null;
 		$this->journalId = $journalId;
 
-		parent::Form($plugin->getTemplatePath() . 'externalFeedForm.tpl');
+		parent::__construct($plugin->getTemplateResource('externalFeedForm.tpl'));
 
 		// Feed URL is provided
 		$this->addCheck(new FormValidatorUrl($this, 'feedUrl', 'required', 'plugins.generic.externalFeed.form.feedUrlValid'));
@@ -46,6 +46,7 @@ class ExternalFeedForm extends Form {
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'plugins.generic.externalFeed.form.titleRequired'));
 
 		$this->addCheck(new FormValidatorPost($this));
+		$this->addCheck(new FormValidatorCSRF($this));
 	}
 
 	/**
@@ -58,17 +59,17 @@ class ExternalFeedForm extends Form {
 	}
 
 	/**
-	 * Display the form.
+	 * @copydoc Form::display
 	 */
-	function display() {
+	function display($request = null, $template = null) {
 		$plugin = $this->plugin;
-		$request = $plugin->getRequest();
+		$request = Application::getRequest();
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('feedId', $this->feedId);
 
 		$plugin->import('ExternalFeed');
 
-		parent::display();
+		parent::display($request, $template);
 	}
 
 	/**
@@ -148,7 +149,7 @@ class ExternalFeedForm extends Form {
 		if ($feed->getId() != null) {
 			$externalFeedDao->updateExternalFeed($feed);
 		} else {
-			$feed->setSeq(REALLY_BIG_NUMBER);
+			$feed->setSequence(REALLY_BIG_NUMBER);
 			$externalFeedDao->insertExternalFeed($feed);
 
 			// Re-order the feeds so the new one is at the end of the list.
@@ -158,4 +159,4 @@ class ExternalFeedForm extends Form {
 
 }
 
-?>
+

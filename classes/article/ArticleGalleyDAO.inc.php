@@ -3,8 +3,8 @@
 /**
  * @file classes/article/ArticleGalleyDAO.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ArticleGalleyDAO
@@ -16,14 +16,9 @@
 
 import('classes.article.ArticleGalley');
 import('lib.pkp.classes.submission.RepresentationDAO');
+import('lib.pkp.classes.plugins.PKPPubIdPluginDAO');
 
-class ArticleGalleyDAO extends RepresentationDAO {
-	/**
-	 * Constructor.
-	 */
-	function ArticleGalleyDAO() {
-		parent::RepresentationDAO();
-	}
+class ArticleGalleyDAO extends RepresentationDAO implements PKPPubIdPluginDAO {
 
 	/**
 	 * Return a new data object.
@@ -42,12 +37,15 @@ class ArticleGalleyDAO extends RepresentationDAO {
 		if ($contextId) $params[] = (int) $contextId;
 
 		$result = $this->retrieve(
-			'SELECT	g.*
+			'SELECT	sf.*, g.*
 			FROM	submission_galleys g
-			' . ($contextId?' JOIN submissions s ON (s.submission_id = g.submission_id)':'') . '
-			WHERE	g.galley_id = ?' .
-			($submissionId !== null?' AND g.submission_id = ?':'') .
-			($contextId?' AND s.context_id = ?':''),
+				' . ($contextId?' JOIN submissions s ON (s.submission_id = g.submission_id)':'') . '
+				LEFT JOIN submission_files sf ON (g.file_id = sf.file_id)
+				LEFT JOIN submission_files nsf ON (nsf.file_id = g.file_id AND nsf.revision > sf.revision)
+			WHERE	g.galley_id = ?
+				AND nsf.file_id IS NULL ' .
+				($submissionId !== null?' AND g.submission_id = ?':'') .
+				($contextId?' AND s.context_id = ?':''),
 			$params
 		);
 
@@ -57,36 +55,6 @@ class ArticleGalleyDAO extends RepresentationDAO {
 		}
 		$result->Close();
 		HookRegistry::call('ArticleGalleyDAO::getById', array(&$galleyId, &$submissionId, &$returner));
-		return $returner;
-	}
-
-	/**
-	 * Checks if public identifier exists (other than for the specified
-	 * galley ID, which is treated as an exception).
-	 * @param $pubIdType string One of the NLM pub-id-type values or
-	 * 'other::something' if not part of the official NLM list
-	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-	 * @param $pubId string
-	 * @param $galleyId int An ID to be excluded from the search.
-	 * @param $journalId int
-	 * @return boolean
-	 */
-	function pubIdExists($pubIdType, $pubId, $galleyId, $journalId) {
-		$result = $this->retrieve(
-			'SELECT COUNT(*)
-			FROM submission_galley_settings sgs
-				INNER JOIN submission_galleys sg ON sgs.galley_id = sg.galley_id
-				INNER JOIN submissions s ON sg.submission_id = s.submission_id
-			WHERE sgs.setting_name = ? AND sgs.setting_value = ? AND sgs.galley_id <> ? AND s.context_id = ?',
-			array(
-				'pub-id::'.$pubIdType,
-				$pubId,
-				(int) $galleyId,
-				(int) $journalId
-			)
-		);
-		$returner = $result->fields[0] ? true : false;
-		$result->Close();
 		return $returner;
 	}
 
@@ -124,9 +92,9 @@ class ArticleGalleyDAO extends RepresentationDAO {
 				LEFT JOIN published_submissions pa ON g.submission_id = pa.submission_id ';
 		if (is_null($settingValue)) {
 			$sql .= 'LEFT JOIN submission_galley_settings gs ON g.galley_id = gs.galley_id AND gs.setting_name = ?
-				WHERE	(gs.setting_value IS NULL OR gs.setting_value = "")';
+				WHERE	(gs.setting_value IS NULL OR gs.setting_value = \'\')';
 		} else {
-			$params[] = $settingValue;
+			$params[] = (string) $settingValue;
 			$sql .= 'INNER JOIN submission_galley_settings gs ON g.galley_id = gs.galley_id
 				WHERE	gs.setting_name = ? AND gs.setting_value = ?';
 		}
@@ -147,13 +115,22 @@ class ArticleGalleyDAO extends RepresentationDAO {
 	/**
 	 * @copydoc RepresentationDAO::getBySubmissionId()
 	 */
-	function getBySubmissionId($submissionId) {
+	function getBySubmissionId($submissionId, $contextId = null) {
+		$params = array((int) $submissionId);
+		if ($contextId) $params[] = (int) $contextId;
+
 		return new DAOResultFactory(
 			$this->retrieve(
-				'SELECT *
-				FROM submission_galleys
-				WHERE submission_id = ? ORDER BY seq',
-				(int) $submissionId
+				'SELECT sf.*, g.*
+				FROM submission_galleys g
+				' . ($contextId?'INNER JOIN submissions s ON (g.submission_id = s.submission_id) ':'') . '
+				LEFT JOIN submission_files sf ON (g.file_id = sf.file_id)
+				LEFT JOIN submission_files nsf ON (nsf.file_id = g.file_id AND nsf.revision > sf.revision)
+				WHERE g.submission_id = ?
+					AND nsf.file_id IS NULL
+					' . ($contextId?' AND s.context_id = ? ':'') . '
+				ORDER BY g.seq',
+				$params
 			),
 			$this, '_fromRow'
 		);
@@ -164,12 +141,15 @@ class ArticleGalleyDAO extends RepresentationDAO {
 	 * @param $journalId int
 	 * @return DAOResultFactory
 	 */
-	function getByJournalId($journalId) {
+	function getByContextId($journalId) {
 		$result = $this->retrieve(
-			'SELECT	g.*
+			'SELECT	sf.*, g.*
 			FROM	submission_galleys g
-			INNER JOIN submissions a ON (g.submission_id = a.submission_id)
-			WHERE	a.context_id = ?',
+				INNER JOIN submissions a ON (g.submission_id = a.submission_id)
+				LEFT JOIN submission_files sf ON (g.file_id = sf.file_id)
+				LEFT JOIN submission_files nsf ON (nsf.file_id = g.file_id AND nsf.revision > sf.revision)
+			WHERE	a.context_id = ?
+				AND nsf.file_id IS NULL',
 			(int) $journalId
 		);
 
@@ -205,7 +185,6 @@ class ArticleGalleyDAO extends RepresentationDAO {
 	 */
 	function getAdditionalFieldNames() {
 		$additionalFields = parent::getAdditionalFieldNames();
-		// FIXME: Move this to a PID plug-in.
 		$additionalFields[] = 'pub-id::publisher-id';
 		return $additionalFields;
 	}
@@ -232,10 +211,9 @@ class ArticleGalleyDAO extends RepresentationDAO {
 		$galley->setSubmissionId($row['submission_id']);
 		$galley->setLocale($row['locale']);
 		$galley->setLabel($row['label']);
-		$galley->setSeq($row['seq']);
+		$galley->setSequence($row['seq']);
 		$galley->setRemoteURL($row['remote_url']);
-		$galley->setIsApproved($row['is_approved']);
-		$galley->setGalleyType($row['galley_type']);
+		$galley->setFileId($row['file_id']);
 
 		$this->getDataObjectSettings('submission_galley_settings', 'galley_id', $row['galley_id'], $galley);
 
@@ -251,17 +229,16 @@ class ArticleGalleyDAO extends RepresentationDAO {
 	function insertObject($galley) {
 		$this->update(
 			'INSERT INTO submission_galleys
-				(submission_id, label, locale, seq, remote_url, is_approved, galley_type)
+				(submission_id, label, locale, seq, remote_url, file_id)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?)',
 			array(
 				(int) $galley->getSubmissionId(),
 				$galley->getLabel(),
 				$galley->getLocale(),
-				$galley->getSeq() == null ? $this->getNextGalleySequence($galley->getSubmissionId()) : $galley->getSeq(),
+				$galley->getSequence() == null ? $this->getNextGalleySequence($galley->getSubmissionId()) : $galley->getSequence(),
 				$galley->getRemoteURL(),
-				$galley->getIsApproved()?1:0,
-				$galley->getGalleyType(),
+				$galley->getFileId(),
 			)
 		);
 		$galley->setId($this->getInsertId());
@@ -280,20 +257,18 @@ class ArticleGalleyDAO extends RepresentationDAO {
 		$this->update(
 			'UPDATE submission_galleys
 				SET
-					label = ?,
 					locale = ?,
+					label = ?,
 					seq = ?,
 					remote_url = ?,
-					is_approved = ?,
-					galley_type = ?
+					file_id = ?
 				WHERE galley_id = ?',
 			array(
-				$galley->getLabel(),
 				$galley->getLocale(),
-				$galley->getSeq(),
+				$galley->getLabel(),
+				(float) $galley->getSequence(),
 				$galley->getRemoteURL(),
-				(int) $galley->getIsApproved(),
-				$galley->getGalleyType(),
+				(int) $galley->getFileId(),
 				(int) $galley->getId(),
 			)
 		);
@@ -398,19 +373,36 @@ class ArticleGalleyDAO extends RepresentationDAO {
 	}
 
 	/**
-	 * Change the public ID of a galley.
-	 * @param $galleyId int
-	 * @param $pubIdType string One of the NLM pub-id-type values or
-	 * 'other::something' if not part of the official NLM list
-	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-	 * @param $pubId string
+	 * @copydoc PKPPubIdPluginDAO::pubIdExists()
 	 */
-	function changePubId($galleyId, $pubIdType, $pubId) {
+	function pubIdExists($pubIdType, $pubId, $excludePubObjectId, $contextId) {
+		$result = $this->retrieve(
+			'SELECT COUNT(*)
+			FROM submission_galley_settings sgs
+				INNER JOIN submission_galleys sg ON sgs.galley_id = sg.galley_id
+				INNER JOIN submissions s ON sg.submission_id = s.submission_id
+			WHERE sgs.setting_name = ? AND sgs.setting_value = ? AND sgs.galley_id <> ? AND s.context_id = ?',
+			array(
+				'pub-id::'.$pubIdType,
+				$pubId,
+				(int) $excludePubObjectId,
+				(int) $contextId
+			)
+		);
+		$returner = $result->fields[0] ? true : false;
+		$result->Close();
+		return $returner;
+	}
+
+	/**
+	 * @copydoc PKPPubIdPluginDAO::changePubId()
+	 */
+	function changePubId($pubObjectId, $pubIdType, $pubId) {
 		$idFields = array(
 			'galley_id', 'locale', 'setting_name'
 		);
 		$updateArray = array(
-			'galley_id' => $galleyId,
+			'galley_id' => (int) $pubObjectId,
 			'locale' => '',
 			'setting_name' => 'pub-id::'.$pubIdType,
 			'setting_type' => 'string',
@@ -420,17 +412,27 @@ class ArticleGalleyDAO extends RepresentationDAO {
 	}
 
 	/**
-	 * Delete the public IDs of all galleys in a journal.
-	 * @param $journalId int
-	 * @param $pubIdType string One of the NLM pub-id-type values or
-	 * 'other::something' if not part of the official NLM list
-	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
+	 * @copydoc PKPPubIdPluginDAO::deletePubId()
 	 */
-	function deleteAllPubIds($journalId, $pubIdType) {
-		$journalId = (int) $journalId;
+	function deletePubId($pubObjectId, $pubIdType) {
+		$settingName = 'pub-id::'.$pubIdType;
+		$this->update(
+			'DELETE FROM submission_galley_settings WHERE setting_name = ? AND galley_id = ?',
+			array(
+				$settingName,
+				(int)$pubObjectId
+			)
+		);
+		$this->flushCache();
+	}
+
+	/**
+	 * @copydoc PKPPubIdPluginDAO::deleteAllPubIds()
+	 */
+	function deleteAllPubIds($contextId, $pubIdType) {
 		$settingName = 'pub-id::'.$pubIdType;
 
-		$galleys = $this->getByJournalId($journalId);
+		$galleys = $this->getByContextId($contextId);
 		while ($galley = $galleys->next()) {
 			$this->update(
 				'DELETE FROM submission_galley_settings WHERE setting_name = ? AND galley_id = ?',
@@ -442,6 +444,75 @@ class ArticleGalleyDAO extends RepresentationDAO {
 		}
 		$this->flushCache();
 	}
+
+	/**
+	 * Get all published article galleys (eventually with a pubId assigned and) matching the specified settings.
+	 * @param $contextId integer optional
+	 * @param $pubIdType string
+	 * @param $title string optional
+	 * @param $author string optional
+	 * @param $issueId integer optional
+	 * @param $pubIdSettingName string optional
+	 * (e.g. medra::status or medra::registeredDoi)
+	 * @param $pubIdSettingValue string optional
+	 * @param $rangeInfo DBResultRange optional
+	 * @return DAOResultFactory
+	 */
+	function getExportable($contextId, $pubIdType = null, $title = null, $author = null, $issueId = null, $pubIdSettingName = null, $pubIdSettingValue = null, $rangeInfo = null) {
+		$params = array();
+		if ($pubIdSettingName) {
+			$params[] = $pubIdSettingName;
+		}
+		$params[] = (int) $contextId;
+		if ($pubIdType) {
+			$params[] = 'pub-id::'.$pubIdType;
+		}
+		if ($title) {
+			$params[] = 'title';
+			$params[] = '%' . $title . '%';
+		}
+		if ($author) array_push($params, $authorQuery = '%' . $author . '%', $authorQuery);
+		if ($issueId) {
+			$params[] = (int) $issueId;
+		}
+		import('classes.plugins.PubObjectsExportPlugin');
+		if ($pubIdSettingName && $pubIdSettingValue && $pubIdSettingValue != EXPORT_STATUS_NOT_DEPOSITED) {
+			$params[] = $pubIdSettingValue;
+		}
+
+		import('classes.article.Article'); // STATUS_DECLINED constant
+		$result = $this->retrieveRange(
+				'SELECT	sf.*, g.*
+			FROM	submission_galleys g
+				JOIN submissions s ON (s.submission_id = g.submission_id AND s.status <> ' . STATUS_DECLINED .')
+				LEFT JOIN published_submissions ps ON (ps.submission_id = g.submission_id)
+				JOIN issues i ON (ps.issue_id = i.issue_id)
+				LEFT JOIN submission_files sf ON (g.file_id = sf.file_id)
+				LEFT JOIN submission_files nsf ON (nsf.file_id = g.file_id AND nsf.revision > sf.revision AND nsf.file_id IS NULL )
+				' . ($pubIdType != null?' LEFT JOIN submission_galley_settings gs ON (g.galley_id = gs.galley_id)':'')
+				. ($title != null?' LEFT JOIN submission_settings sst ON (s.submission_id = sst.submission_id)':'')
+				. ($author != null?' LEFT JOIN authors au ON (s.submission_id = au.submission_id)
+						LEFT JOIN author_settings asgs ON (asgs.author_id = au.author_id AND asgs.setting_name = \''.IDENTITY_SETTING_GIVENNAME.'\')
+						LEFT JOIN author_settings asfs ON (asfs.author_id = au.author_id AND asfs.setting_name = \''.IDENTITY_SETTING_FAMILYNAME.'\')
+					':'')
+				. ($pubIdSettingName != null?' LEFT JOIN submission_galley_settings gss ON (g.galley_id = gss.galley_id AND gss.setting_name = ?)':'') .'
+			WHERE
+				i.published = 1 AND s.context_id = ?
+				' . ($pubIdType != null?' AND gs.setting_name = ? AND gs.setting_value IS NOT NULL':'')
+				. ($title != null?' AND (sst.setting_name = ? AND sst.setting_value LIKE ?)':'')
+				. ($author != null?' AND (asgs.setting_value LIKE ? OR asfs.setting_value LIKE ?)':'')
+				. ($issueId != null?' AND ps.issue_id = ?':'')
+				. (($pubIdSettingName != null && $pubIdSettingValue != null && $pubIdSettingValue == EXPORT_STATUS_NOT_DEPOSITED)?' AND gss.setting_value IS NULL':'')
+				. (($pubIdSettingName != null && $pubIdSettingValue != null && $pubIdSettingValue != EXPORT_STATUS_NOT_DEPOSITED)?' AND gss.setting_value = ?':'')
+				. (($pubIdSettingName != null && is_null($pubIdSettingValue))?' AND (gss.setting_value IS NULL OR gss.setting_value = \'\')':'') .'
+				ORDER BY ps.date_published DESC, s.submission_id DESC, g.galley_id DESC',
+			$params,
+			$rangeInfo
+		);
+
+		return new DAOResultFactory($result, $this, '_fromRow');
+	}
+
 }
 
-?>
+

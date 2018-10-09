@@ -1,8 +1,8 @@
 {**
  * plugins/importexport/users/templates/index.tpl
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * List of operations this plugin can perform
@@ -40,19 +40,19 @@
 			{rdelim});
 		</script>
 		<form id="importXmlForm" class="pkp_form" action="{plugin_url path="importBounce"}" method="post">
+			{csrf}
 			{fbvFormArea id="importForm"}
 				{* Container for uploaded file *}
-				<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 				<p>{translate key="plugins.importexport.users.import.instructions"}</p>
 
 				<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 				{fbvFormArea id="file"}
 					{fbvFormSection title="common.file"}
-						<div id="plupload"></div>
+						{include file="controllers/fileUploadContainer.tpl" id="plupload"}
 					{/fbvFormSection}
 				{/fbvFormArea}
 
-				{fbvFormButtons hideCancel="true"}
+				{fbvFormButtons submitText="plugins.importexport.users.import.importUsers" hideCancel="true"}
 			{/fbvFormArea}
 		</form>
 	</div>
@@ -64,10 +64,11 @@
 			{rdelim});
 		</script>
 		<form id="exportXmlForm" class="pkp_form" action="{plugin_url path="export"}" method="post">
+			{csrf}
 			{fbvFormArea id="exportForm"}
-				{url|assign:usersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.exportableUsers.ExportableUsersGridHandler" pluginName="UserImportExportPlugin" op="fetchGrid" escape=false}
+				{capture assign=usersGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.exportableUsers.ExportableUsersGridHandler" pluginName="UserImportExportPlugin" op="fetchGrid" escape=false}{/capture}
 				{load_url_in_div id="usersGridContainer" url=$usersGridUrl}
-				{fbvFormButtons hideCancel="true"}
+				{fbvFormButtons submitText="plugins.importexport.users.export.exportUsers" hideCancel="true"}
 			{/fbvFormArea}
 		</form>
 	</div>

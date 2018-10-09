@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/admin/journal/JournalGridHandler.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2000-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class JournalGridHandler
@@ -17,13 +17,6 @@ import('lib.pkp.controllers.grid.admin.context.ContextGridHandler');
 import('controllers.grid.admin.journal.form.JournalSiteSettingsForm');
 
 class JournalGridHandler extends ContextGridHandler {
-	/**
-	 * Constructor
-	 */
-	function JournalGridHandler() {
-		parent::ContextGridHandler();
-	}
-
 
 	//
 	// Public grid actions.
@@ -41,7 +34,7 @@ class JournalGridHandler extends ContextGridHandler {
 		// Form handling.
 		$settingsForm = new JournalSiteSettingsForm(!isset($journalId) || empty($journalId) ? null : $journalId);
 		$settingsForm->initData();
-		return new JSONMessage(true, $settingsForm->fetch($args, $request));
+		return new JSONMessage(true, $settingsForm->fetch($request));
 	}
 
 	/**
@@ -67,7 +60,7 @@ class JournalGridHandler extends ContextGridHandler {
 		// The context settings form will return a context path in two cases:
 		// 1 - if a new context was created;
 		// 2 - if a press path of an existing context was edited.
-		$newContextPath = $settingsForm->execute($request);
+		$newContextPath = $settingsForm->execute();
 
 		// Create the notification.
 		$notificationMgr = new NotificationManager();
@@ -112,7 +105,7 @@ class JournalGridHandler extends ContextGridHandler {
 		$journalDao = DAORegistry::getDAO('JournalDAO');
 		$journal = $journalDao->getById($journalId);
 
-		if ($journal) {
+		if ($journal && $request->checkCSRF()) {
 			$journalDao->deleteById($journalId);
 
 			// Delete journal file tree
@@ -133,4 +126,4 @@ class JournalGridHandler extends ContextGridHandler {
 	}
 }
 
-?>
+

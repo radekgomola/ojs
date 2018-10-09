@@ -3,8 +3,8 @@
 /**
  * @file tests/functional/plugins/block/mostRead/FunctionalMostReadBlockPluginTest.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2000-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class FunctionalMostReadBlockPluginTest
@@ -48,7 +48,7 @@ class FunctionalMostReadBlockPluginTest extends WebTestCase {
 		// Enable the "most read articles" plugin.
 		$pluginSettingsDao = DAORegistry::getDAO('PluginSettingsDAO'); /* @var $pluginSettingsDao PluginSettingsDAO */
 		$pluginSettingsDao->updateSetting(2, 'MostReadBlockPlugin', 'enabled', true);
-		$pluginSettingsDao->updateSetting(2, 'MostReadBlockPlugin', 'context', BLOCK_CONTEXT_LEFT_SIDEBAR);
+		$pluginSettingsDao->updateSetting(2, 'MostReadBlockPlugin', 'context', BLOCK_CONTEXT_SIDEBAR);
 		$pluginSettingsDao->updateSetting(2, 'MostReadBlockPlugin', 'seq', 1);
 		
 		// Enable a metric-providing plugin.
@@ -80,7 +80,7 @@ class FunctionalMostReadBlockPluginTest extends WebTestCase {
 	/**
 	 * SCENARIO: display most-read articles of a journal
 	 *    WHEN I display a journal page
-	 *    THEN I see a block plugin wich lists the articles
+	 *    THEN I see a block plugin which lists the articles
 	 *         ranking highest for the selected "main metric"
 	 *         throughout the journal
 	 *     AND I'll see the articles as title links with the
@@ -136,4 +136,4 @@ class FunctionalMostReadBlockPluginTest extends WebTestCase {
 		}
 	}
 }
-?>
+

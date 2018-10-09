@@ -3,8 +3,8 @@
 /**
  * @file tests/data/50-IssuesTest.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2000-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class IssuesTest
@@ -23,25 +23,14 @@ class IssuesTest extends WebTestCase {
 		$this->open(self::$baseUrl);
 
 		// Management > Issues
-		$this->waitForElementPresent($selector='link=Dashboard');
+		$this->waitForElementPresent($selector='css=li.profile a:contains(\'Dashboard\')');
 		$this->clickAndWait($selector);
-		$this->waitForElementPresent($selector='link=Issues');
+		$this->waitForElementPresent($selector='link=Future Issues');
 		$this->click($selector);
 
 		// Create issue
 		$this->waitForElementPresent($selector='css=[id^=component-grid-issues-futureissuegrid-addIssue-button-]');
 		$this->click($selector);
-		$this->waitForElementPresent($selector='css=[id^=volume-]');
-		$this->type($selector, '1');
-		$this->type('css=[id^=number-]', '1');
-		$this->type('css=[id^=year-]', '2014');
-		$this->click('id=showTitle');
-		$this->click('//button[text()=\'Save\']');
-		$this->waitJQuery();
-		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
-
-		// Create issue
-		$this->click('css=[id^=component-grid-issues-futureissuegrid-addIssue-button-]');
 		$this->waitForElementPresent($selector='css=[id^=volume-]');
 		$this->type($selector, '1');
 		$this->type('css=[id^=number-]', '2');
@@ -52,9 +41,9 @@ class IssuesTest extends WebTestCase {
 		$this->waitForElementNotPresent('css=div.pkp_modal_panel'); // pkp/pkp-lib#655
 
 		// Publish first issue
-		$this->waitForElementPresent($selector='//*[text()=\'Vol 1 No 1 (2014)\']/../../../../../following-sibling::*//a[text()=\'Publish Issue\']');
+		$this->waitForElementPresent($selector='//a[text()=\'Publish Issue\']');
 		$this->click($selector);
-		$this->waitForElementPresent($selector='//a[text()=\'OK\']');
+		$this->waitForElementPresent($selector='css=[id^=submitFormButton-]');
 		$this->click($selector);
 		$this->waitJQuery();
 	}

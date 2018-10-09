@@ -1,6 +1,9 @@
 [submodule "lib/pkp"]
 	path = lib/pkp
 	url = https://github.com/pkp/pkp-lib.git
+[submodule "plugins/generic/usageStats"]
+        path = plugins/generic/usageStats
+        url = https://github.com/pkp/usageStats.git
 [submodule "plugins/generic/customBlockManager"]
 	path = plugins/generic/customBlockManager
 	url = https://github.com/pkp/customBlockManager.git
@@ -13,9 +16,34 @@
 [submodule "plugins/generic/tinymce"]
 	path = plugins/generic/tinymce
 	url = https://github.com/pkp/tinymce.git
-[submodule "plugins/viewableFiles/pdfJsViewer"]
-	path = plugins/viewableFiles/pdfJsViewer
-	url = https://github.com/pkp/pdfJsViewer
-[submodule "plugins/viewableFiles/lensGalley"]
-	path = plugins/viewableFiles/lensGalley
+[submodule "plugins/generic/pdfJsViewer"]
+	path = plugins/generic/pdfJsViewer
+	url = https://github.com/pkp/pdfJsViewer.git
+[submodule "docs/manual"]
+	path = docs/manual
+	url = https://github.com/pkp/ojs-user-guide
+[submodule "plugins/generic/lensGalley"]
+	path = plugins/generic/lensGalley
 	url = https://github.com/asmecher/lensGalley
+	branch = i1472-fix
+[submodule "plugins/generic/googleAnalytics"]
+	path = plugins/generic/googleAnalytics
+	url = https://github.com/pkp/googleAnalytics.git
+[submodule "plugins/generic/orcidProfile"]
+	path = plugins/generic/orcidProfile
+	url = https://github.com/pkp/orcidProfile.git
+[submodule "plugins/blocks/makeSubmission"]
+	path = plugins/blocks/makeSubmission
+	url = https://github.com/pkp/makeSubmission.git
+[submodule "plugins/reports/reviewReport"]
+	path = plugins/reports/reviewReport
+	url = https://github.com/pkp/reviewReport
+[submodule "lib/ui-library"]
+	path = lib/ui-library
+	url = https://github.com/pkp/ui-library
+[submodule "plugins/generic/citationStyleLanguage"]
+	path = plugins/generic/citationStyleLanguage
+	url = https://github.com/pkp/citationStyleLanguage.git
+[submodule "plugins/reports/counter/classes/COUNTER"]
+	path = plugins/reports/counter/classes/COUNTER
+	url = https://github.com/ulsdevteam/COUNTER.git

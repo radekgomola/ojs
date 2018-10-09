@@ -1,26 +1,14 @@
 /**
  * @file styles/objects/issue_toc.less
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Styles applying to an issue table of contents view
  * @link templates/frontend/objects/issue_toc.tpl
  */
 .obj_issue_toc {
-
-	> .title {
-		margin: 0;
-	}
-
-	> .series {
-		margin: 0;
-		font-size: @font-lead;
-		line-height: @line-header;
-		font-weight: @normal;
-		color: @text-light;
-	}
 
 	h3 {
 		display: inline-block;
@@ -30,75 +18,126 @@
 		line-height: @double - 2; // Adjust for border
 	}
 
-	.sections,
+	.cover {
+		display: block;
+		margin-bottom: @double;
+
+		img {
+			display: block;
+			max-height: 250px;
+			width: auto;
+		}
+	}
+
+	.description {
+
+		> *:first-child {
+			margin-top: 0;
+		}
+
+		> *:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.pub_id {
+		margin: @double 0;
+
+		.type {
+			font-weight: @bold;
+		}
+	}
+
+	.published {
+		margin: @double 0;
+
+		.label {
+			font-weight: @bold;
+		}
+	}
+
 	.articles,
 	.galleys_links {
-		margin: 0;
-		padding: 0;
-		list-style: none;
+		&:extend(.pkp_unstyled_list);
 	}
 
 	.galleys_links {
 
 		li {
 			display: inline-block;
-		}
-	}
-
-	.section_no_title {
-		margin-top: @double * 2;
-	}
-
-	// Articles in issue table of contents
-	.articles {
-
-		> li {
-			margin-bottom: @double * 2;
+			margin-right: 1em;
 
 			&:last-child {
-				margin-bottom: 0;
+				margin-right: 0;
 			}
 		}
+	}
 
-		.title {
-			font-size: @font-lead;
-			line-height: @line-lead;
+	.sections:not(:first-child) {
+		margin-top: @triple * 2;
+	}
 
-			a {
-				text-decoration: none;
-			}
-		}
-
-		.meta {
-			position: relative;
-		}
-
-		.authors {
-			font-size: @font-bump;
-			line-height: @line-lead;
-			color: @text-light;
-		}
-
-		.pages {
-			font-size: @font-sml;
-		}
-
-		.galleys_links {
-			margin-top: @base;
-		}
+	.section:last-child .articles > li:last-child {
+		margin-bottom: 0;
 	}
 
 	@media(min-width: @screen-tablet) {
 
-		.authors {
-			padding-right: 5em;
+		.heading {
+			.pkp_helpers_clear;
 		}
 
-		.pages {
-			position: absolute;
-			top: 0;
-			right: 0;
-			line-height: @line-lead;
+		.cover {
+			float: left;
+			width: 25%;
+			height: auto;
+			max-height: none;
+			margin-right: @double;
+		}
+
+		.galleys,
+		.section {
+			position: relative;
+			margin: @triple -@double;
+			padding: @triple;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 45px;
+				left: 0;
+				width: 100%;
+				border-top: @bg-border;
+			}
+
+			h2 {
+				display: inline-block;
+				position: relative;
+				left: -15px;
+				margin-top: 0;
+				padding: 0 (@triple / 2);
+				background: @lift;
+				font-size: @font-bump;
+				font-weight: @normal;
+				color: @text-light;
+			}
+		}
+	}
+
+	@media(min-width: @screen-desktop) {
+
+		.galleys,
+		.section {
+			margin: @triple -@triple;
+		}
+
+		.cover {
+			margin-right: @triple;
+			margin-bottom: @triple;
+
+			img {
+				max-height: none;
+			}
 		}
 	}
 }

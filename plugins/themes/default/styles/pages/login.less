@@ -1,12 +1,12 @@
 /**
  * @file styles/pages/login.less
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Styles applying to the lightweight page for viewing PDFs
- * @link templates/user/login.tpl
+ * @link templates/frontend/pages/userLogin.tpl
  */
 .page_login {
 
@@ -23,13 +23,9 @@
 
 	.password {
 
-		.label {
-
-			a {
-				float: right;
-				font-size: 12px;
-				font-style: normal;
-			}
+		a {
+			font-size: @font-sml;
+			font-style: normal;
 		}
 	}
 
@@ -45,15 +41,13 @@
 	.buttons {
 
 		button {
-			&:extend(.cmp_button);
 			float: right;
 		}
 
 		a {
 			float: right;
-			font-size: 12px;
-			line-height: @double;
 			margin-right: 1em;
+			margin-left: 0;
 		}
 	}
 }

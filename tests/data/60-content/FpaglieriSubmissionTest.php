@@ -3,8 +3,8 @@
 /**
  * @file tests/data/60-content/FpaglieriSubmissionTest.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2000-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2000-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class FpaglieriSubmissionTest
@@ -22,11 +22,10 @@ class FpaglieriSubmissionTest extends ContentBaseTestCase {
 	function testSubmission() {
 		$this->register(array(
 			'username' => 'fpaglieri',
-			'firstName' => 'Fabio',
-			'lastName' => 'Paglieri',
+			'givenName' => 'Fabio',
+			'familyName' => 'Paglieri',
 			'affiliation' => 'University of Rome',
 			'country' => 'Italy',
-			'roles' => array('Author'),
 		));
 
 		$title = 'Hansen & Pinto: Reason Reclaimed';
@@ -40,10 +39,10 @@ class FpaglieriSubmissionTest extends ContentBaseTestCase {
 		$this->findSubmissionAsEditor('dbarnes', null, $title);
 		$this->sendToReview();
 		$this->waitForElementPresent('//a[contains(text(), \'Review\')]/*[contains(text(), \'Initiated\')]');
-		$this->assignReviewer('jjanssen', 'Julie Janssen');
-		$this->assignReviewer('agallego', 'Adela Gallego');
+		$this->assignReviewer('Julie Janssen');
+		$this->assignReviewer('Adela Gallego');
 		$this->recordEditorialDecision('Accept Submission');
-		$this->waitForElementPresent('//a[contains(text(), \'Editorial\')]/*[contains(text(), \'Initiated\')]');
+		$this->waitForElementPresent('//a[contains(text(), \'Copyediting\')]/*[contains(text(), \'Initiated\')]');
 		$this->assignParticipant('Copyeditor', 'Sarah Vogt');
 		$this->recordEditorialDecision('Send To Production');
 		$this->waitForElementPresent('//a[contains(text(), \'Production\')]/*[contains(text(), \'Initiated\')]');

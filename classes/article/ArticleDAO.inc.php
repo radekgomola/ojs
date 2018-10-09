@@ -3,8 +3,8 @@
 /**
  * @file classes/article/ArticleDAO.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ArticleDAO
@@ -18,25 +18,16 @@ import('classes.article.Article');
 import('lib.pkp.classes.submission.SubmissionDAO');
 
 class ArticleDAO extends SubmissionDAO {
-	/**
-	 * Constructor.
-	 */
-	function ArticleDAO() {
-		parent::SubmissionDAO();
-	}
 
 	/**
-	 * Get a list of field names for which data is localized.
+	 * Get a list of fields for which localized data is supported
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
 		return array_merge(
-			parent::getLocaleFieldNames(),
-			array(
-				'coverPageAltText', 'showCoverPage', 'hideCoverPageToc', 'hideCoverPageAbstract',
-				'originalFileName', 'fileName', 'width', 'height',
-			)
-		);
+			parent::getLocaleFieldNames(), array(
+				'coverImageAltText', 'coverImage',
+		));
 	}
 
 	/**
@@ -90,9 +81,7 @@ class ArticleDAO extends SubmissionDAO {
 		$article->setSectionTitle($row['section_title']);
 		$article->setSectionAbbrev($row['section_abbrev']);
 		$article->setCitations($row['citations']);
-		$article->setCurrentRound($row['current_round']);
 		$article->setPages($row['pages']);
-		$article->setFastTracked($row['fast_tracked']);
 		$article->setHideAuthor($row['hide_author']);
 
 		HookRegistry::call('ArticleDAO::_fromRow', array(&$article, &$row));
@@ -115,9 +104,9 @@ class ArticleDAO extends SubmissionDAO {
 		$article->stampModified();
 		$this->update(
 			sprintf('INSERT INTO submissions
-				(locale, context_id, section_id, stage_id, language, comments_to_ed, citations, date_submitted, date_status_modified, last_modified, status, submission_progress, current_round, pages, fast_tracked, hide_author)
+				(locale, context_id, section_id, stage_id, language, citations, date_submitted, date_status_modified, last_modified, status, submission_progress, pages, hide_author)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?)',
 				$this->datetimeToDB($article->getDateSubmitted()), $this->datetimeToDB($article->getDateStatusModified()), $this->datetimeToDB($article->getLastModified())),
 			array(
 				$article->getLocale(),
@@ -125,13 +114,10 @@ class ArticleDAO extends SubmissionDAO {
 				(int) $article->getSectionId(),
 				(int) $article->getStageId(),
 				$article->getLanguage(),
-				$article->getCommentsToEditor(),
 				$article->getCitations(),
 				$article->getStatus() === null ? STATUS_QUEUED : $article->getStatus(),
 				$article->getSubmissionProgress() === null ? 1 : $article->getSubmissionProgress(),
-				$article->getCurrentRound() === null ? 1 : $article->getCurrentRound(),
 				$article->getPages(),
-				(int) $article->getFastTracked(),
 				(int) $article->getHideAuthor(),
 			)
 		);
@@ -161,16 +147,13 @@ class ArticleDAO extends SubmissionDAO {
 					section_id = ?,
 					stage_id = ?,
 					language = ?,
-					comments_to_ed = ?,
 					citations = ?,
 					date_submitted = %s,
 					date_status_modified = %s,
 					last_modified = %s,
 					status = ?,
 					submission_progress = ?,
-					current_round = ?,
 					pages = ?,
-					fast_tracked = ?,
 					hide_author = ?
 				WHERE submission_id = ?',
 				$this->datetimeToDB($article->getDateSubmitted()), $this->datetimeToDB($article->getDateStatusModified()), $this->datetimeToDB($article->getLastModified())),
@@ -179,13 +162,10 @@ class ArticleDAO extends SubmissionDAO {
 				(int) $article->getSectionId(),
 				(int) $article->getStageId(),
 				$article->getLanguage(),
-				$article->getCommentsToEditor(),
 				$article->getCitations(),
 				(int) $article->getStatus(),
 				(int) $article->getSubmissionProgress(),
-				(int) $article->getCurrentRound(),
 				$article->getPages(),
-				(int) $article->getFastTracked(),
 				(int) $article->getHideAuthor(),
 				(int) $article->getId()
 			)
@@ -226,7 +206,7 @@ class ArticleDAO extends SubmissionDAO {
 
 		// Delete article citations.
 		$citationDao = DAORegistry::getDAO('CitationDAO');
-		$citationDao->deleteObjectsByAssocId(ASSOC_TYPE_ARTICLE, $submissionId);
+		$citationDao->deleteBySubmissionId($submissionId);
 
 		import('classes.search.ArticleSearchIndex');
 		$articleSearchIndex = new ArticleSearchIndex();
@@ -321,35 +301,6 @@ class ArticleDAO extends SubmissionDAO {
 	}
 
 	/**
-	 * Checks if public identifier exists (other than for the specified
-	 * article ID, which is treated as an exception).
-	 * @param $pubIdType string One of the NLM pub-id-type values or
-	 * 'other::something' if not part of the official NLM list
-	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-	 * @param $pubId string
-	 * @param $articleId int An ID to be excluded from the search.
-	 * @param $journalId int
-	 * @return boolean
-	 */
-	function pubIdExists($pubIdType, $pubId, $articleId, $journalId) {
-		$result = $this->retrieve(
-			'SELECT COUNT(*)
-			FROM submission_settings sst
-				INNER JOIN submissions s ON sst.submission_id = s.submission_id
-			WHERE sst.setting_name = ? and sst.setting_value = ? and sst.submission_id <> ? AND s.context_id = ?',
-			array(
-				'pub-id::'.$pubIdType,
-				$pubId,
-				(int) $articleId,
-				(int) $journalId
-			)
-		);
-		$returner = $result->fields[0] ? true : false;
-		$result->Close();
-		return $returner;
-	}
-
-	/**
 	 * Removes articles from a section by section ID
 	 * @param $sectionId int
 	 */
@@ -358,30 +309,6 @@ class ArticleDAO extends SubmissionDAO {
 			'UPDATE submissions SET section_id = null WHERE section_id = ?', (int) $sectionId
 		);
 
-		$this->flushCache();
-	}
-
-	/**
-	 * Delete the public IDs of all articles in a journal.
-	 * @param $journalId int
-	 * @param $pubIdType string One of the NLM pub-id-type values or
-	 * 'other::something' if not part of the official NLM list
-	 * (see <http://dtd.nlm.nih.gov/publishing/tag-library/n-4zh0.html>).
-	 */
-	function deleteAllPubIds($journalId, $pubIdType) {
-		$journalId = (int) $journalId;
-		$settingName = 'pub-id::'.$pubIdType;
-
-		$articles = $this->getByContextId($journalId);
-		while ($article = $articles->next()) {
-			$this->update(
-				'DELETE FROM submission_settings WHERE setting_name = ? AND submission_id = ?',
-				array(
-					$settingName,
-					(int)$article->getId()
-				)
-			);
-		}
 		$this->flushCache();
 	}
 
@@ -395,7 +322,7 @@ class ArticleDAO extends SubmissionDAO {
 		$cache->flush();
 	}
 
-	
+
 	//
 	// Protected functions
 	//
@@ -406,9 +333,9 @@ class ArticleDAO extends SubmissionDAO {
 		$primaryLocale = AppLocale::getPrimaryLocale();
 		$locale = AppLocale::getLocale();
 		return array(
-			'title', $primaryLocale,
+			'title', $primaryLocale, // Section title
 			'title', $locale,
-			'abbrev', $primaryLocale,
+			'abbrev', $primaryLocale, // Section abbrevation
 			'abbrev', $locale,
 		);
 	}
@@ -462,4 +389,4 @@ class ArticleDAO extends SubmissionDAO {
 
 }
 
-?>
+

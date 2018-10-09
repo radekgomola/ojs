@@ -3,8 +3,8 @@
 /**
  * @file controllers/modals/submissionMetadata/form/IssueEntrySubmissionReviewForm.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CatalogEntrySubmissionReviewForm
@@ -26,21 +26,22 @@ class IssueEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	 * @param $stageId integer
 	 * @param $formParams array
 	 */
-	function IssueEntrySubmissionReviewForm($submissionId, $stageId = null, $formParams = null) {
-		parent::SubmissionMetadataViewForm($submissionId, $stageId, $formParams, 'controllers/modals/submissionMetadata/form/issueEntrySubmissionReviewForm.tpl');
+	function __construct($submissionId, $stageId = null, $formParams = null) {
+		parent::__construct($submissionId, $stageId, $formParams, 'controllers/modals/submissionMetadata/form/issueEntrySubmissionReviewForm.tpl');
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON, LOCALE_COMPONENT_APP_SUBMISSION, LOCALE_COMPONENT_APP_AUTHOR);
 	}
 
 	/**
 	 * Save the metadata.
 	 */
-	function execute($request) {
-		parent::execute($request);
+	function execute() {
+		parent::execute();
+		HookRegistry::call('issueentrysubmissionreviewform::execute', array($this));
 
 		$submission = $this->getSubmission();
 		$submissionDao = Application::getSubmissionDAO();
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-		$publishedArticle = $publishedArticleDao->getPublishedArticleByArticleId($submission->getId(), null, false);
+		$publishedArticle = $publishedArticleDao->getByArticleId($submission->getId(), null, false);
 		$isExistingEntry = $publishedArticle?true:false;
 
 		if ($isExistingEntry) {
@@ -53,4 +54,4 @@ class IssueEntrySubmissionReviewForm extends SubmissionMetadataViewForm {
 	}
 }
 
-?>
+

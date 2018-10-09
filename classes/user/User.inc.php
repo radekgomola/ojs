@@ -3,8 +3,8 @@
 /**
  * @file classes/user/User.inc.php
  *
- * Copyright (c) 2014-2015 Simon Fraser University Library
- * Copyright (c) 2003-2015 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class User
@@ -17,10 +17,6 @@
 import('lib.pkp.classes.user.PKPUser');
 
 class User extends PKPUser {
-
-	function User() {
-		parent::PKPUser();
-	}
 
 	/**
 	 * Retrieve array of user settings.
@@ -57,4 +53,4 @@ class User extends PKPUser {
 	}
 }
 
-?>
+

@@ -39,7 +39,7 @@
 					<a href="{url op="submissionReview" path=$articleId}" class="action">
 						{assign var=decision value=$submission->getMostRecentDecision()}
 						{if $decision == $smarty.const.SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS}{translate key="author.submissions.queuedReviewRevisions"}
-						{elseif $submission->getCurrentRound() > 1}{translate key="author.submissions.queuedReviewSubsequent" round=$submission->getCurrentRound()}
+						{elseif $submission->getCurrentRound() > 0}{translate key="author.submissions.queuedReviewSubsequent" round=$submission->getCurrentRound()}
 						{else}{translate key="submissions.queuedReview"}
 						{/if}
 					</a>
@@ -71,9 +71,9 @@
 					{if $publicationEnabled}
 						<br />
 						{if $completedPaymentDAO->hasPaidPublication($submission->getJournalId(), $submission->getId())}
-							{translate key="payment.publication.publicationPaid}
+							{translate key="payment.publication.publicationPaid"}
 						{else}
-							<a href="{url op="payPublicationFee" path="$articleId"}" class="action">{translate key="payment.publication.payPublication"}</a>
+							<a href="{url op='payPublicationFee' path='$articleId'}" class="action">{translate key="payment.publication.payPublication"}</a>
 						{/if}
 				{/if}		
 		{/if}

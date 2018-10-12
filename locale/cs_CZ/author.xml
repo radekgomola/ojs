@@ -130,7 +130,7 @@
 	<!--Doplňuji chybějící postupně  -->
 
 	<message key="author.submit.authorSubmitLoginMessage">Pro přispívání do tohoto časopisu je vyžadován uživatelský účet. To umožní našim editorům sledovat Vaše příspěvky a kontaktovat Vás v případě, že se změní stav Vašeho příspěvku nebo pokud od vás budou vyžadovány další informace.</message>
-	<message key="author.submissions.queuedReviewSubsequent">V recenzním řízení: kolo {$round}</message>
+	<message key="author.submissions.queuedReviewSubsequent">V recenzním řízení: kolo-{$round}</message>
 	<message key="author.submit.step2">Krok 2. Nahrání příspěvku</message>
 	<message key="author.submit.step3">Krok 3. Vložení metadat příspěvku</message>
 	<message key="author.submit.upload">2. Nahrát příspěvek</message>

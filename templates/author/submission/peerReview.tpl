@@ -21,6 +21,29 @@
 <h4>{translate key="submission.round" round=$round}</h4>
 
 <table class="data" width="100%">
+        <tr valign="top">
+            <td>
+                {translate key="submission.editorDecision"}
+            </td>
+            <td>
+                <strong>
+            {assign var=decisions value=$submission->getDecisions($round)}
+            {foreach from=$decisions item=decision name=lastDecisionFinder}
+                    {if $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_EDITOR_DECISION_ACCEPT}
+                            {translate key="editor.article.decision.accept"}
+                    {elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS}
+                            {translate key="editor.article.decision.pendingRevisions"}
+                    {elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_EDITOR_DECISION_RESUBMIT}
+                            {translate key="editor.article.decision.resubmit"}
+                    {elseif $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_EDITOR_DECISION_DECLINE}
+                            {translate key="editor.article.decision.decline"}
+                    {/if}
+            {foreachelse}
+                    &mdash;
+            {/foreach}
+                </strong>
+            </td>
+        </tr>
 	<tr valign="top">
 		<td class="label" width="20%">
 			{translate key="submission.reviewVersion"}
@@ -76,7 +99,7 @@
 				{translate key="common.none"}
 			{/foreach}
 		</td>
-	</tr>
+	</tr>        
 	{if !$smarty.section.round.last}
 		<tr valign="top">
 			<td class="label" width="20%">
@@ -101,7 +124,7 @@
 					{translate key="common.none"}
 				{/foreach}
 			</td>
-		</tr>
+		</tr>                
 	{/if}
 </table>
 

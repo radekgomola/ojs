@@ -10,20 +10,21 @@
  *}
 <div id="submissions">
 <table class="listing" width="100%">
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
+	<tr><td colspan="7" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
 		<td width="5%">{sort_heading key="common.id" sort="id"}</td>
 		<td width="10%"><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{sort_heading key="common.assigned" sort="assignDate"}</td>
-		<td width="10%">{sort_heading key="submissions.sec" sort="section"}</td>
-		<td width="35%">{sort_heading key="article.title" sort="title"}</td>
+		<td width="5%">{sort_heading key="submissions.sec" sort="section"}</td>
+		<td width="30%">{sort_heading key="article.title" sort="title"}</td>
 		<td width="20%">{sort_heading key="submission.review" sort="review"}</td>
 		<td width="20%">{sort_heading key="submission.editorDecision" sort="decision"}</td>
+                <td width="10%">{sort_heading key="submissions.reviewRound" sort='round'}</td>
 	</tr>
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
+	<tr><td colspan="7" class="headseparator">&nbsp;</td></tr>
 {iterate from=submissions item=submission}
 	{assign var="articleId" value=$submission->getId()}
 	{assign var="reviewId" value=$submission->getReviewId()}
-
+        {assign var=round value=$submission->getRound()}
 	<tr valign="top">
 		<td>{$articleId|escape}</td>
 		<td>{$submission->getDateNotified()|date_format:$dateFormatTrunc}</td>
@@ -46,7 +47,7 @@
 				&mdash;
 			{else}
 			{* Display the most recent editor decision *}
-			{assign var=round value=$submission->getRound()}
+			
 			{assign var=decisions value=$submission->getDecisions($round)}
 			{foreach from=$decisions item=decision name=lastDecisionFinder}
 				{if $smarty.foreach.lastDecisionFinder.last and $decision.decision == SUBMISSION_EDITOR_DECISION_ACCEPT}
@@ -63,18 +64,21 @@
 			{/foreach}
 			{/if}
 		</td>
+                <td>
+                    {$round}
+                </td>
 	</tr>
 
 	<tr>
-		<td colspan="6" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
+		<td colspan="7" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
 {/iterate}
 {if $submissions->wasEmpty()}
 	<tr>
-		<td colspan="6" class="nodata">{translate key="submissions.noSubmissions"}</td>
+		<td colspan="7" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
 	<tr>
-		<td colspan="6" class="endseparator">&nbsp;</td>
+		<td colspan="7" class="endseparator">&nbsp;</td>
 	</tr>
 {else}
 	<tr>

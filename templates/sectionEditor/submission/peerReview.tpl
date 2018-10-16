@@ -52,7 +52,7 @@
 		<td class="label" width="20%">{translate key="submission.reviewVersion"}</td>
 		{if $reviewFile}
 			<td width="80%" class="value">
-				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;
+				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file" title="orig.: {$reviewFile->getOriginalFileName()|escape}">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;
 				{$reviewFile->getDateModified()|date_format:$dateFormatShort}{if $currentJournal->getSetting('showEnsuringLink')}&nbsp;&nbsp;&nbsp;&nbsp;<a class="action" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.article.ensuringBlindReview"}</a>{/if}
 			</td>
 		{else}
@@ -81,7 +81,7 @@
 				<input type="hidden" name="articleId" value="{$submission->getId()}" />
 				<input type="hidden" name="fileId" value="{$suppFile->getId()}" />
 
-				{if $suppFile->getFileId() > 0}<a href="{url op="downloadFile" path=$submission->getId()|to_array:$suppFile->getFileId():$suppFile->getRevision()}" class="file" title="{$suppFile->getOriginalFileName()|escape}">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;
+				{if $suppFile->getFileId() > 0}<a href="{url op="downloadFile" path=$submission->getId()|to_array:$suppFile->getFileId():$suppFile->getRevision()}" class="file" title="orig.: {$suppFile->getOriginalFileName()|escape}">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;
 				{$suppFile->getDateModified()|date_format:$dateFormatShort}
 				{elseif $suppFile->getRemoteURL() != ''}<a href="{$suppFile->getRemoteURL()|escape}" target="_blank" >{$suppFile->getRemoteURL()|truncate:20:"..."|escape}</a>{/if}
 				&nbsp;&nbsp;
@@ -115,6 +115,7 @@
 </table>
 
 {assign var="start" value="A"|ord}
+{assign var=authors value=$submission->getAuthors()}
 {foreach from=$reviewAssignments item=reviewAssignment key=reviewKey}
 {assign var="reviewId" value=$reviewAssignment->getId()}
 
@@ -135,7 +136,14 @@
 		</td>
 	</tr>
 	</table>
-
+        
+        {assign var="reviewerFullName" value=$reviewAssignment->getReviewerFullName()}
+        {foreach from=$authors item=author name=authors}
+            {assign var="authorFullName" value=$author->getFullName()}
+            {if $authorFullName == $reviewerFullName}
+                {translate key=review.reviewerInAuthors}
+            {/if}
+        {/foreach}
 	<table width="100%" class="data">
 	<tr valign="top">
 		<td class="label">{translate key="submission.reviewForm"}</td>
@@ -257,7 +265,7 @@
 					<tr valign="top">
 						<td valign="middle">
 							<form id="authorView{$reviewAssignment->getId()}" method="post" action="{url op="makeReviewerFileViewable"}">
-								<a href="{url op="downloadFile" path=$submission->getId()|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}" class="file">{$reviewerFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewerFile->getDateModified()|date_format:$dateFormatShort}
+								<a href="{url op="downloadFile" path=$submission->getId()|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}" class="file" title="orig.: {$reviewerFile->getOriginalFileName()|escape}">{$reviewerFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewerFile->getDateModified()|date_format:$dateFormatShort}
 								<input type="hidden" name="reviewId" value="{$reviewAssignment->getId()}" />
 								<input type="hidden" name="articleId" value="{$submission->getId()}" />
 								<input type="hidden" name="fileId" value="{$reviewerFile->getFileId()}" />

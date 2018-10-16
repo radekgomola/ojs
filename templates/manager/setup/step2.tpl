@@ -133,8 +133,8 @@
                 </select>
                 {fieldLabel name="numDaysBeforeSubmitReminder" key="manager.setup.reviewOptions.remindForSubmit2"}
                 <br />
-                <input type="checkbox" name="remindEditor" id="remindEditor" value="1" {if !$scheduledTasksEnabled} disabled="disabled" {elseif $remindEditor} checked="checked"{/if} />&nbsp;
-                {fieldLabel name="remindEditor" key="manager.setup.reviewOptions.remindEditor"}
+                {*<input type="checkbox" name="remindEditor" id="remindEditor" value="1" {if !$scheduledTasksEnabled} disabled="disabled" {elseif $remindEditor} checked="checked"{/if} />&nbsp;
+                {fieldLabel name="remindEditor" key="manager.setup.reviewOptions.remindEditor"}*}
                 {if !$scheduledTasksEnabled}
                     <br/>
                     {translate key="manager.setup.reviewOptions.automatedRemindersDisabled"}

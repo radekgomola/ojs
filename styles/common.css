@@ -640,6 +640,9 @@ table.data td.separator-border {
 	line-height: 1%;
 }
 
-
+.warning {
+    font-weight: bold;
+    color: #ed2224;
+}
 /* @end */
 

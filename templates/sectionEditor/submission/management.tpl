@@ -30,7 +30,7 @@
 		<td class="label">{translate key="submission.originalFile"}</td>
 		<td colspan="2" class="value">
 			{if $submissionFile}
-				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$submissionFile->getFileId()}" class="file">{$submissionFile->getFileName()|escape}</a>&nbsp;&nbsp;{$submissionFile->getDateModified()|date_format:$dateFormatShort}
+				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$submissionFile->getFileId()}" class="file" title="orig.: {$submissionFile->getOriginalFileName()|escape}">{$submissionFile->getFileName()|escape}</a>&nbsp;&nbsp;{$submissionFile->getDateModified()|date_format:$dateFormatShort}
 			{else}
 				{translate key="common.none"}
 			{/if}
@@ -42,8 +42,8 @@
 			{foreach name="suppFiles" from=$suppFiles item=suppFile}
 				{if $suppFile->getFileId()}
                                     {if $currentJournal->getSetting('suppSuffix') == 1}
-                                        <a href="{url op="downloadFile" path=$submission->getId()|to_array:$suppFile->getFileId() suffix=True}" class="file" title="{$suppFile->getOriginalFileName()|escape}">{$suppFile->getFileName()|escape}</a>{else}
-                                        <a href="{url op="downloadFile" path=$submission->getId()|to_array:$suppFile->getFileId()}" class="file" title="{$suppFile->getOriginalFileName()|escape}">{$suppFile->getFileName()|escape}</a>
+                                        <a href="{url op="downloadFile" path=$submission->getId()|to_array:$suppFile->getFileId() suffix=True}" class="file" title="orig.: {$suppFile->getOriginalFileName()|escape}">{$suppFile->getFileName()|escape}</a>{else}
+                                        <a href="{url op="downloadFile" path=$submission->getId()|to_array:$suppFile->getFileId()}" class="file" title="orig.: {$suppFile->getOriginalFileName()|escape}">{$suppFile->getFileName()|escape}</a>
                                     {/if}
 					&nbsp;&nbsp;
 				{elseif $suppFile->getRemoteURL() != ''}

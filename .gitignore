@@ -11,3 +11,4 @@ temp
 node_modules
 js/build.js
 styles/build.css
+/nbproject/private/

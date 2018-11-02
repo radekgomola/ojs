@@ -1539,4 +1539,6 @@ Masarykovy univerzity</message>
         
         <message key="header.link.web"></message>
         <message key="review.reviewerInAuthors"><![CDATA[<span class="warning">POZOR! Jméno recenzenta objeveno mezi autory</span>]]></message>
+        
+        <message key="site.journal.databaze"><![CDATA[<strong>Vědecké databáze:</strong>]]></message>
 </locale>

@@ -31,6 +31,7 @@
             {assign var=externiCasopis value=$journal->getSetting('externiCasopis')}
             {assign var=odkazCasopis value=$journal->getSetting('odkazCasopis')}
             {assign var=odkazCislo value=$journal->getSetting('odkazCislo')}
+            {assign var=databaze value=$journal->getSetting('databaze')}
             {if $site->getSetting('showTitle')}
                 <h3>{$journal->getLocalizedTitle()|escape}</h3>
             {/if}
@@ -57,6 +58,9 @@
                     <p class="description" style="text-align:justify;" id="journalDescription-{$journal->getId()|escape}">{$journal->getLocalizedDescription()|nl2br|strip_tags}</p>
                 {/if}    
             {/if}
+            {if $databaze && $databaze != ""}
+                    <p class="databaze" id="journalDatabaze-{$journal->getId()|escape}">{translate key="site.journal.databaze"} {$databaze|nl2br|strip_tags}</p>
+            {/if}  
             <p style="padding-top:-31px; min-width:700px;">
                 {if $externiCasopis && $odkazCasopis && $odkazCasopis != ""}
                     <a href="{$odkazCasopis}" class="action" target="_blank">

@@ -1335,4 +1335,5 @@ Masaryk University</message>
         <message key="header.link.web">/en</message>
         <message key="review.reviewerInAuthors"><![CDATA[<span class="warning">WARNING! Reviewer is maybe one of the authors.</span>]]></message>
         
+        <message key="site.journal.databaze"><![CDATA[<strong>Scientific databases:</strong>]]></message>
 </locale>

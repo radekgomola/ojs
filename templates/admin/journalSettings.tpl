@@ -69,6 +69,11 @@
                 {url|assign:"sampleUrl" journal="path"}
                 <span class="instruct">{translate key="admin.journals.urlWillBe" sampleUrl=$sampleUrl}</span>
             </td>
+            
+        </tr>
+        <tr valign="top">
+            <td width="20%" class="label">{fieldLabel name="title" key="admin.journals.databaze"}</td>
+            <td width="80%" class="value"><input type="text" id="databaze" name="databaze" value="{$databaze|escape}" size="40" maxlength="220" class="textField" /></td>
         </tr>
         <tr valign="top">
             <td colspan="2" class="label">
@@ -87,11 +92,11 @@
         </tr>
         <tr valign="top">
             <td width="20%" class="label">{fieldLabel name="title" key="admin.journals.externiCasopisOdkaz" required="true"}</td>
-            <td width="80%" class="value"><input type="text" id="title" name="odkazCasopis" value="{$odkazCasopis|escape}" size="40" maxlength="220" class="textField" /></td>
+            <td width="80%" class="value"><input type="text" id="odkazCasopis" name="odkazCasopis" value="{$odkazCasopis|escape}" size="40" maxlength="220" class="textField" /></td>
         </tr>
         <tr valign="top">
             <td width="20%" class="label">{fieldLabel name="title" key="admin.journals.externiCasopisPosledniCislo" required="true"}</td>
-            <td width="80%" class="value"><input type="text" id="title" name="odkazCislo" value="{$odkazCislo|escape}" size="40" maxlength="220" class="textField" /></td>
+            <td width="80%" class="value"><input type="text" id="odkazCislo" name="odkazCislo" value="{$odkazCislo|escape}" size="40" maxlength="220" class="textField" /></td>
         </tr>
     </table>
     <div id="journalThumbnail">

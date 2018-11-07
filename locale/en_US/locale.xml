@@ -1336,4 +1336,7 @@ Masaryk University</message>
         <message key="review.reviewerInAuthors"><![CDATA[<span class="warning">WARNING! Reviewer is maybe one of the authors.</span>]]></message>
         
         <message key="site.journal.databaze"><![CDATA[<strong>Scientific databases:</strong>]]></message>
+        <message key="site.journal.fakulty"><![CDATA[<strong>Faculties and Specialized Units:</strong>]]></message>
+        <message key="common.databaseList"> WoS.;WoS (ESCI);SCOPUS;ERIH+;SRNP</message>
+        <message key="common.facultyList">PrF;LF;PřF;FF;PedF;ESF;FI;FSS;FSpS;NMU;CTT</message>
 </locale>

@@ -92,20 +92,51 @@ class IndexHandler extends Handler {
 			// Fetch the alpha list parameters
 			$searchInitial = Request::getUserVar('searchInitial');
 			$templateMgr->assign('searchInitial', $searchInitial);
+                        
+                        $searchFaculty = Request::getUserVar('searchFaculty');
+			$templateMgr->assign('searchFaculty', $searchFaculty);
+                        
+                        $searchDatabase = Request::getUserVar('searchDatabase');
+			$templateMgr->assign('searchDatabase', $searchDatabase);
+
 			$templateMgr->assign('useAlphalist', $site->getSetting('useAlphalist'));
 
-			$journals =& $journalDao->getJournals(
-				true,
-				$rangeInfo,
-				$searchInitial?JOURNAL_FIELD_TITLE:JOURNAL_FIELD_SEQUENCE,
-				$searchInitial?JOURNAL_FIELD_TITLE:null,
-				$searchInitial?'startsWith':null,
-				$searchInitial
-			);
+                        if($searchFaculty && $searchFaculty != ""){
+                            $journals =& $journalDao->getJournals(
+                                    true,
+                                    $rangeInfo,
+                                    JOURNAL_FIELD_SEQUENCE,
+                                    $searchFaculty?JOURNAL_FIELD_FACULTY:null,
+                                    $searchFaculty?'contains':null,
+                                    $searchFaculty
+                            );
+                        } else if($searchDatabase && $searchDatabase != ""){
+                            $journals =& $journalDao->getJournals(
+                                    true,
+                                    $rangeInfo,
+                                    JOURNAL_FIELD_SEQUENCE,
+                                    $searchDatabase?JOURNAL_FIELD_DATABASE:null,
+                                    $searchDatabase?'contains':null,
+                                    $searchDatabase
+                            );
+                        } else {
+                            $journals =& $journalDao->getJournals(
+                                    true,
+                                    $rangeInfo,
+                                    $searchInitial?JOURNAL_FIELD_TITLE:JOURNAL_FIELD_SEQUENCE,
+                                    $searchInitial?JOURNAL_FIELD_TITLE:null,
+                                    $searchInitial?'startsWith':null,
+                                    $searchInitial
+                            );
+                        }
+                        
+                        
 			$templateMgr->assign_by_ref('journals', $journals);
 			$templateMgr->assign_by_ref('site', $site);
 
 			$templateMgr->assign('alphaList', explode(' ', __('common.alphaList')));
+                        $templateMgr->assign('databaseList', explode(';', __('common.databaseList')));
+                        $templateMgr->assign('facultyList', explode(';', __('common.facultyList')));
 
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 			$templateMgr->display('index/site.tpl');

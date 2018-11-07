@@ -1541,4 +1541,8 @@ Masarykovy univerzity</message>
         <message key="review.reviewerInAuthors"><![CDATA[<span class="warning">POZOR! Jméno recenzenta objeveno mezi autory</span>]]></message>
         
         <message key="site.journal.databaze"><![CDATA[<strong>Vědecké databáze:</strong>]]></message>
+        <message key="site.journal.fakulty"><![CDATA[<strong>Fakulty a pracoviště:</strong>]]></message>
+        <message key="common.databaseList"> WoS.;WoS (ESCI);SCOPUS;ERIH+;SRNP</message>
+<!--        <message key="common.facultyList">Právnická fakulta;Lékařská fakulta;Přírodovědecká fakulta;Filozofická fakulta;Pedagogická fakulta;Ekonomicko-správní fakulta;Fakulta informatiky;Fakulta sociálních studií;Fakulta sportovních studií</message>-->
+        <message key="common.facultyList">PrF;LF;PřF;FF;PedF;ESF;FI;FSS;FSpS;NMU;CTT</message>
 </locale>

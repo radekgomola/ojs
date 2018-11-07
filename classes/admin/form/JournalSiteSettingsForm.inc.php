@@ -76,6 +76,7 @@ class JournalSiteSettingsForm extends Form {
                                         'odkazCasopis' => $journal->getSetting('odkazCasopis'),
                                         'odkazCislo' => $journal->getSetting('odkazCislo'),
                                         'databaze' => $journal->getSetting('databaze'),
+                                        'fakulta' => $journal->getSetting('fakulta'),
 					'enabled' => $journal->getEnabled()
 				);
 
@@ -99,7 +100,7 @@ class JournalSiteSettingsForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('title', 'description', 'journalPath', 'enabled', 'formLocale', 'journalThumbnail', 'externiCasopis','odkazCasopis','odkazCislo','databaze'));
+		$this->readUserVars(array('title', 'description', 'journalPath', 'enabled', 'formLocale', 'journalThumbnail', 'externiCasopis','odkazCasopis','odkazCislo','databaze', 'fakulta'));
 		$this->setData('enabled', (int)$this->getData('enabled'));
                 $this->setData('externiCasopis', (int)$this->getData('externiCasopis'));
 
@@ -222,6 +223,7 @@ class JournalSiteSettingsForm extends Form {
                     $journal->updateSetting('odkazCasopis', $this->getData('odkazCasopis'), 'string');
                     $journal->updateSetting('odkazCislo', $this->getData('odkazCislo'), 'string');
                     $journal->updateSetting('databaze', $this->getData('databaze'), 'string');
+                    $journal->updateSetting('fakulta', $this->getData('fakulta'), 'string');
                 }
                 
                 if (!isset($editData) && $form->validate()) {

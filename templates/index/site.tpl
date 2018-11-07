@@ -20,10 +20,14 @@
 {if $intro}<div id="intro" class="description">{$intro|nl2br}</div>{/if}
 
 <a name="journals"></a>
+<p>{translate key="site.journal.fakulty"} {foreach from=$facultyList item=faculty}<a href="{url searchFaculty=$faculty sort="title"}">{if $faculty == $searchFaculty}<strong>{$faculty|escape}</strong>{else}{$faculty|escape}{/if}</a>, {/foreach}<a href="{url}">{if $searchFaculty==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
+
+<p>{translate key="site.journal.databaze"} {foreach from=$databaseList item=database}<a href="{url searchDatabase=$database sort="title"}">{if $database == $searchDatabase}<strong>{$database|escape}</strong>{else}{$database|escape}{/if}</a>, {/foreach}<a href="{url}">{if $searchDatabase==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
+
 
 {if $useAlphalist}
     <p>{foreach from=$alphaList item=letter}<a href="{url searchInitial=$letter sort="title"}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
-            {/if}
+{/if}
 
 {iterate from=journals item=journal}
 <table>

@@ -19,6 +19,8 @@ import('lib.pkp.classes.metadata.MetadataTypeDescription');
 
 define('JOURNAL_FIELD_TITLE', 1);
 define('JOURNAL_FIELD_SEQUENCE', 2);
+define('JOURNAL_FIELD_FACULTY', 3);
+define('JOURNAL_FIELD_DATABASE', 4);
 
 class JournalDAO extends DAO {
 	/**
@@ -212,7 +214,7 @@ class JournalDAO extends DAO {
 	function &getJournals($enabledOnly = false, $rangeInfo = null, $sortBy = JOURNAL_FIELD_SEQUENCE, $searchField = null, $searchMatch = null, $search = null) {
 		$joinSql = $whereSql = $orderBySql = '';
 		$params = array();
-		$needTitleJoin = false;
+		$needTitleJoin = $needFacultyJoin = $needDatabaseJoin = false;
 
 		// Handle sort conditions
 		switch ($sortBy) {
@@ -224,7 +226,6 @@ class JournalDAO extends DAO {
 				$orderBySql = 'j.seq';
 				break;
 		}
-
 		// Handle search conditions
 		switch ($searchField) {
 			case JOURNAL_FIELD_TITLE:
@@ -237,7 +238,45 @@ class JournalDAO extends DAO {
 						break;
 					case 'contains':
 						$whereSql .= ' LIKE ?';
-						$params[] = "%search%";
+						$params[] = "%$search%";
+						break;
+					default: // $searchMatch === 'startsWith'
+						$whereSql .= ' LIKE ?';
+						$params[] = "$search%";
+						break;
+				}
+				break;
+                        case JOURNAL_FIELD_FACULTY:
+				$needFacultyJoin = true;
+                                $needTitleJoin = false;
+				$whereSql .= ($whereSql?' AND ':'') . ' COALESCE(jsl.setting_value, jsl.setting_name) ';
+				switch ($searchMatch) {
+					case 'is':
+						$whereSql .= ' = ?';
+						$params[] = $search;
+						break;
+					case 'contains':
+						$whereSql .= ' LIKE ?';
+						$params[] = "%$search%";
+						break;
+					default: // $searchMatch === 'startsWith'
+						$whereSql .= ' LIKE ?';
+						$params[] = "$search%";
+						break;
+				}
+				break;
+                        case JOURNAL_FIELD_DATABASE:
+				$needDatabaseJoin = true;
+                                $needTitleJoin = false;
+				$whereSql .= ($whereSql?' AND ':'') . ' COALESCE(jsl.setting_value, jsl.setting_name) ';
+				switch ($searchMatch) {
+					case 'is':
+						$whereSql .= ' = ?';
+						$params[] = $search;
+						break;
+					case 'contains':
+						$whereSql .= ' LIKE ?';
+						$params[] = "%$search%";
 						break;
 					default: // $searchMatch === 'startsWith'
 						$whereSql .= ' LIKE ?';
@@ -246,7 +285,7 @@ class JournalDAO extends DAO {
 				}
 				break;
 		}
-
+                
 		// If we need to join on the journal title (for sort or filter),
 		// include it.
 		if ($needTitleJoin) {
@@ -261,10 +300,33 @@ class JournalDAO extends DAO {
 				$params
 			);
 		}
+                
+                if ($needFacultyJoin) {
+			$joinSql .= ' LEFT JOIN journal_settings jspl ON (jspl.setting_name = ? AND jspl.journal_id = j.journal_id) LEFT JOIN journal_settings jsl ON (jsl.setting_name = ? AND jsl.journal_id = j.journal_id)';
+			$params = array_merge(
+				array(
+					'fakulta',
+					'fakulta'
+				),
+				$params
+			);
+		}
+                
+                if ($needDatabaseJoin) {
+			$joinSql .= ' LEFT JOIN journal_settings jspl ON (jspl.setting_name = ? AND jspl.journal_id = j.journal_id) LEFT JOIN journal_settings jsl ON (jsl.setting_name = ? AND jsl.journal_id = j.journal_id)';
+			$params = array_merge(
+				array(
+					'databaze',
+					'databaze'
+				),
+				$params
+			);
+		}
 
 		// Handle filtering conditions
 		if ($enabledOnly) $whereSql .= ($whereSql?'AND ':'') . 'j.enabled=1 ';
 
+                
 		// Clean up SQL strings
 		if ($whereSql) $whereSql = "WHERE $whereSql";
 		if ($orderBySql) $orderBySql = "ORDER BY $orderBySql";

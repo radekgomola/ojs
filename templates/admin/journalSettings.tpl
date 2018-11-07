@@ -76,6 +76,10 @@
             <td width="80%" class="value"><input type="text" id="databaze" name="databaze" value="{$databaze|escape}" size="40" maxlength="220" class="textField" /></td>
         </tr>
         <tr valign="top">
+            <td width="20%" class="label">{fieldLabel name="title" key="admin.journals.fakulta"}</td>
+            <td width="80%" class="value"><input type="text" id="fakulta" name="fakulta" value="{$fakulta|escape}" size="40" maxlength="220" class="textField" /></td>
+        </tr>
+        <tr valign="top">
             <td colspan="2" class="label">
                 <input type="checkbox" name="enabled" id="enabled" value="1"{if $enabled} checked="checked"{/if} /> <label for="enabled">{translate key="admin.journals.enableJournalInstructions"}</label>
             </td>

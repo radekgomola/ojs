@@ -260,7 +260,7 @@
                                         <tr>
                                             <td colspan="2" class="separator">&nbsp;</td>
                                         </tr>
-                                        <tr valign="top">
+                                        <tr valign="top" id="bibliographicCitation">
                                             <td width="20%" class="label">{fieldLabel name="citace" key="article.citace"}</td>
                                             <td width="80%" class="value"><textarea type="text" name="citace[{$formLocale|escape}]" id="citace" value="{$citace[$formLocale]|escape}" rows="5" cols="60" class="textArea" />{$citace[$formLocale]|escape}</textarea></td>
                                         </tr>
@@ -300,9 +300,10 @@
                                             <td class="value"><input type="checkbox" name="hideCoverPageAbstract[{$formLocale|escape}]" id="hideCoverPageAbstract" value="1" {if $hideCoverPageAbstract[$formLocale]} checked="checked"{/if} /> <label for="hideCoverPageAbstract">{translate key="editor.article.hideCoverPageAbstract"}</label></td>
                                         </tr>
                                     </table>
+                                        <div class="separator"></div>
                                 </div>
 
-                                <div class="separator"></div>
+                                
 
                                 <div id="indexing">
                                     <h3>{translate key="submission.indexing"}</h3>
@@ -434,14 +435,16 @@
                                             </td>
                                         </tr>
                                     </table>
+                                            <div class="separator"></div>
                                 </div>
 
-                                <div class="separator"></div>
-
+                                
+                                {if $isEditor}
                                 {foreach from=$pubIdPlugins item=pubIdPlugin}
                                     {assign var=pubIdMetadataFile value=$pubIdPlugin->getPubIdMetadataFile()}
                                     {include file="$pubIdMetadataFile" pubObject=$article}
                                 {/foreach}
+                                {/if}
 
                                 {call_hook name="Templates::Submission::MetadataEdit::AdditionalMetadata"}
 

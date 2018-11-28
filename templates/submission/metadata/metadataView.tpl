@@ -82,7 +82,7 @@
         <tr>
             <td colspan="2" class="separator">&nbsp;</td>
         </tr>
-        <tr valign="top">
+        <tr valign="top" id="bibliographicCitation">
             <td width="20%" class="label">{translate key="article.citace"}</td>
             <td width="80%" class="value">{$citace[$formLocale]|strip_unsafe_html|default:"&mdash;"}</td>
         </tr>
@@ -106,8 +106,9 @@
             <td class="value">{$coverPageAltText[$formLocale]|escape}</td>
         </tr>
     </table>
+    <div class="separator"></div>
 </div>
-<div class="separator"></div>
+
 <div id="indexing">
     <h3>{translate key="submission.indexing"}</h3>
 

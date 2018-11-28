@@ -363,8 +363,9 @@ function moveAuthor(dir, authorIndex) {
 	<td width="80%" class="value"><input type="text" class="textField" name="sponsor[{$formLocale|escape}]" id="sponsor" value="{$sponsor[$formLocale]|escape}" size="60" maxlength="255" /></td>
 </tr>
 </table>
-</div>
 <div class="separator"></div>
+</div>
+
 
 {call_hook name="Templates::Author::Submit::AdditionalMetadata"}
 

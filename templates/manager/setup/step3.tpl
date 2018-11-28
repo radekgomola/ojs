@@ -367,10 +367,20 @@
             {/if}
         </table>
     </div>
+<div class="separator"></div>
+    <div id="commentsForEditorDescription">
+        <h3>3.6 {translate key="manager.setup.commentsForEditor"}</h3>
 
+        <p>{translate key="manager.setup.commentsForEditorDescription"}</p>
+
+        <p>
+            <textarea name="commentsForEditor[{$formLocale|escape}]" id="commentsForEditor" rows="12" cols="60" class="textArea">{$commentsForEditor[$formLocale]|escape}</textarea>
+        </p>
+
+    </div>
     <div class="separator"></div>
     <div id="refferences">
-        <h3>3.6 {translate key="manager.setup.refferences"}</h3>
+        <h3>3.7 {translate key="manager.setup.refferences"}</h3>
         <p>{translate key="manager.setup.refferencesDescription"} </p>
         <table width="100%" class="data">
             <tr valign="top">

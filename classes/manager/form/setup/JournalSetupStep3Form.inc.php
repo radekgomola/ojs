@@ -55,7 +55,10 @@ class JournalSetupStep3Form extends JournalSetupForm {
 				'metaCitationOutputFilterId' => 'int',
 				'copySubmissionAckPrimaryContact' => 'bool',
 				'copySubmissionAckSpecified' => 'bool',
-				'copySubmissionAckAddress' => 'string'
+				'copySubmissionAckAddress' => 'string',
+                                /*MUNIPRESS*/
+                                'commentsForEditor' => 'string'
+                                /************/
 			)
 		);
 
@@ -70,7 +73,7 @@ class JournalSetupStep3Form extends JournalSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('authorGuidelines', 'submissionChecklist', 'copyrightNotice', 'metaDisciplineExamples', 'metaSubjectClassTitle', 'metaSubjectClassUrl', 'metaSubjectExamples', 'metaCoverageGeoExamples', 'metaCoverageChronExamples', 'metaCoverageResearchSampleExamples', 'metaTypeExamples', 'competingInterestGuidelines', 'copyrightHolderOther');
+		return array('authorGuidelines', 'submissionChecklist', 'copyrightNotice', 'metaDisciplineExamples', 'metaSubjectClassTitle', 'metaSubjectClassUrl', 'metaSubjectExamples', 'metaCoverageGeoExamples', 'metaCoverageChronExamples', 'metaCoverageResearchSampleExamples', 'metaTypeExamples', 'competingInterestGuidelines', 'copyrightHolderOther', 'commentsForEditor');
 	}
 
 	/**

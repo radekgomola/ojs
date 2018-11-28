@@ -163,6 +163,9 @@ function checkSubmissionChecklist() {
 {/if}
 <div id="commentsForEditor">
 <h3>{translate key="author.submit.commentsForEditor"}</h3>
+    <p>
+     {$currentJournal->getLocalizedSetting('commentsForEditor')|nl2br}
+</p>
 
 <table width="100%" class="data">
 <tr valign="top">

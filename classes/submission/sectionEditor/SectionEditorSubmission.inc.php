@@ -481,7 +481,7 @@ class SectionEditorSubmission extends Article {
 	 */
 	function getHighlightClass() {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$overdueSeconds = 60 * 60 * 24 * 14; // Two weeks
+		$overdueSeconds = 60 * 60 * 24 * 7; // One week
 
 		// Submissions that are not still queued (i.e. published) are not highlighted.
 		if ($this->getStatus() != STATUS_QUEUED) return null;
@@ -731,6 +731,13 @@ class SectionEditorSubmission extends Article {
 							!$journal->getSetting('remindForInvite') &&
 							max($dateReminded, $dateNotified) + $overdueSeconds < time()
 						) return 'highlightReviewerConfirmationOverdue';
+                                                
+                                                if (!$reviewAssignment->getDateCompleted() &&
+							!$dateConfirmed &&
+							$journal->getSetting('remindForInvite') &&
+							max($dateReminded, $dateNotified) + $journal->getSetting('numDaysBeforeInviteReminder') < time()
+						) return 'highlightReviewerConfirmationOverdue';
+                                                
 						// Check whether a reviewer is overdue to complete review
 						if (!$reviewAssignment->getDateCompleted() &&
 							$dateConfirmed &&

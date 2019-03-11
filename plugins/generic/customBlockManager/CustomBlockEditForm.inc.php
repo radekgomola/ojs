@@ -72,7 +72,8 @@ class CustomBlockEditForm extends Form {
 		<script language="javascript" type="text/javascript">
 			tinyMCE.init({
 			mode : "textareas",
-			plugins : "style,paste,jbimages",
+			plugins : "style,paste,jbimages,autolink",
+                        default_link_target: "_blank",
 			theme : "advanced",
 			theme_advanced_buttons1 : "formatselect,fontselect,fontsizeselect",
 			theme_advanced_buttons2 : "bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright, justifyfull,bullist,numlist,undo,redo,link,unlink",

@@ -64,7 +64,20 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$templateMgr->assign_by_ref('reviewGuidelines', $journal->getLocalizedSetting('reviewGuidelines'));
 
 		import('classes.submission.reviewAssignment.ReviewAssignment');
-		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
+                
+                if($journal->getId() != 67){
+                    $templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
+                } else{
+                    $reviewerRecommendationOptions = array();
+                    foreach(ReviewAssignment::getReviewerRecommendationOptions() as $key => $value){
+                        if($key != SUBMISSION_REVIEWER_RECOMMENDATION_RESUBMIT_ELSEWHERE && $key != SUBMISSION_REVIEWER_RECOMMENDATION_SEE_COMMENTS){
+                            $reviewerRecommendationOptions[$key] = $value;
+                        }
+                    }
+                    $templateMgr->assign_by_ref('reviewerRecommendationOptions', $reviewerRecommendationOptions);
+                }
+//                
+//		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 
 		$templateMgr->assign('helpTopicId', 'editorial.reviewersRole.review');
 		$templateMgr->display('reviewer/submission.tpl');

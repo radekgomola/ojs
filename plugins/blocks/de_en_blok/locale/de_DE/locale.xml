@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/blocks/cz_en_blok/locale/cs_CZ/locale.xml
+  *
+  * Copyright (c) 2013-2014 Simon Fraser University Library
+  * Copyright (c) 2003-2014 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for this plugin in Czech.
+  *
+  * Translated by František Chmelik, frantisek.chmelik 'at' upol.cz
+  *
+  -->
+ 
+<locale name="de_DE" full_name="Deutsch">
+  	<message key="plugins.block.de_en_blok.displayName">Schalter DE/EN</message>
+	<message key="plugins.block.de_en_blok.description">This plugin provides the sidebar czech/english toggler.</message>
+</locale>

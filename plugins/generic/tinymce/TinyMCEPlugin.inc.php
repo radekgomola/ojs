@@ -384,7 +384,7 @@ class TinyMCEPlugin extends GenericPlugin {
 			<script language="javascript" type="text/javascript">
 				tinyMCE.init({
 					entity_encoding : "raw",
-					plugins : "paste,jbimages,fullscreen",
+					plugins : "paste,jbimages,fullscreen,autolink",
 					mode : "exact",
 					language : "' . String::substr(AppLocale::getLocale(), 0, 2) . '",
 					elements : "' . $enableFields . '",
@@ -395,7 +395,8 @@ class TinyMCEPlugin extends GenericPlugin {
 					theme : "advanced",
 					theme_advanced_buttons1 : "undo, redo,|,cut,copy,paste,|,bold,italic,underline,bullist,numlist,|,link,unlink,code,fullscreen,jbimages",
 					theme_advanced_buttons2 : "",
-					theme_advanced_buttons3 : ""
+					theme_advanced_buttons3 : "",
+                                        default_link_target: "_blank"
 				});
 			</script>';
 

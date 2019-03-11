@@ -22,13 +22,13 @@
         {assign var=tvarJmena value=false}
     {/if}
 
-    {if $group->getLocalizedGroupDescription() && $group->getGroupSetupTopDown() == 0}
+{*    {if $group->getLocalizedGroupDescription() && $group->getGroupSetupTopDown() == 0}
         <div id="groupDescription">
             <p>
                 {$group->getLocalizedGroupDescription()|nl2br}
             </p>
         </div>
-    {/if}
+    {/if}*}
     <table style="listing" width="100%">
         <tr valign="top">
             <td style="width:50%">
@@ -41,7 +41,7 @@
                         <div class="member">
                             <li><span class="narrow">&#187; </span>
                                 {if $allowMedailon}
-                                    {if !$group->getFullProfile()}<a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$user->getId()}')">{else}<a href="{url op="editorialTeamBioFullProfile" path=$user->getId()}">{/if}{$user->getFullName($tvarJmena)|escape}</a>{else}<span class="editTeamName">{$user->getFullName($tvarJmena)|escape}</span>{/if}{if $user->getLocalizedAffiliation()}, {$user->getLocalizedAffiliation()|escape}{/if}{if $user->getCountry()}{assign var=countryCode value=$user->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if} 
+                                    {if !$group->getFullProfile()}<a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$user->getId()}')">{else}<a href="{url op="editorialTeamBioFullProfile" path=$user->getId()}">{/if}{$user->getFullName($tvarJmena)|escape}</a>{else}<span class="editTeamName">{$user->getFullName($tvarJmena)|escape}</span>{/if}<span class="editTeamAffiliation">{if $user->getLocalizedAffiliation()}, {$user->getLocalizedAffiliation()|escape}{/if}</span>{if $user->getCountry()}{assign var=countryCode value=$user->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if} 
                                         <div class="editTeamEmailUrl">
                                             {if $publishEmailList  && !$user->getAllowPublishingEmail()}
                                                 <span class="editTeamEmail">{translate key="editorialTeam.email"}: </span> 
@@ -64,13 +64,13 @@
                 </td>
             </tr>
         </table>
-        {if $group->getLocalizedGroupDescription() && $group->getGroupSetupTopDown() == 1}
+        {*{if $group->getLocalizedGroupDescription() && $group->getGroupSetupTopDown() == 1}
             <div id="groupDescription">
                 <p>
                     {$group->getLocalizedGroupDescription()|nl2br}
                 </p>
             </div>
-        {/if}
+        {/if}*}
     </div>
 
     {include file="common/footer.tpl"}

@@ -56,7 +56,7 @@
 {/if}
 
 {if $submissionChecklist}
-	<div id="submissionPreparationChecklist"><h3>{translate key="about.submissionPreparationChecklist"}</h3>
+	<div id="submissionPreparationChecklistSubmission"><h3>{translate key="about.submissionPreparationChecklist"}</h3>
 	<p>{translate key="about.submissionPreparationChecklist.description"}</p>
 	<ol>
 		{foreach from=$submissionChecklist item=checklistItem}

@@ -263,6 +263,7 @@ class SectionEditorAction extends Action {
 					$submissionUrl = $request->url(null, 'reviewer', 'submission', $reviewId, $reviewerAccessKeysEnabled?array('key' => 'ACCESS_KEY'):array());
 
 					$paramArray = array(
+                                                'round' => $reviewAssignment->getRound(),
 						'reviewerName' => $reviewer->getFullName(),
 						'weekLaterDate' => $weekLaterDate,
 						'reviewDueDate' => $reviewDueDate,

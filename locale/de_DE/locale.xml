@@ -1196,4 +1196,119 @@ Die Prüfung kann bei Such-URLs, die Formularausfüllung verlangen, fehlschlagen
 	<!-- Meldungen: Fehlerbehebung -->
 	<message key="debug.notes.currencyListLoad">Währungsliste "{$filename}" aus XML geladen</message>
 	<message key="debug.notes.helpMappingLoad">Auf der Suche nach {$id} wurde die XML-Hilfedatei {$filename} erneut geladen.</message>
+        
+        
+        
+        <!--MUNIPRESS-->
+  
+  <message key="navigation.czHelp">CZ Anweisungen</message>
+  <message key="about.profile">Der Profil</message>
+  <message key="user.title.before">Titel vor dem Namen</message>
+  <message key="user.title.after">Titel hinter dem Namen</message>
+  <message key="block.banner_jmc">banner_en_small.png</message>
+  <message key="block.banner_jmc.alt">Web-Hosting journals.muni.cz</message>      
+  <message key="article.citace">Bibliographisches Zitat</message>
+  <message key="manager.setup.navigationBarOff">You can't add any link to Navigation Bar, if you are using default design of journals.muni.cz.</message>
+  
+   <message key="IE10.problem">Your browser is Internet Explorer 10:</message>
+  <message key="IE11.problem">Your browser is Internet Explorer 11:</message>
+  <message key="IE.problem.redirect">The browser may not display the embedded PDF file reader correctly. If you have properly installed the Adobe Acrobat Reader and you still cannot view the PDF reader, </message>
+  <message key="click.here">click HERE!</message>
+  <message key="IE.problem.solution"><![CDATA[You can find a description of issue with possible solution <a href="https://forums.adobe.com/message/6040955" target="_blank">HERE</a> and <a href="http://support.microsoft.com/kb/2716529" target="_blank">HERE</a>! <br /><strong>Proper functioning of solution is not guaranteed</strong> <br />(Solution shortly: You need to reset your Internet Explorer.<br />Tools -> Internet options -> Advanced -> press Restore advanced settings and than Reset)]]></message>
+  
+       
+        <message key="languages.help">deutsch</message>
+
+        <message key="manager.setup.aboutJournal">Über die Zeitschrift</message>
+  <message key="manager.setup.useTopDescription">Use top block.</message>
+  <message key="manager.setup.useDownDescription">Use bottom block.</message>
+  <message key="manager.setup.aboutJournalDescription">Journal description in section About</message>
+        
+        <message key="manager.setup.socialNetworks">Soziale Netzwerke</message>
+        <message key="manager.setup.facebook">Facebook.com</message>
+        <message key="manager.setup.twitter">Twitter.com</message>
+        <message key="manager.setup.gplus">Plus.google.com</message>
+        <message key="manager.groups.sortLexicographically">Sort members lexicographically (CZ alphabet)</message>
+        <message key="manager.groups.sortLexicographicallyEN">Sort members lexicographically (EN alphabet)</message>
+        <message key="manager.setup.medailon">Article authors' medallions</message>
+        <message key="manager.setup.medailon.description">You could allow links to an authors' bibliographies by allowing this setting. (E-mail will not be shown!)</message>
+        <message key="manager.setup.meidalon.medailon">Allow showing of medallions.</message>
+        
+        <message key="manager.setup.toc.medailon">Add link on authors' medallions into TOC</message>
+        <message key="manager.setup.toc.medailon.description">You could allow links to an authors' bibliographies in TOC by allowing this setting. (E-mail will not be shown!)</message>
+        <message key="manager.setup.toc.medailon.medailon">Allow adding link.</message>
+        
+        <message key="manager.setup.meidalon.allow">Allow links to a authors' bibliographies</message>
+        <message key="manager.groups.publishEmailList">Allow emails in a members' list.</message>
+        <message key="manager.groups.allowMedailon">Allow link to members' medailons.</message>
+        <message key="manager.groups.publishUrlList">Allow url in a members' list.</message>
+        <message key="manager.setup.meidalon.citation.allow">Allow links to a authors' bibliographies</message>
+        <message key="editorialTeam.email">Email</message>
+        <message key="editorialTeam.url">URL</message>
+        <message key="user.allowPublishingEmail">Deny publishing an email.</message>
+        <message key="manager.groups.opacnyTvarJmena">Reverse name format</message>
+        <message key="manager.groups.fullProfile">Show profiles on a full page(not in pop-up window)</message>
+        
+        <message key="editor.issues.articleNumber">Artikelnummer</message>
+        <message key="manager.setup.enableArticleNumber">Aktivieren Sie die Zellennummerierung</message>
+        <message key="manager.setup.articleNumberIdentifier">Nummerierung der Artikel</message>
+        <message key="article.clanek.articleNumber">Artikel</message>
+        
+        <message key="manager.setup.citace">Bibliographische Artikelzitat anzeigen</message>
+        <message key="manager.setup.citace.description">Bibliographische Artikelzitat anzeigen</message>
+        <message key="manager.setup.citace.allow">Ansicht auf landing page</message>
+        <message key="manager.setup.citace.allowHtml">Ansicht auf HTML</message>
+        <message key="rt.captureCite.format">Zitatformat</message>
+        
+        <<message key="submission.skipLandingPage">Skip Landing Page </message>
+        <message key="submission.skipLandingPage.description">You can set to skipping Landing Page for this article and choose galley to go there.</message>
+        <message key="submission.layout.skipLandingPage">Skip Landing Page</message>
+        <message key="submission.layout.skipLandingPage.vypisSazebnic">Choose galley to go there:</message>
+        <message key="submission.layout.skipLandingPage.nastaveni">Settings</message>
+        
+        <message key="login.hint.username"></message>
+        <message key="login.hint.password"></message>
+        <message key="search.all">Alles</message>
+        <message key="search.searchIn">Suchen in:</message>
+        <message key="common.search.lupa">&#xf002;</message>
+        
+        <message key="manager.setup.simpleSearch">Simple search</message>
+        <message key="manager.setup.simpleSearch.description">You can allow Simple search! In Simple search you can't make comples queries</message>
+        <message key="manager.setup.useSimpleSearch.allow">Allow simple</message>
+        <message key="manager.setup.journalPrintCss">Journal Print Layout</message>
+        <message key="manager.setup.journalPrintCss.description">You can upload Style sheet for print pages. Example <![CDATA[<a href="https://journals.muni.cz/tutorials/printCss/journalPrintStyleSheet.css" target="_blank">here</a>.]]></message>
+        <message key="manager.setup.journalPrintStyleSheetInvalid">Print Style Sheet Error.</message>
+        <message key="manager.setup.journalPrintCss.styleSheet">Journal print style sheet</message>
+        <message key="user.login.registerNewAccount.before"></message>
+        <message key="citation.number">No.</message>
+        <message key="citation.pages">p.</message>
+        
+        <message key="manager.setup.aboutJournal">Archive additional text</message>
+        <message key="manager.setup.useTopArchivDescription">Use top block.</message>
+        <message key="manager.setup.useDownArchivDescription">Use bottom block.</message>
+        <message key="manager.setup.archivDescription">Journal description in section Archive</message>
+        <message key="metadata.journal.authors">From list</message>
+        <message key="submission.complete.complete">Complete</message>
+        <message key="manager.setup.headerLink">Header links</message>
+        <message key="manager.setup.headerLink.title">Header link - title</message>
+        <message key="manager.setup.headerLink.logo">Header link - logo</message>
+        <message key="manager.setup.suppSuffix">Supplementary files - add sufix</message>
+        <message key="manager.setup.suppSuffix.description">Add original name of supplementary file as sufix when download by Editor.</message>
+        <message key="manager.setup.suppSuffix.on">Turn on</message>
+        <message key="manager.setup.suppSuffix.off">Turn off</message>
+        <message key="submission.downloadZip">Download as ZIP</message>
+        <message key="submission.editMetadata">Edit metadata</message>
+        
+        <message key="common.alphaListCZ">A B C Č D E F G H I J K L M N O P Q R Ř S Š T Ť U V W X Y Z Ž</message>
+        <message key="submissions.proofread.autor">Autor</message>
+        <message key="submissions.proofread.korektor">Korrektor</message>
+        <message key="submissions.proofread.typograf">Layout-Editor</message> 
+        
+        <message key="header.link.web"></message>
+        <message key="review.reviewerInAuthors"><![CDATA[<span class="warning">WARNING! Reviewer is maybe one of the authors.</span>]]></message>
+        <message key="journal.issn.print">drucken</message>
+        <message key="navigation.about.journal">Über die Zeitschrift</message>
+        
+        <message key="journals.munipress.description">The portal Journals.muni.cz was created to simplify the orientation of the readers in journals published by Masaryk University. It uses the university-wide publishing and management system (OJS) to facilitate the work of editors, authors, and reviewers.</message>
+  <message key="journals.munipress.keywords">journals.muni.cz, munipress, journals, masaryk univesity, MU, ojs</message>
 </locale>

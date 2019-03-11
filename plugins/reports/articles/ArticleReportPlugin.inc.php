@@ -173,7 +173,7 @@ class ArticleReportPlugin extends ReportPlugin {
 			$returner['mname' . $seq] = isset($author['mname']) ? $author['mname'] : '';
 			$returner['lname' . $seq] = isset($author['lname']) ? $author['lname'] : '';
 			$returner['email' . $seq] = isset($author['email']) ? $author['email'] : '';
-			$returner['affiliation' . $seq] = isset($author['affiliation']) ? $author['affiliation'] : '';
+			$returner['affiliation' . $seq] = isset($author['affiliation']) ? preg_replace( '/\r\n|\r|\n/', " ", $author['affiliation']) : '';
 			$returner['country' . $seq] = isset($author['country']) ? $author['country'] : '';
 			$returner['url' . $seq] = isset($author['url']) ? $author['url'] : '';
 			$returner['biography' . $seq] = isset($author['biography']) ? $author['biography'] : '';

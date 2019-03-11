@@ -87,7 +87,7 @@
 
 <div id="container">
     {translate|assign:"help" key="languages.help"}
-    <span id="{if $help == "cestina"}help_cz{else}help_en{/if}"></span>
+    <span id="{if $help == "cestina"}help_cz{elseif $help == "deutsch"}help_de{else}help_en{/if}"></span>
 <div id="body">
 <div id="main">
 <h2>{translate key=$pageTitle}</h2>

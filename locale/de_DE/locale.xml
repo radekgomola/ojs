@@ -1200,7 +1200,8 @@ Die Prüfung kann bei Such-URLs, die Formularausfüllung verlangen, fehlschlagen
         
         
         <!--MUNIPRESS-->
-  
+        <message key="journal.issn.print">drucken</message>
+        <message key="navigation.about.journal">Über die Zeitschrift</message>
   <message key="navigation.czHelp">CZ Anweisungen</message>
   <message key="about.profile">Der Profil</message>
   <message key="user.title.before">Titel vor dem Namen</message>

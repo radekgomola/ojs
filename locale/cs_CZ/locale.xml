@@ -1545,4 +1545,9 @@ Masarykovy univerzity</message>
         <message key="common.databaseList"> WoS.;WoS (ESCI);SCOPUS;ERIH+;SRNP</message>
 <!--        <message key="common.facultyList">Právnická fakulta;Lékařská fakulta;Přírodovědecká fakulta;Filozofická fakulta;Pedagogická fakulta;Ekonomicko-správní fakulta;Fakulta informatiky;Fakulta sociálních studií;Fakulta sportovních studií</message>-->
         <message key="common.facultyList">PrF;LF;PřF;FF;PedF;ESF;FI;FSS;FSpS;NMU;CTT</message>
+        
+        <message key="cyberpsychology.search.author.archive">Autor - archív</message>
+        <message key="cyberpsychology.search.author.inReview">Autor - recezní řízení</message>
+        <message key="cyberpsychology.search.reviewer.archive">Recenzent - archív</message>
+        <message key="cyberpsychology.search.reviewer.inReview">Recenzent - recezní řízení</message>
 </locale>

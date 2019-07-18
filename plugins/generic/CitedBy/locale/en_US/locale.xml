@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Cited By plugin localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+
+	<message key="plugins.generic.citedby.displayName">Cited By Plugin</message>
+	<message key="plugins.generic.citedby.description"><![CDATA[CrossRef Cited-By linking plugin]]></message>
+	<message key="plugins.generic.citedby.displayTitle">Cited-By</message>
+
+	<message key="plugins.generic.CitedBy.manager.settings">Settings</message>
+	<message key="plugins.generic.CitedBy.manager.CitedBySettings">Cited By Settings</message>
+	<message key="plugins.generic.CitedBy.manager.settings.description"><![CDATA[<p>With this plugin enabled Cited By may be used to show Cited-By linking from CrossRef. Please note that this plugin requires that you have already be a member of CrossRef Cited-By linking.</p>]]></message>
+	<message key="plugins.generic.CitedBy.manager.settings.username">Username</message>
+	<message key="plugins.generic.CitedBy.manager.settings.password">Password</message>
+	<message key="plugins.generic.CitedBy.manager.settings.usernameRequired">Username is required.</message>
+	<message key="plugins.generic.CitedBy.manager.settings.passwordRequired">Password is required.</message>
+	
+	<message key="plugins.generic.citedby.vol">vol: </message>
+	<message key="plugins.generic.citedby.issue">issue: </message>
+	<message key="plugins.generic.citedby.year">year: </message>
+	<message key="plugins.generic.citedby.firstpage">first page: </message>
+</locale>

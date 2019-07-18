@@ -1,9 +1,10 @@
 <?php
+
 /**
  * @file classes/tasks/ReviewReminder.inc.php
  *
- * Copyright (c) 2013-2019 Simon Fraser University
- * Copyright (c) 2003-2019 John Willinsky
+ * Copyright (c) 2013-2016 Simon Fraser University Library
+ * Copyright (c) 2003-2016 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewReminder
@@ -11,45 +12,58 @@
  *
  * @brief Class to perform automated reminders for reviewers.
  */
+
 import('lib.pkp.classes.scheduledTask.ScheduledTask');
+
 define('REVIEW_REMIND_AUTO', 'REVIEW_REMIND_AUTO');
 define('REVIEW_REQUEST_REMIND_AUTO', 'REVIEW_REQUEST_REMIND_AUTO');
+
 class ReviewReminder extends ScheduledTask {
+
 	/**
 	 * Constructor.
 	 */
 	function ReviewReminder() {
 		parent::ScheduledTask();
 	}
+
 	/**
 	 * @see ScheduledTask::getName()
 	 */
 	function getName() {
 		return __('admin.scheduledTask.reviewReminder');
 	}
+
 	function sendReminder ($reviewAssignment, $article, $journal, $reminderType = REVIEW_REMIND_AUTO) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$reviewId = $reviewAssignment->getId();
+
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
+
 		import('classes.mail.ArticleMailTemplate');
+
 		$reviewerAccessKeysEnabled = $journal->getSetting('reviewerAccessKeysEnabled');
+
 		$email = new ArticleMailTemplate($article, $reviewerAccessKeysEnabled ? $reminderType . '_ONECLICK' : $reminderType, $journal->getPrimaryLocale(), false, $journal, false, true);
 		$email->setJournal($journal);
-		$email->setFrom($journal->getSetting('contactEmail'), $journal->getSetting('contactName'));
+		$email->setReplyTo(null);
 		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 		$email->setSubject($email->getSubject($journal->getPrimaryLocale()));
 		$email->setBody($email->getBody($journal->getPrimaryLocale()));
+
 		$urlParams = array();
 		if ($reviewerAccessKeysEnabled) {
 			import('lib.pkp.classes.security.AccessKeyManager');
 			$accessKeyManager = new AccessKeyManager();
+
 			// Key lifetime is the typical review period plus four weeks
 			$keyLifetime = ($journal->getSetting('numWeeksPerReview') + 4) * 7;
 			$urlParams['key'] = $accessKeyManager->createKey('ReviewerContext', $reviewer->getId(), $reviewId, $keyLifetime);
 		}
 		$submissionReviewUrl = Request::url($journal->getPath(), 'reviewer', 'submission', $reviewId, $urlParams);
+
 		// Format the review due date
 		$reviewDueDate = strtotime($reviewAssignment->getDateDue());
 		$dateFormatShort = Config::getVar('general', 'date_format_short');
@@ -59,6 +73,7 @@ class ReviewReminder extends ScheduledTask {
 		} else {
 			$reviewDueDate = strftime($dateFormatShort, $reviewDueDate);
 		}
+
 		$paramArray = array(
 			'reviewerName' => $reviewer->getFullName(),
 			'reviewerUsername' => $reviewer->getUsername(),
@@ -68,24 +83,93 @@ class ReviewReminder extends ScheduledTask {
 			'weekLaterDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime('+1 week')),
 			'editorialContactSignature' => $journal->getSetting('contactName') . "\n" . $journal->getLocalizedTitle(),
 			'passwordResetUrl' => Request::url($journal->getPath(), 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
-			'submissionReviewUrl' => $submissionReviewUrl,
-			'abstractTermIfEnabled' => ($article->getLocalizedAbstract() == ''?'':__('article.abstract')),
+			'submissionReviewUrl' => $submissionReviewUrl
 		);
 		$email->assignParams($paramArray);
+
 		$email->send();
+
 		$reviewAssignment->setDateReminded(Core::getCurrentDate());
 		$reviewAssignment->setReminderWasAutomatic(1);
 		$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+
 	}
+
+//        /*
+//         * Munipress
+//         */
+//        function sendReminderEditor ($reviewAssignment, $article, $journal, $reminderType = REVIEW_REMIND_AUTO) {
+//		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+//		$userDao =& DAORegistry::getDAO('UserDAO');
+//		$reviewId = $reviewAssignment->getId();
+//
+//		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+//		if (!isset($reviewer)) return false;
+//
+//		import('classes.mail.ArticleMailTemplate');
+//
+//		$reviewerAccessKeysEnabled = $journal->getSetting('reviewerAccessKeysEnabled');
+//
+//		$email = new ArticleMailTemplate($article, $reviewerAccessKeysEnabled ? $reminderType . '_ONECLICK' : $reminderType, $journal->getPrimaryLocale(), false, $journal, false, true);
+//		$email->setJournal($journal);
+//		$email->setReplyTo(null);
+//		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
+//		$email->setSubject($email->getSubject($journal->getPrimaryLocale()));
+//		$email->setBody($email->getBody($journal->getPrimaryLocale()));
+//
+//		$urlParams = array();
+//		if ($reviewerAccessKeysEnabled) {
+//			import('lib.pkp.classes.security.AccessKeyManager');
+//			$accessKeyManager = new AccessKeyManager();
+//
+//			// Key lifetime is the typical review period plus four weeks
+//			$keyLifetime = ($journal->getSetting('numWeeksPerReview') + 4) * 7;
+//			$urlParams['key'] = $accessKeyManager->createKey('ReviewerContext', $reviewer->getId(), $reviewId, $keyLifetime);
+//		}
+//		$submissionReviewUrl = Request::url($journal->getPath(), 'reviewer', 'submission', $reviewId, $urlParams);
+//
+//		// Format the review due date
+//		$reviewDueDate = strtotime($reviewAssignment->getDateDue());
+//		$dateFormatShort = Config::getVar('general', 'date_format_short');
+//		if ($reviewDueDate === -1 || $reviewDueDate === false) {
+//			// Default to something human-readable if no date specified
+//			$reviewDueDate = '_____';
+//		} else {
+//			$reviewDueDate = strftime($dateFormatShort, $reviewDueDate);
+//		}
+//
+//		$paramArray = array(
+//			'reviewerName' => $reviewer->getFullName(),
+//			'reviewerUsername' => $reviewer->getUsername(),
+//			'journalUrl' => $journal->getUrl(),
+//			'reviewerPassword' => $reviewer->getPassword(),
+//			'reviewDueDate' => $reviewDueDate,
+//			'weekLaterDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime('+1 week')),
+//			'editorialContactSignature' => $journal->getSetting('contactName') . "\n" . $journal->getLocalizedTitle(),
+//			'passwordResetUrl' => Request::url($journal->getPath(), 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
+//			'submissionReviewUrl' => $submissionReviewUrl
+//		);
+//		$email->assignParams($paramArray);
+//
+//		$email->send();
+//
+//		$reviewAssignment->setDateReminded(Core::getCurrentDate());
+//		$reviewAssignment->setReminderWasAutomatic(1);
+//		$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+//
+//	}
+
 	/**
 	 * @see ScheduledTask::executeActions()
 	 */
 	function executeActions() {
 		$article = null;
 		$journal = null;
+
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$articleDao =& DAORegistry::getDAO('ArticleDAO');
 		$journalDao =& DAORegistry::getDAO('JournalDAO');
+
 		$incompleteAssignments =& $reviewAssignmentDao->getIncompleteReviewAssignments();
 		foreach ($incompleteAssignments as $reviewAssignment) {
 			// Fetch the Article and the Journal if necessary.
@@ -94,16 +178,23 @@ class ReviewReminder extends ScheduledTask {
 				$article =& $articleDao->getArticle($reviewAssignment->getSubmissionId());
 				// Avoid review assignments without article in database anymore.
 				if (!$article) continue;
+
 				if ($journal == null || $journal->getId() != $article->getJournalId()) {
 					unset($journal);
 					$journal =& $journalDao->getById($article->getJournalId());
+
 					$inviteReminderEnabled = $journal->getSetting('remindForInvite');
 					$submitReminderEnabled = $journal->getSetting('remindForSubmit');
 					$inviteReminderDays = $journal->getSetting('numDaysBeforeInviteReminder');
 					$submitReminderDays = $journal->getSetting('numDaysBeforeSubmitReminder');
+                                        
+                                        /*MUNIPRESS*/ 
+                                        $editorReminderEnabled = $journal->getSetting('remindEditor');
 				}
 			}
+
 			if ($article->getStatus() != STATUS_QUEUED) continue;
+
 			// $article, $journal, $...ReminderEnabled, $...ReminderDays, and $reviewAssignment
 			// are initialized by this point.
 			$reminderType = false;
@@ -111,20 +202,26 @@ class ReviewReminder extends ScheduledTask {
 				$checkDate = strtotime($reviewAssignment->getDateNotified());
 				if (time() - $checkDate > 60 * 60 * 24 * $inviteReminderDays) {
 					$reminderType = REVIEW_REQUEST_REMIND_AUTO;
+                                        if($editorReminderEnabled == 1) $reminderTypeEditor = REVIEW_REQUEST_REMIND_AUTO_EDITOR;
 				}
 			}
 			if ($submitReminderEnabled==1 && $reviewAssignment->getDateDue() != null) {
 				$checkDate = strtotime($reviewAssignment->getDateDue());
 				if (time() - $checkDate > 60 * 60 * 24 * $submitReminderDays) {
 					$reminderType = REVIEW_REMIND_AUTO;
+                                         if($editorReminderEnabled == 1) $reminderTypeEditor = REVIEW_REMIND_AUTO_EDITOR;
 				}
 			}
+
 			if ($reviewAssignment->getDateReminded() !== null) {
 				$reminderType = false;
 			}
+
 			if ($reminderType) $this->sendReminder ($reviewAssignment, $article, $journal, $reminderType);
 		}
+
 		return true;
 	}
 }
+
 ?>

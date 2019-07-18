@@ -109,5 +109,7 @@
 </tr>
 </table>
 
+{include file="sectionEditor/tlacitkaSearch.tpl" prijmeni=$user->getLastName()|escape}       
+        
 {include file="common/footer.tpl"}
 

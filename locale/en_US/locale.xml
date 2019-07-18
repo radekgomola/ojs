@@ -1339,4 +1339,9 @@ Masaryk University</message>
         <message key="site.journal.fakulty"><![CDATA[<strong>Faculties and Specialized Units:</strong>]]></message>
         <message key="common.databaseList"> WoS.;WoS (ESCI);SCOPUS;ERIH+;SRNP</message>
         <message key="common.facultyList">PrF;LF;PřF;FF;PedF;ESF;FI;FSS;FSpS;NMU;CTT</message>
+        
+        <message key="cyberpsychology.search.author.archive">Author - Archive</message>
+        <message key="cyberpsychology.search.author.inReview">Author - in Review</message>
+        <message key="cyberpsychology.search.reviewer.archive">Reviewer - Archive</message>
+        <message key="cyberpsychology.search.reviewer.inReview">Reviewer - in Review</message>
 </locale>

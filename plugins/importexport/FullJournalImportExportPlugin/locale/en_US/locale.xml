@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+ * Copyright (c) 2014 Instituto Brasileiro de Informação em Ciência e Tecnologia 
+ * Author: Giovani Pieri <giovani@lepidus.com.br>
+ *
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<message key="plugins.importexport.fullJournal.displayName">Full Journal Transfer</message>
+	<message key="plugins.importexport.fullJournal.description">Allows you to import and export journals.</message>
+
+	<message key="plugins.importexport.fullJournal.cliUsage">Usage: {$scriptName} {$pluginName} [command]
+
+Commands:
+	import [tarFileName]
+	export [tarFileName] [journal_path]</message>
+	<message key="plugins.importexport.fullJournal.import.success">Import Successful</message>
+	<message key="plugins.importexport.fullJournal.import.success.description">Journal has been imported successfully.</message>
+
+	<message key="plugins.importexport.fullJournal.export">Export Journal</message>
+	<message key="plugins.importexport.fullJournal.import">Import Journal</message>
+	<message key="plugins.importexport.fullJournal.import.description">This plugin supports importing revised data for periodic transfer between sites.</message>
+	<message key="plugins.importexport.fullJournal.import.error">Import Error</message>
+	<message key="plugins.importexport.fullJournal.import.error.description">One or more errors occurred during the journal's import process. Make sure that the file is in the correct format. The details of the errors are listed below.</message>
+	<message key="plugins.importexport.fullJournal.import.error.invalidPackage">Invalid Package</message>
+
+	<message key="plugins.importexport.fullJournal.error.uploadFailed">Upload failed.</message>
+
+	<message key="plugins.importexport.fullJournal.cliError">ERROR:</message>
+	<message key="plugins.importexport.fullJournal.cliError.fileNotFound">File "{$tarFile}" was not found</message>
+
+	<message key="plugins.importexport.fullJournal.error.unknownJournal">Journal path "{$journalPath}" does not exist.</message>
+	<message key="plugins.importexport.fullJournal.export.error.couldNotWrite">Could not write to the file "{$fileName}".</message>
+
+	<message key="plugins.importexport.fullJournal.terms.article_file">Article file</message>
+	<message key="plugins.importexport.fullJournal.terms.email_log">Email message log</message>
+	<message key="plugins.importexport.fullJournal.terms.issue_file">Issue file</message>
+	<message key="plugins.importexport.fullJournal.terms.issue_galley">Issue galley</message>
+
+</locale>

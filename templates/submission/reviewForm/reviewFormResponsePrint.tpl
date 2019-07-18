@@ -35,7 +35,7 @@
 			{elseif $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_TEXT_FIELD}
 				{$reviewFormResponses[$elementId]|escape}
 			{elseif $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_TEXTAREA}
-				{$reviewFormResponses[$elementId]|escape}
+				{$reviewFormResponses[$elementId]|escape|nl2br}
 			{elseif $reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_CHECKBOXES}
 				{assign var=possibleResponses value=$reviewFormElement->getLocalizedPossibleResponses()}
 				{foreach name=responses from=$possibleResponses key=responseId item=responseItem}

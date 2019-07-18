@@ -724,6 +724,11 @@ class PeopleHandler extends ManagerHandler {
 				$templateMgr->assign_by_ref('journalTitles', $journalTitles);
 			}
 
+                        
+                        $userManager =& Request::getUser();
+                        $userManagerId = $userManager->getId();
+                        $templateMgr->assign('isEditor', $roleDao->getRole($journal->getId(), $userManagerId, ROLE_ID_EDITOR));
+                
 			$countryDao =& DAORegistry::getDAO('CountryDAO');
 			$country = null;
 			if ($user->getCountry() != '') {

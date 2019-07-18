@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Cited By plugin localization strings for the cs_CZ (Czech) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="cs_CZ" full_name="Czech">
+
+	<message key="plugins.generic.citedby.displayName">Cited By Plugin</message>
+	<message key="plugins.generic.citedby.description"><![CDATA[CrossRef Cited-By referenční doplněk]]></message>
+	<message key="plugins.generic.citedby.displayTitle">Cited-By</message>
+
+	<message key="plugins.generic.CitedBy.manager.settings">Nastavení</message>
+	<message key="plugins.generic.CitedBy.manager.CitedBySettings">Cited By Nastavení</message>
+	<message key="plugins.generic.CitedBy.manager.settings.description"><![CDATA[<p>With this plugin enabled Cited By may be used to show Cited-By linking from CrossRef. Please note that this plugin requires that you have already be a member of CrossRef Cited-By linking.</p>]]></message>
+	<message key="plugins.generic.CitedBy.manager.settings.username">Uživatelské jméno</message>
+	<message key="plugins.generic.CitedBy.manager.settings.password">Heslo</message>
+	<message key="plugins.generic.CitedBy.manager.settings.usernameRequired">Uživatelské jméno je povinné.</message>
+	<message key="plugins.generic.CitedBy.manager.settings.passwordRequired">Heslo je povinné.</message>
+	
+	<message key="plugins.generic.citedby.vol">ročník: </message>
+	<message key="plugins.generic.citedby.issue">číslo: </message>
+	<message key="plugins.generic.citedby.year">rok: </message>
+	<message key="plugins.generic.citedby.firstpage">první strana: </message>
+</locale>

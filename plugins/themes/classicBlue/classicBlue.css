@@ -11,7 +11,7 @@
 
 body {
 	background-color: #fff;
-	font-family: "Times New Roman", Times, Georgia, serif;
+	font-family: "Roboto", "Calibri", "Arial", "Helvetica", sans-serif;
 }
 
 a {
@@ -28,6 +28,12 @@ a:active {
 
 a:visited {
 	color: #069;
+}
+a.header_link:visited {
+	color: #fff;
+}
+a.header_link {
+	color: #fff;
 }
 
 a:hover {
@@ -60,12 +66,15 @@ input.defaultButton {
 
 #header h1 {
 	line-height: 2.5;
-	font-family: "Times New Roman", Times, Georgia, serif;
 	text-transform: uppercase;
 	letter-spacing: 10px;
 	font-size: 2em;
 	background-color: #069;
 	color:  #fff;
+        margin: 0 auto;
+        padding: 0.5em 0 0.25em 20%;
+        font-family: Georgia,'Times New Roman',Times,serif;
+        font-weight: normal;
 }
 
 #footer {
@@ -82,15 +91,21 @@ input.defaultButton {
 	border-top: 1px solid yellow;
 	border-bottom: 1px dotted #069;
 	margin-top: 15px;
+        width: 49%;
+        margin-left: 20%;
 }
-
-#main h2 {
+h1 {
 	font-family: "Times New Roman", Times, Georgia, serif;
 	text-transform: uppercase;
 }
 
+#main h2 {
+	/*font-family: "Times New Roman", Times, Georgia, serif;*/
+	text-transform: uppercase;
+}
+
 #main h3 {
-	font-family: "Times New Roman", Times, Georgia, serif;
+	/*font-family: "Times New Roman", Times, Georgia, serif;*/
 	text-transform: uppercase;
 }
 
@@ -158,6 +173,9 @@ div.separator {
 	border-bottom: 1px dotted #069;
 }
 
+#rightSidebar {
+    margin-right: 15%;
+}
 #rightSidebar ul, #leftSidebar ul {
 	margin-left: 0px;
 	padding-left: 0px;
@@ -170,4 +188,15 @@ div.separator {
 #rightSidebar, #leftSidebar {
 	margin-top: 5px;
 	border-bottom: 1px dotted #069;
+}
+
+#sidebar div.block {
+    font-size: 1.2em;
+}
+
+#content {
+    font-size: 0.9em;
+}
+#navbar a {
+    font-size: 1em;
 }

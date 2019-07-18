@@ -55,7 +55,7 @@ class RoundedCornersPlugin extends GenericPlugin {
 		$matches = RoundedCornersPlugin::_getDivs($newOutput, 'block');
 		if (count($matches) > 0) {
 			foreach ($matches as $match) {
-				if (preg_match('/<div[^>]+class\=\"block\"[^>]*>(\s*)(<\/div>[^<]*)$/', $match) > 0 ) continue;
+				if (preg_match('/<div[^>]+class\=\"block\"[^>]*>(\s*)(<\/div>[^<]*)$/', $match) > 0 || preg_match('/<div[^>]+class\=\"block custom\"[^>]*>(\s*)(<\/div>[^<]*)$/', $match) > 0) continue;
 
 				$newBlock = preg_replace('/(<div[^>]+class\=\"block)(\"[^>]*>)/is', "\\1 alreadyRounded\\2$top", $match, PREG_OFFSET_CAPTURE);
 				$newBlock = preg_replace('/([^>]*)(<\/div>[^<]*)$/', "\\1$bottom\\2", $newBlock);

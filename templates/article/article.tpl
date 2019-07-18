@@ -217,5 +217,7 @@
 {/if}
 {call_hook name="Templates::Article::MoreInfo"}
 {include file="article/comments.tpl"}
+
+{call_hook name=“citedby”} 
 </div>
 {include file="article/footer.tpl"}

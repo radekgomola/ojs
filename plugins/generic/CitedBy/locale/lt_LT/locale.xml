@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * CitedBy plugin localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="lt_LT" full_name="Lietuvių">
+
+	<message key="plugins.generic.citedby.displayName">Cited By įskiepis</message>
+	<message key="plugins.generic.citedby.description"><![CDATA[CrossRef Cited-By linking įskiepis]]></message>
+	<message key="plugins.generic.citedby.displayTitle">Straipsnį cituoja</message>
+	
+	<message key="plugins.generic.CitedBy.manager.settings">Nustatymai</message>
+	<message key="plugins.generic.CitedBy.manager.CitedBySettings">Cited By nustatymai</message>
+	<message key="plugins.generic.CitedBy.manager.settings.description"><![CDATA[<p>Šis įskiepis leidžia atvaizduoti CrossRef suteiktą Cited-By linking. Kad galėtumėte naudotis šiomis funkcijomis turi būti užsiregistravę CrossRef sistemoje.</p>]]></message>
+	<message key="plugins.generic.CitedBy.manager.settings.username">Vartotojo vardas</message>
+	<message key="plugins.generic.CitedBy.manager.settings.password">Slaptažodis</message>
+	<message key="plugins.generic.CitedBy.manager.settings.usernameRequired">Vartotojo vardas yra privalomas.</message>
+	<message key="plugins.generic.CitedBy.manager.settings.passwordRequired">Slaptažodis yra privalomas.</message>
+	
+	<message key="plugins.generic.citedby.vol">tomas: </message>
+	<message key="plugins.generic.citedby.issue">numeris: </message>
+	<message key="plugins.generic.citedby.year">metai: </message>
+	<message key="plugins.generic.citedby.firstpage">pirmas puslapis: </message>
+</locale>
